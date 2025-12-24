@@ -153,7 +153,7 @@ export default function App() {
             </div>
           </ScrollSection>
 
-          <MorphingText delay={0.2}>
+          <MorphingText delay={0.05}>
             <h1 className="text-7xl mb-6 tracking-tight">
               UX/UI Designer<br />
               Frontend Developer
