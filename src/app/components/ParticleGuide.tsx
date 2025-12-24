@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 
 export function ParticleGuide() {
   const { scrollYProgress } = useScroll();
@@ -7,32 +7,34 @@ export function ParticleGuide() {
   const time = useMotionValue(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Create 200 particles with multi-layered organic distribution
-  const particles = Array.from({ length: 200 }, (_, i) => {
-    // Create 10 layers of 20 particles each for more organic depth
-    const layer = Math.floor(i / 20);
-    const angleInLayer = (i % 20 / 20) * Math.PI * 2;
-    const radiusBase = 15 + layer * 12;
-    const radiusVariation = Math.random() * 15;
-    
-    // Add turbulence offsets for each particle
-    const turbulencePhase = Math.random() * Math.PI * 2;
-    const turbulenceAmplitude = 5 + Math.random() * 15;
-    
-    return {
-      id: i,
-      baseX: Math.cos(angleInLayer) * (radiusBase + radiusVariation),
-      baseY: Math.sin(angleInLayer) * (radiusBase + radiusVariation),
-      scale: 0.4 + Math.random() * 0.5,
-      delay: Math.random() * 0.4,
-      layer: layer,
-      speed: 0.7 + Math.random() * 0.6,
-      turbulencePhase,
-      turbulenceAmplitude,
-      wavePhase: Math.random() * Math.PI * 2,
-      spiralOffset: Math.random() * 0.3,
-    };
-  });
+  // Create 300 particles with multi-layered organic distribution - memoized to ensure consistency
+  const particles = useMemo(() => {
+    return Array.from({ length: 300 }, (_, i) => {
+      // Create layers of particles for organic depth
+      const layer = Math.floor(i / 20);
+      const angleInLayer = (i % 20 / 20) * Math.PI * 2;
+      const radiusBase = 15 + layer * 12;
+      const radiusVariation = Math.random() * 15;
+      
+      // Add turbulence offsets for each particle
+      const turbulencePhase = Math.random() * Math.PI * 2;
+      const turbulenceAmplitude = 5 + Math.random() * 15;
+      
+      return {
+        id: i,
+        baseX: Math.cos(angleInLayer) * (radiusBase + radiusVariation),
+        baseY: Math.sin(angleInLayer) * (radiusBase + radiusVariation),
+        scale: 0.4 + Math.random() * 0.5,
+        delay: Math.random() * 0.4,
+        layer: layer,
+        speed: 0.7 + Math.random() * 0.6,
+        turbulencePhase,
+        turbulenceAmplitude,
+        wavePhase: Math.random() * Math.PI * 2,
+        spiralOffset: Math.random() * 0.3,
+      };
+    });
+  }, []); // Empty dependency array - only create once
 
   // Smooth spring physics for organic movement
   const smoothScrollProgress = useSpring(scrollYProgress, {
@@ -148,102 +150,124 @@ export function ParticleGuide() {
     >
       <div className="relative">
         {particles.map((particle) => {
-          // Create dynamic transforms based on time and scroll
-          const particleX = useTransform(
-            [smoothScrollProgress, time],
-            ([scroll, t]: any) => {
-              // Multiple wave frequencies for complex movement
-              const wave1 = Math.sin(scroll * Math.PI * 15 + t * 0.001) * 50;
-              const wave2 = Math.cos(scroll * Math.PI * 8 + t * 0.0015) * 30;
-              
-              // Individual turbulence
-              const turbulence = Math.sin(t * 0.002 + particle.turbulencePhase) * particle.turbulenceAmplitude;
-              
-              // Wave ripple
-              const waveRipple = Math.sin(scroll * Math.PI * 20 + t * 0.002 + particle.wavePhase) * 15;
-              
-              // Swirl effect
-              const swirl = Math.sin(scroll * Math.PI * 14 + t * 0.001) * 0.8;
-              const distance = Math.sqrt(particle.baseX ** 2 + particle.baseY ** 2);
-              const angle = Math.atan2(particle.baseY, particle.baseX);
-              const swirlAngle = angle + swirl * particle.spiralOffset;
-              const swirlX = Math.cos(swirlAngle) * distance;
-              
-              // Combine deformations
-              const stretchFactor = 1 + (wave1 + wave2) / 100;
-              return swirlX * stretchFactor + turbulence + waveRipple * Math.cos(angle) + mouseInfluence.x * particle.scale * 8;
-            }
-          );
-
-          const particleY = useTransform(
-            [smoothScrollProgress, time],
-            ([scroll, t]: any) => {
-              // Vertical pulsing
-              const pulse1 = Math.sin(scroll * Math.PI * 12 + t * 0.0012) * 35;
-              const pulse2 = Math.cos(scroll * Math.PI * 18 + t * 0.0008) * 25;
-              
-              // Individual turbulence
-              const turbulence = Math.cos(t * 0.0025 + particle.turbulencePhase) * particle.turbulenceAmplitude;
-              
-              // Wave ripple
-              const waveRipple = Math.sin(scroll * Math.PI * 20 + t * 0.002 + particle.wavePhase) * 15;
-              
-              // Swirl effect
-              const swirl = Math.sin(scroll * Math.PI * 14 + t * 0.001) * 0.8;
-              const distance = Math.sqrt(particle.baseX ** 2 + particle.baseY ** 2);
-              const angle = Math.atan2(particle.baseY, particle.baseX);
-              const swirlAngle = angle + swirl * particle.spiralOffset;
-              const swirlY = Math.sin(swirlAngle) * distance;
-              
-              // Combine deformations
-              const stretchFactor = 1 + (pulse1 + pulse2) / 100;
-              return swirlY * stretchFactor + turbulence + waveRipple * Math.sin(angle) + mouseInfluence.y * particle.scale * 8;
-            }
-          );
-
-          const particleRotation = useTransform(
-            smoothScrollProgress,
-            (scroll) => {
-              const rotate1 = Math.sin(scroll * Math.PI * 10) * 20;
-              const rotate2 = Math.cos(scroll * Math.PI * 6) * 12;
-              return rotate1 + rotate2;
-            }
-          );
-
           return (
-            <motion.div
+            <Particle
               key={particle.id}
-              className="absolute rounded-full bg-gray-500"
-              style={{
-                x: particleX,
-                y: particleY,
-                rotate: particleRotation,
-                width: '5px',
-                height: '5px',
-                filter: 'blur(0.5px)',
-                willChange: 'transform',
-              }}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{
-                opacity: [0.3, 0.5, 0.3],
-                scale: particle.scale,
-              }}
-              transition={{
-                opacity: {
-                  duration: 1.8 + particle.delay,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: particle.layer * 0.03,
-                },
-                scale: {
-                  delay: particle.delay,
-                  duration: 0.6,
-                },
-              }}
+              particle={particle}
+              smoothScrollProgress={smoothScrollProgress}
+              time={time}
+              mouseInfluence={mouseInfluence}
             />
           );
         })}
       </div>
     </motion.div>
+  );
+}
+
+// Separate component for each particle to avoid hooks in loops
+function Particle({ 
+  particle, 
+  smoothScrollProgress, 
+  time, 
+  mouseInfluence 
+}: { 
+  particle: any; 
+  smoothScrollProgress: any; 
+  time: any; 
+  mouseInfluence: { x: number; y: number }; 
+}) {
+  // Create dynamic transforms based on time and scroll
+  const particleX = useTransform(
+    [smoothScrollProgress, time],
+    ([scroll, t]: any) => {
+      // Multiple wave frequencies for complex movement
+      const wave1 = Math.sin(scroll * Math.PI * 15 + t * 0.001) * 50;
+      const wave2 = Math.cos(scroll * Math.PI * 8 + t * 0.0015) * 30;
+      
+      // Individual turbulence
+      const turbulence = Math.sin(t * 0.002 + particle.turbulencePhase) * particle.turbulenceAmplitude;
+      
+      // Wave ripple
+      const waveRipple = Math.sin(scroll * Math.PI * 20 + t * 0.002 + particle.wavePhase) * 15;
+      
+      // Swirl effect
+      const swirl = Math.sin(scroll * Math.PI * 14 + t * 0.001) * 0.8;
+      const distance = Math.sqrt(particle.baseX ** 2 + particle.baseY ** 2);
+      const angle = Math.atan2(particle.baseY, particle.baseX);
+      const swirlAngle = angle + swirl * particle.spiralOffset;
+      const swirlX = Math.cos(swirlAngle) * distance;
+      
+      // Combine deformations
+      const stretchFactor = 1 + (wave1 + wave2) / 100;
+      return swirlX * stretchFactor + turbulence + waveRipple * Math.cos(angle) + mouseInfluence.x * particle.scale * 8;
+    }
+  );
+
+  const particleY = useTransform(
+    [smoothScrollProgress, time],
+    ([scroll, t]: any) => {
+      // Vertical pulsing
+      const pulse1 = Math.sin(scroll * Math.PI * 12 + t * 0.0012) * 35;
+      const pulse2 = Math.cos(scroll * Math.PI * 18 + t * 0.0008) * 25;
+      
+      // Individual turbulence
+      const turbulence = Math.cos(t * 0.0025 + particle.turbulencePhase) * particle.turbulenceAmplitude;
+      
+      // Wave ripple
+      const waveRipple = Math.sin(scroll * Math.PI * 20 + t * 0.002 + particle.wavePhase) * 15;
+      
+      // Swirl effect
+      const swirl = Math.sin(scroll * Math.PI * 14 + t * 0.001) * 0.8;
+      const distance = Math.sqrt(particle.baseX ** 2 + particle.baseY ** 2);
+      const angle = Math.atan2(particle.baseY, particle.baseX);
+      const swirlAngle = angle + swirl * particle.spiralOffset;
+      const swirlY = Math.sin(swirlAngle) * distance;
+      
+      // Combine deformations
+      const stretchFactor = 1 + (pulse1 + pulse2) / 100;
+      return swirlY * stretchFactor + turbulence + waveRipple * Math.sin(angle) + mouseInfluence.y * particle.scale * 8;
+    }
+  );
+
+  const particleRotation = useTransform(
+    smoothScrollProgress,
+    (scroll) => {
+      const rotate1 = Math.sin(scroll * Math.PI * 10) * 20;
+      const rotate2 = Math.cos(scroll * Math.PI * 6) * 12;
+      return rotate1 + rotate2;
+    }
+  );
+
+  return (
+    <motion.div
+      className="absolute rounded-full bg-gray-500"
+      style={{
+        x: particleX,
+        y: particleY,
+        rotate: particleRotation,
+        width: '5px',
+        height: '5px',
+        filter: 'blur(0.5px)',
+        willChange: 'transform',
+      }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{
+        opacity: [0.1, 0.2, 0.1],
+        scale: particle.scale,
+      }}
+      transition={{
+        opacity: {
+          duration: 1.8 + particle.delay,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: particle.layer * 0.03,
+        },
+        scale: {
+          delay: particle.delay,
+          duration: 0.6,
+        },
+      }}
+    />
   );
 }
