@@ -43,62 +43,179 @@ export function ParticleGuide() {
     mass: 0.8,
   });
 
-  // Path that exits briefly at section starts then returns to guide
+  // Scroll-based positioning: Guide attention to reading start points (titles, subtitles, bullet headers)
   const x = useTransform(
     smoothScrollProgress,
     [
-      0,    // Hero start
-      0.05, // Quickly visible
-      0.12, // Exit right for Philosophy section
-      0.16, // Return immediately
-      0.22, // Move through
-      0.28, // Exit left for Expertise
-      0.32, // Return
-      0.38, // Guide through
-      0.44, // Exit right for Case Study 1
-      0.48, // Return
-      0.56, // Navigate
-      0.62, // Exit left 
-      0.66, // Return for Case Study 2
-      0.72, // Move
-      0.78, // Exit right for Gallery
-      0.82, // Return
-      0.88, // Guide to end
-      0.94, // Exit for Contact
-      0.98, // Return briefly
-      1     // Final exit
+      0.01,     // Hero - start hidden
+      0.03,  // Hero title (left edge)
+      0.10,  // Hero text ends - fade out
+      0.13,  // Philosophy title enters
+      0.18,  // Philosophy paragraph - fade out
+      0.22,  // Expertise section title
+      0.26,  // Expertise cards (left align with first card title)
+      0.32,  // Expertise ends - fade out
+      0.35,  // Case Study 1 title enters
+      0.38,  // Case Study 1 hero image - stay left
+      0.41,  // Problem section title
+      0.44,  // Research section title
+      0.47,  // Research insights (bullet points) - vertical guide
+      0.51,  // Strategy section title
+      0.54,  // Design section title
+      0.58,  // Prototype section title
+      0.61,  // Implementation section title
+      0.64,  // Outcome section - fade out
+      0.67,  // Case Study 2 title enters
+      0.70,  // Case Study 2 sections begin
+      0.75,  // Mid case study - guiding through sections
+      0.80,  // Case study ends - fade out
+      0.83,  // Exploratory Gallery title
+      0.87,  // Gallery grid - fade out
+      0.90,  // How I Work section title
+      0.94,  // Process steps (bullet-style sections)
+      0.97,  // Footer "Let's Collaborate" - reposition for impact
+      0.985, // Impact moment
+      1      // Disperse and disappear
     ],
     [
-      '10vw',  // Start
-      '25vw',  // Visible
-      '105vw', // Exit right (off screen)
-      '20vw',  // Return
-      '65vw',  // Center-right
-      '-15vw', // Exit left (off screen)
-      '30vw',  // Return
-      '70vw',  // Right
-      '110vw', // Exit right
-      '35vw',  // Return
-      '55vw',  // Center
-      '-10vw', // Exit left
-      '40vw',  // Return
-      '60vw',  // Right
-      '108vw', // Exit right
-      '45vw',  // Return
-      '50vw',  // Center
-      '115vw', // Exit for contact
-      '50vw',  // Brief return
-      '120vw'  // Final exit
+      '-1vw', // Start off-screen
+      '8vw',   // Hero title left edge
+      '8vw',   // Stay during hero text
+      '8vw',   // Philosophy title
+      '-50vw', // Fade out during philosophy text
+      '8vw',   // Expertise title left edge
+      '10vw',  // Align with expertise cards
+      '-50vw', // Exit during text-heavy area
+      '8vw',   // Case Study 1 title
+      '8vw',   // Stay left during hero image
+      '8vw',   // Problem title
+      '8vw',   // Research title
+      '10vw',  // Research bullet points (slightly right)
+      '8vw',   // Strategy title
+      '8vw',   // Design title
+      '8vw',   // Prototype title
+      '8vw',   // Implementation title
+      '-50vw', // Exit outcome
+      '8vw',   // Case Study 2 title
+      '5vw',   // Guide through sections
+      '1vw',   // Continue guiding
+      '-50vw', // Exit case study
+      '8vw',   // Gallery title
+      '-50vw', // Exit during gallery grid
+      '8vw',   // How I Work title
+      '10vw',  // Process step bullets
+      '50vw',  // Center for footer impact
+      '50vw',  // Hold center for impact
+      '50vw'   // Disperse from center
     ]
   );
 
   const y = useTransform(
     smoothScrollProgress,
     [
-      0, 0.08, 0.15, 0.22, 0.3, 0.38, 0.45, 0.52, 0.6, 0.68, 0.75, 0.82, 0.9, 0.95, 1
+      0.01,     // Hero start
+      0.03,  // Hero title top
+      0.10,  // Hero end
+      0.13,  // Philosophy title
+      0.18,  // Philosophy end
+      0.22,  // Expertise title
+      0.26,  // Expertise cards top
+      0.32,  // Expertise end
+      0.35,  // Case Study 1 title
+      0.38,  // CS1 hero
+      0.41,  // Problem
+      0.44,  // Research
+      0.47,  // Research bullets
+      0.51,  // Strategy
+      0.54,  // Design
+      0.58,  // Prototype
+      0.61,  // Implementation
+      0.64,  // Outcome
+      0.67,  // Case Study 2
+      0.70,  // CS2 sections
+      0.75,  // CS2 mid
+      0.80,  // CS2 end
+      0.83,  // Gallery
+      0.87,  // Gallery grid
+      0.90,  // How I Work
+      0.94,  // Process steps
+      0.97,  // Footer title top
+      0.985, // Impact drop
+      1      // Final
     ],
     [
-      '15vh', '30vh', '20vh', '45vh', '35vh', '55vh', '42vh', '60vh', '48vh', '68vh', '55vh', '75vh', '65vh', '82vh', '90vh'
+      '50vh', // Start center
+      '25vh', // Hero title position
+      '40vh', // Rise during hero
+      '30vh', // Philosophy title
+      '45vh', // Philosophy end
+      '30vh', // Expertise title
+      '35vh', // Expertise cards
+      '50vh', // Rise out
+      '58vh', // CS1 title
+      '32vh', // CS1 hero
+      '26vh', // Problem
+      '40vh', // Research
+      '45vh', // Research bullets - guide down
+      '50vh', // Strategy
+      '54vh', // Design
+      '58vh', // Prototype
+      '62vh', // Implementation
+      '70vh', // Outcome rise
+      '28vh', // CS2 title
+      '35vh', // CS2 sections
+      '45vh', // CS2 mid
+      '60vh', // CS2 end rise
+      '30vh', // Gallery title
+      '50vh', // Gallery grid
+      '30vh', // How I Work title
+      '40vh', // Process steps
+      '25vh', // Footer title top
+      '50vh', // Drop to center for impact
+      '80vh'  // Disperse downward
+    ]
+  );
+
+  // Opacity control: Fade out in text-heavy areas, reappear for titles
+  const opacity = useTransform(
+    smoothScrollProgress,
+    [
+      0.01,     // Hidden at start
+      0.03,  // Fade in for hero
+      0.10,  // Fade out during hero text
+      0.13,  // Reappear for philosophy title
+      0.18,  // Fade out during philosophy text
+      0.22,  // Reappear for expertise
+      0.32,  // Fade out after expertise
+      0.35,  // Reappear for CS1
+      0.64,  // Fade out after CS1
+      0.67,  // Reappear for CS2
+      0.80,  // Fade out after CS2
+      0.83,  // Reappear for gallery title
+      0.87,  // Fade out during gallery
+      0.90,  // Reappear for How I Work
+      0.97,  // Full opacity for footer
+      0.985, // Hold during impact
+      1      // Fade out completely
+    ],
+    [
+      0,    // Hidden
+      1,    // Visible
+      0,    // Hidden in text
+      1,    // Visible
+      0,    // Hidden in text
+      1,    // Visible
+      0,    // Hidden
+      1,    // Visible
+      0,    // Hidden
+      1,    // Visible
+      0,    // Hidden
+      1,    // Visible
+      0,    // Hidden
+      0.5,    // Visible
+      0.6,    // Full for footer
+      0.7,    // Hold
+      0     // Final disappear
     ]
   );
 
@@ -157,6 +274,7 @@ export function ParticleGuide() {
               smoothScrollProgress={smoothScrollProgress}
               time={time}
               mouseInfluence={mouseInfluence}
+              opacity={opacity}
             />
           );
         })}
@@ -170,12 +288,14 @@ function Particle({
   particle, 
   smoothScrollProgress, 
   time, 
-  mouseInfluence 
+  mouseInfluence,
+  opacity
 }: { 
   particle: any; 
   smoothScrollProgress: any; 
   time: any; 
   mouseInfluence: { x: number; y: number }; 
+  opacity: any;
 }) {
   // Create dynamic transforms based on time and scroll
   const particleX = useTransform(
@@ -199,8 +319,8 @@ function Particle({
       const swirlX = Math.cos(swirlAngle) * distance;
       
       // Combine deformations
-      const stretchFactor = 1 + (wave1 + wave2) / 100;
-      return swirlX * stretchFactor + turbulence + waveRipple * Math.cos(angle) + mouseInfluence.x * particle.scale * 8;
+      const stretchFactor = 1 + (wave1 + wave2) / 90;
+      return swirlX * stretchFactor + turbulence + waveRipple * Math.cos(angle) + mouseInfluence.x * particle.scale * 10;
     }
   );
 
@@ -225,7 +345,7 @@ function Particle({
       const swirlY = Math.sin(swirlAngle) * distance;
       
       // Combine deformations
-      const stretchFactor = 1 + (pulse1 + pulse2) / 100;
+      const stretchFactor = 5 + (pulse1 + pulse2) / 60;
       return swirlY * stretchFactor + turbulence + waveRipple * Math.sin(angle) + mouseInfluence.y * particle.scale * 8;
     }
   );
@@ -241,31 +361,26 @@ function Particle({
 
   return (
     <motion.div
-      className="absolute rounded-full bg-gray-500"
+      className="absolute rounded-full"
       style={{
         x: particleX,
         y: particleY,
         rotate: particleRotation,
-        width: '5px',
-        height: '5px',
-        filter: 'blur(0.5px)',
+        opacity: opacity,
+        width: '2.5px',
+        height: '2.5px',
+        backgroundColor: '#6b7280',
+        filter: 'blur(2px)',
         willChange: 'transform',
       }}
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{ scale: 0 }}
       animate={{
-        opacity: [0.1, 0.2, 0.1],
         scale: particle.scale,
       }}
       transition={{
-        opacity: {
-          duration: 1.8 + particle.delay,
-          repeat: Infinity,
-          ease: 'easeInOut',
-          delay: particle.layer * 0.03,
-        },
         scale: {
           delay: particle.delay,
-          duration: 0.6,
+          duration: 0.9,
         },
       }}
     />
