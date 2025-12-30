@@ -11,8 +11,10 @@
 
   ## Deploying to GitHub Pages
 
-  Run `npm run build` to generate the static site into `docs/`.
+  This project deploys with GitHub Actions.
 
-  In your GitHub repo settings, set Pages to deploy from the `main` branch
-  and `/docs` folder.
+  In your GitHub repo settings, set Pages to deploy from `GitHub Actions`.
+  Pushing to `main` will run the workflow and publish the `docs/` build output.
+
+  Run `npm run build` locally if you want to verify the production build.
   
