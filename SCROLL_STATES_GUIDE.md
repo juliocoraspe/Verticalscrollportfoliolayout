@@ -3,7 +3,7 @@
 This document outlines the key scroll states and animation triggers for the continuous scroll portfolio experience.
 
 ## Overview
-The portfolio features a vertical scroll narrative with scroll-linked animations, parallax effects, and an organic particle guide system. Each section has specific entry/exit animations and timing.
+The portfolio features a vertical scroll narrative with scroll-linked animations and parallax effects. Each section has specific entry/exit animations and timing.
 
 ---
 
@@ -141,13 +141,11 @@ The portfolio features a vertical scroll narrative with scroll-linked animations
 - Mouse: subtle parallax response
 
 **Cluster Composition:**
-- 8 particles
 - Random offsets: ±20px x/y
 - Scale variance: 0.4 - 1.0
 - Individual delay: 0 - 0.3s
 - Breathing animation: opacity pulses 0.3 → 0.7
 
-**Visual:** White particles with blur, mix-blend-difference for contrast
 
 ---
 
@@ -253,7 +251,6 @@ Respect `prefers-reduced-motion` - consider adding queries to disable animations
 
 ## Future Enhancements
 
-1. **Add cursor trail** that interacts with particle guide
 2. **Implement smooth scroll** (locomotive-scroll or lenis)
 3. **Add section progress indicators**
 4. **Include sound design** for premium experience

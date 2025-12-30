@@ -1,106 +1,76 @@
-import { motion } from 'motion/react';
-import { GlassCard } from './GlassCard';
+import { motion, useReducedMotion } from 'motion/react';
 
 interface ProjectCardProps {
   title: string;
-  description: string;
+  intent: string;
+  role: string;
   imageUrl: string;
   tags: string[];
+  onOpen: () => void;
   delay?: number;
-  layout?: 'horizontal' | 'vertical';
 }
 
 export function ProjectCard({
   title,
-  description,
+  intent,
+  role,
   imageUrl,
   tags,
+  onOpen,
   delay = 0,
-  layout = 'horizontal',
 }: ProjectCardProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <GlassCard delay={delay} className="p-0">
-      <div className={`flex ${layout === 'horizontal' ? 'flex-row' : 'flex-col'}`}>
-        {/* Image Section with Reveal Mask */}
-        <motion.div
-          className={`relative overflow-hidden ${
-            layout === 'horizontal' ? 'w-1/2' : 'w-full h-64'
-          }`}
-          initial={{ clipPath: 'inset(0 100% 0 0)' }}
-          whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{
-            duration: 1.2,
-            delay: delay + 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        >
-          <motion.img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-full object-cover"
-            initial={{ scale: 1.2 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: false }}
-            transition={{
-              duration: 1.5,
-              delay: delay + 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent" />
-        </motion.div>
-
-        {/* Content Section */}
-        <div className={`p-8 ${layout === 'horizontal' ? 'w-1/2' : 'w-full'} flex flex-col justify-center`}>
-          <motion.h3
-            className="mb-4"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              duration: 0.8,
-              delay: delay + 0.4,
-              ease: 'easeOut',
-            }}
-          >
-            {title}
-          </motion.h3>
-
-          <motion.p
-            className="text-gray-600 mb-6"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
-            transition={{
-              duration: 0.8,
-              delay: delay + 0.5,
-              ease: 'easeOut',
-            }}
-          >
-            {description}
-          </motion.p>
-
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag, index) => (
-              <motion.span
-                key={index}
-                className="px-4 py-2 rounded-full bg-gray-100/60 text-gray-700 text-sm backdrop-blur-sm"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: false }}
-                transition={{
-                  duration: 0.5,
-                  delay: delay + 0.6 + index * 0.1,
-                  ease: 'easeOut',
-                }}
-              >
-                {tag}
-              </motion.span>
-            ))}
+    <motion.div
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{
+        duration: shouldReduceMotion ? 0.01 : 0.38,
+        delay,
+        ease: 'easeOut',
+      }}
+    >
+      <motion.button
+        type="button"
+        onClick={onOpen}
+        className="w-full text-left border-t border-pale py-8 focus:outline-none"
+        whileHover={
+          shouldReduceMotion
+            ? undefined
+            : { x: 6, transition: { duration: 0.2, ease: 'easeOut' } }
+        }
+      >
+        <div className="grid grid-cols-1 md:grid-cols-[140px_1fr_auto] gap-6 items-start">
+          <div className="border border-pale bg-pure">
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full h-24 object-cover"
+            />
           </div>
+
+          <div className="space-y-3">
+            <div className="flex flex-wrap items-center gap-3 type-meta text-dark">
+              <span className="type-meta uppercase">Project</span>
+              <span className="type-meta">•</span>
+              <span className="type-meta">{role}</span>
+            </div>
+            <h3 className="type-display-m text-ink">{title}</h3>
+            <p className="type-body text-dark max-w-2xl">{intent}</p>
+            <div className="flex flex-wrap gap-3">
+              {tags.map((tag, index) => (
+                <span key={index} className="type-micro uppercase text-dark">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <span className="type-meta text-accent uppercase">Open</span>
         </div>
-      </div>
-    </GlassCard>
+      </motion.button>
+    </motion.div>
   );
 }

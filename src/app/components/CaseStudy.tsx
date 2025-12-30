@@ -1,41 +1,34 @@
-import { motion } from 'motion/react';
 import { ScrollSection } from './ScrollSection';
-import { GlassCard } from './GlassCard';
 
 interface CaseStudyProps {
   title: string;
   role: string;
   timeline: string;
+  summary: string;
   heroImage: string;
   problem: {
     title: string;
     description: string;
   };
-  research: {
+  process: {
     title: string;
-    insights: string[];
+    description: string;
+    steps: string[];
   };
-  strategy: {
-    title: string;
-    approach: string;
-    userFlow?: string;
-  };
-  design: {
+  exploration: {
     title: string;
     description: string;
     images: string[];
   };
-  prototype: {
+  solution: {
     title: string;
     description: string;
+    outcomes: string[];
   };
-  implementation: {
+  prototype: {
     title: string;
-    stack: string[];
-    note: string;
-  };
-  outcome: {
-    metrics: string[];
+    embedUrl?: string;
+    externalUrl?: string;
   };
 }
 
@@ -43,161 +36,151 @@ export function CaseStudy({
   title,
   role,
   timeline,
+  summary,
   heroImage,
   problem,
-  research,
-  strategy,
-  design,
+  process,
+  exploration,
+  solution,
   prototype,
-  implementation,
-  outcome,
 }: CaseStudyProps) {
   return (
-    <div className="w-full max-w-7xl mx-auto px-8 py-32 relative z-20">
-      {/* Hero Section */}
-      <ScrollSection entryDirection="bottom" delay={0}>
+    <section id="case-study" className="w-full max-w-6xl mx-auto px-8 py-32 relative z-20 border-t border-pale">
+      <ScrollSection entryDirection="bottom" motionRole="case-intro">
         <div className="mb-16">
-          <div className="flex gap-8 text-sm text-gray-500 mb-6">
-            <span>{role}</span>
-            <span>•</span>
-            <span>{timeline}</span>
+          <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-6">
+            <span className="type-meta uppercase">Flagship</span>
+            <span className="type-meta">•</span>
+            <span className="type-meta">{role}</span>
+            <span className="type-meta">•</span>
+            <span className="type-meta">{timeline}</span>
           </div>
-          <h2 className="text-6xl mb-12 max-w-4xl">{title}</h2>
+          <h2 className="type-display-l text-ink mb-6">{title}</h2>
+          <p className="type-subhead text-dark max-w-3xl">{summary}</p>
         </div>
       </ScrollSection>
 
-      {/* Hero Image */}
-      <ScrollSection entryDirection="scale" delay={0.2}>
-        <GlassCard className="p-0 mb-32 overflow-hidden">
-          <motion.img
-            src={heroImage}
-            alt={title}
-            className="w-full h-[500px] object-cover"
-            initial={{ scale: 1.1 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          />
-        </GlassCard>
+      <ScrollSection entryDirection="bottom" motionRole="case-block">
+        <div className="border-y border-pale mb-24">
+          <img src={heroImage} alt={title} className="w-full h-[420px] object-cover" />
+        </div>
       </ScrollSection>
 
-      {/* Problem Definition */}
-      <div className="grid grid-cols-12 gap-8 mb-32">
-        <ScrollSection entryDirection="left" className="col-span-4">
-          <h3 className="text-xl text-gray-500 sticky top-32">{problem.title}</h3>
-        </ScrollSection>
-        <ScrollSection entryDirection="right" delay={0.2} className="col-span-8">
-          <p className="text-2xl leading-relaxed">{problem.description}</p>
-        </ScrollSection>
-      </div>
-
-      {/* Research & Insights */}
-      <div className="grid grid-cols-12 gap-8 mb-32">
-        <ScrollSection entryDirection="left" className="col-span-4">
-          <h3 className="text-xl text-gray-500 sticky top-32">{research.title}</h3>
-        </ScrollSection>
-        <div className="col-span-8 space-y-6">
-          {research.insights.map((insight, index) => (
-            <ScrollSection key={index} entryDirection="right" delay={index * 0.1}>
-              <GlassCard className="p-8">
-                <p className="text-lg">{insight}</p>
-              </GlassCard>
-            </ScrollSection>
-          ))}
+      <div className="space-y-24">
+        <div className="grid md:grid-cols-[1fr_2fr] gap-10">
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <p className="type-section-title text-dark uppercase">{problem.title}</p>
+          </ScrollSection>
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <p className="type-body text-ink">{problem.description}</p>
+          </ScrollSection>
         </div>
-      </div>
 
-      {/* UX Strategy */}
-      <div className="grid grid-cols-12 gap-8 mb-32">
-        <ScrollSection entryDirection="left" className="col-span-4">
-          <h3 className="text-xl text-gray-500 sticky top-32">{strategy.title}</h3>
-        </ScrollSection>
-        <ScrollSection entryDirection="right" delay={0.2} className="col-span-8">
-          <p className="text-xl leading-relaxed mb-8">{strategy.approach}</p>
-          {strategy.userFlow && (
-            <div className="text-gray-600 italic">{strategy.userFlow}</div>
-          )}
-        </ScrollSection>
-      </div>
-
-      {/* UI Design & Visual System */}
-      <div className="mb-32">
-        <ScrollSection entryDirection="bottom">
-          <h3 className="text-xl text-gray-500 mb-12">{design.title}</h3>
-        </ScrollSection>
-        <ScrollSection entryDirection="scale" delay={0.2}>
-          <p className="text-xl mb-12 max-w-3xl">{design.description}</p>
-        </ScrollSection>
-        <div className="grid grid-cols-2 gap-8">
-          {design.images.map((image, index) => (
-            <ScrollSection
-              key={index}
-              entryDirection={index % 2 === 0 ? 'left' : 'right'}
-              delay={index * 0.15}
-            >
-              <GlassCard className="p-0 overflow-hidden">
-                <img src={image} alt={`Design ${index + 1}`} className="w-full h-80 object-cover" />
-              </GlassCard>
+        <div className="grid md:grid-cols-[1fr_2fr] gap-10">
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <p className="type-section-title text-dark uppercase">{process.title}</p>
+          </ScrollSection>
+          <div className="space-y-6">
+            <ScrollSection entryDirection="bottom" motionRole="case-block">
+              <p className="type-body text-ink">{process.description}</p>
             </ScrollSection>
-          ))}
-        </div>
-      </div>
-
-      {/* Prototyping */}
-      <div className="grid grid-cols-12 gap-8 mb-32">
-        <ScrollSection entryDirection="left" className="col-span-4">
-          <h3 className="text-xl text-gray-500 sticky top-32">{prototype.title}</h3>
-        </ScrollSection>
-        <ScrollSection entryDirection="right" delay={0.2} className="col-span-8">
-          <p className="text-xl leading-relaxed">{prototype.description}</p>
-        </ScrollSection>
-      </div>
-
-      {/* Implementation */}
-      <div className="grid grid-cols-12 gap-8 mb-32">
-        <ScrollSection entryDirection="left" className="col-span-4">
-          <h3 className="text-xl text-gray-500 sticky top-32">{implementation.title}</h3>
-        </ScrollSection>
-        <div className="col-span-8">
-          <ScrollSection entryDirection="right" delay={0.1}>
-            <div className="flex flex-wrap gap-3 mb-6">
-              {implementation.stack.map((tech, index) => (
-                <motion.span
-                  key={index}
-                  className="px-4 py-2 rounded-full bg-gray-100 text-gray-700"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false }}
-                  transition={{ delay: index * 0.05, duration: 0.4 }}
-                >
-                  {tech}
-                </motion.span>
+            <div className="space-y-4 border-t border-pale pt-6">
+              {process.steps.map((step, index) => (
+                <ScrollSection key={step} entryDirection="bottom" delay={index * 0.08} motionRole="case-block">
+                  <div className="border-b border-pale pb-4">
+                    <p className="type-body text-ink">{step}</p>
+                  </div>
+                </ScrollSection>
               ))}
             </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-[1fr_2fr] gap-10">
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <p className="type-section-title text-dark uppercase">{exploration.title}</p>
           </ScrollSection>
-          <ScrollSection entryDirection="right" delay={0.3}>
-            <p className="text-gray-600">{implementation.note}</p>
+          <div className="space-y-8">
+            <ScrollSection entryDirection="bottom" motionRole="case-block">
+              <p className="type-body text-ink">{exploration.description}</p>
+            </ScrollSection>
+            <div className="grid md:grid-cols-2 gap-6 border-t border-pale pt-6">
+              {exploration.images.map((image, index) => (
+                <ScrollSection
+                  key={image}
+                  entryDirection="bottom"
+                  delay={index * 0.1}
+                  motionRole="case-block"
+                >
+                  <div className="border border-pale">
+                    <img src={image} alt={`${title} exploration ${index + 1}`} className="w-full h-64 object-cover" />
+                  </div>
+                </ScrollSection>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-[1fr_2fr] gap-10">
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <p className="type-section-title text-dark uppercase">{solution.title}</p>
           </ScrollSection>
+          <div className="space-y-6">
+            <ScrollSection entryDirection="bottom" motionRole="case-block">
+              <p className="type-body text-ink">{solution.description}</p>
+            </ScrollSection>
+            <div className="grid md:grid-cols-3 gap-6 border-t border-pale pt-6">
+              {solution.outcomes.map((outcome) => (
+                <div key={outcome} className="border-b border-pale pb-4">
+                  <p className="type-body text-ink">{outcome}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Outcome */}
-      <ScrollSection entryDirection="bottom">
-        <div className="grid grid-cols-3 gap-6">
-          {outcome.metrics.map((metric, index) => (
-            <motion.div
-              key={index}
-              className="backdrop-blur-md bg-white/40 rounded-2xl border border-gray-200/60 p-8 text-center relative z-20"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-            >
-              <p className="text-lg">{metric}</p>
-            </motion.div>
-          ))}
+      <ScrollSection
+        entryDirection="scale"
+        motionRole="case-block"
+        duration={0.52}
+        delay={0.12}
+        ease={[0.4, 0, 0.2, 1]}
+      >
+        <div className="mt-24">
+          <p className="type-meta text-accent uppercase mb-4">{prototype.title}</p>
+          <div className="border border-pale">
+            {prototype.embedUrl ? (
+              <div className="aspect-video w-full border-b border-pale bg-pure">
+                <iframe
+                  title={`${title} prototype`}
+                  src={prototype.embedUrl}
+                  className="w-full h-full"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <div className="aspect-video w-full border-b border-pale bg-pure flex items-center justify-center text-center p-6">
+                <p className="type-body text-accent">
+                  Prototype embed placeholder — add the Figma share link here.
+                </p>
+              </div>
+            )}
+            {prototype.externalUrl && (
+              <div className="p-6">
+                <a
+                  href={prototype.externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="type-meta text-accent uppercase"
+                >
+                  View full prototype
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </ScrollSection>
-    </div>
+    </section>
   );
 }
