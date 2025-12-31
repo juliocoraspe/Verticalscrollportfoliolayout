@@ -5,6 +5,9 @@ import { CaseStudy } from './components/CaseStudy';
 import { ProjectCard } from './components/ProjectCard';
 import { ExploratoryGallery } from './components/ExploratoryGallery';
 import bannerCaseStudy from '../assets/images/banner-case-study.png';
+import todoBanner from '../assets/images/todo-banner2.png';
+import asmrBanner from '../assets/images/asmr-banner2.png';
+import spotsBanner from '../assets/images/spots-banner.png';
 
 type View = 'main' | 'garden';
 
@@ -71,8 +74,7 @@ export default function App() {
       title: 'To-Do App',
       intent: 'Research-driven task flow designed to reduce overwhelm for early-career professionals.',
       role: 'UX Research, UI Design',
-      imageUrl:
-        'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0by1kbyUyMGFwcCUyMHVpfGVufDF8fHx8MTc2NjU0ODAwMHww&ixlib=rb-4.1.0&q=80&w=960',
+      imageUrl: todoBanner,
       tags: ['Research', 'UX Flow', 'UI Systems'],
       context:
         'Designed as a compact study in reducing task anxiety for busy students and early-career professionals.',
@@ -99,8 +101,8 @@ export default function App() {
       title: 'ASMR App',
       intent: 'Sensory-led interface exploration focused on calm transitions and ambient sound control.',
       role: 'Visual Design, Interaction',
-      imageUrl:
-        'https://images.unsplash.com/photo-1511379938547-c1f69419868d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtdXNpYyUyMGFwcHxlbnwwfHx8MTc2NjU0ODAxN3ww&ixlib=rb-4.1.0&q=80&w=960',
+      imageUrl: asmrBanner,
+      imageFit: 'contain' as const,
       tags: ['UI Craft', 'Motion', 'Prototyping'],
       context:
         'Explored how motion-aware interfaces can support quiet rituals and sensory balance.',
@@ -127,8 +129,8 @@ export default function App() {
       title: 'Frontend Redesign',
       intent: 'Interface refresh for an existing product, balancing legacy constraints with modern accessibility.',
       role: 'Frontend, UI Design',
-      imageUrl:
-        'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmcm9udGVuZCUyMGRlc2lnbnxlbnwwfHx8MTc2NjU0ODAzMnww&ixlib=rb-4.1.0&q=80&w=960',
+      imageUrl: spotsBanner,
+      imagePosition: 'top' as const,
       tags: ['Frontend', 'Refactor', 'Accessibility'],
       context:
         'A production redesign focused on clarity and maintainability while respecting existing constraints.',
@@ -393,6 +395,8 @@ Implementation is used to validate and refine decisions.
                 intent={project.intent}
                 role={project.role}
                 imageUrl={project.imageUrl}
+                imageFit={project.imageFit}
+                imagePosition={project.imagePosition}
                 tags={project.tags}
                 onOpen={() => setActiveProjectId(project.id)}
                 delay={index * 0.08}
@@ -444,7 +448,15 @@ Implementation is used to validate and refine decisions.
                   <img
                     src={activeProject.imageUrl}
                     alt={activeProject.title}
-                    className="w-full h-32 object-cover"
+                    className={`w-full h-32 ${
+                      activeProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                    } ${
+                      activeProject.imagePosition === 'top'
+                        ? 'object-top'
+                        : activeProject.imagePosition === 'bottom'
+                          ? 'object-bottom'
+                          : 'object-center'
+                    }`}
                   />
                 </div>
                 <p className="type-body text-ink">{activeProject.intent}</p>
@@ -530,7 +542,7 @@ Implementation is used to validate and refine decisions.
       </AnimatePresence>
 
       <section id="contact" className="py-32 px-8 bg-pure border-t border-pale">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
+        <div className="max-w-6xl mx-auto">
           <div className="space-y-6">
             <ScrollSection entryDirection="bottom" motionRole="contact-title">
               <h2 className="type-display-m text-ink">Contact</h2>
@@ -592,17 +604,6 @@ Implementation is used to validate and refine decisions.
             </button>
           </div>
 
-          <ScrollSection entryDirection="bottom" motionRole="contact-title">
-            <div className="border-t border-pale pt-6">
-              <p className="type-meta text-accent uppercase mb-4">Google Form Embed</p>
-              <div className="aspect-video border border-dashed border-pale bg-base flex items-center justify-center text-center p-6">
-                <p className="type-body text-dark">
-                  Google Form embed placeholder — insert the share link for Julio Coraspe here.
-                </p>
-              </div>
-              {/* TODO: Replace the placeholder above with the Google Form iframe embed. */}
-            </div>
-          </ScrollSection>
         </div>
       </section>
 

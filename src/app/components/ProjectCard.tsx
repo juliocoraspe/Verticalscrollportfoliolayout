@@ -5,6 +5,8 @@ interface ProjectCardProps {
   intent: string;
   role: string;
   imageUrl: string;
+  imageFit?: 'cover' | 'contain';
+  imagePosition?: 'center' | 'top' | 'bottom';
   tags: string[];
   onOpen: () => void;
   delay?: number;
@@ -15,11 +17,20 @@ export function ProjectCard({
   intent,
   role,
   imageUrl,
+  imageFit = 'cover',
+  imagePosition = 'center',
   tags,
   onOpen,
   delay = 0,
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const imageFitClass = imageFit === 'contain' ? 'object-contain' : 'object-cover';
+  const imagePositionClass =
+    imagePosition === 'top'
+      ? 'object-top'
+      : imagePosition === 'bottom'
+        ? 'object-bottom'
+        : 'object-center';
 
   return (
     <motion.div
@@ -47,7 +58,7 @@ export function ProjectCard({
             <img
               src={imageUrl}
               alt={title}
-              className="w-full h-24 object-cover"
+              className={`w-full h-24 ${imageFitClass} ${imagePositionClass}`}
             />
           </div>
 
