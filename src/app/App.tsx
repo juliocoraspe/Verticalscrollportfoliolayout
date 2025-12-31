@@ -4,7 +4,7 @@ import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
 import { ProjectCard } from './components/ProjectCard';
 import { ExploratoryGallery } from './components/ExploratoryGallery';
-import bannerCaseStudy from '@/assets/images/banner-case-study.png';
+import bannerCaseStudy from '../assets/images/banner-case-study.png';
 
 type View = 'main' | 'garden';
 
@@ -558,7 +558,7 @@ Implementation is used to validate and refine decisions.
                   Resume
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/juliocoraspe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="type-meta uppercase text-ink"
@@ -566,7 +566,7 @@ Implementation is used to validate and refine decisions.
                   LinkedIn
                 </a>
                 <a
-                  href="https://github.com"
+                  href="https://github.com/juliocoraspe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="type-meta uppercase text-accent"
@@ -574,7 +574,7 @@ Implementation is used to validate and refine decisions.
                   GitHub
                 </a>
                 <a
-                  href="https://behance.net"
+                  href="https://www.behance.net/juliocoraspe"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="type-meta uppercase text-ink"
