@@ -60,8 +60,8 @@ export default function App() {
     prototype: {
       title: 'Figma Prototype',
       embedUrl:
-        'https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&m=dev&t=ESk6yIzUFrKvNwHL-1',
-      externalUrl: 'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&m=dev&t=ESk6yIzUFrKvNwHL-1',
+        'https://embed.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&embed-host=share',
+      externalUrl: 'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025',
     },
   };
 
