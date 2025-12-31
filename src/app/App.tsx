@@ -4,6 +4,7 @@ import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
 import { ProjectCard } from './components/ProjectCard';
 import { ExploratoryGallery } from './components/ExploratoryGallery';
+import bannerCaseStudy from '@/assets/images/banner-case-study.png';
 
 type View = 'main' | 'garden';
 
@@ -16,26 +17,25 @@ export default function App() {
   const scrollPositionRef = useRef(0);
 
   const caseStudy = {
-    title: 'HealthSync: Unified Patient Care Platform',
+    title: 'STILLEN: A Curated Furniture Experience',
     role: 'Lead UX/UI Designer & Frontend Developer',
     timeline: '2024 • 6 months',
     summary:
-      'Designed a calm, unified interface for clinicians working across fragmented systems, reducing navigation friction and improving clinical focus.',
-    heroImage:
-      'https://images.unsplash.com/photo-1667271361164-cc0588fa7190?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXNoYm9hcmQlMjBkZXNpZ258ZW58MXx8fHwxNzY2NTE4NDUyfDA&ixlib=rb-4.1.0&q=80&w=1280',
+      'Designed a guided furniture e-commerce experience that enables users to visualize furniture at scale, understand fit and delivery, and complete purchases with confidence.',
+    heroImage: bannerCaseStudy,
     problem: {
       title: 'Problem',
       description:
-        'Clinicians were forced to juggle 5–7 systems per visit, fragmenting patient context and creating fatigue. The experience needed to feel unified, legible, and safe under time pressure.',
+        'The experience creates friction and mistrust due to unclear delivery and availability information, navigation issues at critical moments, and a lack of tools that help users understand product scale, fit, and suitability in their real spaces.',
     },
     process: {
       title: 'Process',
       description:
-        'The work balanced research synthesis with pragmatic prototyping, aligning clinical workflows with a future-proof information architecture.',
+        'Led qualitative research to understand how users evaluate furniture, manage uncertainty, and build confidence before purchase.',
       steps: [
-        'Interviewed 24 clinicians and mapped key moments of cognitive overload.',
-        'Built a unified dashboard model that prioritized task-critical data first.',
-        'Prototype-tested navigation flows to reduce handoff time and re-entry friction.',
+        'Audited competitor experiences to identify systemic gaps in transparency, guidance, and visualization.',
+        'Translated insights into personas and journey maps highlighting key decision and hesitation points',
+        'Grounded design decisions in research findings to reduce friction and support confident purchasing.',
       ],
     },
     exploration: {
@@ -59,8 +59,9 @@ export default function App() {
     },
     prototype: {
       title: 'Figma Prototype',
-      embedUrl: undefined,
-      externalUrl: undefined,
+      embedUrl:
+        'https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&m=dev&t=ESk6yIzUFrKvNwHL-1',
+      externalUrl: 'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&m=dev&t=ESk6yIzUFrKvNwHL-1',
     },
   };
 
@@ -158,7 +159,7 @@ export default function App() {
       title: 'Morphic Button States',
       category: 'UI Components',
       imageUrl:
-        'https://images.unsplash.com/photo-1689267166710-3875ccf73d64?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsJTIwYnV0dG9uJTIwZGVzaWdufGVufDF8fHx8MTc2NjU0Mjc3M3ww&ixlib=rb-4.1.0&q=80&w=1080',
+        '../src/assets/images/banner-case-study-1.png',
       description: 'Exploring organic state transitions for interactive elements.',
     },
     {
@@ -277,7 +278,7 @@ export default function App() {
               ease: [0.2, 0.7, 0.2, 1],
             }}
           >
-            Designing calm, museum-like interfaces that guide focus.
+   I translate research into decisions, design systems, and build interfaces—end to end.
           </motion.h1>
 
           <motion.p
@@ -285,13 +286,13 @@ export default function App() {
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             transition={{
-              duration: shouldReduceMotion ? 0.01 : 0.36,
+              duration: shouldReduceMotion ? 0.1 : 0.36,
               delay: shouldReduceMotion ? 0 : 0.12,
-              ease: [0.22, 1, 0.36, 1],
+              ease: [0.19, 1, 0.3, 1],
             }}
           >
-            I translate user research into careful visual systems, with a focus on interaction clarity and quiet narrative
-            pacing.
+     Design led, with a clear focus on structure and intent.
+Implementation is used to validate and refine decisions.
           </motion.p>
 
           <div className="max-w-md border-y border-pale divide-y divide-pale">

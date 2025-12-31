@@ -62,7 +62,7 @@ export function CaseStudy({
 
       <ScrollSection entryDirection="bottom" motionRole="case-block">
         <div className="border-y border-pale mb-24">
-          <img src={heroImage} alt={title} className="w-full h-[420px] object-cover" />
+          <img src={heroImage} alt={title} className="w-full h-[420px] object-cover object-top" />
         </div>
       </ScrollSection>
 
