@@ -39,9 +39,9 @@ export default function App() {
       ],
     },
     exploration: {
-      title: 'Exploration',
+      title: 'Research Translation & Validation',
       description:
-        'Explored a restrained visual system with subtle hierarchy, ensuring data density without visual noise.',
+        'Usability testing confirmed that guided flows and clearer product detail layouts supported intuitive navigation and confident decision-making. Visualization features strongly influenced purchase confidence, while areas with higher visual density revealed opportunities to further improve hierarchy and scanability',
       images: [
         'https://images.unsplash.com/photo-1605108222700-0d605d9ebafe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzY2NTE2OTU0fDA&ixlib=rb-4.1.0&q=80&w=1080',
         'https://images.unsplash.com/photo-1694878981955-1d8348e0f1f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1c2VyJTIwaW50ZXJmYWNlJTIwc2NyZWVufGVufDF8fHx8MTc2NjU0Mjc3MHww&ixlib=rb-4.1.0&q=80&w=1080',
@@ -50,11 +50,11 @@ export default function App() {
     solution: {
       title: 'Solution',
       description:
-        'Delivered a unified care surface with progressive disclosure, reducing time spent on context switching while preserving compliance safeguards.',
+        'Delivered a research-validated, high-fidelity furniture e-commerce experience that reinforces transparency, guidance, and confident decision-making across high-value purchases.',
       outcomes: [
-        '58% reduction in administrative task time',
-        '92% clinician satisfaction score',
-        'Deployed across 14 clinics',
+        'Reduced uncertainty during product evaluation by surfacing shipping, availability, and delivery timelines consistently across product and checkout experiences.',
+        'Strengthened purchase confidence by validating a dedicated visualization experience that helps users understand scale, fit, and placement before committing.',
+        'Improved high-commitment decision readiness by routing purchases through a deliberate cart and checkout flow, reducing impulsive actions and reinforcing trust.',
       ],
     },
     prototype: {
@@ -342,17 +342,17 @@ Implementation is used to validate and refine decisions.
               {
                 title: 'Design Philosophy',
                 body:
-                  'I believe calm interfaces invite trust. I work to remove noise so that hierarchy, pacing, and intent are felt rather than explained.',
+                  'I start by understanding the full problem, not just the surface. I like connecting research, creativity, and accessibility to make decisions that feel intentional, grounded, and genuinely useful—not just visually appealing.',
               },
               {
-                title: 'Process Thinking',
+                title: 'What I Do Well',
                 body:
-                  'Each project begins with mapping the problem space, then shaping a narrative that moves from insight to outcome.',
+                  'I’m good at turning complex problems into clear, structured systems. I work across researching, prototyping, and testing, often exploring ideas early to understand how things behave before committing to a final direction',
               },
               {
                 title: 'Hybrid Practice',
                 body:
-                  'My design work is informed by frontend awareness, helping me prototype ideas that translate cleanly into buildable systems.',
+                  'My practice extends beyond traditional design, combining creative disciplines with technical exploration. This hybrid perspective allows me to prototype realistically, experiment with behavior, interactions, and design systems that translate cleanly into maintainable products.',
               },
             ].map((item, index) => (
               <ScrollSection
