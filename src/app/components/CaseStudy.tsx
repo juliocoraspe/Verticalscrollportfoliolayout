@@ -50,7 +50,7 @@ export function CaseStudy({
       <ScrollSection entryDirection="bottom" motionRole="case-intro">
         <div className="mb-16">
           <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-6">
-            <span className="type-meta uppercase">Flagship</span>
+            <span className="type-meta uppercase">Case Study</span>
             <span className="type-meta">•</span>
             <span className="type-meta">{role}</span>
             <span className="type-meta">•</span>
@@ -63,7 +63,11 @@ export function CaseStudy({
 
       <ScrollSection entryDirection="bottom" motionRole="case-block">
         <div className="border-y border-pale mb-24">
-          <img src={heroImage} alt={title} className="w-full h-[420px] object-cover object-top" />
+          <img
+            src={heroImage}
+            alt={title}
+            className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
+          />
         </div>
       </ScrollSection>
 

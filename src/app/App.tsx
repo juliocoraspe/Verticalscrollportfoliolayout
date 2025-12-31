@@ -21,8 +21,8 @@ export default function App() {
 
   const caseStudy = {
     title: 'STILLEN: A Curated Furniture Experience',
-    role: 'Lead UX/UI Designer & Frontend Developer',
-    timeline: '2024 • 6 months',
+    role: 'UX/UI designer',
+    timeline: '2025',
     summary:
       'Designed a guided furniture e-commerce experience that enables users to visualize furniture at scale, understand fit and delivery, and complete purchases with confidence.',
     heroImage: bannerCaseStudy,

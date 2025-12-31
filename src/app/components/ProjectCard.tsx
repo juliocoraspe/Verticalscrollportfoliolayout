@@ -58,7 +58,7 @@ export function ProjectCard({
             <img
               src={imageUrl}
               alt={title}
-              className={`w-full h-24 ${imageFitClass} ${imagePositionClass}`}
+              className={`w-full h-auto md:h-24 ${imageFitClass} ${imagePositionClass}`}
             />
           </div>
 
