@@ -1,4 +1,5 @@
 import { ScrollSection } from './ScrollSection';
+import testingImage from '../../assets/images/Testing.png';
 
 interface CaseStudyProps {
   title: string;
@@ -105,18 +106,11 @@ export function CaseStudy({
               <p className="type-body text-ink">{exploration.description}</p>
             </ScrollSection>
             <div className="grid md:grid-cols-2 gap-6 border-t border-pale pt-6">
-              {exploration.images.map((image, index) => (
-                <ScrollSection
-                  key={image}
-                  entryDirection="bottom"
-                  delay={index * 0.1}
-                  motionRole="case-block"
-                >
-                  <div className="border border-pale">
-                    <img src={image} alt={`${title} exploration ${index + 1}`} className="w-full h-64 object-cover" />
-                  </div>
-                </ScrollSection>
-              ))}
+              <ScrollSection entryDirection="bottom" motionRole="case-block" className="col-span-2">
+                <div className="border border-pale">
+                  <img src={testingImage} alt={`${title} testing`} className="w-full h-auto" />
+                </div>
+              </ScrollSection>
             </div>
           </div>
         </div>
@@ -168,6 +162,11 @@ export function CaseStudy({
             )}
             {prototype.externalUrl && (
               <div className="p-6">
+                {prototype.embedUrl && (
+                  <p className="type-body text-dark mb-3">
+                    If the embed does not load, open the prototype in a new tab.
+                  </p>
+                )}
                 <a
                   href={prototype.externalUrl}
                   target="_blank"
