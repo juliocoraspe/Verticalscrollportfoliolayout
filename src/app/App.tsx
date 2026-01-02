@@ -266,8 +266,8 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-pure text-ink">
-      <section className="min-h-screen flex items-center px-8 pt-24 pb-16">
-        <div className="max-w-5xl mx-auto space-y-8">
+      <section className="min-h-screen flex items-center px-6 pt-24 pb-16">
+        <div className="max-w-7xl mx-auto space-y-8">
           <p className="type-meta text-dark uppercase">Julio Coraspe • UX/UI Designer</p>
 
           <motion.h1
@@ -280,7 +280,8 @@ export default function App() {
               ease: [0.2, 0.7, 0.2, 1],
             }}
           >
-   I translate research into decisions, design systems, and build interfaces—end to end.
+   I design interfaces where behavior and systems matter.
+Grounded in research, prototyping, and sometimes, implementation.
           </motion.h1>
 
           <motion.p
@@ -293,8 +294,8 @@ export default function App() {
               ease: [0.19, 1, 0.3, 1],
             }}
           >
-     Design led, with a clear focus on structure and intent.
-Implementation is used to validate and refine decisions.
+     Design-led, obsessed with translating research insights into design decisions.
+Occasionally following ideas into reality when questions remain.
           </motion.p>
 
           <div className="max-w-md border-y border-pale divide-y divide-pale">
@@ -344,7 +345,7 @@ Implementation is used to validate and refine decisions.
               {
                 title: 'Design Philosophy',
                 body:
-                  'I start by understanding the full problem, not just the surface. I like connecting research, creativity, and accessibility to make decisions that feel intentional, grounded, and genuinely useful—not just visually appealing.',
+                  'I start by understanding the full problem, not just the surface. I like connecting research, creativity, and accessibility to make decisions that feel intentional, grounded, and genuinely useful, not just visually appealing.',
               },
               {
                 title: 'What I Do Well',
@@ -354,7 +355,7 @@ Implementation is used to validate and refine decisions.
               {
                 title: 'Hybrid Practice',
                 body:
-                  'My practice extends beyond traditional design, combining creative disciplines with technical exploration. This hybrid perspective allows me to prototype realistically, experiment with behavior, interactions, and design systems that translate cleanly into maintainable products.',
+                  'My practice extends beyond traditional design, combining creative disciplines with technical exploration. This hybrid perspective allows me to prototype realistically, experiment with interactions, and design systems that translate cleanly into maintainable products.',
               },
             ].map((item, index) => (
               <ScrollSection
@@ -382,7 +383,7 @@ Implementation is used to validate and refine decisions.
               <p className="type-meta text-dark uppercase mb-4">Projects</p>
               <h2 className="type-display-m text-ink mb-4">Focused Explorations</h2>
               <p className="type-subhead text-dark max-w-2xl">
-                Three compact studies that highlight my research process, visual craft, and frontend collaboration.
+                Three focused studies that explore different entry points into the design lifecycle:research-led, concept-driven, and refinement-focused.
               </p>
             </div>
           </ScrollSection>
@@ -549,7 +550,8 @@ Implementation is used to validate and refine decisions.
             </ScrollSection>
             <ScrollSection entryDirection="bottom" motionRole="contact-title">
               <p className="type-subhead text-dark">
-                I’m available for junior UX/UI roles, collaborations, and focused design studies. Let’s connect.
+                I’m open to junior UX/UI roles, collaborations, and focused design work.
+If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
               </p>
             </ScrollSection>
             <div className="space-y-3 border-t border-pale pt-6">
