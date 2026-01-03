@@ -1,23 +1,70 @@
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react';
 import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
 import { ProjectCard } from './components/ProjectCard';
 import { ExploratoryGallery } from './components/ExploratoryGallery';
+import { ExternalPreviewLink } from './components/ExternalPreviewLink';
+import { AnimatedParagraph } from './components/AnimatedParagraph';
 import bannerCaseStudy from '../assets/images/banner-case-study.png';
 import todoBanner from '../assets/images/todo-banner2.png';
 import asmrBanner from '../assets/images/asmr-banner2.png';
 import spotsBanner from '../assets/images/spots-banner.png';
+import moodboard from '../assets/images/moodboard.png';
 
 type View = 'main' | 'garden';
 
 const RESUME_URL = '<GOOGLE_DRIVE_LINK_PLACEHOLDER>';
+const ABOUT_ME_PARAGRAPHS = [
+  'I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of creative practice and technology, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.',
+  'My creative profile is strongly visual, spanning photography (digital, mobile, and film, including film development and digitization), videography, professional editing, digital drawing, generative art through code, and motion design. These practices share a common thread: patience, process, and attention to detail. Exploring them has been less about collecting skills and more about developing craft, curiosity, and a lasting commitment to learning and making things with care.',
+  'I have a strong fascination with artificial intelligence as a creative and procedural tool. I see it as an extension of thought and making—something that amplifies research, exploration, and execution rather than replacing them. I work with AI through prompt and context engineering, using it generatively for research, coding, and audiovisual experimentation, including local LLM setups and custom tooling such as code editor assistants and Figma plugins. This approach allows me to work with AI in a more intentional, productive, and secure way.',
+];
 
 export default function App() {
   const shouldReduceMotion = useReducedMotion();
   const [view, setView] = useState<View>('main');
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
   const scrollPositionRef = useRef(0);
+  const aboutTextRef = useRef<HTMLDivElement | null>(null);
+  const aboutTextInView = useInView(aboutTextRef, { once: true, amount: 0.35, margin: '-120px' });
+  const aboutStagger = 0.045;
+  const aboutBaseDelay = 0.12;
+  const aboutParagraphPause = 0.3;
+  const aboutWordOffsets = useMemo(() => {
+    let offset = 0;
+    return ABOUT_ME_PARAGRAPHS.map((paragraph) => {
+      const startIndex = offset;
+      offset += paragraph.trim().split(/\s+/).length;
+      return startIndex;
+    });
+  }, []);
+  const heroLines = [
+    'I design interfaces where behavior and systems matter.',
+    'Grounded in research, prototyping, and sometimes, implementation.',
+  ];
+  const heroText = heroLines.join(' ');
+  const heroContainerVariants = {
+    hidden: { opacity: 1 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.12,
+        delayChildren: shouldReduceMotion ? 0 : 0.2,
+      },
+    },
+  };
+  const heroWordVariants = {
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 18 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: shouldReduceMotion ? 0 : 0.6,
+        ease: [0.2, 0.7, 0.2, 1],
+      },
+    },
+  };
 
   const caseStudy = {
     title: 'STILLEN: A Curated Furniture Experience',
@@ -91,8 +138,12 @@ export default function App() {
         'Reduced task drop-off during onboarding',
         'Improved weekly task completion cadence',
       ],
+      experienceUrl: '/projects/todo-app/experience',
+      experienceHelper: 'View the full report',
+      experienceThumbnail: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
-      prototypeUrl: undefined,
+      prototypeUrl:
+        'https://embed.figma.com/slides/RCRXoEB4h7yTAKYjiK1Rx6/ToDo-Research?node-id=1-360&embed-host=share',
       demoLabel: 'Demo / code link placeholder',
       demoUrl: undefined,
     },
@@ -119,8 +170,12 @@ export default function App() {
         'Clearer path from browse to mix',
         'Reduced UI fatigue during extended sessions',
       ],
+      experienceUrl: '/projects/asmr-app/experience',
+      experienceHelper: 'View the full report',
+      experienceThumbnail: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the audio demo or motion study.',
-      prototypeUrl: undefined,
+      prototypeUrl:
+        'https://embed.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?node-id=0-1&embed-host=share',
       demoLabel: 'Demo / code link placeholder',
       demoUrl: undefined,
     },
@@ -129,7 +184,7 @@ export default function App() {
       title: 'Frontend Redesign',
       intent: 'Interface refresh for an existing product, balancing legacy constraints with modern accessibility.',
       role: 'Frontend, UI Design',
-      imageUrl: spotsBanner,
+      imageUrl: moodboard,
       imagePosition: 'top' as const,
       tags: ['Frontend', 'Refactor', 'Accessibility'],
       context:
@@ -147,8 +202,12 @@ export default function App() {
         'Reduced layout regressions after releases',
         'Higher contrast compliance across key views',
       ],
+      experienceUrl: '/projects/frontend-redesign/experience',
+      experienceHelper: 'View the full report',
+      experienceThumbnail: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the coded prototype or live build.',
-      prototypeUrl: undefined,
+      prototypeUrl:
+        'https://embed.figma.com/design/QFyh4I1PE2qzy5hOSgDvgL/Spots-ReDesign?node-id=0-1&embed-host=share',
       demoLabel: 'Demo / code link placeholder',
       demoUrl: undefined,
     },
@@ -268,20 +327,33 @@ export default function App() {
     <div className="relative min-h-screen bg-pure text-ink">
       <section className="min-h-screen flex items-center px-6 pt-24 pb-16">
         <div className="max-w-7xl mx-auto space-y-8">
-          <p className="type-meta text-dark uppercase">Julio Coraspe • UX/UI Designer</p>
+          <p className="type-subhead text-dark uppercase">Julio Coraspe • UX/UI Designer</p>
 
           <motion.h1
             className="type-display-xl text-ink"
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            transition={{
-              duration: shouldReduceMotion ? 0.01 : 1.7,
-              delay: shouldReduceMotion ? 0 : 0.4,
-              ease: [0.2, 0.7, 0.2, 1],
-            }}
+            variants={heroContainerVariants}
+            initial="hidden"
+            animate="show"
+            aria-label={heroText}
           >
-   I design interfaces where behavior and systems matter.
-Grounded in research, prototyping, and sometimes, implementation.
+            {heroLines.map((line, lineIndex) => {
+              const words = line.split(' ');
+              return (
+                <span key={line} className="block">
+                  {words.map((word, wordIndex) => (
+                    <motion.span
+                      key={`${lineIndex}-${wordIndex}`}
+                      variants={heroWordVariants}
+                      className="inline-block"
+                      aria-hidden="true"
+                    >
+                      {word}
+                      {wordIndex < words.length - 1 ? '\u00A0' : ''}
+                    </motion.span>
+                  ))}
+                </span>
+              );
+            })}
           </motion.h1>
 
           <motion.p
@@ -337,7 +409,7 @@ Occasionally following ideas into reality when questions remain.
       <section id="about" className="py-32 px-8 bg-pure">
         <div className="max-w-6xl mx-auto">
           <ScrollSection entryDirection="bottom" motionRole="about-title">
-            <h2 className="type-display-m text-ink">About</h2>
+            <h2 className="type-display-m text-ink">Practice</h2>
           </ScrollSection>
 
           <div className="mt-12 border-t border-pale divide-y divide-pale md:divide-y-0 md:divide-x md:grid md:grid-cols-3">
@@ -410,7 +482,7 @@ Occasionally following ideas into reality when questions remain.
       <AnimatePresence>
         {activeProject && (
           <motion.div
-            className="fixed inset-0 z-50 bg-pure text-ink overflow-y-auto"
+            className="fixed inset-0 z-50 bg-pure text-ink overflow-y-auto no-scrollbar"
             initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1 }}
             exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -490,7 +562,7 @@ Occasionally following ideas into reality when questions remain.
                   <p className="type-body text-ink">{activeProject.solution}</p>
                 </section>
 
-                <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
+                <section className="grid md:grid-cols-[200px_minmax(0,1fr)_240px] gap-8 border-t border-pale pt-6 items-start">
                   <p className="type-section-title text-dark uppercase">Outcome</p>
                   <div className="space-y-3">
                     {activeProject.outcome.map((item) => (
@@ -499,6 +571,11 @@ Occasionally following ideas into reality when questions remain.
                       </p>
                     ))}
                   </div>
+                  <ExternalPreviewLink
+                    helperText={activeProject.experienceHelper}
+                    href={activeProject.experienceUrl}
+                    thumbnailSrc={activeProject.experienceThumbnail}
+                  />
                 </section>
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
@@ -511,6 +588,8 @@ Occasionally following ideas into reality when questions remain.
                           src={activeProject.prototypeUrl}
                           className="w-full h-full"
                           loading="lazy"
+                          allow="fullscreen"
+                          allowFullScreen
                         />
                       </div>
                     ) : (
@@ -541,6 +620,33 @@ Occasionally following ideas into reality when questions remain.
           </motion.div>
         )}
       </AnimatePresence>
+
+      <section id="about-me" aria-label="About Me" className="py-32 px-8 bg-pure border-t border-pale">
+        <div className="max-w-6xl mx-auto space-y-12">
+          <ScrollSection entryDirection="bottom" motionRole="contact-title">
+            <h2 className="type-display-m text-ink">About Me</h2>
+          </ScrollSection>
+          <div className="border border-pale bg-pure">
+            <div className="w-full aspect-[239/100] bg-cloud flex items-center justify-center">
+              <span className="type-meta uppercase text-dark">Cinematic video placeholder</span>
+            </div>
+          </div>
+
+          <div ref={aboutTextRef} className="space-y-8 text-left">
+            {ABOUT_ME_PARAGRAPHS.map((paragraph, index) => (
+              <AnimatedParagraph
+                key={paragraph.slice(0, 16)}
+                text={paragraph}
+                className="type-body text-ink"
+                inView={aboutTextInView}
+                stagger={aboutStagger}
+                startIndex={aboutWordOffsets[index]}
+                delay={aboutBaseDelay + index * aboutParagraphPause}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section id="contact" className="py-32 px-8 bg-pure border-t border-pale">
         <div className="max-w-6xl mx-auto">
