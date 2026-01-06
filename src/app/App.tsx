@@ -143,10 +143,15 @@ export default function App() {
       experienceUrl: '/projects/todo-app/experience',
       experienceHelper: 'View the full report',
       experienceThumbnail: undefined,
+      outcomeEmbedUrl: 'https://juliocoraspe.github.io/todo-polymorphic-app/',
+      outcomeEmbedConfig: { width: 430, height: 764, scale: 0.6 },
+      outcomeEmbedCta: 'Explore the live coded demo below.',
+      outcomeEmbedArrow: 'up' as const,
+      outcomeEmbedArrowPlacement: 'above' as const,
       prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
       prototypeUrl:
         'https://embed.figma.com/slides/RCRXoEB4h7yTAKYjiK1Rx6/ToDo-Research?node-id=1-360&embed-host=share',
-      demoLabel: 'Demo / code link placeholder',
+      demoLabel: 'Research Findings & Design Implications (Full Report)',
       demoUrl: undefined,
     },
     {
@@ -172,15 +177,20 @@ export default function App() {
       outcome: [
         'A deeply customizable listening environment shaped by sound, motion, and touch',
         'Reduced emotional and visual noise through restrained UI decisions',
-        'An ultrasensory experience where the interface supports calm by knowing when to stay silent',
+        'Extended the design beyond static prototypes through real-time motion exploration using JavaScript and the Three.js library',
+        'Built sound-reactive, generative animation studies to visualize how playback-screen visuals respond dynamically to audio input',
+        'Validated how motion, sound, and subtle interaction could coexist without overwhelming the listening experience, reinforcing the app as a calm, multisensory system rather than a purely audio tool',
       ],
       experienceUrl: '/projects/asmr-app/experience',
       experienceHelper: 'View the full report',
       experienceThumbnail: undefined,
+      outcomeEmbedUrl: 'https://juliocoraspe.github.io/birdsong-viz/',
+      outcomeEmbedConfig: { width: 640, height: 1138, scale: 0.6 },
+      outcomeEmbedCta: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the audio demo or motion study.',
       prototypeUrl:
         'https://embed.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?node-id=0-1&embed-host=share',
-      demoLabel: 'Demo / code link placeholder',
+      demoLabel: 'Full Design Overview',
       demoUrl: undefined,
     },
     {
@@ -221,6 +231,7 @@ Without formal user research, these issues were identified through heuristic eva
       experienceUrl: '/projects/frontend-redesign/experience',
       experienceHelper: 'View the full report',
       experienceThumbnail: undefined,
+      outcomeEmbedUrl: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the coded prototype or live build.',
       prototypeUrl:
         'https://embed.figma.com/design/QFyh4I1PE2qzy5hOSgDvgL/Spots-ReDesign?node-id=0-1&embed-host=share',
@@ -230,6 +241,12 @@ Without formal user research, these issues were identified through heuristic eva
   ];
 
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? null;
+  const outcomeEmbedConfig = activeProject?.outcomeEmbedConfig;
+  const outcomeEmbedScale = outcomeEmbedConfig?.scale ?? 0.6;
+  const outcomeEmbedWidth = outcomeEmbedConfig?.width ?? 430;
+  const outcomeEmbedHeight = outcomeEmbedConfig?.height ?? 764;
+  const outcomeEmbedScaledWidth = outcomeEmbedWidth * outcomeEmbedScale;
+  const outcomeEmbedScaledHeight = outcomeEmbedHeight * outcomeEmbedScale;
 
   const gardenItems = [
     {
@@ -578,7 +595,15 @@ Occasionally following ideas into reality when questions remain.
                   <p className="type-body text-ink">{activeProject.solution}</p>
                 </section>
 
-                <section className="grid md:grid-cols-[200px_minmax(0,1fr)_240px] gap-8 border-t border-pale pt-6 items-start">
+                <section
+                  className={`grid gap-8 border-t border-pale pt-6 items-start ${
+                    activeProject.outcomeEmbedUrl
+                      ? activeProject.id === 'asmr-app'
+                        ? 'md:grid-cols-[200px_minmax(0,1fr)_360px] lg:grid-cols-[200px_minmax(0,1fr)_420px]'
+                        : 'md:grid-cols-[200px_minmax(0,1fr)_280px] lg:grid-cols-[200px_minmax(0,1fr)_320px]'
+                      : 'md:grid-cols-[200px_minmax(0,1fr)_240px]'
+                  }`}
+                >
                   <p className="type-section-title text-dark uppercase">Outcome</p>
                   <div className="space-y-3">
                     {activeProject.outcome.map((item) => (
@@ -587,11 +612,67 @@ Occasionally following ideas into reality when questions remain.
                       </p>
                     ))}
                   </div>
-                  <ExternalPreviewLink
-                    helperText={activeProject.experienceHelper}
-                    href={activeProject.experienceUrl}
-                    thumbnailSrc={activeProject.experienceThumbnail}
-                  />
+                  {activeProject.outcomeEmbedUrl ? (
+                    <div className="flex flex-col items-center">
+                      <div
+                        className="relative overflow-hidden rounded-[24px] border border-pale bg-pure"
+                        style={{
+                          width: outcomeEmbedScaledWidth,
+                          height: outcomeEmbedScaledHeight,
+                        }}
+                      >
+                        {activeProject.id === 'todo-app' && (
+                          <span
+                            aria-hidden="true"
+                            className="pointer-events-none absolute right-0 top-0 z-10 h-full w-3 bg-cloud"
+                          />
+                        )}
+                        <iframe
+                          title={`${activeProject.title} demo`}
+                          src={activeProject.outcomeEmbedUrl}
+                          className="absolute left-0 top-0 origin-top-left border-0 no-scrollbar"
+                          loading="lazy"
+                          allow="microphone https://juliocoraspe.github.io; autoplay"
+                          style={{
+                            width: outcomeEmbedWidth,
+                            height: outcomeEmbedHeight,
+                            transform: `scale(${outcomeEmbedScale})`,
+                          }}
+                        />
+                      </div>
+                      {activeProject.outcomeEmbedArrowPlacement === 'above' && (
+                        <span className="type-micro text-dark mt-3">
+                          {activeProject.outcomeEmbedArrow === 'up' ? '↑' : '↓'}
+                        </span>
+                      )}
+                      {activeProject.outcomeEmbedCta && (
+                        <p className="type-meta text-accent mt-1 text-center">
+                          {activeProject.outcomeEmbedCta}
+                        </p>
+                      )}
+                      {activeProject.id === 'asmr-app' && (
+                        <a
+                          href={activeProject.outcomeEmbedUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="type-meta text-accent mt-2 text-center hover:underline"
+                        >
+                          Want full interaction with the activated microphone? Open the demo in a new tab.
+                        </a>
+                      )}
+                      {activeProject.outcomeEmbedArrowPlacement === 'below' && (
+                        <span className="type-micro text-dark mt-1">
+                          {activeProject.outcomeEmbedArrow === 'up' ? '↑' : '↓'}
+                        </span>
+                      )}
+                    </div>
+                  ) : (
+                    <ExternalPreviewLink
+                      helperText={activeProject.experienceHelper}
+                      href={activeProject.experienceUrl}
+                      thumbnailSrc={activeProject.experienceThumbnail}
+                    />
+                  )}
                 </section>
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
@@ -603,7 +684,7 @@ Occasionally following ideas into reality when questions remain.
                           title={`${activeProject.title} prototype`}
                           src={activeProject.prototypeUrl}
                           className="w-full h-full"
-                          loading="lazy"
+                          loading="speedy"
                           allow="fullscreen"
                           allowFullScreen
                         />
