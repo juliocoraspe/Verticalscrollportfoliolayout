@@ -235,7 +235,7 @@ Without formal user research, these issues were identified through heuristic eva
       prototypeLabel: 'Prototype embed placeholder — add the coded prototype or live build.',
       prototypeUrl:
         'https://embed.figma.com/design/QFyh4I1PE2qzy5hOSgDvgL/Spots-ReDesign?node-id=0-1&embed-host=share',
-      demoLabel: 'Demo / code link placeholder',
+      demoLabel: 'Interface Redesign — Full Design Cycle',
       demoUrl: undefined,
     },
   ];
