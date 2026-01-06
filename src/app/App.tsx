@@ -10,7 +10,7 @@ import bannerCaseStudy from '../assets/images/banner-case-study.png';
 import todoBanner from '../assets/images/todo-banner2.png';
 import asmrBanner from '../assets/images/asmr-banner2.png';
 import spotsBanner from '../assets/images/spots-banner.png';
-import moodboard from '../assets/images/moodboard.png';
+import redesign02 from '../assets/images/Redesign02.png';
 
 type View = 'main' | 'garden';
 
@@ -150,25 +150,27 @@ export default function App() {
     {
       id: 'asmr-app',
       title: 'ASMR App',
-      intent: 'Sensory-led interface exploration focused on calm transitions and ambient sound control.',
+      intent:
+        'A sensory-first mobile experience designed to minimize emotional disruption while amplifying perception through sound, motion, and subtle feedback. The interface acts as a quiet framework—allowing audio, generative visuals, and haptics to shape a calm, highly personalized listening state.',
       role: 'Visual Design, Interaction',
       imageUrl: asmrBanner,
       imageFit: 'contain' as const,
       tags: ['UI Craft', 'Motion', 'Prototyping'],
       context:
-        'Explored how motion-aware interfaces can support quiet rituals and sensory balance.',
+        'This project originated from a brand-led exploration focused on calm, emotional neutrality, and sensory balance. Before defining screens or interactions, visual language, imagery, and tone were established to ensure the interface would support relaxation rather than influence mood through visual stimulation. The app was conceived as an adaptive environment—one that responds to sound and user input without imposing visual noise—transforming listening into a focused, multisensory ritual.',
       problem:
-        'Most ASMR apps feel cluttered or overly decorative, which interrupts calm listening.',
+        'Many ASMR and ambient sound apps unintentionally interfere with emotional regulation by relying on expressive visuals, dense layouts, or overstimulating UI patterns. These design choices introduce visual and cognitive noise, pulling attention away from sound and fragmenting the listening experience over time.',
       process: [
-        'Studied ambient UI patterns and low-light accessibility.',
-        'Built a tonal grid for mixing sound layers without visual overload.',
-        'Prototyped transitions that feel slow, steady, and intentional.',
+        'The experience evolved through layered visual and interaction exploration. Initial branding, imagery, and mood-driven research informed a restrained emotional baseline, followed by lo-fi structural layouts that prioritized clarity and spatial calm.',
+        'Two contrasting creative directions were then explored: one darker and more expressive, using neon accents and contrast, and another reduced and light, built around soft whites, muted blacks, and visual stillness.',
+        'From this exploration, a focused direction emerged—refined into a cohesive system of typography, components, motion principles, and responsive behaviors. Sound-reactive animations inspired by generative code practices were integrated into the playback experience, along with subtle haptic responses, reinforcing immersion without visual dominance.',
       ],
       solution:
-        'A minimal sound studio with restrained transitions, designed to keep focus on the audio experience.',
+        'A minimal, adaptive sound studio where the UI deliberately avoids emotional distortion, allowing users to personalize their experience through layered audio, responsive motion, and tactile feedback. Visuals remain restrained and intentional, while generative animations and haptics expand the sensory depth—creating an experience that feels immersive without becoming intrusive.',
       outcome: [
-        'Clearer path from browse to mix',
-        'Reduced UI fatigue during extended sessions',
+        'A deeply customizable listening environment shaped by sound, motion, and touch',
+        'Reduced emotional and visual noise through restrained UI decisions',
+        'An ultrasensory experience where the interface supports calm by knowing when to stay silent',
       ],
       experienceUrl: '/projects/asmr-app/experience',
       experienceHelper: 'View the full report',
@@ -182,25 +184,37 @@ export default function App() {
     {
       id: 'frontend-redesign',
       title: 'Frontend Redesign',
-      intent: 'Interface refresh for an existing product, balancing legacy constraints with modern accessibility.',
+      intent: `Frontend implementation and interface redesign of an image-based web application.
+
+This project began as a frontend development exercise, translating an existing Figma design into a functional web application using HTML, CSS, and JavaScript. The initial implementation focused on structure, modular components, and interactive features such as image posts and basic content management.
+
+While technically complete, the interface remained visually neutral and utilitarian. This redesign reframes the product as a visual moodboard, refining the UI to better support exploration, inspiration, and content-focused interaction.`,
       role: 'Frontend, UI Design',
-      imageUrl: moodboard,
+      imageUrl: redesign02,
       imagePosition: 'top' as const,
       tags: ['Frontend', 'Refactor', 'Accessibility'],
       context:
-        'A production redesign focused on clarity and maintainability while respecting existing constraints.',
+        `The original application functioned primarily as a simple image-based interface, where usability was driven by functionality rather than intent. Although the product worked as expected, its presentation did not clearly communicate why the content mattered or how it should be used.
+
+This redesign shifts the product’s direction toward a moodboard-style experience, prioritizing visual clarity, hierarchy, and a calmer canvas for collecting and revisiting visual references.`,
       problem:
-        'Legacy UI patterns were inconsistent, with low contrast and unpredictable layout behavior.',
+        `The main issue was not missing features, but an interface that treated content and controls with equal priority. This resulted in several UX challenges:
+• Limited visual hierarchy between primary actions and secondary controls.
+• UI elements competing with images for attention.
+• Interaction patterns that suggested a management tool rather than a moodboard.
+
+Without formal user research, these issues were identified through heuristic evaluation and UI design principles, revealing gaps in hierarchy, focus, and consistency that justified a design-led refactor.`,
       process: [
-        'Audited the component system for semantic and accessibility gaps.',
-        'Refactored layout logic for consistent grid behavior.',
-        'Validated contrast and focus states across critical workflows.',
+        'Audited the interface using heuristic principles to identify hierarchy and clarity issues.',
+        'Simplified interaction patterns to reduce visual noise.',
+        'Refined layout, spacing, and contrast to support content-first exploration.',
       ],
       solution:
-        'A clean, accessible UI framework that supports iterative delivery and stable performance.',
+        'A cleaner, content-first interface that transforms the application from a simple image viewer into a moodboard-style tool. The redesign emphasizes visual hierarchy, minimizes exposed controls, and aligns interaction patterns with the product’s new purpose.',
       outcome: [
-        'Reduced layout regressions after releases',
-        'Higher contrast compliance across key views',
+        'Improved visual focus and hierarchy across the main canvas.',
+        'Reduced cognitive load by consolidating secondary actions.',
+        'Clearer alignment between product intent and interface behavior.',
       ],
       experienceUrl: '/projects/frontend-redesign/experience',
       experienceHelper: 'View the full report',
