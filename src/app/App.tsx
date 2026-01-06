@@ -119,24 +119,26 @@ export default function App() {
     {
       id: 'todo-app',
       title: 'To-Do App',
-      intent: 'Research-driven task flow designed to reduce overwhelm for early-career professionals.',
+      intent:
+        'Research-driven task flow designed to reduce planning overwhelm by improving anticipation, clarity, and trust—especially through reliable calendar handoff and reminder visibility.',
       role: 'UX Research, UI Design',
       imageUrl: todoBanner,
       tags: ['Research', 'UX Flow', 'UI Systems'],
       context:
-        'Designed as a compact study in reducing task anxiety for busy students and early-career professionals.',
+        'Designed as a compact study in reducing task anxiety for busy students and early-career professionals with mixed levels of tech comfort. The work focused on how people capture tasks quickly, understand priority at a glance, and rely on their phone’s native tools (calendar + notifications) to stay on track across work and personal schedules.',
       problem:
-        'Existing to-do tools felt either too rigid or overly playful, undermining trust in day-to-day planning.',
+        'Many existing to-do tools break trust in day-to-day planning: key actions like edit/delete aren’t always discoverable, priority signals can be unclear, and calendar integration is often unreliable. Without “ahead of time” visibility (widgets, smart reminders, dependable sync), tasks feel fragmented—making it harder for users to plan confidently.',
       process: [
-        'Mapped friction points from onboarding to daily capture.',
-        'Sketched low-friction prioritization patterns for short sessions.',
-        'Prototyped a three-stage rhythm: capture, prioritize, release.',
+        'Mapped friction points from first use through daily task capture, then tested core behaviors: add, edit, delete, set priority, select dates, and navigate between views. Insights from competitive research emphasized anticipation (widgets + reminders) and dependable calendar integration as key differentiators.',
+        'Concepts were explored through lo-fi and hi-fi prototypes, then iterated based on usability feedback—improving clarity with stronger priority cues, clearer button meanings, and safer delete flows. In parallel, a lightweight code prototype was used to evaluate how adding a task and handing it off to the device’s native calendar would look and feel in a more realistic interaction context.',
       ],
       solution:
-        'A pared-back task system with gentle hierarchy, clear completion feedback, and zero visual noise.',
+        'A pared-back task system with gentle hierarchy, clear completion feedback, and low visual noise—built around fast capture, readable prioritization, and a planning flow that supports calendar continuity. The design prioritizes “at a glance” understanding (widgets + smart notifications) while keeping actions and states easy to recognize, especially for less tech-savvy users.',
       outcome: [
-        'Reduced task drop-off during onboarding',
-        'Improved weekly task completion cadence',
+        'Task creation and completion tested as intuitive, with a mostly smooth navigation flow and positive reception overall.',
+        'Priority became easier to interpret with stronger visual cues, and action clarity improved through labels and safer edit/delete patterns.',
+        'Calendar sync was consistently valued as a trust and “backup” mechanism—supporting more detailed event controls (like notification personalization) inside the user’s native calendar.',
+        'Code-based prototyping helped validate the end-to-end experience of creating a task and saving it to the device calendar, reinforcing a unified planning workflow across the app and the user’s existing system.',
       ],
       experienceUrl: '/projects/todo-app/experience',
       experienceHelper: 'View the full report',
