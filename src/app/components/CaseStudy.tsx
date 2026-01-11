@@ -144,6 +144,7 @@ export function CaseStudy({
         duration={0.52}
         delay={0.12}
         ease={[0.4, 0, 0.2, 1]}
+        disableTransform
       >
         <div className="mt-24">
           <p className="type-meta text-accent uppercase mb-4">{prototype.title}</p>
@@ -154,7 +155,7 @@ export function CaseStudy({
                   title={`${title} prototype`}
                   src={prototype.embedUrl}
                   className="w-full h-full"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
             ) : (

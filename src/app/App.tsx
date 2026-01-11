@@ -1,18 +1,21 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, motion, useInView, useReducedMotion } from 'motion/react';
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
+import { AiCompanionCaseStudy } from './components/AiCompanionCaseStudy';
 import { ProjectCard } from './components/ProjectCard';
-import { ExploratoryGallery } from './components/ExploratoryGallery';
-import { ExternalPreviewLink } from './components/ExternalPreviewLink';
-import { AnimatedParagraph } from './components/AnimatedParagraph';
+// Garden view disabled for now; keep for later reuse.
+// import { ExploratoryGallery } from './components/ExploratoryGallery';
 import bannerCaseStudy from '../assets/images/banner-case-study.png';
 import todoBanner from '../assets/images/todo-banner2.png';
 import asmrBanner from '../assets/images/asmr-banner2.png';
 import spotsBanner from '../assets/images/spots-banner.png';
 import redesign02 from '../assets/images/Redesign02.png';
+import bloopAvatar from '../assets/images/bloop.png';
+import julsPortrait from '../assets/images/Juls.JPG';
 
-type View = 'main' | 'garden';
+// Garden view disabled for now; keep for later reuse.
+// type View = 'main' | 'garden';
 
 const RESUME_URL = '<GOOGLE_DRIVE_LINK_PLACEHOLDER>';
 const ABOUT_ME_PARAGRAPHS = [
@@ -23,22 +26,10 @@ const ABOUT_ME_PARAGRAPHS = [
 
 export default function App() {
   const shouldReduceMotion = useReducedMotion();
-  const [view, setView] = useState<View>('main');
+  // Garden view disabled for now; keep for later reuse.
+  // const [view, setView] = useState<View>('main');
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
-  const scrollPositionRef = useRef(0);
-  const aboutTextRef = useRef<HTMLDivElement | null>(null);
-  const aboutTextInView = useInView(aboutTextRef, { once: true, amount: 0.35, margin: '-120px' });
-  const aboutStagger = 0.045;
-  const aboutBaseDelay = 0.12;
-  const aboutParagraphPause = 0.3;
-  const aboutWordOffsets = useMemo(() => {
-    let offset = 0;
-    return ABOUT_ME_PARAGRAPHS.map((paragraph) => {
-      const startIndex = offset;
-      offset += paragraph.trim().split(/\s+/).length;
-      return startIndex;
-    });
-  }, []);
+  // const scrollPositionRef = useRef(0);
   const heroLines = [
     'I design interfaces where behavior and systems matter.',
     'Grounded in research, prototyping, and sometimes, implementation.',
@@ -194,6 +185,41 @@ export default function App() {
       demoUrl: undefined,
     },
     {
+      id: 'marketplace-bloop',
+      title: 'Marketplace (BLOOP)',
+      intent:
+        'BLOOP is a mobile-first marketplace concept designed to make local buying and selling feel immediate, clear, and low-friction. Built in response to a school assignment, the project applies Apple Human Interface Guidelines (HIG) to address common marketplace usability issues—especially hidden primary actions, slow listing flows, and unclear status feedback.',
+      role: 'UX Research, UI Design',
+      imageUrl: bloopAvatar,
+      tags: ['Research', 'UX Flow', 'UI Systems'],
+      context:
+        'Many existing marketplaces introduce unnecessary friction during key moments such as posting an item, tracking progress, and communicating with buyers. BLOOP was designed around the idea of a “bubble”: something light, simple, and responsive. Every interaction aims to feel effortless, with subtle visual feedback confirming that actions were successful.',
+      problem:
+        'Research and heuristic analysis revealed three recurring issues in popular marketplace experiences:\n- Navigation creates friction when the primary “Sell” action is not immediately visible.\n- Listing flows feel slow and lack consistent progress feedback.\n- Messaging systems provide unclear status indicators (sent/read), reducing user confidence during conversations.',
+      process: [
+        'I evaluated existing marketplace patterns through the lens of Apple Human Interface Guidelines, focusing on primary action visibility, user feedback and control, and clear status communication.',
+        'Based on these insights, I mapped an end-to-end user flow—from browsing the feed to posting an item, messaging, purchase confirmation, and managing listings. Key screens were designed using a mini design system to ensure consistency, clarity, and predictable interaction patterns.',
+      ],
+      solution:
+        'BLOOP improves the marketplace experience through:\n- A clearly visible and easily accessible “Sell” entry point.\n- A streamlined listing flow with multi-image uploads and progress indicators.\n- A listing preview that confirms how an item will appear before publishing.\n- An inbox and chat experience with notification badges and clear sent/read status cues.\n- Consistent, card-based layouts and reusable components inspired by Apple HIG patterns.',
+      outcome: [
+        'Primary actions are easier to discover, reducing navigation friction.',
+        'Listing feels faster and more controlled thanks to visible progress feedback.',
+        'Messaging improves trust through clearer hierarchy and status indicators.',
+        'A cohesive mini design system—Inter typography, clean neutral colors, and a single bold blue accent—keeps the interface minimal while reinforcing BLOOP’s identity.',
+      ],
+      prototypeSummary:
+        'This section represents the full BLOOP app experience. Key screens showcased include the Home Feed, Create New Listing flow, and Messaging screens, highlighting action visibility, feedback, and clarity throughout the user journey.',
+      experienceUrl: '/projects/todo-app/experience',
+      experienceHelper: 'View the full report',
+      experienceThumbnail: undefined,
+      prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
+      prototypeUrl:
+        'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=0-1&embed-host=share',
+      demoLabel: undefined,
+      demoUrl: undefined,
+    },
+    {
       id: 'frontend-redesign',
       title: 'Frontend Redesign',
       intent: `Frontend implementation and interface redesign of an image-based web application.
@@ -228,10 +254,13 @@ Without formal user research, these issues were identified through heuristic eva
         'Reduced cognitive load by consolidating secondary actions.',
         'Clearer alignment between product intent and interface behavior.',
       ],
+      outcomeEmbedUrl:
+        'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=57-2628&embed-host=share',
+      introEmbedUrl: 'https://juliocoraspe.github.io/se_project_spots/',
+      introEmbedConfig: { width: 1280, height: 720, scale: 0.4 },
       experienceUrl: '/projects/frontend-redesign/experience',
       experienceHelper: 'View the full report',
       experienceThumbnail: undefined,
-      outcomeEmbedUrl: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the coded prototype or live build.',
       prototypeUrl:
         'https://embed.figma.com/design/QFyh4I1PE2qzy5hOSgDvgL/Spots-ReDesign?node-id=0-1&embed-host=share',
@@ -242,12 +271,22 @@ Without formal user research, these issues were identified through heuristic eva
 
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? null;
   const outcomeEmbedConfig = activeProject?.outcomeEmbedConfig;
+  const hasScaledOutcomeEmbed = Boolean(activeProject?.outcomeEmbedUrl && outcomeEmbedConfig);
   const outcomeEmbedScale = outcomeEmbedConfig?.scale ?? 0.6;
   const outcomeEmbedWidth = outcomeEmbedConfig?.width ?? 430;
   const outcomeEmbedHeight = outcomeEmbedConfig?.height ?? 764;
   const outcomeEmbedScaledWidth = outcomeEmbedWidth * outcomeEmbedScale;
   const outcomeEmbedScaledHeight = outcomeEmbedHeight * outcomeEmbedScale;
+  const introEmbedConfig = activeProject?.introEmbedConfig;
+  const hasIntroEmbed = Boolean(activeProject?.introEmbedUrl);
+  const introEmbedScale = introEmbedConfig?.scale ?? 0.4;
+  const introEmbedWidth = introEmbedConfig?.width ?? 1280;
+  const introEmbedHeight = introEmbedConfig?.height ?? 720;
+  const introEmbedScaledWidth = introEmbedWidth * introEmbedScale;
+  const introEmbedScaledHeight = introEmbedHeight * introEmbedScale;
 
+  // Garden items disabled for now; keep for later reuse.
+  /*
   const gardenItems = [
     {
       title: 'Morphic Button States',
@@ -310,7 +349,10 @@ Without formal user research, these issues were identified through heuristic eva
       description: 'A study in quiet spatial depth and low-contrast framing.',
     },
   ];
+  */
 
+  // Garden navigation disabled for now; keep for later reuse.
+  /*
   useEffect(() => {
     const handleHashChange = () => {
       if (window.location.hash === '#garden') {
@@ -335,7 +377,10 @@ Without formal user research, these issues were identified through heuristic eva
   const exitGarden = () => {
     window.location.hash = '';
   };
+  */
 
+  // Garden screen disabled for now; keep for later reuse.
+  /*
   if (view === 'garden') {
     return (
       <div className="min-h-screen bg-cloud text-ink">
@@ -355,6 +400,7 @@ Without formal user research, these issues were identified through heuristic eva
       </div>
     );
   }
+  */
 
   return (
     <div className="relative min-h-screen bg-pure text-ink">
@@ -418,6 +464,15 @@ Occasionally following ideas into reality when questions remain.
               Explore Projects
               <span className="type-micro text-dark">02</span>
             </a>
+            <a
+              href="#ai-companion-interface"
+              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+            >
+              Milo — AI Companion Interface
+              <span className="type-micro text-dark">03</span>
+            </a>
+            {/* Garden entry disabled for now; keep for later reuse. */}
+            {/*
             <button
               type="button"
               onClick={enterGarden}
@@ -428,12 +483,20 @@ Occasionally following ideas into reality when questions remain.
               </span>
               <span className="type-micro text-dark">03</span>
             </button>
+            */}
+            <a
+              href="#about-me"
+              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+            >
+              About Me
+              <span className="type-micro text-dark">04</span>
+            </a>
             <a
               href="#contact"
               className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
             >
               Contact
-              <span className="type-micro text-dark">04</span>
+              <span className="type-micro text-dark">05</span>
             </a>
           </div>
         </div>
@@ -481,7 +544,11 @@ Occasionally following ideas into reality when questions remain.
 
       <CaseStudy {...caseStudy} />
 
-      <section id="projects" className="py-32 px-8 bg-pure">
+      <section
+        id="projects"
+        className="py-32 px-8"
+        style={{ backgroundColor: '#fcfbfa' }}
+      >
         <div className="max-w-6xl mx-auto">
           <ScrollSection entryDirection="bottom" motionRole="project-grid">
             <div className="mb-16">
@@ -533,9 +600,9 @@ Occasionally following ideas into reality when questions remain.
             </button>
             <motion.div
               className="relative max-w-6xl mx-auto px-8 py-16"
-              initial={shouldReduceMotion ? { opacity: 1 } : { y: 24, opacity: 0 }}
-              animate={shouldReduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
-              exit={shouldReduceMotion ? { opacity: 1 } : { y: 24, opacity: 0 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1 }}
+              exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
               transition={{ duration: shouldReduceMotion ? 0.01 : 0.5, ease: [0.4, 0, 0.2, 1] }}
               onClick={(event) => event.stopPropagation()}
               role="dialog"
@@ -543,27 +610,58 @@ Occasionally following ideas into reality when questions remain.
             >
               <div className="border-b border-pale pb-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
                 <div className="space-y-3">
-                  <p className="type-meta text-dark uppercase">Project</p>
+                  <p className="type-meta text-dark uppercase">
+                    {activeProject.id === 'todo-app-bloop' ? 'Project Overview' : 'Project'}
+                  </p>
                   <h3 className="type-display-l text-ink">{activeProject.title}</h3>
                   <p className="type-subhead text-dark">{activeProject.role}</p>
                 </div>
               </div>
 
-              <div className="mt-10 grid md:grid-cols-[220px_1fr] gap-8 items-start border-b border-pale pb-10">
-                <div className="border border-pale">
-                  <img
-                    src={activeProject.imageUrl}
-                    alt={activeProject.title}
-                    className={`w-full h-32 ${
-                      activeProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'
-                    } ${
-                      activeProject.imagePosition === 'top'
-                        ? 'object-top'
-                        : activeProject.imagePosition === 'bottom'
-                          ? 'object-bottom'
-                          : 'object-center'
-                    }`}
-                  />
+              <div
+                className={`mt-10 grid gap-8 items-start border-b border-pale pb-10 ${
+                  hasIntroEmbed ? 'md:grid-cols-[auto_1fr]' : 'md:grid-cols-[220px_1fr]'
+                }`}
+              >
+                <div
+                  className={`border border-pale bg-pure ${
+                    hasIntroEmbed ? 'relative overflow-hidden' : ''
+                  }`}
+                  style={
+                    hasIntroEmbed
+                      ? { width: introEmbedScaledWidth, height: introEmbedScaledHeight }
+                      : undefined
+                  }
+                >
+                  {hasIntroEmbed ? (
+                    <iframe
+                      title={`${activeProject.title} live embed`}
+                      src={activeProject.introEmbedUrl}
+                      className="absolute left-0 top-0 origin-top-left border-0"
+                      loading="eager"
+                      allow="fullscreen"
+                      allowFullScreen
+                      style={{
+                        width: introEmbedWidth,
+                        height: introEmbedHeight,
+                        transform: `scale(${introEmbedScale})`,
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={activeProject.imageUrl}
+                      alt={activeProject.title}
+                      className={`w-full h-32 ${
+                        activeProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                      } ${
+                        activeProject.imagePosition === 'top'
+                          ? 'object-top'
+                          : activeProject.imagePosition === 'bottom'
+                            ? 'object-bottom'
+                            : 'object-center'
+                      }`}
+                    />
+                  )}
                 </div>
                 <p className="type-body text-ink">{activeProject.intent}</p>
               </div>
@@ -576,7 +674,7 @@ Occasionally following ideas into reality when questions remain.
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
                   <p className="type-section-title text-dark uppercase">Problem</p>
-                  <p className="type-body text-ink">{activeProject.problem}</p>
+                  <p className="type-body text-ink whitespace-pre-line">{activeProject.problem}</p>
                 </section>
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
@@ -592,16 +690,16 @@ Occasionally following ideas into reality when questions remain.
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
                   <p className="type-section-title text-dark uppercase">Solution</p>
-                  <p className="type-body text-ink">{activeProject.solution}</p>
+                  <p className="type-body text-ink whitespace-pre-line">{activeProject.solution}</p>
                 </section>
 
                 <section
                   className={`grid gap-8 border-t border-pale pt-6 items-start ${
-                    activeProject.outcomeEmbedUrl
+                    hasScaledOutcomeEmbed
                       ? activeProject.id === 'asmr-app'
                         ? 'md:grid-cols-[200px_minmax(0,1fr)_360px] lg:grid-cols-[200px_minmax(0,1fr)_420px]'
                         : 'md:grid-cols-[200px_minmax(0,1fr)_280px] lg:grid-cols-[200px_minmax(0,1fr)_320px]'
-                      : 'md:grid-cols-[200px_minmax(0,1fr)_240px]'
+                      : 'md:grid-cols-[200px_minmax(0,1fr)]'
                   }`}
                 >
                   <p className="type-section-title text-dark uppercase">Outcome</p>
@@ -612,7 +710,7 @@ Occasionally following ideas into reality when questions remain.
                       </p>
                     ))}
                   </div>
-                  {activeProject.outcomeEmbedUrl ? (
+                  {hasScaledOutcomeEmbed ? (
                     <div className="flex flex-col items-center">
                       <div
                         className="relative overflow-hidden rounded-[24px] border border-pale bg-pure"
@@ -628,11 +726,12 @@ Occasionally following ideas into reality when questions remain.
                           />
                         )}
                         <iframe
-                          title={`${activeProject.title} demo`}
+                          title={`${activeProject.title} outcome embed`}
                           src={activeProject.outcomeEmbedUrl}
                           className="absolute left-0 top-0 origin-top-left border-0 no-scrollbar"
-                          loading="lazy"
-                          allow="microphone https://juliocoraspe.github.io; autoplay"
+                          loading="eager"
+                          allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
+                          allowFullScreen
                           style={{
                             width: outcomeEmbedWidth,
                             height: outcomeEmbedHeight,
@@ -666,25 +765,28 @@ Occasionally following ideas into reality when questions remain.
                         </span>
                       )}
                     </div>
-                  ) : (
-                    <ExternalPreviewLink
-                      helperText={activeProject.experienceHelper}
-                      href={activeProject.experienceUrl}
-                      thumbnailSrc={activeProject.experienceThumbnail}
-                    />
-                  )}
+                  ) : null}
                 </section>
 
                 <section className="grid md:grid-cols-[200px_1fr] gap-8 border-t border-pale pt-6">
-                  <p className="type-section-title uppercase text-accent">Prototype</p>
+                  <p className="type-section-title uppercase text-accent">
+                    {activeProject.id === 'todo-app-bloop' ? 'Prototype / Visualization' : 'Prototype'}
+                  </p>
                   <div className="border border-pale">
+                    {activeProject.prototypeSummary && (
+                      <div className="p-6 border-b border-pale">
+                        <p className="type-body text-ink whitespace-pre-line">
+                          {activeProject.prototypeSummary}
+                        </p>
+                      </div>
+                    )}
                     {activeProject.prototypeUrl ? (
                       <div className="aspect-video w-full border-b border-pale bg-pure">
                         <iframe
                           title={`${activeProject.title} prototype`}
                           src={activeProject.prototypeUrl}
                           className="w-full h-full"
-                          loading="speedy"
+                          loading="eager"
                           allow="fullscreen"
                           allowFullScreen
                         />
@@ -693,23 +795,25 @@ Occasionally following ideas into reality when questions remain.
                       <div className="aspect-video w-full border-b border-pale bg-pure flex items-center justify-center text-center p-6">
                         <p className="type-body text-dark">{activeProject.prototypeLabel}</p>
                       </div>
-                    )}
-                    <div className="p-6 flex flex-wrap gap-6">
-                      {activeProject.demoUrl ? (
-                        <a
-                          href={activeProject.demoUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="type-meta uppercase text-accent"
-                        >
-                          {activeProject.demoLabel}
-                        </a>
-                      ) : (
-                        <span className="type-meta uppercase text-accent">
-                          {activeProject.demoLabel}
-                        </span>
                       )}
-                    </div>
+                    {activeProject.demoLabel && (
+                      <div className="p-6 flex flex-wrap gap-6">
+                        {activeProject.demoUrl ? (
+                          <a
+                            href={activeProject.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="type-meta uppercase text-accent"
+                          >
+                            {activeProject.demoLabel}
+                          </a>
+                        ) : (
+                          <span className="type-meta uppercase text-accent">
+                            {activeProject.demoLabel}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </section>
               </div>
@@ -718,34 +822,37 @@ Occasionally following ideas into reality when questions remain.
         )}
       </AnimatePresence>
 
-      <section id="about-me" aria-label="About Me" className="py-32 px-8 bg-pure border-t border-pale">
+      <AiCompanionCaseStudy />
+
+      <section
+        id="about-me"
+        aria-label="About Me"
+        className="py-32 px-8 border-t border-pale"
+        style={{ backgroundColor: '#fcfbfa' }}
+      >
         <div className="max-w-6xl mx-auto space-y-12">
           <ScrollSection entryDirection="bottom" motionRole="contact-title">
             <h2 className="type-display-m text-ink">About Me</h2>
           </ScrollSection>
           <div className="border border-pale bg-pure">
-            <div className="w-full aspect-[239/100] bg-cloud flex items-center justify-center">
-              <span className="type-meta uppercase text-dark">Cinematic video placeholder</span>
-            </div>
+            <img
+              src={julsPortrait}
+              alt="Julio Coraspe portrait"
+              className="w-full aspect-[239/100] object-cover about-portrait-image"
+            />
           </div>
 
-          <div ref={aboutTextRef} className="space-y-8 text-left">
-            {ABOUT_ME_PARAGRAPHS.map((paragraph, index) => (
-              <AnimatedParagraph
-                key={paragraph.slice(0, 16)}
-                text={paragraph}
-                className="type-body text-ink"
-                inView={aboutTextInView}
-                stagger={aboutStagger}
-                startIndex={aboutWordOffsets[index]}
-                delay={aboutBaseDelay + index * aboutParagraphPause}
-              />
+          <div className="space-y-8 text-left">
+            {ABOUT_ME_PARAGRAPHS.map((paragraph) => (
+              <p key={paragraph.slice(0, 16)} className="type-body text-ink">
+                {paragraph}
+              </p>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="py-32 px-8 bg-pure border-t border-pale">
+      <section id="contact" className="py-32 px-8 border-t border-pale bg-pure">
         <div className="max-w-6xl mx-auto">
           <div className="space-y-6">
             <ScrollSection entryDirection="bottom" motionRole="contact-title">
@@ -800,6 +907,8 @@ If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’
                 </a>
               </div>
             </div>
+            {/* Garden footer link disabled for now; keep for later reuse. */}
+            {/*
             <button
               type="button"
               onClick={enterGarden}
@@ -807,6 +916,7 @@ If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’
             >
               Visit the Garden
             </button>
+            */}
           </div>
 
         </div>

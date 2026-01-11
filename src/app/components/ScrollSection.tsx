@@ -24,6 +24,7 @@ interface ScrollSectionProps {
   distance?: number;
   ease?: Easing | Easing[];
   once?: boolean;
+  disableTransform?: boolean;
 }
 
 const MOTION_PRESETS: Record<MotionRole, { distance: number; duration: number; ease: Easing | Easing[] }> = {
@@ -49,6 +50,7 @@ export function ScrollSection({
   distance,
   ease,
   once = true,
+  disableTransform = false,
 }: ScrollSectionProps) {
   const ref = useRef(null);
   const shouldReduceMotion = useReducedMotion();
@@ -89,12 +91,20 @@ export function ScrollSection({
     return variants[exitDirection];
   };
 
-  const initial = shouldReduceMotion ? { opacity: 0 } : getEntryVariants();
+  const initial = shouldReduceMotion
+    ? { opacity: 0 }
+    : disableTransform
+      ? { opacity: 0 }
+      : getEntryVariants();
   const animate = shouldReduceMotion
     ? { opacity: 1 }
     : isInView
-      ? { x: 0, y: 0, scale: 1, opacity: 1 }
-      : getExitVariants();
+      ? disableTransform
+        ? { opacity: 1 }
+        : { x: 0, y: 0, scale: 1, opacity: 1 }
+      : disableTransform
+        ? { opacity: 0 }
+        : getExitVariants();
 
   return (
     <motion.div
