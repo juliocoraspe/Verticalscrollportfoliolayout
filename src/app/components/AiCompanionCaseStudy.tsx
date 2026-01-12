@@ -171,16 +171,9 @@ export function AiCompanionCaseStudy() {
                   <iframe
                     title="AI Companion Interface embedded prototype"
                     src={GITHUB_PAGES_EMBED_URL}
-                    className="absolute border-0 no-scrollbar"
+                    className="absolute left-0 top-0 h-full w-full border-0 no-scrollbar"
                     loading="eager"
                     scrolling="no"
-                    style={{
-                      width: 'calc(100% + 24px)',
-                      height: 'calc(100% + 24px)',
-                      left: '-12px',
-                      top: '-12px',
-                      overflow: 'hidden',
-                    }}
                   />
                 </div>
                 <div className="flex flex-wrap items-center justify-between gap-4 border-t border-pale p-6">
