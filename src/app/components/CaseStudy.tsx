@@ -46,7 +46,10 @@ export function CaseStudy({
   prototype,
 }: CaseStudyProps) {
   return (
-    <section id="case-study" className="w-full max-w-6xl mx-auto px-8 py-32 relative z-20 border-t border-pale">
+    <section
+      id="case-study"
+      className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
+    >
       <ScrollSection entryDirection="bottom" motionRole="case-intro">
         <div className="mb-16">
           <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-6">
@@ -150,7 +153,7 @@ export function CaseStudy({
           <p className="type-meta text-accent uppercase mb-4">{prototype.title}</p>
           <div className="border border-pale">
             {prototype.embedUrl ? (
-              <div className="aspect-video w-full border-b border-pale bg-pure">
+              <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
                 <iframe
                   title={`${title} prototype`}
                   src={prototype.embedUrl}

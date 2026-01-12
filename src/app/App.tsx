@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
 import { AiCompanionCaseStudy } from './components/AiCompanionCaseStudy';
 import { ProjectCard } from './components/ProjectCard';
+import { useIsMobile } from './components/ui/use-mobile';
 // Garden view disabled for now; keep for later reuse.
 // import { ExploratoryGallery } from './components/ExploratoryGallery';
 import bannerCaseStudy from '../assets/images/banner-case-study.png';
@@ -26,9 +27,13 @@ const ABOUT_ME_PARAGRAPHS = [
 
 export default function App() {
   const shouldReduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   // Garden view disabled for now; keep for later reuse.
   // const [view, setView] = useState<View>('main');
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+  const [viewportWidth, setViewportWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1200,
+  );
   // const scrollPositionRef = useRef(0);
   const heroLines = [
     'I design interfaces where behavior and systems matter.',
@@ -56,6 +61,13 @@ export default function App() {
       },
     },
   };
+
+  useEffect(() => {
+    const handleResize = () => setViewportWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const caseStudy = {
     title: 'STILLEN: A Curated Furniture Experience',
@@ -136,6 +148,7 @@ export default function App() {
       experienceThumbnail: undefined,
       outcomeEmbedUrl: 'https://juliocoraspe.github.io/todo-polymorphic-app/',
       outcomeEmbedConfig: { width: 430, height: 764, scale: 0.6 },
+      outcomeEmbedMode: 'responsive',
       outcomeEmbedCta: 'Explore the live coded demo below.',
       outcomeEmbedArrow: 'up' as const,
       outcomeEmbedArrowPlacement: 'above' as const,
@@ -177,6 +190,7 @@ export default function App() {
       experienceThumbnail: undefined,
       outcomeEmbedUrl: 'https://juliocoraspe.github.io/birdsong-viz/',
       outcomeEmbedConfig: { width: 640, height: 1138, scale: 0.6 },
+      outcomeEmbedMode: 'responsive',
       outcomeEmbedCta: undefined,
       prototypeLabel: 'Prototype embed placeholder — add the audio demo or motion study.',
       prototypeUrl:
@@ -258,6 +272,7 @@ Without formal user research, these issues were identified through heuristic eva
         'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=57-2628&embed-host=share',
       introEmbedUrl: 'https://juliocoraspe.github.io/se_project_spots/',
       introEmbedConfig: { width: 1280, height: 720, scale: 0.4 },
+      introEmbedMode: 'responsive',
       experienceUrl: '/projects/frontend-redesign/experience',
       experienceHelper: 'View the full report',
       experienceThumbnail: undefined,
@@ -272,16 +287,32 @@ Without formal user research, these issues were identified through heuristic eva
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? null;
   const outcomeEmbedConfig = activeProject?.outcomeEmbedConfig;
   const hasScaledOutcomeEmbed = Boolean(activeProject?.outcomeEmbedUrl && outcomeEmbedConfig);
-  const outcomeEmbedScale = outcomeEmbedConfig?.scale ?? 0.6;
+  const outcomeEmbedMode = activeProject?.outcomeEmbedMode ?? 'scaled';
+  const outcomeEmbedIsResponsive = outcomeEmbedMode === 'responsive';
+  const outcomeEmbedBaseScale = outcomeEmbedConfig?.scale ?? 0.6;
   const outcomeEmbedWidth = outcomeEmbedConfig?.width ?? 430;
   const outcomeEmbedHeight = outcomeEmbedConfig?.height ?? 764;
-  const outcomeEmbedScaledWidth = outcomeEmbedWidth * outcomeEmbedScale;
-  const outcomeEmbedScaledHeight = outcomeEmbedHeight * outcomeEmbedScale;
   const introEmbedConfig = activeProject?.introEmbedConfig;
   const hasIntroEmbed = Boolean(activeProject?.introEmbedUrl);
-  const introEmbedScale = introEmbedConfig?.scale ?? 0.4;
+  const introEmbedMode = activeProject?.introEmbedMode ?? 'scaled';
+  const introEmbedIsResponsive = introEmbedMode === 'responsive';
+  const introEmbedBaseScale = introEmbedConfig?.scale ?? 0.4;
   const introEmbedWidth = introEmbedConfig?.width ?? 1280;
   const introEmbedHeight = introEmbedConfig?.height ?? 720;
+  const contentGutter = viewportWidth < 640 ? 32 : 64;
+  const availableEmbedWidth = Math.max(viewportWidth - contentGutter, 0);
+  const clampEmbedScale = (baseScale: number, frameWidth: number) => {
+    if (!availableEmbedWidth || !frameWidth) return baseScale;
+    const fitScale = availableEmbedWidth / frameWidth;
+    if (isMobile) {
+      return Math.min(1, fitScale);
+    }
+    return Math.min(baseScale, fitScale);
+  };
+  const outcomeEmbedScale = clampEmbedScale(outcomeEmbedBaseScale, outcomeEmbedWidth);
+  const outcomeEmbedScaledWidth = outcomeEmbedWidth * outcomeEmbedScale;
+  const outcomeEmbedScaledHeight = outcomeEmbedHeight * outcomeEmbedScale;
+  const introEmbedScale = clampEmbedScale(introEmbedBaseScale, introEmbedWidth);
   const introEmbedScaledWidth = introEmbedWidth * introEmbedScale;
   const introEmbedScaledHeight = introEmbedHeight * introEmbedScale;
 
@@ -403,40 +434,47 @@ Without formal user research, these issues were identified through heuristic eva
   */
 
   return (
-    <div className="relative min-h-screen bg-pure text-ink">
-      <section className="min-h-screen flex items-center px-6 pt-24 pb-16">
-        <div className="max-w-7xl mx-auto space-y-8">
+    <div className="relative min-h-screen w-full bg-pure text-ink">
+      <section className="min-h-[100svh] flex items-center px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16">
+        <div className="w-full hero-breakout mx-auto space-y-8 min-w-0">
           <p className="type-subhead text-dark uppercase">Julio Coraspe • UX/UI Designer</p>
 
           <motion.h1
-            className="type-display-xl text-ink"
+            className="type-display-xl text-ink break-words hero-title min-w-0"
             variants={heroContainerVariants}
             initial="hidden"
             animate="show"
             aria-label={heroText}
           >
-            {heroLines.map((line, lineIndex) => {
-              const words = line.split(' ');
-              return (
-                <span key={line} className="block">
-                  {words.map((word, wordIndex) => (
-                    <motion.span
-                      key={`${lineIndex}-${wordIndex}`}
-                      variants={heroWordVariants}
-                      className="inline-block"
-                      aria-hidden="true"
-                    >
-                      {word}
-                      {wordIndex < words.length - 1 ? '\u00A0' : ''}
-                    </motion.span>
-                  ))}
-                </span>
-              );
-            })}
+            {isMobile
+              ? heroLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))
+              : heroLines.map((line, lineIndex) => {
+                  const words = line.split(' ');
+                  return (
+                    <span key={line} className="block">
+                      {words.map((word, wordIndex) => (
+                        <Fragment key={`${lineIndex}-${wordIndex}`}>
+                          <motion.span
+                            variants={heroWordVariants}
+                            className="inline-block"
+                            aria-hidden="true"
+                          >
+                            {word}
+                          </motion.span>
+                          {wordIndex < words.length - 1 ? <span aria-hidden="true"> </span> : null}
+                        </Fragment>
+                      ))}
+                    </span>
+                  );
+                })}
           </motion.h1>
 
           <motion.p
-            className="type-subhead text-dark max-w-3xl"
+            className="type-subhead text-dark hero-subtitle min-w-0"
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
             transition={{
@@ -449,27 +487,27 @@ Without formal user research, these issues were identified through heuristic eva
 Occasionally following ideas into reality when questions remain.
           </motion.p>
 
-          <div className="max-w-md border-y border-pale divide-y divide-pale">
+          <div className="hero-index w-full min-w-0 border-y border-pale divide-y divide-pale">
             <a
               href="#case-study"
-              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              View Case Study
-              <span className="type-micro text-dark">01</span>
+              <span className="hero-index-label">View Case Study</span>
+              <span className="type-micro text-dark hero-index-count">01</span>
             </a>
             <a
               href="#projects"
-              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              Explore Projects
-              <span className="type-micro text-dark">02</span>
+              <span className="hero-index-label">Explore Projects</span>
+              <span className="type-micro text-dark hero-index-count">02</span>
             </a>
             <a
               href="#ai-companion-interface"
-              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              Milo — AI Companion Interface
-              <span className="type-micro text-dark">03</span>
+              <span className="hero-index-label">Milo — AI Companion Interface</span>
+              <span className="type-micro text-dark hero-index-count">03</span>
             </a>
             {/* Garden entry disabled for now; keep for later reuse. */}
             {/*
@@ -486,23 +524,23 @@ Occasionally following ideas into reality when questions remain.
             */}
             <a
               href="#about-me"
-              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              About Me
-              <span className="type-micro text-dark">04</span>
+              <span className="hero-index-label">About Me</span>
+              <span className="type-micro text-dark hero-index-count">04</span>
             </a>
             <a
               href="#contact"
-              className="type-micro uppercase text-ink py-4 flex items-center justify-between w-full"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              Contact
-              <span className="type-micro text-dark">05</span>
+              <span className="hero-index-label">Contact</span>
+              <span className="type-micro text-dark hero-index-count">05</span>
             </a>
           </div>
         </div>
       </section>
 
-      <section id="about" className="py-32 px-8 bg-pure">
+      <section id="about" className="py-24 px-6 sm:py-32 sm:px-8 bg-pure">
         <div className="max-w-6xl mx-auto">
           <ScrollSection entryDirection="bottom" motionRole="about-title">
             <h2 className="type-display-m text-ink">Practice</h2>
@@ -546,7 +584,7 @@ Occasionally following ideas into reality when questions remain.
 
       <section
         id="projects"
-        className="py-32 px-8"
+        className="py-24 px-6 sm:py-32 sm:px-8"
         style={{ backgroundColor: '#fcfbfa' }}
       >
         <div className="max-w-6xl mx-auto">
@@ -592,14 +630,14 @@ Occasionally following ideas into reality when questions remain.
             <button
               type="button"
               onClick={() => setActiveProjectId(null)}
-              className="absolute right-6 top-6 type-meta text-accent uppercase flex items-center gap-2"
+              className="absolute right-4 top-4 z-[60] pointer-events-auto type-meta text-accent uppercase flex items-center gap-2 sm:right-6 sm:top-6"
               aria-label="Close project details"
             >
               <span aria-hidden="true">×</span>
               Close
             </button>
             <motion.div
-              className="relative max-w-6xl mx-auto px-8 py-16"
+              className="relative max-w-6xl mx-auto px-4 py-12 sm:px-8 sm:py-16"
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
               animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1 }}
               exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -620,33 +658,58 @@ Occasionally following ideas into reality when questions remain.
 
               <div
                 className={`mt-10 grid gap-8 items-start border-b border-pale pb-10 ${
-                  hasIntroEmbed ? 'md:grid-cols-[auto_1fr]' : 'md:grid-cols-[220px_1fr]'
+                  hasIntroEmbed
+                    ? introEmbedIsResponsive
+                      ? 'md:grid-cols-[minmax(0,1fr)_1fr]'
+                      : 'md:grid-cols-[auto_1fr]'
+                    : 'md:grid-cols-[220px_1fr]'
                 }`}
               >
                 <div
-                  className={`border border-pale bg-pure ${
+                  className={`border border-pale bg-pure max-w-full ${
                     hasIntroEmbed ? 'relative overflow-hidden' : ''
                   }`}
                   style={
                     hasIntroEmbed
-                      ? { width: introEmbedScaledWidth, height: introEmbedScaledHeight }
+                      ? introEmbedIsResponsive
+                        ? {
+                            width: '100%',
+                            aspectRatio: `${introEmbedWidth} / ${introEmbedHeight}`,
+                            maxWidth: '100%',
+                          }
+                        : {
+                            width: introEmbedScaledWidth,
+                            height: introEmbedScaledHeight,
+                            maxWidth: '100%',
+                          }
                       : undefined
                   }
                 >
                   {hasIntroEmbed ? (
-                    <iframe
-                      title={`${activeProject.title} live embed`}
-                      src={activeProject.introEmbedUrl}
-                      className="absolute left-0 top-0 origin-top-left border-0"
-                      loading="eager"
-                      allow="fullscreen"
-                      allowFullScreen
-                      style={{
-                        width: introEmbedWidth,
-                        height: introEmbedHeight,
-                        transform: `scale(${introEmbedScale})`,
-                      }}
-                    />
+                    introEmbedIsResponsive ? (
+                      <iframe
+                        title={`${activeProject.title} live embed`}
+                        src={activeProject.introEmbedUrl}
+                        className="absolute left-0 top-0 h-full w-full border-0"
+                        loading="eager"
+                        allow="fullscreen"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <iframe
+                        title={`${activeProject.title} live embed`}
+                        src={activeProject.introEmbedUrl}
+                        className="absolute left-0 top-0 origin-top-left border-0"
+                        loading="eager"
+                        allow="fullscreen"
+                        allowFullScreen
+                        style={{
+                          width: introEmbedWidth,
+                          height: introEmbedHeight,
+                          transform: `scale(${introEmbedScale})`,
+                        }}
+                      />
+                    )
                   ) : (
                     <img
                       src={activeProject.imageUrl}
@@ -715,8 +778,12 @@ Occasionally following ideas into reality when questions remain.
                       <div
                         className="relative overflow-hidden rounded-[24px] border border-pale bg-pure"
                         style={{
-                          width: outcomeEmbedScaledWidth,
-                          height: outcomeEmbedScaledHeight,
+                          width: outcomeEmbedIsResponsive ? '100%' : outcomeEmbedScaledWidth,
+                          height: outcomeEmbedIsResponsive ? 'auto' : outcomeEmbedScaledHeight,
+                          aspectRatio: outcomeEmbedIsResponsive
+                            ? `${outcomeEmbedWidth} / ${outcomeEmbedHeight}`
+                            : undefined,
+                          maxWidth: '100%',
                         }}
                       >
                         {activeProject.id === 'todo-app' && (
@@ -725,19 +792,30 @@ Occasionally following ideas into reality when questions remain.
                             className="pointer-events-none absolute right-0 top-0 z-10 h-full w-3 bg-cloud"
                           />
                         )}
-                        <iframe
-                          title={`${activeProject.title} outcome embed`}
-                          src={activeProject.outcomeEmbedUrl}
-                          className="absolute left-0 top-0 origin-top-left border-0 no-scrollbar"
-                          loading="eager"
-                          allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
-                          allowFullScreen
-                          style={{
-                            width: outcomeEmbedWidth,
-                            height: outcomeEmbedHeight,
-                            transform: `scale(${outcomeEmbedScale})`,
-                          }}
-                        />
+                        {outcomeEmbedIsResponsive ? (
+                          <iframe
+                            title={`${activeProject.title} outcome embed`}
+                            src={activeProject.outcomeEmbedUrl}
+                            className="absolute left-0 top-0 h-full w-full border-0 no-scrollbar"
+                            loading="eager"
+                            allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
+                            allowFullScreen
+                          />
+                        ) : (
+                          <iframe
+                            title={`${activeProject.title} outcome embed`}
+                            src={activeProject.outcomeEmbedUrl}
+                            className="absolute left-0 top-0 origin-top-left border-0 no-scrollbar"
+                            loading="eager"
+                            allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
+                            allowFullScreen
+                            style={{
+                              width: outcomeEmbedWidth,
+                              height: outcomeEmbedHeight,
+                              transform: `scale(${outcomeEmbedScale})`,
+                            }}
+                          />
+                        )}
                       </div>
                       {activeProject.outcomeEmbedArrowPlacement === 'above' && (
                         <span className="type-micro text-dark mt-3">
@@ -781,7 +859,7 @@ Occasionally following ideas into reality when questions remain.
                       </div>
                     )}
                     {activeProject.prototypeUrl ? (
-                      <div className="aspect-video w-full border-b border-pale bg-pure">
+                      <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
                         <iframe
                           title={`${activeProject.title} prototype`}
                           src={activeProject.prototypeUrl}
@@ -827,7 +905,7 @@ Occasionally following ideas into reality when questions remain.
       <section
         id="about-me"
         aria-label="About Me"
-        className="py-32 px-8 border-t border-pale"
+        className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale"
         style={{ backgroundColor: '#fcfbfa' }}
       >
         <div className="max-w-6xl mx-auto space-y-12">
@@ -852,7 +930,7 @@ Occasionally following ideas into reality when questions remain.
         </div>
       </section>
 
-      <section id="contact" className="py-32 px-8 border-t border-pale bg-pure">
+      <section id="contact" className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale bg-pure">
         <div className="max-w-6xl mx-auto">
           <div className="space-y-6">
             <ScrollSection entryDirection="bottom" motionRole="contact-title">
@@ -923,7 +1001,7 @@ If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’
       </section>
 
       <footer className="border-t border-pale bg-pure">
-        <div className="max-w-6xl mx-auto px-8 py-16" />
+        <div className="max-w-6xl mx-auto px-6 py-12 sm:px-8 sm:py-16" />
       </footer>
     </div>
   );

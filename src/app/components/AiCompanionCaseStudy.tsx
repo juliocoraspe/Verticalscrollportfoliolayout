@@ -9,7 +9,7 @@ export function AiCompanionCaseStudy() {
   return (
     <section
       id="ai-companion-interface"
-      className="w-full max-w-6xl mx-auto px-8 py-32 relative z-20 border-t border-pale"
+      className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
     >
       <ScrollSection entryDirection="bottom" motionRole="case-intro">
         <div className="mb-16">
@@ -106,7 +106,7 @@ export function AiCompanionCaseStudy() {
               <div className="space-y-4 border-t border-pale pt-6">
                 <p className="type-micro text-dark">Figma exploration (embedded prototype)</p>
                 <div className="border border-pale">
-                  <div className="aspect-video w-full border-b border-pale bg-pure">
+                  <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
                     <iframe
                       title="AI Companion Interface Figma exploration"
                       src={FIGMA_EMBED_URL}
