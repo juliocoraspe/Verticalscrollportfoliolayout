@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ScrollSection } from './components/ScrollSection';
 import { CaseStudy } from './components/CaseStudy';
@@ -63,13 +63,17 @@ export default function App() {
   };
 
   useEffect(() => {
-    const handleResize = () => setViewportWidth(window.innerWidth);
+    const handleResize = () => {
+      const nextWidth = window.innerWidth;
+      setViewportWidth((prevWidth) => (prevWidth === nextWidth ? prevWidth : nextWidth));
+    };
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const caseStudy = {
+  const caseStudy = useMemo(
+    () => ({
     title: 'STILLEN: A Curated Furniture Experience',
     role: 'UX/UI designer',
     timeline: '2025',
@@ -116,9 +120,12 @@ export default function App() {
         'https://embed.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&embed-host=share',
       externalUrl: 'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025',
     },
-  };
+    }),
+    [],
+  );
 
-  const projects = [
+  const projects = useMemo(
+    () => [
     {
       id: 'todo-app',
       title: 'To-Do App',
@@ -282,9 +289,14 @@ Without formal user research, these issues were identified through heuristic eva
       demoLabel: 'Interface Redesign — Full Design Cycle',
       demoUrl: undefined,
     },
-  ];
+  ],
+    [],
+  );
 
   const activeProject = projects.find((project) => project.id === activeProjectId) ?? null;
+  const handleOpenProject = useCallback((projectId: string) => {
+    setActiveProjectId(projectId);
+  }, []);
   const outcomeEmbedConfig = activeProject?.outcomeEmbedConfig;
   const hasScaledOutcomeEmbed = Boolean(activeProject?.outcomeEmbedUrl && outcomeEmbedConfig);
   const outcomeEmbedMode = activeProject?.outcomeEmbedMode ?? 'scaled';
@@ -602,6 +614,7 @@ Occasionally following ideas into reality when questions remain.
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.id}
+                projectId={project.id}
                 title={project.title}
                 intent={project.intent}
                 role={project.role}
@@ -609,7 +622,7 @@ Occasionally following ideas into reality when questions remain.
                 imageFit={project.imageFit}
                 imagePosition={project.imagePosition}
                 tags={project.tags}
-                onOpen={() => setActiveProjectId(project.id)}
+                onOpen={handleOpenProject}
                 delay={index * 0.08}
               />
             ))}
@@ -691,7 +704,7 @@ Occasionally following ideas into reality when questions remain.
                         title={`${activeProject.title} live embed`}
                         src={activeProject.introEmbedUrl}
                         className="absolute left-0 top-0 h-full w-full border-0"
-                        loading="eager"
+                      loading="lazy"
                         allow="fullscreen"
                         allowFullScreen
                       />
@@ -700,7 +713,7 @@ Occasionally following ideas into reality when questions remain.
                         title={`${activeProject.title} live embed`}
                         src={activeProject.introEmbedUrl}
                         className="absolute left-0 top-0 origin-top-left border-0"
-                        loading="eager"
+                        loading="lazy"
                         allow="fullscreen"
                         allowFullScreen
                         style={{
@@ -797,7 +810,7 @@ Occasionally following ideas into reality when questions remain.
                             title={`${activeProject.title} outcome embed`}
                             src={activeProject.outcomeEmbedUrl}
                             className="absolute left-0 top-0 h-full w-full border-0 no-scrollbar"
-                            loading="eager"
+                            loading="lazy"
                             allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
                             allowFullScreen
                           />
@@ -806,7 +819,7 @@ Occasionally following ideas into reality when questions remain.
                             title={`${activeProject.title} outcome embed`}
                             src={activeProject.outcomeEmbedUrl}
                             className="absolute left-0 top-0 origin-top-left border-0 no-scrollbar"
-                            loading="eager"
+                            loading="lazy"
                             allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
                             allowFullScreen
                             style={{
@@ -864,7 +877,7 @@ Occasionally following ideas into reality when questions remain.
                           title={`${activeProject.title} prototype`}
                           src={activeProject.prototypeUrl}
                           className="w-full h-full"
-                          loading="eager"
+                          loading="lazy"
                           allow="fullscreen"
                           allowFullScreen
                         />

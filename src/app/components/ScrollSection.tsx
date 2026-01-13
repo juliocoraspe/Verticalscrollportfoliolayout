@@ -1,5 +1,5 @@
 import { motion, useInView, useReducedMotion, type Easing } from 'motion/react';
-import { useRef, ReactNode } from 'react';
+import { useMemo, useRef, ReactNode } from 'react';
 
 type AnimationDirection = 'left' | 'right' | 'top' | 'bottom' | 'scale' | 'none';
 type MotionRole =
@@ -59,11 +59,15 @@ export function ScrollSection({
   const resolvedDuration = duration ?? preset?.duration ?? 0.5;
   const resolvedEase = ease ?? preset?.ease ?? [0.22, 1, 0.36, 1];
 
-  const isInView = useInView(ref, { 
-    once, 
-    amount: threshold,
-    margin: "-100px"
-  });
+  const inViewOptions = useMemo(
+    () => ({
+      once,
+      amount: threshold,
+      margin: '-100px',
+    }),
+    [once, threshold],
+  );
+  const isInView = useInView(ref, inViewOptions);
 
   const getEntryVariants = () => {
     const variants: Record<AnimationDirection, any> = {

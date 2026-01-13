@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
 import miloBanner from '../../assets/images/Milo 2.svg';
 
@@ -5,7 +7,7 @@ const FIGMA_EMBED_URL =
   'https://embed.figma.com/design/JIjE307GOTQI96gbCzj0N0/Milo?node-id=0-1&embed-host=share';
 const GITHUB_PAGES_EMBED_URL = 'https://juliocoraspe.github.io/Milo/'; // TODO: Replace GITHUB_PAGES_EMBED_URL
 
-export function AiCompanionCaseStudy() {
+function AiCompanionCaseStudyComponent() {
   return (
     <section
       id="ai-companion-interface"
@@ -107,11 +109,10 @@ export function AiCompanionCaseStudy() {
                 <p className="type-micro text-dark">Figma exploration (embedded prototype)</p>
                 <div className="border border-pale">
                   <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                    <iframe
+                    <DeferredIframe
                       title="AI Companion Interface Figma exploration"
                       src={FIGMA_EMBED_URL}
-                      className="w-full h-full"
-                      loading="eager"
+                      className="h-full w-full border-0"
                       allow="fullscreen"
                       allowFullScreen
                     />
@@ -163,16 +164,16 @@ export function AiCompanionCaseStudy() {
           </ScrollSection>
           <ScrollSection entryDirection="bottom" motionRole="case-block">
             <div className="flex justify-center md:justify-end">
-              <div className="w-full max-w-[395px] border border-pale bg-pure overflow-hidden">
+              <div className="w-full max-w-[390px] border border-pale bg-pure overflow-hidden">
                 <div
                   className="relative w-full bg-pure overflow-hidden"
-                  style={{ aspectRatio: '395 / 820' }}
+                  style={{ aspectRatio: '390 / 844' }}
                 >
-                  <iframe
+                  <DeferredIframe
                     title="AI Companion Interface embedded prototype"
                     src={GITHUB_PAGES_EMBED_URL}
-                    className="absolute left-0 top-0 h-full w-full border-0 no-scrollbar"
-                    loading="eager"
+                    wrapperClassName="absolute inset-0"
+                    className="h-full w-full border-0 no-scrollbar"
                     scrolling="no"
                   />
                 </div>
@@ -239,3 +240,5 @@ export function AiCompanionCaseStudy() {
     </section>
   );
 }
+
+export const AiCompanionCaseStudy = memo(AiCompanionCaseStudyComponent);

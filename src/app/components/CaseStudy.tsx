@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
 import testingImage from '../../assets/images/Testing.png';
 
@@ -33,7 +35,7 @@ interface CaseStudyProps {
   };
 }
 
-export function CaseStudy({
+function CaseStudyComponent({
   title,
   role,
   timeline,
@@ -154,11 +156,10 @@ export function CaseStudy({
           <div className="border border-pale">
             {prototype.embedUrl ? (
               <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                <iframe
+                <DeferredIframe
                   title={`${title} prototype`}
                   src={prototype.embedUrl}
-                  className="w-full h-full"
-                  loading="eager"
+                  className="h-full w-full border-0"
                 />
               </div>
             ) : (
@@ -191,3 +192,5 @@ export function CaseStudy({
     </section>
   );
 }
+
+export const CaseStudy = memo(CaseStudyComponent);

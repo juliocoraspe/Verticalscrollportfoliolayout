@@ -1,6 +1,8 @@
+import { memo } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
 interface ProjectCardProps {
+  projectId: string;
   title: string;
   intent: string;
   role: string;
@@ -8,11 +10,12 @@ interface ProjectCardProps {
   imageFit?: 'cover' | 'contain';
   imagePosition?: 'center' | 'top' | 'bottom';
   tags: string[];
-  onOpen: () => void;
+  onOpen: (projectId: string) => void;
   delay?: number;
 }
 
-export function ProjectCard({
+function ProjectCardComponent({
+  projectId,
   title,
   intent,
   role,
@@ -45,7 +48,7 @@ export function ProjectCard({
     >
       <motion.button
         type="button"
-        onClick={onOpen}
+        onClick={() => onOpen(projectId)}
         className="w-full text-left border-t border-pale py-8 focus:outline-none"
         whileHover={
           shouldReduceMotion
@@ -85,3 +88,5 @@ export function ProjectCard({
     </motion.div>
   );
 }
+
+export const ProjectCard = memo(ProjectCardComponent);
