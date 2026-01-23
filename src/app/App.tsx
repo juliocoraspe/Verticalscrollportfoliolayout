@@ -1,8 +1,13 @@
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { ScrollSection } from './components/ScrollSection';
-import { CaseStudy } from './components/CaseStudy';
-import { AiCompanionCaseStudy } from './components/AiCompanionCaseStudy';
+import { CaseStudyContent } from './components/CaseStudy';
+import {
+  AI_COMPANION_BANNER,
+  AI_COMPANION_SUMMARY,
+  AI_COMPANION_TITLE,
+  AiCompanionCaseStudyContent,
+} from './components/AiCompanionCaseStudy';
 import { ProjectCard } from './components/ProjectCard';
 import { useIsMobile } from './components/ui/use-mobile';
 // Garden view disabled for now; keep for later reuse.
@@ -18,7 +23,8 @@ import julsPortrait from '../assets/images/Juls.JPG';
 // Garden view disabled for now; keep for later reuse.
 // type View = 'main' | 'garden';
 
-const RESUME_URL = '<GOOGLE_DRIVE_LINK_PLACEHOLDER>';
+const RESUME_URL =
+  'https://docs.google.com/document/d/1bRGqbt5TWMbkeOabXJD-9vUjR9Gh4gsy/edit?usp=drivesdk&ouid=101988302166320619115&rtpof=true&sd=true';
 const ABOUT_ME_PARAGRAPHS = [
   'I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of creative practice and technology, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.',
   'My creative profile is strongly visual, spanning photography (digital, mobile, and film, including film development and digitization), videography, professional editing, digital drawing, generative art through code, and motion design. These practices share a common thread: patience, process, and attention to detail. Exploring them has been less about collecting skills and more about developing craft, curiosity, and a lasting commitment to learning and making things with care.',
@@ -31,6 +37,8 @@ export default function App() {
   // Garden view disabled for now; keep for later reuse.
   // const [view, setView] = useState<View>('main');
   const [activeProjectId, setActiveProjectId] = useState<string | null>(null);
+  const [isMiloOpen, setIsMiloOpen] = useState(false);
+  const [isStillenOpen, setIsStillenOpen] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200,
   );
@@ -498,28 +506,18 @@ Without formal user research, these issues were identified through heuristic eva
      Design-led, obsessed with translating research insights into design decisions.
 Occasionally following ideas into reality when questions remain.
           </motion.p>
+        </div>
+      </section>
 
+      <section id="about" className="practice-section py-24 px-6 sm:py-32 sm:px-8 bg-pure">
+        <div className="max-w-6xl mx-auto space-y-[155px]">
           <div className="hero-index w-full min-w-0 border-y border-pale divide-y divide-pale">
             <a
-              href="#case-study"
+              href="#case-studies"
               className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
-              <span className="hero-index-label">View Case Study</span>
+              <span className="hero-index-label">Case Studies</span>
               <span className="type-micro text-dark hero-index-count">01</span>
-            </a>
-            <a
-              href="#projects"
-              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
-            >
-              <span className="hero-index-label">Explore Projects</span>
-              <span className="type-micro text-dark hero-index-count">02</span>
-            </a>
-            <a
-              href="#ai-companion-interface"
-              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
-            >
-              <span className="hero-index-label">Milo — AI Companion Interface</span>
-              <span className="type-micro text-dark hero-index-count">03</span>
             </a>
             {/* Garden entry disabled for now; keep for later reuse. */}
             {/*
@@ -535,64 +533,188 @@ Occasionally following ideas into reality when questions remain.
             </button>
             */}
             <a
+              href="#projects"
+              className="hero-index-item type-micro uppercase text-ink py-4 w-full"
+            >
+              <span className="hero-index-label">Explore Projects</span>
+              <span className="type-micro text-dark hero-index-count">02</span>
+            </a>
+            <a
               href="#about-me"
               className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
               <span className="hero-index-label">About Me</span>
-              <span className="type-micro text-dark hero-index-count">04</span>
+              <span className="type-micro text-dark hero-index-count">03</span>
             </a>
             <a
               href="#contact"
               className="hero-index-item type-micro uppercase text-ink py-4 w-full"
             >
               <span className="hero-index-label">Contact</span>
-              <span className="type-micro text-dark hero-index-count">05</span>
+              <span className="type-micro text-dark hero-index-count">04</span>
             </a>
           </div>
-        </div>
-      </section>
 
-      <section id="about" className="py-24 px-6 sm:py-32 sm:px-8 bg-pure">
-        <div className="max-w-6xl mx-auto">
-          <ScrollSection entryDirection="bottom" motionRole="about-title">
-            <h2 className="type-display-m text-ink">Practice</h2>
-          </ScrollSection>
+          <div className="space-y-12">
+            <ScrollSection entryDirection="bottom" motionRole="about-title">
+              <h2 className="type-display-m text-ink">Practice</h2>
+            </ScrollSection>
 
-          <div className="mt-12 border-t border-pale divide-y divide-pale md:divide-y-0 md:divide-x md:grid md:grid-cols-3">
-            {[
-              {
-                title: 'Design Philosophy',
-                body:
-                  'I start by understanding the full problem, not just the surface. I like connecting research, creativity, and accessibility to make decisions that feel intentional, grounded, and genuinely useful, not just visually appealing.',
-              },
-              {
-                title: 'What I Do Well',
-                body:
-                  'I’m good at turning complex problems into clear, structured systems. I work across researching, prototyping, and testing, often exploring ideas early to understand how things behave before committing to a final direction',
-              },
-              {
-                title: 'Hybrid Practice',
-                body:
-                  'My practice extends beyond traditional design, combining creative disciplines with technical exploration. This hybrid perspective allows me to prototype realistically, experiment with interactions, and design systems that translate cleanly into maintainable products.',
-              },
-            ].map((item, index) => (
-              <ScrollSection
-                key={item.title}
-                entryDirection="bottom"
-                delay={index * 0.06}
-                motionRole="about-paragraph"
-              >
-                <div className="py-8 md:px-8 h-full">
-                  <p className="type-section-title text-dark uppercase mb-4">{item.title}</p>
-                  <p className="type-body text-ink">{item.body}</p>
-                </div>
-              </ScrollSection>
-            ))}
+            <div className="border-t border-pale divide-y divide-pale md:divide-y-0 md:divide-x md:grid md:grid-cols-3">
+              {[
+                {
+                  title: 'Design Philosophy',
+                  body:
+                    'I start by understanding the full problem, not just the surface. I like connecting research, creativity, and accessibility to make decisions that feel intentional, grounded, and genuinely useful, not just visually appealing.',
+                },
+                {
+                  title: 'What I Do Well',
+                  body:
+                    'I’m good at turning complex problems into clear, structured systems. I work across researching, prototyping, and testing, often exploring ideas early to understand how things behave before committing to a final direction',
+                },
+                {
+                  title: 'Hybrid Practice',
+                  body:
+                    'My practice extends beyond traditional design, combining creative disciplines with technical exploration. This hybrid perspective allows me to prototype realistically, experiment with interactions, and design systems that translate cleanly into maintainable products.',
+                },
+              ].map((item, index) => (
+                <ScrollSection
+                  key={item.title}
+                  entryDirection="bottom"
+                  delay={index * 0.06}
+                  motionRole="about-paragraph"
+                >
+                  <div className="py-8 md:px-8 h-full">
+                    <p className="type-section-title text-dark uppercase mb-4">{item.title}</p>
+                    <p className="type-body text-ink">{item.body}</p>
+                  </div>
+                </ScrollSection>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <CaseStudy {...caseStudy} />
+      <section
+        id="case-studies"
+        className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
+      >
+        <ScrollSection entryDirection="bottom" motionRole="case-intro">
+          <div className="mb-16">
+            <div className="flex flex-wrap items-center gap-3 type-meta text-dark">
+              <span className="type-meta uppercase">Case Studies</span>
+            </div>
+          </div>
+        </ScrollSection>
+
+        <div className="space-y-20">
+          <article id="case-study-stillen" className="case-study-card">
+            <button
+              type="button"
+              id="case-study-stillen-toggle"
+              className="case-study-toggle"
+              aria-expanded={isStillenOpen}
+              aria-controls="case-study-stillen-content"
+              onClick={() => setIsStillenOpen((prev) => !prev)}
+            >
+              <div className="space-y-6">
+                <h3 className="type-display-l text-ink case-study-title">{caseStudy.title}</h3>
+                <div className="border-y border-pale">
+                  <img
+                    src={caseStudy.heroImage}
+                    alt={caseStudy.title}
+                    className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
+                  />
+                </div>
+                <div className="case-study-subtitle-row">
+                  <p className="type-subhead text-dark">{caseStudy.summary}</p>
+                  <svg
+                    className="case-study-chevron"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </button>
+            <div
+              id="case-study-stillen-content"
+              role="region"
+              aria-labelledby="case-study-stillen-toggle"
+              hidden={!isStillenOpen}
+              className="case-study-content mt-16"
+            >
+              <CaseStudyContent
+                title={caseStudy.title}
+                role={caseStudy.role}
+                timeline={caseStudy.timeline}
+                problem={caseStudy.problem}
+                process={caseStudy.process}
+                exploration={caseStudy.exploration}
+                solution={caseStudy.solution}
+                prototype={caseStudy.prototype}
+              />
+            </div>
+          </article>
+
+          <article id="case-study-milo" className="case-study-card">
+            <button
+              type="button"
+              id="case-study-milo-toggle"
+              className="case-study-toggle"
+              aria-expanded={isMiloOpen}
+              aria-controls="case-study-milo-content"
+              onClick={() => setIsMiloOpen((prev) => !prev)}
+            >
+              <div className="space-y-6">
+                <h3 className="type-display-l text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
+                <div className="border-y border-pale">
+                  <img
+                    src={AI_COMPANION_BANNER.src}
+                    alt={AI_COMPANION_BANNER.alt}
+                    className={AI_COMPANION_BANNER.className}
+                    style={AI_COMPANION_BANNER.style}
+                  />
+                </div>
+                <div className="case-study-subtitle-row">
+                  <p className="type-subhead text-dark">{AI_COMPANION_SUMMARY}</p>
+                  <svg
+                    className="case-study-chevron"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </button>
+            <div
+              id="case-study-milo-content"
+              role="region"
+              aria-labelledby="case-study-milo-toggle"
+              hidden={!isMiloOpen}
+              className="case-study-content mt-16"
+            >
+              <AiCompanionCaseStudyContent />
+            </div>
+          </article>
+        </div>
+      </section>
 
       <section
         id="projects"
@@ -913,8 +1035,6 @@ Occasionally following ideas into reality when questions remain.
         )}
       </AnimatePresence>
 
-      <AiCompanionCaseStudy />
-
       <section
         id="about-me"
         aria-label="About Me"
@@ -934,10 +1054,16 @@ Occasionally following ideas into reality when questions remain.
           </div>
 
           <div className="space-y-8 text-left">
-            {ABOUT_ME_PARAGRAPHS.map((paragraph) => (
-              <p key={paragraph.slice(0, 16)} className="type-body text-ink">
-                {paragraph}
-              </p>
+            {ABOUT_ME_PARAGRAPHS.map((paragraph, index) => (
+              <ScrollSection
+                key={paragraph.slice(0, 16)}
+                entryDirection="none"
+                disableTransform
+                duration={8}
+                delay={index * 0.5}
+              >
+                <p className="type-body text-ink">{paragraph}</p>
+              </ScrollSection>
             ))}
           </div>
         </div>

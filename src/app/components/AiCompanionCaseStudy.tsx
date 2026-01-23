@@ -7,47 +7,31 @@ const FIGMA_EMBED_URL =
   'https://embed.figma.com/design/JIjE307GOTQI96gbCzj0N0/Milo?node-id=0-1&embed-host=share';
 const GITHUB_PAGES_EMBED_URL = 'https://juliocoraspe.github.io/Milo/'; // TODO: Replace GITHUB_PAGES_EMBED_URL
 
-function AiCompanionCaseStudyComponent() {
+export const AI_COMPANION_TITLE = 'Milo — Designing AI Through Systems, Motion, and Code';
+export const AI_COMPANION_SUMMARY =
+  'A case study built to go beyond static UI: defining interaction states, visual pacing, and a design system that can translate into working prototypes. Created with Figma + AI-assisted iteration to explore new interface rules.';
+export const AI_COMPANION_BANNER = {
+  src: miloBanner,
+  alt: 'Milo interface banner',
+  className: 'w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top',
+  style: { backgroundColor: '#F0F3F3' },
+};
+
+function AiCompanionCaseStudyContentComponent() {
   return (
-    <section
-      id="ai-companion-interface"
-      className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
-    >
-      <ScrollSection entryDirection="bottom" motionRole="case-intro">
-        <div className="mb-16">
-          <h1 className="type-display-l text-ink mb-6">Milo — Designing AI Through Systems, Motion, and Code</h1>
-          <p className="type-subhead text-dark max-w-3xl">
-            A case study built to go beyond static UI: defining interaction states, visual pacing, and a design system
-            that can translate into working prototypes. Created with Figma + AI-assisted iteration to explore new
-            interface rules.
+    <div className="space-y-24">
+      <div className="grid md:grid-cols-[1fr_2fr] gap-10">
+        <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <p className="type-section-title text-dark uppercase">CONTEXT</p>
+        </ScrollSection>
+        <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <p className="type-body text-ink">
+            Designed as an interface study for AI companionship rather than task execution. The goal is to explore
+            how a system can feel continuously present—like a conversational partner—through pacing, subtle motion,
+            and state-based feedback.
           </p>
-        </div>
-      </ScrollSection>
-
-      <ScrollSection entryDirection="bottom" motionRole="case-block">
-        <div className="border-y border-pale mb-24">
-          <img
-            src={miloBanner}
-            alt="Milo interface banner"
-            className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
-            style={{ backgroundColor: '#F0F3F3' }}
-          />
-        </div>
-      </ScrollSection>
-
-      <div className="space-y-24">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
-            <p className="type-section-title text-dark uppercase">CONTEXT</p>
-          </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
-            <p className="type-body text-ink">
-              Designed as an interface study for AI companionship rather than task execution. The goal is to explore
-              how a system can feel continuously present—like a conversational partner—through pacing, subtle motion,
-              and state-based feedback.
-            </p>
-          </ScrollSection>
-        </div>
+        </ScrollSection>
+      </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
           <ScrollSection entryDirection="bottom" motionRole="case-block">
@@ -236,9 +220,8 @@ function AiCompanionCaseStudyComponent() {
             </div>
           </ScrollSection>
         </div>
-      </div>
-    </section>
+    </div>
   );
 }
 
-export const AiCompanionCaseStudy = memo(AiCompanionCaseStudyComponent);
+export const AiCompanionCaseStudyContent = memo(AiCompanionCaseStudyContentComponent);

@@ -7,8 +7,6 @@ interface CaseStudyProps {
   title: string;
   role: string;
   timeline: string;
-  summary: string;
-  heroImage: string;
   problem: {
     title: string;
     description: string;
@@ -35,12 +33,10 @@ interface CaseStudyProps {
   };
 }
 
-function CaseStudyComponent({
+function CaseStudyContentComponent({
   title,
   role,
   timeline,
-  summary,
-  heroImage,
   problem,
   process,
   exploration,
@@ -48,31 +44,14 @@ function CaseStudyComponent({
   prototype,
 }: CaseStudyProps) {
   return (
-    <section
-      id="case-study"
-      className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
-    >
+    <>
       <ScrollSection entryDirection="bottom" motionRole="case-intro">
-        <div className="mb-16">
-          <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-6">
-            <span className="type-meta uppercase">Case Study</span>
-            <span className="type-meta">•</span>
-            <span className="type-meta">{role}</span>
-            <span className="type-meta">•</span>
-            <span className="type-meta">{timeline}</span>
-          </div>
-          <h2 className="type-display-l text-ink mb-6">{title}</h2>
-          <p className="type-subhead text-dark max-w-3xl">{summary}</p>
-        </div>
-      </ScrollSection>
-
-      <ScrollSection entryDirection="bottom" motionRole="case-block">
-        <div className="border-y border-pale mb-24">
-          <img
-            src={heroImage}
-            alt={title}
-            className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
-          />
+        <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-16">
+          <span className="type-meta uppercase">Case Study</span>
+          <span className="type-meta">•</span>
+          <span className="type-meta">{role}</span>
+          <span className="type-meta">•</span>
+          <span className="type-meta">{timeline}</span>
         </div>
       </ScrollSection>
 
@@ -189,8 +168,8 @@ function CaseStudyComponent({
           </div>
         </div>
       </ScrollSection>
-    </section>
+    </>
   );
 }
 
-export const CaseStudy = memo(CaseStudyComponent);
+export const CaseStudyContent = memo(CaseStudyContentComponent);
