@@ -9,7 +9,7 @@ const GITHUB_PAGES_EMBED_URL = 'https://juliocoraspe.github.io/Milo/'; // TODO: 
 
 export const AI_COMPANION_TITLE = 'Milo — Designing AI Through Systems, Motion, and Code';
 export const AI_COMPANION_SUMMARY =
-  'A case study built to go beyond static UI: defining interaction states, visual pacing, and a design system that can translate into working prototypes. Created with Figma + AI-assisted iteration to explore new interface rules.';
+  'Designed an interface for a voice and text based AI, going beyond static UI: defining interaction states, visual pacing, and a design system that can translate into working prototypes. Created with Figma + AI-assisted iteration to explore new interface rules.';
 export const AI_COMPANION_BANNER = {
   src: miloBanner,
   alt: 'Milo interface banner',

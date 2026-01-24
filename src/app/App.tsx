@@ -42,6 +42,9 @@ export default function App() {
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1200,
   );
+  const caseStudyStillenRef = useRef<HTMLElement | null>(null);
+  const caseStudyMiloRef = useRef<HTMLElement | null>(null);
+  const pendingCollapseScrollRef = useRef<HTMLElement | null>(null);
   // const scrollPositionRef = useRef(0);
   const heroLines = [
     'I design interfaces where behavior and systems matter.',
@@ -80,9 +83,57 @@ export default function App() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  const scrollToCaseStudy = useCallback(
+    (element: HTMLElement | null) => {
+      if (!element) return;
+      const behavior: ScrollBehavior = shouldReduceMotion ? 'auto' : 'smooth';
+      requestAnimationFrame(() => {
+        element.scrollIntoView({ behavior, block: 'start' });
+      });
+    },
+    [shouldReduceMotion],
+  );
+
+  useEffect(() => {
+    if (!pendingCollapseScrollRef.current) return;
+    const target = pendingCollapseScrollRef.current;
+    pendingCollapseScrollRef.current = null;
+    scrollToCaseStudy(target);
+  }, [isMiloOpen, isStillenOpen, scrollToCaseStudy]);
+
+  const handleStillenToggle = () => {
+    setIsStillenOpen((prev) => {
+      const nextOpen = !prev;
+      if (!nextOpen) {
+        pendingCollapseScrollRef.current = caseStudyStillenRef.current;
+      }
+      return nextOpen;
+    });
+  };
+
+  const handleMiloToggle = () => {
+    setIsMiloOpen((prev) => {
+      const nextOpen = !prev;
+      if (!nextOpen) {
+        pendingCollapseScrollRef.current = caseStudyMiloRef.current;
+      }
+      return nextOpen;
+    });
+  };
+
+  const handleStillenCollapse = () => {
+    pendingCollapseScrollRef.current = caseStudyStillenRef.current;
+    setIsStillenOpen(false);
+  };
+
+  const handleMiloCollapse = () => {
+    pendingCollapseScrollRef.current = caseStudyMiloRef.current;
+    setIsMiloOpen(false);
+  };
+
   const caseStudy = useMemo(
     () => ({
-    title: 'STILLEN: A Curated Furniture Experience',
+    title: 'STILLEN — Designing Furniture E-Commerce Through Research, Systems, and Iteration',
     role: 'UX/UI designer',
     timeline: '2025',
     summary:
@@ -595,31 +646,31 @@ Occasionally following ideas into reality when questions remain.
         </div>
       </section>
 
-      <section
-        id="case-studies"
-        className="w-full max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20 border-t border-pale"
-      >
-        <ScrollSection entryDirection="bottom" motionRole="case-intro">
-          <div className="mb-16">
-            <div className="flex flex-wrap items-center gap-3 type-meta text-dark">
-              <span className="type-meta uppercase">Case Studies</span>
+      <section id="case-studies" className="w-full border-y border-pale" style={{ backgroundColor: '#fcfbfa' }}>
+        <div className="max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20">
+          <ScrollSection entryDirection="bottom" motionRole="case-intro">
+            <div className="mb-16">
+              <div className="flex flex-wrap items-center gap-3 type-meta text-dark">
+                <span className="type-meta uppercase">Case Studies</span>
+              </div>
             </div>
-          </div>
-        </ScrollSection>
+          </ScrollSection>
 
-        <div className="space-y-20">
-          <article id="case-study-stillen" className="case-study-card">
+          <div className="space-y-20">
+          <article id="case-study-stillen" ref={caseStudyStillenRef} className="case-study-card">
             <button
               type="button"
               id="case-study-stillen-toggle"
               className="case-study-toggle"
               aria-expanded={isStillenOpen}
               aria-controls="case-study-stillen-content"
-              onClick={() => setIsStillenOpen((prev) => !prev)}
+              onClick={handleStillenToggle}
             >
               <div className="space-y-6">
-                <h3 className="type-display-l text-ink case-study-title">{caseStudy.title}</h3>
-                <div className="border-y border-pale">
+                <h3 className="type-display-l text-ink case-study-title case-study-title-wrap">
+                  {caseStudy.title}
+                </h3>
+                <div>
                   <img
                     src={caseStudy.heroImage}
                     alt={caseStudy.title}
@@ -662,17 +713,45 @@ Occasionally following ideas into reality when questions remain.
                 solution={caseStudy.solution}
                 prototype={caseStudy.prototype}
               />
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  className="case-study-collapse-button"
+                  aria-label="Collapse case study"
+                  onClick={handleStillenCollapse}
+                >
+                  <svg
+                    className="case-study-chevron"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </article>
 
-          <article id="case-study-milo" className="case-study-card">
+          <article
+            id="case-study-milo"
+            ref={caseStudyMiloRef}
+            className="case-study-card border-t border-pale pt-10"
+            style={{ borderTopColor: 'rgba(229, 225, 220, 0.5)' }}
+          >
             <button
               type="button"
               id="case-study-milo-toggle"
               className="case-study-toggle"
               aria-expanded={isMiloOpen}
               aria-controls="case-study-milo-content"
-              onClick={() => setIsMiloOpen((prev) => !prev)}
+              onClick={handleMiloToggle}
             >
               <div className="space-y-6">
                 <h3 className="type-display-l text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
@@ -711,23 +790,49 @@ Occasionally following ideas into reality when questions remain.
               className="case-study-content mt-16"
             >
               <AiCompanionCaseStudyContent />
+              <div className="mt-6 flex justify-center">
+                <button
+                  type="button"
+                  className="case-study-collapse-button"
+                  aria-label="Collapse case study"
+                  onClick={handleMiloCollapse}
+                >
+                  <svg
+                    className="case-study-chevron"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </article>
+          </div>
         </div>
       </section>
 
       <section
         id="projects"
-        className="py-24 px-6 sm:py-32 sm:px-8"
-        style={{ backgroundColor: '#fcfbfa' }}
+        className="py-24 px-6 sm:py-32 sm:px-8 bg-pure"
       >
         <div className="max-w-6xl mx-auto">
           <ScrollSection entryDirection="bottom" motionRole="project-grid">
             <div className="mb-16">
               <p className="type-meta text-dark uppercase mb-4">Projects</p>
-              <h2 className="type-display-m text-ink mb-4">Focused Explorations</h2>
+              <h2 className="type-display-m type-display-m-plus text-ink mb-4">
+                Focused Explorations
+              </h2>
               <p className="type-subhead text-dark max-w-2xl">
-                Three focused studies that explore different entry points into the design lifecycle:research-led, concept-driven, and refinement-focused.
+                Four focused studies that explore different entry points into the design lifecycle: research-led,
+                concept-driven, system-building, and refinement-focused.
               </p>
             </div>
           </ScrollSection>
@@ -1139,9 +1244,6 @@ If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’
         </div>
       </section>
 
-      <footer className="border-t border-pale bg-pure">
-        <div className="max-w-6xl mx-auto px-6 py-12 sm:px-8 sm:py-16" />
-      </footer>
     </div>
   );
 }
