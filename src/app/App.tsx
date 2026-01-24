@@ -339,6 +339,7 @@ Without formal user research, these issues were identified through heuristic eva
       outcomeEmbedUrl:
         'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=57-2628&embed-host=share',
       introEmbedUrl: 'https://juliocoraspe.github.io/se_project_spots/',
+      introEmbedLabel: 'The existing application prior to design exploration and improvements',
       introEmbedConfig: { width: 1280, height: 720, scale: 0.4 },
       introEmbedMode: 'responsive',
       experienceUrl: '/projects/frontend-redesign/experience',
@@ -374,6 +375,7 @@ Without formal user research, these issues were identified through heuristic eva
   const introEmbedBaseScale = introEmbedConfig?.scale ?? 0.4;
   const introEmbedWidth = introEmbedConfig?.width ?? 1280;
   const introEmbedHeight = introEmbedConfig?.height ?? 720;
+  const projectCardsStatic = viewportWidth < 768;
   const contentGutter = viewportWidth < 640 ? 32 : 64;
   const availableEmbedWidth = Math.max(viewportWidth - contentGutter, 0);
   const clampEmbedScale = (baseScale: number, frameWidth: number) => {
@@ -869,7 +871,7 @@ Occasionally following ideas into reality when questions remain.
                 tags={project.tags}
                 onOpen={handleOpenProject}
                 delay={index * 0.08}
-                disableAnimation={isMobile}
+                disableAnimation={projectCardsStatic}
               />
             ))}
           </div>
@@ -924,66 +926,71 @@ Occasionally following ideas into reality when questions remain.
                     : 'md:grid-cols-[220px_1fr]'
                 }`}
               >
-                <div
-                  className={`border border-pale bg-pure max-w-full ${
-                    hasIntroEmbed ? 'relative overflow-hidden' : ''
-                  }`}
-                  style={
-                    hasIntroEmbed
-                      ? introEmbedIsResponsive
-                        ? {
-                            width: '100%',
-                            aspectRatio: `${introEmbedWidth} / ${introEmbedHeight}`,
-                            maxWidth: '100%',
-                          }
-                        : {
-                            width: introEmbedScaledWidth,
-                            height: introEmbedScaledHeight,
-                            maxWidth: '100%',
-                          }
-                      : undefined
-                  }
-                >
-                  {hasIntroEmbed ? (
-                    introEmbedIsResponsive ? (
-                      <iframe
-                        title={`${activeProject.title} live embed`}
-                        src={activeProject.introEmbedUrl}
-                        className="absolute left-0 top-0 h-full w-full border-0"
-                      loading="lazy"
-                        allow="fullscreen"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <iframe
-                        title={`${activeProject.title} live embed`}
-                        src={activeProject.introEmbedUrl}
-                        className="absolute left-0 top-0 origin-top-left border-0"
-                        loading="lazy"
-                        allow="fullscreen"
-                        allowFullScreen
-                        style={{
-                          width: introEmbedWidth,
-                          height: introEmbedHeight,
-                          transform: `scale(${introEmbedScale})`,
-                        }}
-                      />
-                    )
-                  ) : (
-                    <img
-                      src={activeProject.imageUrl}
-                      alt={activeProject.title}
-                      className={`w-full h-32 ${
-                        activeProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'
-                      } ${
-                        activeProject.imagePosition === 'top'
-                          ? 'object-top'
-                          : activeProject.imagePosition === 'bottom'
-                            ? 'object-bottom'
-                            : 'object-center'
-                      }`}
-                    />
+                <div className="space-y-3">
+                  {hasIntroEmbed && activeProject.introEmbedLabel && (
+                    <p className="type-micro text-dark">{activeProject.introEmbedLabel}</p>
                   )}
+                  <div
+                    className={`border border-pale bg-pure max-w-full ${
+                      hasIntroEmbed ? 'relative overflow-hidden' : ''
+                    }`}
+                    style={
+                      hasIntroEmbed
+                        ? introEmbedIsResponsive
+                          ? {
+                              width: '100%',
+                              aspectRatio: `${introEmbedWidth} / ${introEmbedHeight}`,
+                              maxWidth: '100%',
+                            }
+                          : {
+                              width: introEmbedScaledWidth,
+                              height: introEmbedScaledHeight,
+                              maxWidth: '100%',
+                            }
+                        : undefined
+                    }
+                  >
+                    {hasIntroEmbed ? (
+                      introEmbedIsResponsive ? (
+                        <iframe
+                          title={`${activeProject.title} live embed`}
+                          src={activeProject.introEmbedUrl}
+                          className="absolute left-0 top-0 h-full w-full border-0"
+                          loading="lazy"
+                          allow="fullscreen"
+                          allowFullScreen
+                        />
+                      ) : (
+                        <iframe
+                          title={`${activeProject.title} live embed`}
+                          src={activeProject.introEmbedUrl}
+                          className="absolute left-0 top-0 origin-top-left border-0"
+                          loading="lazy"
+                          allow="fullscreen"
+                          allowFullScreen
+                          style={{
+                            width: introEmbedWidth,
+                            height: introEmbedHeight,
+                            transform: `scale(${introEmbedScale})`,
+                          }}
+                        />
+                      )
+                    ) : (
+                      <img
+                        src={activeProject.imageUrl}
+                        alt={activeProject.title}
+                        className={`w-full h-32 ${
+                          activeProject.imageFit === 'contain' ? 'object-contain' : 'object-cover'
+                        } ${
+                          activeProject.imagePosition === 'top'
+                            ? 'object-top'
+                            : activeProject.imagePosition === 'bottom'
+                              ? 'object-bottom'
+                              : 'object-center'
+                        }`}
+                      />
+                    )}
+                  </div>
                 </div>
                 <p className="type-body text-ink">{activeProject.intent}</p>
               </div>

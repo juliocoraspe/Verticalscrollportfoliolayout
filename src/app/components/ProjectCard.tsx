@@ -37,12 +37,14 @@ function ProjectCardComponent({
       : imagePosition === 'bottom'
         ? 'object-bottom'
         : 'object-center';
+  const shouldUseInView = !disableAnimation;
+  const initialAnimation = isAnimationDisabled ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 };
 
   return (
     <motion.div
-      initial={isAnimationDisabled ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-      whileInView={isAnimationDisabled ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
+      initial={shouldUseInView ? initialAnimation : false}
+      whileInView={shouldUseInView ? { opacity: 1, y: 0 } : undefined}
+      viewport={shouldUseInView ? { once: true, amount: 0.35 } : undefined}
       transition={{
         duration: isAnimationDisabled ? 0 : 0.38,
         delay,
