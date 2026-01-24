@@ -12,6 +12,7 @@ interface ProjectCardProps {
   tags: string[];
   onOpen: (projectId: string) => void;
   delay?: number;
+  disableAnimation?: boolean;
 }
 
 function ProjectCardComponent({
@@ -25,8 +26,10 @@ function ProjectCardComponent({
   tags,
   onOpen,
   delay = 0,
+  disableAnimation = false,
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const isAnimationDisabled = disableAnimation || shouldReduceMotion;
   const imageFitClass = imageFit === 'contain' ? 'object-contain' : 'object-cover';
   const imagePositionClass =
     imagePosition === 'top'
@@ -37,11 +40,11 @@ function ProjectCardComponent({
 
   return (
     <motion.div
-      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      initial={isAnimationDisabled ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+      whileInView={isAnimationDisabled ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{
-        duration: shouldReduceMotion ? 0.01 : 0.38,
+        duration: isAnimationDisabled ? 0 : 0.38,
         delay,
         ease: 'easeOut',
       }}

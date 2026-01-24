@@ -45,6 +45,8 @@ export default function App() {
   const caseStudyStillenRef = useRef<HTMLElement | null>(null);
   const caseStudyMiloRef = useRef<HTMLElement | null>(null);
   const pendingCollapseScrollRef = useRef<HTMLElement | null>(null);
+  const asmrOutcomeEmbedRef = useRef<HTMLDivElement | null>(null);
+  const [asmrOutcomeScale, setAsmrOutcomeScale] = useState(1);
   // const scrollPositionRef = useRef(0);
   const heroLines = [
     'I design interfaces where behavior and systems matter.',
@@ -363,6 +365,8 @@ Without formal user research, these issues were identified through heuristic eva
   const outcomeEmbedBaseScale = outcomeEmbedConfig?.scale ?? 0.6;
   const outcomeEmbedWidth = outcomeEmbedConfig?.width ?? 430;
   const outcomeEmbedHeight = outcomeEmbedConfig?.height ?? 764;
+  const shouldScaleAsmrOutcomeEmbed =
+    activeProject?.id === 'asmr-app' && outcomeEmbedIsResponsive && Boolean(outcomeEmbedConfig);
   const introEmbedConfig = activeProject?.introEmbedConfig;
   const hasIntroEmbed = Boolean(activeProject?.introEmbedUrl);
   const introEmbedMode = activeProject?.introEmbedMode ?? 'scaled';
@@ -386,6 +390,19 @@ Without formal user research, these issues were identified through heuristic eva
   const introEmbedScale = clampEmbedScale(introEmbedBaseScale, introEmbedWidth);
   const introEmbedScaledWidth = introEmbedWidth * introEmbedScale;
   const introEmbedScaledHeight = introEmbedHeight * introEmbedScale;
+
+  useEffect(() => {
+    if (!shouldScaleAsmrOutcomeEmbed) return;
+    const element = asmrOutcomeEmbedRef.current;
+    if (!element) return;
+    const frame = requestAnimationFrame(() => {
+      const width = element.getBoundingClientRect().width;
+      if (!width || !outcomeEmbedWidth) return;
+      const nextScale = Math.min(1, width / outcomeEmbedWidth);
+      setAsmrOutcomeScale(nextScale);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [shouldScaleAsmrOutcomeEmbed, viewportWidth, outcomeEmbedWidth]);
 
   // Garden items disabled for now; keep for later reuse.
   /*
@@ -852,6 +869,7 @@ Occasionally following ideas into reality when questions remain.
                 tags={project.tags}
                 onOpen={handleOpenProject}
                 delay={index * 0.08}
+                disableAnimation={isMobile}
               />
             ))}
           </div>
@@ -1017,6 +1035,7 @@ Occasionally following ideas into reality when questions remain.
                   {hasScaledOutcomeEmbed ? (
                     <div className="flex flex-col items-center">
                       <div
+                        ref={shouldScaleAsmrOutcomeEmbed ? asmrOutcomeEmbedRef : undefined}
                         className="relative overflow-hidden rounded-[24px] border border-pale bg-pure"
                         style={{
                           width: outcomeEmbedIsResponsive ? '100%' : outcomeEmbedScaledWidth,
@@ -1037,10 +1056,21 @@ Occasionally following ideas into reality when questions remain.
                           <iframe
                             title={`${activeProject.title} outcome embed`}
                             src={activeProject.outcomeEmbedUrl}
-                            className="absolute left-0 top-0 h-full w-full border-0 no-scrollbar"
+                            className={`absolute left-0 top-0 border-0 no-scrollbar ${
+                              shouldScaleAsmrOutcomeEmbed ? 'origin-top-left' : 'h-full w-full'
+                            }`}
                             loading="lazy"
                             allow="fullscreen; clipboard-read; clipboard-write; autoplay; microphone; camera"
                             allowFullScreen
+                            style={
+                              shouldScaleAsmrOutcomeEmbed
+                                ? {
+                                    width: outcomeEmbedWidth,
+                                    height: outcomeEmbedHeight,
+                                    transform: `scale(${asmrOutcomeScale})`,
+                                  }
+                                : undefined
+                            }
                           />
                         ) : (
                           <iframe
