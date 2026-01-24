@@ -712,6 +712,7 @@ Occasionally following ideas into reality when questions remain.
                 exploration={caseStudy.exploration}
                 solution={caseStudy.solution}
                 prototype={caseStudy.prototype}
+                disableAnimation={isMobile}
               />
               <div className="mt-6 flex justify-center">
                 <button
@@ -789,7 +790,7 @@ Occasionally following ideas into reality when questions remain.
               hidden={!isMiloOpen}
               className="case-study-content mt-16"
             >
-              <AiCompanionCaseStudyContent />
+              <AiCompanionCaseStudyContent disableAnimation={isMobile} />
               <div className="mt-6 flex justify-center">
                 <button
                   type="button"
@@ -1177,10 +1178,10 @@ Occasionally following ideas into reality when questions remain.
       <section id="contact" className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale bg-pure">
         <div className="max-w-6xl mx-auto">
           <div className="space-y-6">
-            <ScrollSection entryDirection="bottom" motionRole="contact-title">
+            <ScrollSection entryDirection="bottom" motionRole="contact-title" disableAnimation>
               <h2 className="type-display-m text-ink">Contact</h2>
             </ScrollSection>
-            <ScrollSection entryDirection="bottom" motionRole="contact-title">
+            <ScrollSection entryDirection="bottom" motionRole="contact-title" disableAnimation>
               <p className="type-subhead text-dark">
                 I’m open to junior UX/UI roles, collaborations, and focused design work.
 If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.

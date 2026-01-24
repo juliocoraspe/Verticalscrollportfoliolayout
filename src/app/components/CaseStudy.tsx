@@ -33,6 +33,10 @@ interface CaseStudyProps {
   };
 }
 
+interface CaseStudyContentProps extends CaseStudyProps {
+  disableAnimation?: boolean;
+}
+
 function CaseStudyContentComponent({
   title,
   role,
@@ -42,10 +46,11 @@ function CaseStudyContentComponent({
   exploration,
   solution,
   prototype,
-}: CaseStudyProps) {
+  disableAnimation = false,
+}: CaseStudyContentProps) {
   return (
     <>
-      <ScrollSection entryDirection="bottom" motionRole="case-intro">
+      <ScrollSection entryDirection="bottom" motionRole="case-intro" disableAnimation={disableAnimation}>
         <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-16">
           <span className="type-meta uppercase">Case Study</span>
           <span className="type-meta">•</span>
@@ -57,25 +62,31 @@ function CaseStudyContentComponent({
 
       <div className="space-y-24">
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">{problem.title}</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-body text-ink">{problem.description}</p>
           </ScrollSection>
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">{process.title}</p>
           </ScrollSection>
           <div className="space-y-6">
-            <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
               <p className="type-body text-ink">{process.description}</p>
             </ScrollSection>
             <div className="space-y-4 border-t border-pale pt-6">
               {process.steps.map((step, index) => (
-                <ScrollSection key={step} entryDirection="bottom" delay={index * 0.08} motionRole="case-block">
+                <ScrollSection
+                  key={step}
+                  entryDirection="bottom"
+                  delay={index * 0.08}
+                  motionRole="case-block"
+                  disableAnimation={disableAnimation}
+                >
                   <div className="border-b border-pale pb-4">
                     <p className="type-body text-ink">{step}</p>
                   </div>
@@ -86,15 +97,20 @@ function CaseStudyContentComponent({
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">{exploration.title}</p>
           </ScrollSection>
           <div className="space-y-8">
-            <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
               <p className="type-body text-ink">{exploration.description}</p>
             </ScrollSection>
             <div className="grid md:grid-cols-2 gap-6 border-t border-pale pt-6">
-              <ScrollSection entryDirection="bottom" motionRole="case-block" className="col-span-2">
+              <ScrollSection
+                entryDirection="bottom"
+                motionRole="case-block"
+                className="col-span-2"
+                disableAnimation={disableAnimation}
+              >
                 <div className="border border-pale">
                   <img src={testingImage} alt={`${title} testing`} className="w-full h-auto" />
                 </div>
@@ -104,11 +120,11 @@ function CaseStudyContentComponent({
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">{solution.title}</p>
           </ScrollSection>
           <div className="space-y-6">
-            <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
               <p className="type-body text-ink">{solution.description}</p>
             </ScrollSection>
             <div className="grid md:grid-cols-3 gap-6 border-t border-pale pt-6">
@@ -129,6 +145,7 @@ function CaseStudyContentComponent({
         delay={0.12}
         ease={[0.4, 0, 0.2, 1]}
         disableTransform
+        disableAnimation={disableAnimation}
       >
         <div className="mt-24">
           <p className="type-meta text-accent uppercase mb-4">{prototype.title}</p>

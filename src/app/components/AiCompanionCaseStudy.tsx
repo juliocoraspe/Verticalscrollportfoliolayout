@@ -17,14 +17,20 @@ export const AI_COMPANION_BANNER = {
   style: { backgroundColor: '#F0F3F3' },
 };
 
-function AiCompanionCaseStudyContentComponent() {
+interface AiCompanionCaseStudyContentProps {
+  disableAnimation?: boolean;
+}
+
+function AiCompanionCaseStudyContentComponent({
+  disableAnimation = false,
+}: AiCompanionCaseStudyContentProps) {
   return (
     <div className="space-y-24">
       <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-        <ScrollSection entryDirection="bottom" motionRole="case-block">
+        <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
           <p className="type-section-title text-dark uppercase">CONTEXT</p>
         </ScrollSection>
-        <ScrollSection entryDirection="bottom" motionRole="case-block">
+        <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
           <p className="type-body text-ink">
             Designed as an interface study for AI companionship rather than task execution. The goal is to explore
             how a system can feel continuously present—like a conversational partner—through pacing, subtle motion,
@@ -34,10 +40,10 @@ function AiCompanionCaseStudyContentComponent() {
       </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">FOUNDATION RESEARCH</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-body text-ink">
               This project’s foundation draws from established Human-AI Interaction guidance and interaction design
               systems, including Google’s People + AI Guidebook (PAIR), Microsoft’s Guidelines for Human-AI
@@ -49,10 +55,10 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">DESIGN HYPOTHESES</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-body text-ink">
               If an AI companion is meant to feel present rather than transactional, its interface should communicate
               “state” through continuous, calm feedback instead of abrupt UI changes. If conversation is ongoing rather
@@ -63,10 +69,10 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">INTERACTION STATES &amp; SYSTEM THINKING</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-body text-ink">
               The interface is organized around interaction states rather than isolated screens. States include idle
               presence, listening, thinking, speaking, uncertainty, and error/disconnected. Each state represents a
@@ -77,18 +83,23 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">IDEATION &amp; VISUAL DIRECTION</p>
           </ScrollSection>
           <div className="space-y-6">
-            <ScrollSection entryDirection="bottom" motionRole="case-block" disableTransform>
+            <ScrollSection
+              entryDirection="bottom"
+              motionRole="case-block"
+              disableTransform
+              disableAnimation={disableAnimation}
+            >
               <p className="type-body text-ink">
                 The visual system is intentionally minimal: a neutral background, restrained color usage, and organic
                 forms to reduce distraction. Motion is slow and ambient—designed to suggest life and continuity. Visual
                 ambiguity is used deliberately to support interpretation rather than enforce meaning.
               </p>
             </ScrollSection>
-            <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
               <div className="space-y-4 border-t border-pale pt-6">
                 <p className="type-micro text-dark">Figma exploration (embedded prototype)</p>
                 <div className="border border-pale">
@@ -108,7 +119,12 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] items-start">
-          <ScrollSection entryDirection="bottom" motionRole="case-block" disableTransform>
+          <ScrollSection
+            entryDirection="bottom"
+            motionRole="case-block"
+            disableTransform
+            disableAnimation={disableAnimation}
+          >
             <div className="space-y-6">
               <p className="type-section-title text-dark uppercase">Prototyping and Technical Execution</p>
               <div className="space-y-6">
@@ -146,7 +162,7 @@ function AiCompanionCaseStudyContentComponent() {
               </div>
             </div>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <div className="flex justify-center md:justify-end">
               <div className="w-full max-w-[390px] border border-pale bg-pure overflow-hidden">
                 <div
@@ -178,10 +194,10 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">OUTCOME</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-body text-ink">
               The outcome of this phase is not a finished product, but a validated interaction foundation: a
               state-driven visual language, motion pacing rules, and a UI system that can support future prototyping,
@@ -191,10 +207,10 @@ function AiCompanionCaseStudyContentComponent() {
         </div>
 
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <p className="type-section-title text-dark uppercase">What Comes Next</p>
           </ScrollSection>
-          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <div className="space-y-6">
               <p className="type-body text-ink">
                 The next phase of this project focuses on refining the visual system rather than expanding
