@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
 import miloBanner from '../../assets/images/Milo 2.svg';
@@ -104,10 +105,11 @@ function AiCompanionCaseStudyContentComponent({
                 <p className="type-micro text-dark">Figma exploration (embedded prototype)</p>
                 <div className="border border-pale">
                   <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                    <DeferredIframe
+                    <FigmaEmbed
                       title="AI Companion Interface Figma exploration"
                       src={FIGMA_EMBED_URL}
-                      className="h-full w-full border-0"
+                      wrapperClassName="h-full w-full"
+                      iframeClassName="h-full w-full border-0"
                       allow="fullscreen"
                       allowFullScreen
                     />

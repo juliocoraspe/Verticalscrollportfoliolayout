@@ -1,0 +1,8 @@
+export const RESUME_URL =
+  'https://docs.google.com/document/d/1bRGqbt5TWMbkeOabXJD-9vUjR9Gh4gsy/edit?usp=drivesdk&ouid=101988302166320619115&rtpof=true&sd=true';
+
+export const ABOUT_ME_PARAGRAPHS = [
+  'I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of creative practice and technology, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.',
+  'My creative profile is strongly visual, spanning photography (digital, mobile, and film, including film development and digitization), videography, professional editing, digital drawing, generative art through code, and motion design. These practices share a common thread: patience, process, and attention to detail. Exploring them has been less about collecting skills and more about developing craft, curiosity, and a lasting commitment to learning and making things with care.',
+  'I have a strong fascination with artificial intelligence as a creative and procedural tool. I see it as an extension of thought and making—something that amplifies research, exploration, and execution rather than replacing them. I work with AI through prompt and context engineering, using it generatively for research, coding, and audiovisual experimentation, including local LLM setups and custom tooling such as code editor assistants and Figma plugins. This approach allows me to work with AI in a more intentional, productive, and secure way.',
+];

@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { DeferredIframe } from './DeferredIframe';
+import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { ScrollSection } from './ScrollSection';
 import testingImage from '../../assets/images/Testing.png';
 
@@ -152,10 +152,11 @@ function CaseStudyContentComponent({
           <div className="border border-pale">
             {prototype.embedUrl ? (
               <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                <DeferredIframe
+                <FigmaEmbed
                   title={`${title} prototype`}
                   src={prototype.embedUrl}
-                  className="h-full w-full border-0"
+                  wrapperClassName="h-full w-full"
+                  iframeClassName="h-full w-full border-0"
                 />
               </div>
             ) : (
