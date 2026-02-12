@@ -731,7 +731,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                   <div className="space-y-3">
                     <p className="type-meta uppercase text-dark">List of items</p>
                     <motion.div
-                      className="relative overflow-hidden border border-pale bg-base"
+                      className="relative overflow-hidden border border-pale bg-base w-full max-w-[260px] sm:max-w-none mx-auto"
                       animate={{ opacity: swipeOpacity }}
                       transition={{ duration: shouldReduceMotion ? 0.01 : 0.2, ease: [0.22, 1, 0.36, 1] }}
                     >
