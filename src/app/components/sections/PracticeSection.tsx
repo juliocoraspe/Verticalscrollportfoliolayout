@@ -1,6 +1,10 @@
 import { ScrollSection } from '../ScrollSection';
 
-export function PracticeSection() {
+type PracticeSectionProps = {
+  enterMotionGarden: () => void;
+};
+
+export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
   return (
     <section id="about" className="practice-section py-24 px-6 sm:py-32 sm:px-8 bg-pure">
       <div className="max-w-6xl mx-auto space-y-[155px]">
@@ -9,31 +13,22 @@ export function PracticeSection() {
             <span className="hero-index-label">Case Studies</span>
             <span className="type-micro text-dark hero-index-count">01</span>
           </a>
-          {/* Garden entry disabled for now; keep for later reuse. */}
-          {/*
-          <button
-            type="button"
-            onClick={enterGarden}
-            className="type-micro uppercase text-accent py-4 flex items-center justify-between w-full"
-          >
-            <span>
-              Enter <span className="text-accent">Garden</span>
-            </span>
-            <span className="type-micro text-dark">03</span>
-          </button>
-          */}
-          <a href="#projects" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-            <span className="hero-index-label">Explore Projects</span>
-            <span className="type-micro text-dark hero-index-count">02</span>
-          </a>
           <a href="#about-me" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
             <span className="hero-index-label">About Me</span>
-            <span className="type-micro text-dark hero-index-count">03</span>
+            <span className="type-micro text-dark hero-index-count">02</span>
           </a>
           <a href="#contact" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
             <span className="hero-index-label">Contact</span>
-            <span className="type-micro text-dark hero-index-count">04</span>
+            <span className="type-micro text-dark hero-index-count">03</span>
           </a>
+          <button
+            type="button"
+            onClick={enterMotionGarden}
+            className="hero-index-item type-micro uppercase text-accent py-4 w-full text-left"
+          >
+            <span className="hero-index-label">Motion Garden</span>
+            <span className="type-micro text-dark hero-index-count">04</span>
+          </button>
         </div>
 
         <div className="space-y-12">

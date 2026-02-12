@@ -4,12 +4,7 @@ import julsPortrait from '../../../assets/images/Juls.JPG';
 
 export function AboutMeSection() {
   return (
-    <section
-      id="about-me"
-      aria-label="About Me"
-      className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale"
-      style={{ backgroundColor: '#fcfbfa' }}
-    >
+    <section id="about-me" aria-label="About Me" className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale bg-pure">
       <div className="max-w-6xl mx-auto space-y-12">
         <ScrollSection entryDirection="bottom" motionRole="contact-title">
           <h2 className="type-display-m text-ink">About Me</h2>

@@ -602,6 +602,14 @@
     transform: translateY(4px) rotate(180deg);
   }
 
+  .motion-garden-hover-card {
+    transition: background-color 0.2s ease;
+  }
+
+  .motion-garden-hover-card:hover {
+    background-color: var(--color-pure);
+  }
+
   @media (min-width: 640px) {
     .hero-title {
       max-width: 22ch;

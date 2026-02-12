@@ -1,9 +1,17 @@
 import { ScrollSection } from '../ScrollSection';
 import { RESUME_URL } from '../../data/about';
 
-export function ContactSection() {
+type ContactSectionProps = {
+  enterMotionGarden: () => void;
+};
+
+export function ContactSection({ enterMotionGarden }: ContactSectionProps) {
   return (
-    <section id="contact" className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale bg-pure">
+    <section
+      id="contact"
+      className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale"
+      style={{ backgroundColor: '#fcfbfa' }}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="space-y-6">
           <ScrollSection entryDirection="bottom" motionRole="contact-title" disableAnimation>
@@ -51,18 +59,11 @@ export function ContactSection() {
               >
                 Behance
               </a>
+              <button type="button" onClick={enterMotionGarden} className="type-meta uppercase text-accent cursor-pointer">
+                Motion Garden
+              </button>
             </div>
           </div>
-          {/* Garden footer link disabled for now; keep for later reuse. */}
-          {/*
-          <button
-            type="button"
-            onClick={enterGarden}
-            className="type-meta text-accent uppercase cursor-pointer"
-          >
-            Visit the Garden
-          </button>
-          */}
         </div>
       </div>
     </section>

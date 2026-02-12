@@ -1,11 +1,11 @@
 import bannerCaseStudy from '../../assets/images/banner-case-study.png';
 
 export const CASE_STUDY = {
-  title: 'STILLEN — Designing Furniture E-Commerce Through Research, Systems, and Iteration',
+  title: 'STILLEN: AI-Enhanced Furniture E-Commerce',
   role: 'UX/UI designer',
   timeline: '2025',
   summary:
-    'Designed a guided furniture e-commerce experience that enables users to visualize furniture at scale, understand fit and delivery, and complete purchases with confidence.',
+    'A research-driven furniture e-commerce platform combining AI concierge guidance, AR spatial visualization, and transparent delivery systems to reduce purchase uncertainty.',
   heroImage: bannerCaseStudy,
   problem: {
     title: 'Problem',

@@ -3,14 +3,15 @@ import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
 import miloBanner from '../../assets/images/Milo 2.svg';
+import miloPrototype from '../../assets/images/Milo_prototype.png';
 
 const FIGMA_EMBED_URL =
   'https://embed.figma.com/design/JIjE307GOTQI96gbCzj0N0/Milo?node-id=0-1&embed-host=share';
 const GITHUB_PAGES_EMBED_URL = 'https://juliocoraspe.github.io/Milo/'; // TODO: Replace GITHUB_PAGES_EMBED_URL
 
-export const AI_COMPANION_TITLE = 'Milo — Designing AI Through Systems, Motion, and Code';
+export const AI_COMPANION_TITLE = 'Milo: Voice-First AI Companion';
 export const AI_COMPANION_SUMMARY =
-  'Designed an interface for a voice and text based AI, going beyond static UI: defining interaction states, visual pacing, and a design system that can translate into working prototypes. Created with Figma + AI-assisted iteration to explore new interface rules.';
+  'Designed a behavior-driven voice AI companion focused on emotional presence. Modeled interaction logic, motion systems, and adaptive states through AI-assisted prototyping workflows.';
 export const AI_COMPANION_BANNER = {
   src: miloBanner,
   alt: 'Milo interface banner',
@@ -167,17 +168,28 @@ function AiCompanionCaseStudyContentComponent({
           <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
             <div className="flex justify-center md:justify-end">
               <div className="w-full max-w-[390px] border border-pale bg-pure overflow-hidden">
-                <div
-                  className="relative w-full bg-pure overflow-hidden"
-                  style={{ aspectRatio: '390 / 844' }}
-                >
-                  <DeferredIframe
-                    title="AI Companion Interface embedded prototype"
-                    src={GITHUB_PAGES_EMBED_URL}
-                    wrapperClassName="absolute inset-0"
-                    className="h-full w-full border-0 no-scrollbar"
-                    scrolling="no"
-                  />
+                <div className="w-full max-w-[390px] sm:hidden px-6">
+                  <p className="type-micro text-dark mt-3 mb-3">Click the image to open the full prototype.</p>
+                </div>
+                <div className="relative w-full bg-pure overflow-hidden" style={{ aspectRatio: '390 / 720' }}>
+                  <a
+                    href={GITHUB_PAGES_EMBED_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 sm:hidden"
+                    aria-label="Open Milo prototype"
+                  >
+                    <img src={miloPrototype} alt="Milo prototype preview" className="h-full w-full object-cover" />
+                  </a>
+                  <div className="hidden sm:block absolute inset-0">
+                    <DeferredIframe
+                      title="AI Companion Interface embedded prototype"
+                      src={GITHUB_PAGES_EMBED_URL}
+                      wrapperClassName="absolute inset-0"
+                      className="h-full w-full border-0 no-scrollbar"
+                      scrolling="no"
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-wrap items-center justify-between gap-4 border-t border-pale p-6">
                   <p className="type-body text-ink">Milo Exploration</p>

@@ -1,14 +1,61 @@
 import todoBanner from '../../assets/images/todo-banner2.png';
-import asmrBanner from '../../assets/images/asmr-banner2.png';
-import redesign02 from '../../assets/images/Redesign02.png';
-import bloopAvatar from '../../assets/images/bloop.png';
+import asmrBanner from '../../assets/images/lumn_final.png';
 
-export const PROJECTS = [
+type EmbedConfig = {
+  width: number;
+  height: number;
+  scale: number;
+};
+
+type EmbedContentConfig = {
+  width: number;
+  height: number;
+  fit?: 'contain' | 'cover' | 'cover-width' | 'frame';
+  offsetX?: number;
+  offsetY?: number;
+};
+
+export type Project = {
+  id: string;
+  title: string;
+  intent: string;
+  role: string;
+  imageUrl: string;
+  imageFit?: 'cover' | 'contain';
+  imagePosition?: 'center' | 'top' | 'bottom';
+  tags: string[];
+  context: string;
+  problem: string;
+  process: string[];
+  solution: string;
+  outcome: string[];
+  experienceUrl?: string;
+  experienceHelper?: string;
+  experienceThumbnail?: string;
+  introEmbedUrl?: string;
+  introEmbedLabel?: string;
+  introEmbedConfig?: EmbedConfig;
+  introEmbedMode?: 'scaled' | 'responsive';
+  outcomeEmbedUrl?: string;
+  outcomeEmbedConfig?: EmbedConfig;
+  outcomeEmbedMode?: 'scaled' | 'responsive';
+  outcomeEmbedContentConfig?: EmbedContentConfig;
+  outcomeEmbedCta?: string;
+  outcomeEmbedArrow?: 'up' | 'down';
+  outcomeEmbedArrowPlacement?: 'above' | 'below';
+  prototypeSummary?: string;
+  prototypeUrl?: string;
+  prototypeLabel?: string;
+  demoLabel?: string;
+  demoUrl?: string;
+};
+
+export const PROJECTS: Project[] = [
   {
     id: 'todo-app',
-    title: 'To-Do App',
+    title: 'To-Do app: Calendar Native Task system',
     intent:
-      'Research-driven task flow designed to reduce planning overwhelm by improving anticipation, clarity, and trust—especially through reliable calendar handoff and reminder visibility.',
+      'Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping.',
     role: 'UX Research, UI Design',
     imageUrl: todoBanner,
     tags: ['Research', 'UX Flow', 'UI Systems'],
@@ -31,23 +78,23 @@ export const PROJECTS = [
     experienceUrl: '/projects/todo-app/experience',
     experienceHelper: 'View the full report',
     experienceThumbnail: undefined,
-    outcomeEmbedUrl: 'https://juliocoraspe.github.io/todo-polymorphic-app/',
+    outcomeEmbedUrl: 'https://juliocoraspe.github.io/todo-app-calendar-sync/',
     outcomeEmbedConfig: { width: 430, height: 764, scale: 0.6 },
     outcomeEmbedMode: 'responsive',
-    outcomeEmbedCta: 'Explore the live coded demo below.',
+    outcomeEmbedCta: undefined,
     outcomeEmbedArrow: 'up' as const,
     outcomeEmbedArrowPlacement: 'above' as const,
     prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
     prototypeUrl:
-      'https://embed.figma.com/slides/RCRXoEB4h7yTAKYjiK1Rx6/ToDo-Research?node-id=1-360&embed-host=share',
+      'https://embed.figma.com/slides/LvTMFtH8K3zEHuvjDHNDUa/To-Do-App-%E2%80%94-Interaction---System-Validation?node-id=1-106&embed-host=share',
     demoLabel: 'Research Findings & Design Implications (Full Report)',
     demoUrl: undefined,
   },
   {
     id: 'asmr-app',
-    title: 'ASMR App',
+    title: 'LUMN: Sound reactive ASMR app',
     intent:
-      'A sensory-first mobile experience designed to minimize emotional disruption while amplifying perception through sound, motion, and subtle feedback. The interface acts as a quiet framework—allowing audio, generative visuals, and haptics to shape a calm, highly personalized listening state.',
+      'Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments.',
     role: 'Visual Design, Interaction',
     imageUrl: asmrBanner,
     imageFit: 'contain' as const,
@@ -82,91 +129,6 @@ export const PROJECTS = [
     prototypeUrl:
       'https://embed.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?node-id=0-1&embed-host=share',
     demoLabel: 'Full Design Overview',
-    demoUrl: undefined,
-  },
-  {
-    id: 'marketplace-bloop',
-    title: 'Marketplace (BLOOP)',
-    intent:
-      'BLOOP is a mobile-first marketplace concept designed to make local buying and selling feel immediate, clear, and low-friction. Built in response to a school assignment, the project applies Apple Human Interface Guidelines (HIG) to address common marketplace usability issues—especially hidden primary actions, slow listing flows, and unclear status feedback.',
-    role: 'UX Research, UI Design',
-    imageUrl: bloopAvatar,
-    tags: ['Research', 'UX Flow', 'UI Systems'],
-    context:
-      'Many existing marketplaces introduce unnecessary friction during key moments such as posting an item, tracking progress, and communicating with buyers. BLOOP was designed around the idea of a “bubble”: something light, simple, and responsive. Every interaction aims to feel effortless, with subtle visual feedback confirming that actions were successful.',
-    problem:
-      'Research and heuristic analysis revealed three recurring issues in popular marketplace experiences:\n- Navigation creates friction when the primary “Sell” action is not immediately visible.\n- Listing flows feel slow and lack consistent progress feedback.\n- Messaging systems provide unclear status indicators (sent/read), reducing user confidence during conversations.',
-    process: [
-      'I evaluated existing marketplace patterns through the lens of Apple Human Interface Guidelines, focusing on primary action visibility, user feedback and control, and clear status communication.',
-      'Based on these insights, I mapped an end-to-end user flow—from browsing the feed to posting an item, messaging, purchase confirmation, and managing listings. Key screens were designed using a mini design system to ensure consistency, clarity, and predictable interaction patterns.',
-    ],
-    solution:
-      'BLOOP improves the marketplace experience through:\n- A clearly visible and easily accessible “Sell” entry point.\n- A streamlined listing flow with multi-image uploads and progress indicators.\n- A listing preview that confirms how an item will appear before publishing.\n- An inbox and chat experience with notification badges and clear sent/read status cues.\n- Consistent, card-based layouts and reusable components inspired by Apple HIG patterns.',
-    outcome: [
-      'Primary actions are easier to discover, reducing navigation friction.',
-      'Listing feels faster and more controlled thanks to visible progress feedback.',
-      'Messaging improves trust through clearer hierarchy and status indicators.',
-      'A cohesive mini design system—Inter typography, clean neutral colors, and a single bold blue accent—keeps the interface minimal while reinforcing BLOOP’s identity.',
-    ],
-    prototypeSummary:
-      'This section represents the full BLOOP app experience. Key screens showcased include the Home Feed, Create New Listing flow, and Messaging screens, highlighting action visibility, feedback, and clarity throughout the user journey.',
-    experienceUrl: '/projects/todo-app/experience',
-    experienceHelper: 'View the full report',
-    experienceThumbnail: undefined,
-    prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
-    prototypeUrl:
-      'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=0-1&embed-host=share',
-    demoLabel: undefined,
-    demoUrl: undefined,
-  },
-  {
-    id: 'frontend-redesign',
-    title: 'Frontend Redesign',
-    intent: `Frontend implementation and interface redesign of an image-based web application.
-
-This project began as a frontend development exercise, translating an existing Figma design into a functional web application using HTML, CSS, and JavaScript. The initial implementation focused on structure, modular components, and interactive features such as image posts and basic content management.
-
-While technically complete, the interface remained visually neutral and utilitarian. This redesign reframes the product as a visual moodboard, refining the UI to better support exploration, inspiration, and content-focused interaction.`,
-    role: 'Frontend, UI Design',
-    imageUrl: redesign02,
-    imagePosition: 'top' as const,
-    tags: ['Frontend', 'Refactor', 'Accessibility'],
-    context:
-      `The original application functioned primarily as a simple image-based interface, where usability was driven by functionality rather than intent. Although the product worked as expected, its presentation did not clearly communicate why the content mattered or how it should be used.
-
-This redesign shifts the product’s direction toward a moodboard-style experience, prioritizing visual clarity, hierarchy, and a calmer canvas for collecting and revisiting visual references.`,
-    problem:
-      `The main issue was not missing features, but an interface that treated content and controls with equal priority. This resulted in several UX challenges:
-• Limited visual hierarchy between primary actions and secondary controls.
-• UI elements competing with images for attention.
-• Interaction patterns that suggested a management tool rather than a moodboard.
-
-Without formal user research, these issues were identified through heuristic evaluation and UI design principles, revealing gaps in hierarchy, focus, and consistency that justified a design-led refactor.`,
-    process: [
-      'Audited the interface using heuristic principles to identify hierarchy and clarity issues.',
-      'Simplified interaction patterns to reduce visual noise.',
-      'Refined layout, spacing, and contrast to support content-first exploration.',
-    ],
-    solution:
-      'A cleaner, content-first interface that transforms the application from a simple image viewer into a moodboard-style tool. The redesign emphasizes visual hierarchy, minimizes exposed controls, and aligns interaction patterns with the product’s new purpose.',
-    outcome: [
-      'Improved visual focus and hierarchy across the main canvas.',
-      'Reduced cognitive load by consolidating secondary actions.',
-      'Clearer alignment between product intent and interface behavior.',
-    ],
-    outcomeEmbedUrl:
-      'https://embed.figma.com/design/6lWQJTUiFO8Wvtem3dAKZT/Bloop-Julio-coraspe?node-id=57-2628&embed-host=share',
-    introEmbedUrl: 'https://juliocoraspe.github.io/se_project_spots/',
-    introEmbedLabel: 'The existing application prior to design exploration and improvements',
-    introEmbedConfig: { width: 1280, height: 720, scale: 0.4 },
-    introEmbedMode: 'responsive',
-    experienceUrl: '/projects/frontend-redesign/experience',
-    experienceHelper: 'View the full report',
-    experienceThumbnail: undefined,
-    prototypeLabel: 'Prototype embed placeholder — add the coded prototype or live build.',
-    prototypeUrl:
-      'https://embed.figma.com/design/QFyh4I1PE2qzy5hOSgDvgL/Spots-ReDesign?node-id=0-1&embed-host=share',
-    demoLabel: 'Interface Redesign — Full Design Cycle',
     demoUrl: undefined,
   },
 ];
