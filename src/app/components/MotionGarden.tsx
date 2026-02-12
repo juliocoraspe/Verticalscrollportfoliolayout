@@ -58,7 +58,13 @@ function MotionCard({ title, description, ctaLabel, onCta, children }: MotionCar
             onClick={onCta}
             className="type-subhead text-dark text-left transition-colors hover:text-accent"
           >
-            {ctaLabel}
+            <span>{ctaLabel}</span>
+            <span aria-hidden="true" className="ml-1 hidden sm:inline">
+              →
+            </span>
+            <span aria-hidden="true" className="ml-1 inline sm:hidden">
+              ↓
+            </span>
           </button>
         </div>
         <div className="border border-pale bg-base p-5 sm:p-6 h-full min-h-[260px]">{children}</div>
@@ -93,6 +99,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const swipeItemRef = useRef<HTMLDivElement | null>(null);
   const swipePointerIdRef = useRef<number | null>(null);
+  const swipeTouchIdRef = useRef<number | null>(null);
   const swipeStartXRef = useRef(0);
   const swipeStartOffsetRef = useRef(0);
   const swipeOffsetRef = useRef(0);
@@ -214,9 +221,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
     [getSwipeMetrics, setSwipeOffsetValue]
   );
 
-  const handleSwipeEnd = useCallback(() => {
-    if (swipePointerIdRef.current === null) return;
-    swipePointerIdRef.current = null;
+  const finalizeSwipe = useCallback(() => {
     const { maxReveal, threshold } = getSwipeMetrics();
     const shouldOpen = Math.abs(swipeOffsetRef.current) > threshold && swipeOffsetRef.current < 0;
     const target = shouldOpen ? -maxReveal : 0;
@@ -230,6 +235,52 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
       onUpdate: setSwipeOffsetValue,
     });
   }, [getSwipeMetrics, setSwipeOffsetValue, shouldReduceMotion]);
+
+  const handleSwipeEnd = useCallback(() => {
+    if (swipePointerIdRef.current === null) return;
+    swipePointerIdRef.current = null;
+    finalizeSwipe();
+  }, [finalizeSwipe]);
+
+  const handleSwipeTouchStart = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      const metrics = getSwipeMetrics();
+      if (swipeAnimationRef.current) {
+        swipeAnimationRef.current.stop();
+      }
+      swipeTouchIdRef.current = touch.identifier;
+      swipeStartXRef.current = touch.clientX;
+      swipeStartOffsetRef.current = isSwipeOpen ? -metrics.maxReveal : swipeOffsetRef.current;
+    },
+    [getSwipeMetrics, isSwipeOpen]
+  );
+
+  const handleSwipeTouchMove = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      if (swipeTouchIdRef.current === null) return;
+      const touch = Array.from(event.touches).find((item) => item.identifier === swipeTouchIdRef.current);
+      if (!touch) return;
+      const { maxReveal } = getSwipeMetrics();
+      const delta = touch.clientX - swipeStartXRef.current;
+      const nextOffset = Math.min(Math.max(swipeStartOffsetRef.current + delta, -maxReveal), 0);
+      setSwipeOffsetValue(nextOffset);
+      event.preventDefault();
+    },
+    [getSwipeMetrics, setSwipeOffsetValue]
+  );
+
+  const handleSwipeTouchEnd = useCallback(
+    (event: React.TouchEvent<HTMLDivElement>) => {
+      if (swipeTouchIdRef.current === null) return;
+      const touch = Array.from(event.changedTouches).find((item) => item.identifier === swipeTouchIdRef.current);
+      if (!touch) return;
+      swipeTouchIdRef.current = null;
+      finalizeSwipe();
+    },
+    [finalizeSwipe]
+  );
 
   const triggerSwipeHint = useCallback(() => {
     const { maxReveal } = getSwipeMetrics();
@@ -515,7 +566,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
               <MotionCard
                 title="State & Navigation"
                 description="Motion preserves context as states change, keeping wayfinding clear across views."
-                ctaLabel="Explore states →"
+                ctaLabel="Explore states"
                 onCta={cycleNavigationState}
               >
                 <div className="relative border border-pale bg-pure h-full overflow-hidden" ref={navigationStageRef}>
@@ -603,7 +654,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
               <MotionCard
                 title="Scroll & Depth"
                 description="Scroll-driven motion preserves hierarchy while guiding attention through layers of depth as content unfolds."
-                ctaLabel="Scroll to explore →"
+                ctaLabel="Scroll to explore"
                 onCta={nudgeDepthScroll}
               >
                 <div className="border border-pale bg-pure h-full">
@@ -673,7 +724,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
               <MotionCard
                 title="Gesture-based Motion"
                 description="Gestures surface contextual actions, enabling state changes without interrupting flow."
-                ctaLabel="Swipe to reveal actions →"
+                ctaLabel="Swipe or Drag to Reveal Action"
                 onCta={triggerSwipeHint}
               >
                 <div className="border border-pale bg-pure p-5 sm:p-7 h-full">
@@ -711,6 +762,10 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                         onPointerUp={handleSwipeEnd}
                         onPointerCancel={handleSwipeEnd}
                         onPointerLeave={handleSwipeEnd}
+                        onTouchStart={handleSwipeTouchStart}
+                        onTouchMove={handleSwipeTouchMove}
+                        onTouchEnd={handleSwipeTouchEnd}
+                        onTouchCancel={handleSwipeTouchEnd}
                       >
                         <div className="flex items-center justify-between gap-4">
                           <div className="flex items-center gap-3">
@@ -744,7 +799,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
               <MotionCard
                 title="Feedback & Microinteractions"
                 description="Microinteractions provide immediate feedback—guiding users through errors, success, and recovery without breaking flow."
-                ctaLabel="Test feedback →"
+                ctaLabel="Test feedback"
                 onCta={triggerFeedback}
               >
                 <motion.div
