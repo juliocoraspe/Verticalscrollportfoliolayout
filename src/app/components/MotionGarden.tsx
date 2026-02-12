@@ -735,7 +735,10 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                       animate={{ opacity: swipeOpacity }}
                       transition={{ duration: shouldReduceMotion ? 0.01 : 0.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <div className="absolute inset-y-0 right-0 w-36 border-l border-pale bg-pure z-20">
+                      <div
+                        className="absolute inset-y-0 right-0 w-36 border-l border-pale bg-pure"
+                        style={{ zIndex: swipeOffset < -4 ? 20 : 0 }}
+                      >
                         <div className="grid h-full grid-cols-2">
                           <button
                             type="button"
