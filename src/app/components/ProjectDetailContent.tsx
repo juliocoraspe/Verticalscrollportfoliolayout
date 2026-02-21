@@ -198,7 +198,6 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                     </div>
                   </div>
                   <div className="flex flex-wrap items-center justify-between gap-4 border-t border-pale p-6">
-                    <p className="type-body text-ink">To-Do App Exploration</p>
                     <a
                       href={todoGithubUrl}
                       target="_blank"
@@ -334,14 +333,16 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                   {project.outcomeEmbedCta && (
                     <p className="type-meta text-accent mt-1 text-center">{project.outcomeEmbedCta}</p>
                   )}
-                  <a
-                    href={project.outcomeEmbedUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="type-meta text-accent mt-2 text-center hover:underline"
-                  >
-                    Want full interaction with the activated microphone? Open the demo in a new tab.
-                  </a>
+                  <div className="w-full border border-pale bg-pure px-6 py-4 text-left">
+                    <a
+                      href={project.outcomeEmbedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="type-meta uppercase text-accent"
+                    >
+                      Want full interaction with the activated microphone? Open the demo in a new tab.
+                    </a>
+                  </div>
                   {project.outcomeEmbedArrowPlacement === 'below' && (
                     <span className="type-micro text-dark mt-1">
                       {project.outcomeEmbedArrow === 'up' ? '↑' : '↓'}
@@ -569,7 +570,11 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           <p id="outcome-title" className="type-section-title uppercase text-accent">
             Outcome
           </p>
-          <div id="outcome-embed" className="border border-pale">
+          <div
+            id="outcome-embed"
+            className="border border-pale"
+            style={!isMobile ? { width: 'calc((100% + 12rem) * 2 / 3)', maxWidth: '100%' } : undefined}
+          >
             {project.prototypeSummary && (
               <div className="p-6 border-b border-pale">
                 <p className="type-body text-ink whitespace-pre-line">{project.prototypeSummary}</p>
@@ -578,12 +583,72 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
             {project.prototypeUrl ? (
               <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
                 {isFigmaPrototype ? (
-                  <FigmaEmbed
-                    title={`${project.title} prototype`}
-                    src={project.prototypeUrl}
-                    wrapperClassName="h-full w-full"
-                    iframeClassName="h-full w-full border-0"
-                  />
+                  project.id === 'asmr-app' ? (
+                    isMobile ? (
+                      <div className="relative h-full w-full overflow-hidden">
+                        <a
+                          href={project.prototypeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block h-full w-full"
+                          aria-label="Open LUMN prototype in Figma"
+                        >
+                          <img
+                            src="/images/LUMN_mobile.jpg"
+                            alt="LUMN outcome static preview"
+                            className="h-full w-full object-cover"
+                            style={{ clipPath: 'inset(0 0 48px 0)' }}
+                          />
+                          <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
+                            Open Figma Design
+                          </span>
+                        </a>
+                      </div>
+                    ) : (
+                      <FigmaEmbed
+                        title={`${project.title} prototype`}
+                        src={project.prototypeUrl}
+                        wrapperClassName="h-full w-full"
+                        iframeClassName="h-full w-full border-0"
+                      />
+                    )
+                  ) : project.id === 'todo-app' ? (
+                    isMobile ? (
+                      <div className="relative h-full w-full overflow-hidden">
+                        <a
+                          href={project.prototypeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block h-full w-full"
+                          aria-label="Open ToDo slides in Figma"
+                        >
+                          <img
+                            src="/images/TODO_mobile.jpg"
+                            alt="ToDo outcome static preview"
+                            className="h-full w-full object-cover"
+                            style={{ objectPosition: 'left center', clipPath: 'inset(0 0 48px 0)' }}
+                          />
+                          <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
+                            Open Figma slides
+                          </span>
+                        </a>
+                      </div>
+                    ) : (
+                      <FigmaEmbed
+                        title={`${project.title} prototype`}
+                        src={project.prototypeUrl}
+                        wrapperClassName="h-full w-full"
+                        iframeClassName="h-full w-full border-0"
+                      />
+                    )
+                  ) : (
+                    <FigmaEmbed
+                      title={`${project.title} prototype`}
+                      src={project.prototypeUrl}
+                      wrapperClassName="h-full w-full"
+                      iframeClassName="h-full w-full border-0"
+                    />
+                  )
                 ) : (
                   <iframe
                     title={`${project.title} prototype`}
@@ -600,7 +665,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <p className="type-body text-dark">{project.prototypeLabel}</p>
               </div>
             )}
-            {project.demoLabel && (
+            {project.demoLabel && project.id !== 'todo-app' && (
               <div className="p-6 flex flex-wrap gap-6">
                 {project.demoUrl ? (
                   <a

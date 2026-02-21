@@ -1,7 +1,9 @@
 import { memo } from 'react';
 import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { ScrollSection } from './ScrollSection';
+import { useIsMobile } from './ui/use-mobile';
 import testingImage from '../../assets/images/Testing.png';
+import stillenMobile from '../../assets/images/Stillen_mobile.jpg';
 
 interface CaseStudyProps {
   title: string;
@@ -39,8 +41,6 @@ interface CaseStudyContentProps extends CaseStudyProps {
 
 function CaseStudyContentComponent({
   title,
-  role,
-  timeline,
   problem,
   process,
   exploration,
@@ -48,18 +48,10 @@ function CaseStudyContentComponent({
   prototype,
   disableAnimation = false,
 }: CaseStudyContentProps) {
+  const isMobile = useIsMobile();
+
   return (
     <>
-      <ScrollSection entryDirection="bottom" motionRole="case-intro" disableAnimation={disableAnimation}>
-        <div className="flex flex-wrap items-center gap-3 type-meta text-dark mb-16">
-          <span className="type-meta uppercase">Case Study</span>
-          <span className="type-meta">•</span>
-          <span className="type-meta">{role}</span>
-          <span className="type-meta">•</span>
-          <span className="type-meta">{timeline}</span>
-        </div>
-      </ScrollSection>
-
       <div className="space-y-24">
         <div className="grid md:grid-cols-[1fr_2fr] gap-10">
           <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
@@ -148,39 +140,50 @@ function CaseStudyContentComponent({
         disableAnimation={disableAnimation}
       >
         <div className="mt-24">
-          <p className="type-meta text-accent uppercase mb-4">{prototype.title}</p>
-          <div className="border border-pale">
+          <div
+            className="border border-pale"
+            style={
+              isMobile
+                ? { width: 'calc(100% - 32px)', marginInline: 'auto' }
+                : { width: 'calc((((100% - 2.5rem) * 2 / 3) - 2.75rem) + 1px)' }
+            }
+          >
             {prototype.embedUrl ? (
               <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                <FigmaEmbed
-                  title={`${title} prototype`}
-                  src={prototype.embedUrl}
-                  wrapperClassName="h-full w-full"
-                  iframeClassName="h-full w-full border-0"
-                />
+                {isMobile ? (
+                  <div className="relative h-full w-full overflow-hidden">
+                    <a
+                      href={prototype.embedUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full w-full"
+                      aria-label="Open Stillen prototype in Figma"
+                    >
+                      <img
+                        src={stillenMobile}
+                        alt="Stillen solution static preview"
+                        className="h-full w-full object-cover"
+                        style={{ objectPosition: 'top center', clipPath: 'inset(0 0 48px 0)' }}
+                      />
+                      <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
+                        Open Figma Design
+                      </span>
+                    </a>
+                  </div>
+                ) : (
+                  <FigmaEmbed
+                    title={`${title} prototype`}
+                    src={prototype.embedUrl}
+                    wrapperClassName="h-full w-full"
+                    iframeClassName="h-full w-full border-0"
+                  />
+                )}
               </div>
             ) : (
               <div className="aspect-video w-full border-b border-pale bg-pure flex items-center justify-center text-center p-6">
                 <p className="type-body text-accent">
                   Prototype embed placeholder — add the Figma share link here.
                 </p>
-              </div>
-            )}
-            {prototype.externalUrl && (
-              <div className="p-6">
-                {prototype.embedUrl && (
-                  <p className="type-body text-dark mb-3">
-                    If the embed does not load, open the prototype in a new tab.
-                  </p>
-                )}
-                <a
-                  href={prototype.externalUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="type-meta text-accent uppercase"
-                >
-                  View full prototype
-                </a>
               </div>
             )}
           </div>

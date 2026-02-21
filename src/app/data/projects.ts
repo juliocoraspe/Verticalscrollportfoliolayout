@@ -128,7 +128,5 @@ export const PROJECTS: Project[] = [
     prototypeLabel: 'Prototype embed placeholder — add the audio demo or motion study.',
     prototypeUrl:
       'https://embed.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?node-id=0-1&embed-host=share',
-    demoLabel: 'Full Design Overview',
-    demoUrl: undefined,
   },
 ];

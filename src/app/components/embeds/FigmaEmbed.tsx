@@ -14,6 +14,10 @@ type FigmaEmbedProps = {
   placeholderClassName?: string;
   unmountOnExit?: boolean;
   rootMargin?: string;
+  mobileStaticImageSrc?: string;
+  mobileStaticImageAlt?: string;
+  mobileStaticImageObjectFit?: 'cover' | 'contain';
+  mobileFooterBarHeightPx?: number;
 };
 
 export function FigmaEmbed({
@@ -28,10 +32,15 @@ export function FigmaEmbed({
   placeholderClassName,
   unmountOnExit = false,
   rootMargin = '200px',
+  mobileStaticImageSrc,
+  mobileStaticImageAlt,
+  mobileStaticImageObjectFit = 'cover',
+  mobileFooterBarHeightPx = 48,
 }: FigmaEmbedProps) {
   const shouldReduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
-  const prefersInteraction = isMobile || shouldReduceMotion;
+  const shouldUseMobileStaticImage = isMobile && Boolean(mobileStaticImageSrc);
+  const prefersInteraction = !shouldUseMobileStaticImage && (isMobile || shouldReduceMotion);
   const [isMounted, setIsMounted] = useState(!prefersInteraction);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
 
@@ -60,7 +69,27 @@ export function FigmaEmbed({
 
   return (
     <div ref={wrapperRef} className={wrapperClassName}>
-      {isMounted ? (
+      {shouldUseMobileStaticImage ? (
+        <div className="relative h-full w-full overflow-hidden">
+          <iframe
+            title={title}
+            src={src}
+            className={iframeClassName}
+            loading={loading}
+            allow={allow}
+            allowFullScreen={allowFullScreen}
+          />
+          <img
+            src={mobileStaticImageSrc}
+            alt={mobileStaticImageAlt ?? `${title} preview`}
+            className="absolute inset-0 z-10 h-full w-full"
+            style={{
+              objectFit: mobileStaticImageObjectFit,
+              clipPath: `inset(0 0 ${mobileFooterBarHeightPx}px 0)`,
+            }}
+          />
+        </div>
+      ) : isMounted ? (
         <iframe
           title={title}
           src={src}

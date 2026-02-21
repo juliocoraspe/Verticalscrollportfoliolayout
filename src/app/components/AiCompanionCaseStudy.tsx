@@ -2,7 +2,9 @@ import { memo } from 'react';
 import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
+import { useIsMobile } from './ui/use-mobile';
 import miloBanner from '../../assets/images/Milo 2.svg';
+import miloMobile from '../../assets/images/Milo_mobile.jpg';
 import miloPrototype from '../../assets/images/Milo_prototype.png';
 
 const FIGMA_EMBED_URL =
@@ -26,6 +28,8 @@ interface AiCompanionCaseStudyContentProps {
 function AiCompanionCaseStudyContentComponent({
   disableAnimation = false,
 }: AiCompanionCaseStudyContentProps) {
+  const isMobile = useIsMobile();
+
   return (
     <div className="space-y-24">
       <div className="grid md:grid-cols-[1fr_2fr] gap-10">
@@ -103,17 +107,45 @@ function AiCompanionCaseStudyContentComponent({
             </ScrollSection>
             <ScrollSection entryDirection="bottom" motionRole="case-block" disableAnimation={disableAnimation}>
               <div className="space-y-4 border-t border-pale pt-6">
-                <p className="type-micro text-dark">Figma exploration (embedded prototype)</p>
-                <div className="border border-pale">
+                <div
+                  className="border border-pale"
+                  style={
+                    isMobile
+                      ? { width: 'calc(100% - 32px)', marginInline: 'auto' }
+                      : { width: 'calc((100% - 2.75rem) + 1px)' }
+                  }
+                >
                   <div className="aspect-[4/3] sm:aspect-video w-full border-b border-pale bg-pure">
-                    <FigmaEmbed
-                      title="AI Companion Interface Figma exploration"
-                      src={FIGMA_EMBED_URL}
-                      wrapperClassName="h-full w-full"
-                      iframeClassName="h-full w-full border-0"
-                      allow="fullscreen"
-                      allowFullScreen
-                    />
+                    {isMobile ? (
+                      <div className="relative h-full w-full overflow-hidden">
+                        <a
+                          href={FIGMA_EMBED_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block h-full w-full"
+                          aria-label="Open Milo prototype in Figma"
+                        >
+                          <img
+                            src={miloMobile}
+                            alt="Milo ideation static preview"
+                            className="h-full w-full object-cover"
+                            style={{ objectPosition: 'top center', clipPath: 'inset(0 0 48px 0)' }}
+                          />
+                          <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
+                            Open Figma Design
+                          </span>
+                        </a>
+                      </div>
+                    ) : (
+                      <FigmaEmbed
+                        title="AI Companion Interface Figma exploration"
+                        src={FIGMA_EMBED_URL}
+                        wrapperClassName="h-full w-full"
+                        iframeClassName="h-full w-full border-0"
+                        allow="fullscreen"
+                        allowFullScreen
+                      />
+                    )}
                   </div>
                 </div>
               </div>

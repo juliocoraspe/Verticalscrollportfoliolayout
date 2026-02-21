@@ -44,7 +44,7 @@ export const CASE_STUDY = {
   prototype: {
     title: 'Figma Prototype',
     embedUrl:
-      'https://embed.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025&embed-host=share',
+      'https://embed.figma.com/design/j53F6cGj6FfpQISnyeSRMd/STILLEN-by-Julio-Coraspe?node-id=277-5077&embed-host=share',
     externalUrl:
       'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025',
   },
