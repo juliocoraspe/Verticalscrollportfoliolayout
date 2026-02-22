@@ -6,6 +6,8 @@ import { DemoHost } from './demos/DemoHost';
 import type { Project } from '../data/projects';
 import lumnPreview from '../../assets/images/Lumn.jpg';
 import todoPreview from '../../assets/images/todo-app.png';
+import lumnMobile from '../../assets/images/LUMN_mobile.jpg';
+import todoMobile from '../../assets/images/Todo_mobile_2.jpg';
 
 type ProjectDetailContentProps = {
   project: Project;
@@ -594,7 +596,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                           aria-label="Open LUMN prototype in Figma"
                         >
                           <img
-                            src="/images/LUMN_mobile.jpg"
+                            src={lumnMobile}
                             alt="LUMN outcome static preview"
                             className="h-full w-full object-cover"
                             style={{ clipPath: 'inset(0 0 48px 0)' }}
@@ -623,7 +625,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                           aria-label="Open ToDo slides in Figma"
                         >
                           <img
-                            src="/images/TODO_mobile.jpg"
+                            src={todoMobile}
                             alt="ToDo outcome static preview"
                             className="h-full w-full object-cover"
                             style={{ objectPosition: 'left center', clipPath: 'inset(0 0 48px 0)' }}
