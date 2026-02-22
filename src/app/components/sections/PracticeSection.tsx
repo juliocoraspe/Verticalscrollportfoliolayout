@@ -46,7 +46,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               {
                 title: 'What I Do Well',
                 body:
-                  'I’m good at turning complex problems into clear, structured systems. I work across researching, prototyping, and testing, often exploring ideas early to understand how things behave before committing to a final direction',
+                  'I translate complex problems into clear, structured systems by connecting research insights with business goals to guide intentional decisions. I design not only screens but behavior, prototyping interactions, feedback, and motion early to understand how products respond over time. I focus on clarity, coherence, and measurable impact across the entire user journey.',
               },
               {
                 title: 'Hybrid Practice',
