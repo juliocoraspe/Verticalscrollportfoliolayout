@@ -112,7 +112,6 @@ export default function App() {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
       const isMotionGardenHash = hash === '#motion-garden' || hash === '#garden';
-
       if (isMotionGardenHash) {
         setView('motion-garden');
         requestAnimationFrame(() => window.scrollTo(0, 0));
