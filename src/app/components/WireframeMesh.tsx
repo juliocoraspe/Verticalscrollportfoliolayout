@@ -78,8 +78,8 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
       const du = u - mouse.u;
       const dv = v - mouse.v;
       const dist2 = du * du + dv * dv;
-      const bump = Math.exp(-dist2 * 22) * 200 * hover;
-      const ripple = Math.exp(-dist2 * 40) *
+      const bump = Math.exp(-dist2 * 60) * 200 * hover;
+      const ripple = Math.exp(-dist2 * 100) *
         Math.sin(Math.sqrt(dist2) * 28 - time * 6) * 90 * hover;
 
       return w1 + w2 + w3 + twist + bump + ripple;
@@ -155,9 +155,11 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
   if (isMobile) {
     return (
       <motion.div
-        className="w-full overflow-hidden"
+        className="overflow-hidden"
         style={{
           height: 200,
+          marginLeft: 'calc(-50vw + 50%)',
+          width: '100vw',
           maskImage: 'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
           WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
           maskComposite: 'intersect',

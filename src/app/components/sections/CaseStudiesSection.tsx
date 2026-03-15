@@ -167,7 +167,7 @@ export function CaseStudiesSection({
             >
               <div className="space-y-6">
                 <h3 className="type-display-l text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
-                <div className="border-y border-pale">
+                <div>
                   <img
                     src={AI_COMPANION_BANNER.src}
                     alt={AI_COMPANION_BANNER.alt}
@@ -234,11 +234,12 @@ export function CaseStudiesSection({
             >
               <div className="space-y-6">
                 <h3 className="type-display-l text-ink case-study-title case-study-title-wrap">{todoProject.title}</h3>
-                <div>
+                <div className="overflow-hidden">
                   <img
                     src={todoProject.imageUrl}
                     alt={todoProject.title}
-                    className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
+                    className="w-full h-auto object-cover md:h-[420px] md:scale-[1.03] md:origin-top"
+                    style={{ objectPosition: '50% 5%' }}
                   />
                 </div>
                 <div className="case-study-subtitle-row">
