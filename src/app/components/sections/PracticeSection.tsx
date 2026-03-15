@@ -186,7 +186,7 @@ function TickerCardBand23({
   const style = cardStyle ?? { minWidth: w, maxWidth: w };
   return (
     <div className="ticker-card flex items-start gap-4 border border-pale rounded px-5 py-3" style={style}>
-      <p className="type-section-title text-ink shrink-0" style={{ paddingTop: 2 }}>{card.title}</p>
+      <p className="type-body text-ink shrink-0" style={{ paddingTop: 2 }}>{card.title}</p>
       <div className="w-px bg-pale shrink-0" style={{ minHeight: 16, alignSelf: 'stretch' }} />
       {card.bullets ? (
         <BulletList items={card.bullets} columns={columns} />
@@ -292,7 +292,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                          <span className="type-section-title text-ink">{card.category}</span>
+                          <span className="type-body text-ink">{card.category}</span>
                           <span className="type-micro uppercase text-dark">{card.subtitle}</span>
                         </div>
                         <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
@@ -321,7 +321,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                         {card.num}
                       </span>
                       <div className="shrink-0" style={{ minWidth: 100 }}>
-                        <p className="type-section-title text-ink leading-none">{card.category}</p>
+                        <p className="type-body text-ink leading-none">{card.category}</p>
                         <p className="type-micro uppercase text-dark mt-0.5">{card.subtitle}</p>
                       </div>
                       <div className="self-stretch w-px bg-pale shrink-0" />
@@ -349,7 +349,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                         onClick={() => toggle(`b2-${i}`)}
                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
-                        <span className="type-section-title text-ink">{card.title}</span>
+                        <span className="type-body text-ink">{card.title}</span>
                         <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
                       {open && (
@@ -411,7 +411,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                       className="ticker-card flex items-center gap-3 border border-pale rounded px-4 py-3"
                       style={{ minWidth: 180, maxWidth: 180 }}
                     >
-                      <p className="type-section-title text-ink">{card.title}</p>
+                      <p className="type-body text-ink">{card.title}</p>
                       <span className="type-micro text-pale shrink-0">↗</span>
                     </button>
                   ) : (
