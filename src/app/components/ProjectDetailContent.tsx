@@ -5,9 +5,9 @@ import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DemoHost } from './demos/DemoHost';
 import type { Project } from '../data/projects';
 import lumnPreview from '../../assets/images/Lumn.jpg';
-import todoPreview from '../../assets/images/todo-app.png';
+import todoPreview from '../../assets/images/Synco.jpg';
 import lumnMobile from '../../assets/images/LUMN_mobile.jpg';
-import todoMobile from '../../assets/images/Todo_mobile_2.jpg';
+import todoMobile from '../../assets/images/Synco.jpg';
 
 type ProjectDetailContentProps = {
   project: Project;
