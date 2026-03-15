@@ -83,7 +83,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             ease: [0.19, 1, 0.3, 1],
           }}
         >
-          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration — designed to reduce friction between design intent and built reality.
+          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration. I care about how it looks. I care more about how it works. I care most about who gets left out.
         </motion.p>
       </div>
     </section>
