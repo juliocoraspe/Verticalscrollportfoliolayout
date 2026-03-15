@@ -311,7 +311,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                   {band1Cards.map((card) => (
                     <div
                       key={card.num}
-                      className="flex items-center gap-5 border border-pale rounded px-5 py-3"
+                      className="flex items-center gap-5 border-x border-pale rounded px-5 py-3"
                       style={{ flex: 1, minWidth: 0 }}
                     >
                       <span

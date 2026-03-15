@@ -1,4 +1,4 @@
-import todoBanner from '../../assets/images/todo-banner2.png';
+import todoBanner from '../../assets/images/Synco.jpg';
 import asmrBanner from '../../assets/images/lumn_final.png';
 
 type EmbedConfig = {
@@ -53,7 +53,7 @@ export type Project = {
 export const PROJECTS: Project[] = [
   {
     id: 'todo-app',
-    title: 'To-Do app: Calendar Native Task system',
+    title: 'Synco: Calendar Native To-Do app',
     intent:
       'Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping.',
     role: 'UX Research, UI Design',
