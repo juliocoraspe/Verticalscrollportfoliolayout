@@ -1,5 +1,5 @@
 export const RESUME_URL =
-  'https://drive.google.com/file/d/10QytRXJKqyJXsBabMRNDWTXsbJS_g-0A/view?usp=drivesdk';
+  'https://drive.google.com/file/d/1tbYT5hhQtpNd0FSsm05e5I-Y3Yx_VnVy/view?usp=drivesdk';
 
 export const ABOUT_ME_PARAGRAPHS = [
   'I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of creative practice and technology, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.',

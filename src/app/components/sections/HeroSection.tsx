@@ -8,8 +8,8 @@ type HeroSectionProps = {
 export function HeroSection({ isMobile }: HeroSectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const heroLines = [
-    'I design interfaces where behavior and systems matter.',
-    'Grounded in research, prototyping, and sometimes, implementation.',
+    'I design with the precision of someone who builds.',
+    'because I know where every decision lands.',
   ];
   const heroText = heroLines.join(' ');
   const heroContainerVariants = {
@@ -35,9 +35,9 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   };
 
   return (
-    <section className="min-h-[100svh] flex items-center px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16">
-      <div className="w-full hero-breakout mx-auto space-y-8 min-w-0">
-        <p className="type-subhead text-dark uppercase">Julio Coraspe • UX/UI Designer</p>
+    <section className="min-h-[100svh] flex items-center px-4 pt-20 pb-4 sm:px-6 sm:pt-24 sm:pb-6">
+      <div className="w-full hero-breakout mx-auto space-y-14 min-w-0">
+        <p className="type-subhead text-dark uppercase">Julio Coraspe - UX/UI Designer</p>
 
         <motion.h1
           className="type-display-xl text-ink break-words hero-title min-w-0"
@@ -70,7 +70,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
         </motion.h1>
 
         <motion.p
-          className="type-subhead text-dark hero-subtitle min-w-0"
+          className="type-pull-quote text-dark hero-subtitle min-w-0"
           initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
           animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
           transition={{
@@ -79,8 +79,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             ease: [0.19, 1, 0.3, 1],
           }}
         >
-          Design-led, obsessed with translating research insights into design decisions.
-          Occasionally following ideas into reality when questions remain.
+          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration — designed to reduce friction between design intent and built reality.
         </motion.p>
       </div>
     </section>

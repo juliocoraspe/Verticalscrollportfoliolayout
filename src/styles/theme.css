@@ -312,6 +312,7 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
     width: 100%;
+    overflow-x: hidden;
   }
 
   /**
@@ -635,6 +636,105 @@
   @media (prefers-reduced-motion: reduce) {
     .case-study-chevron {
       transition: none;
+    }
+  }
+
+  /* ── Band 1 sequential number animation ───────────────────────── */
+  /* 5s cycle: 1→2→3 appear in sequence, all hold, all disappear together */
+
+  @keyframes num-appear-1 {
+    0%        { opacity: 0; transform: translateY(5px); }
+    6%        { opacity: 1; transform: translateY(0); }
+    48%       { opacity: 1; transform: translateY(0); }
+    54%, 100% { opacity: 0; transform: translateY(0); }
+  }
+
+  @keyframes num-appear-2 {
+    0%, 14%   { opacity: 0; transform: translateY(5px); }
+    20%       { opacity: 1; transform: translateY(0); }
+    48%       { opacity: 1; transform: translateY(0); }
+    54%, 100% { opacity: 0; transform: translateY(0); }
+  }
+
+  @keyframes num-appear-3 {
+    0%, 28%   { opacity: 0; transform: translateY(5px); }
+    34%       { opacity: 1; transform: translateY(0); }
+    48%       { opacity: 1; transform: translateY(0); }
+    54%, 100% { opacity: 0; transform: translateY(0); }
+  }
+
+  .num-appear-1 { animation: num-appear-1 4s ease-in-out infinite; }
+  .num-appear-2 { animation: num-appear-2 4s ease-in-out infinite; }
+  .num-appear-3 { animation: num-appear-3 4s ease-in-out infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .num-appear-1, .num-appear-2, .num-appear-3 { animation: none; opacity: 1; }
+  }
+
+  /* ── Ticker bands ─────────────────────────────────────────────── */
+
+  .ticker-overflow {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .ticker-track {
+    display: flex;
+    gap: 0;                    /* gap moved to margin-right on each card/arrow   */
+    width: max-content;        /* so -50% lands exactly on the cloned set border */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);  /* force GPU layer, prevent paint flicker          */
+  }
+
+  /* Every scrolling item (card or arrow) carries its own trailing gap  */
+  .ticker-card {
+    margin-right: 16px;
+  }
+
+  .ticker-arrow {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 16px;
+    user-select: none;
+  }
+
+  /* RIGHT → LEFT: 0 → -50% */
+  @keyframes ticker-left {
+    from { transform: translateZ(0) translateX(0); }
+    to   { transform: translateZ(0) translateX(-50%); }
+  }
+
+  /* LEFT → RIGHT: -50% → 0 */
+  @keyframes ticker-right {
+    from { transform: translateZ(0) translateX(-50%); }
+    to   { transform: translateZ(0) translateX(0); }
+  }
+
+  /* Band 1 & 3 now scroll RIGHT→LEFT */
+  .ticker-left {
+    animation: ticker-left 36s linear infinite;
+  }
+
+  /* Band 2 now scrolls LEFT→RIGHT */
+  .ticker-right {
+    animation: ticker-right 36s linear infinite;
+  }
+
+  .ticker-wide {
+    animation-duration: 52s;
+  }
+
+  /* Pause on hover — CSS only, resumes from exact position */
+  .ticker-band:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticker-track {
+      animation: none;
     }
   }
 }
