@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import { WireframeMesh } from '../WireframeMesh';
 
 type HeroSectionProps = {
   isMobile: boolean;
@@ -35,8 +36,9 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   };
 
   return (
-    <section className="min-h-[100svh] flex items-center px-4 pt-20 pb-4 sm:px-6 sm:pt-24 sm:pb-6">
-      <div className="w-full hero-breakout mx-auto space-y-14 min-w-0">
+    <section className="relative min-h-[100svh] flex items-center px-4 pt-20 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+      {!isMobile && <WireframeMesh isMobile={false} />}
+      <div className="relative w-full hero-breakout mx-auto space-y-14 min-w-0" style={{ zIndex: 1 }}>
         <p className="type-subhead text-dark uppercase">Julio Coraspe - UX/UI Designer</p>
 
         <motion.h1
@@ -68,6 +70,8 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
                 );
               })}
         </motion.h1>
+
+        {isMobile && <WireframeMesh isMobile={true} />}
 
         <motion.p
           className="type-pull-quote text-dark hero-subtitle min-w-0"

@@ -243,28 +243,34 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
     <section id="about" className="practice-section pt-8 pb-6 sm:pt-10 sm:pb-8 px-6 sm:px-8 bg-pure">
       <div className="max-w-6xl mx-auto">
 
-        {/* Navigation index */}
-        <div className="hero-index w-full min-w-0 border-y border-pale divide-y divide-pale">
-          <a href="#case-studies" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-            <span className="hero-index-label">Case Studies</span>
-            <span className="type-micro text-dark hero-index-count">01</span>
-          </a>
-          <a href="#about-me" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-            <span className="hero-index-label">About Me</span>
-            <span className="type-micro text-dark hero-index-count">02</span>
-          </a>
-          <a href="#contact" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-            <span className="hero-index-label">Contact</span>
-            <span className="type-micro text-dark hero-index-count">03</span>
-          </a>
-          <button
-            type="button"
-            onClick={enterMotionGarden}
-            className="hero-index-item type-micro uppercase text-accent py-4 w-full text-left"
-          >
-            <span className="hero-index-label">Motion Garden</span>
-            <span className="type-micro text-dark hero-index-count">04</span>
-          </button>
+        {/* Navigation index — full-bleed background */}
+        <div style={{ ...fullBleedStyle, backgroundColor: '#fcfbfa' }}>
+          <div className="px-6 sm:px-8">
+            <div className="max-w-6xl mx-auto">
+              <div className="hero-index w-full min-w-0 border-y border-pale divide-y divide-pale">
+                <a href="#case-studies" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
+                  <span className="hero-index-label">Case Studies</span>
+                  <span className="type-micro text-dark hero-index-count">01</span>
+                </a>
+                <a href="#about-me" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
+                  <span className="hero-index-label">About Me</span>
+                  <span className="type-micro text-dark hero-index-count">02</span>
+                </a>
+                <a href="#contact" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
+                  <span className="hero-index-label">Contact</span>
+                  <span className="type-micro text-dark hero-index-count">03</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={enterMotionGarden}
+                  className="hero-index-item type-micro uppercase text-accent py-4 w-full text-left"
+                >
+                  <span className="hero-index-label">Motion Garden</span>
+                  <span className="type-micro text-dark hero-index-count">04</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Section title */}
