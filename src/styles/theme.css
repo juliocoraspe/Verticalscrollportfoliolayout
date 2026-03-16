@@ -297,6 +297,14 @@
   --text-sm: 0.875rem;
 }
 
+/* Fixed navbar offset for anchor links */
+#design-cycle,
+#case-studies,
+#about-me,
+#contact {
+  scroll-margin-top: 44px;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
