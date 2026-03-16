@@ -24,13 +24,13 @@ function ridge(x: number, z: number): number {
     sinNoise(x, z, 0.12, 4) +
     sinNoise(x * 0.7 + 5, z * 0.8 + 3, 0.18, 2);
   const spiky =
-    Math.pow(Math.max(0, 1 - r / 38), 2.2) * 10 * Math.abs(sinNoise(x, z, 0.15, 1));
+    Math.pow(Math.max(0, 1 - r / 38), 2.2) * 2 * Math.abs(sinNoise(x, z, 0.15, 1));
   const d1 = Math.sqrt((x + 4) * (x + 4) + z * z);
   const d2 = Math.sqrt((x - 6) * (x - 6) + (z - 3) * (z - 3));
   const d3 = Math.sqrt((x + 14) * (x + 14) + (z + 5) * (z + 5));
   const d4 = Math.sqrt((x - 18) * (x - 18) + (z - 8) * (z - 8));
-  const peak1 = Math.max(0, 38 - Math.pow(d1, 1.12) * 4.2);
-  const peak2 = Math.max(0, 30 - Math.pow(d2, 1.15) * 5.0);
+  const peak1 = Math.max(0, 38 - Math.pow(d1, 0.78) * 4.2);
+  const peak2 = Math.max(0, 30 - Math.pow(d2, 0.78) * 5.0);
   const peak3 = Math.max(0, 22 - d3 * 2.4);
   const peak4 = Math.max(0, 18 - d4 * 2.6);
 
@@ -39,11 +39,11 @@ function ridge(x: number, z: number): number {
   const dc = Math.sqrt((x + 5)  * (x + 5)  + (z + 8) * (z + 8));
   const dd = Math.sqrt((x - 3)  * (x - 3)  + (z - 7) * (z - 7));
   const de = Math.sqrt((x + 13) * (x + 13) + (z + 1) * (z + 1));
-  const peaka = Math.max(0, 10 - Math.pow(da, 1.12) * 3.8);
-  const peakb = Math.max(0,  9 - Math.pow(db, 1.12) * 4.0);
-  const peakc = Math.max(0,  8 - Math.pow(dc, 1.12) * 4.2);
-  const peakd = Math.max(0,  8 - Math.pow(dd, 1.12) * 4.5);
-  const peake = Math.max(0,  7 - Math.pow(de, 1.10) * 3.5);
+  const peaka = Math.max(0, 10 - Math.pow(da, 0.78) * 3.8);
+  const peakb = Math.max(0,  9 - Math.pow(db, 0.78) * 4.0);
+  const peakc = Math.max(0,  8 - Math.pow(dc, 0.78) * 4.2);
+  const peakd = Math.max(0,  8 - Math.pow(dd, 0.78) * 4.5);
+  const peake = Math.max(0,  7 - Math.pow(de, 0.76) * 3.5);
 
   return baseHeight + n + spiky + peak1 + peak2 + peak3 + peak4
        + peaka + peakb + peakc + peakd + peake;
@@ -224,7 +224,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
     if (!placeholder || !wrapper) return;
 
     const id = requestAnimationFrame(() => {
-      const y = placeholder.getBoundingClientRect().top + window.scrollY;
+      const y = placeholder.getBoundingClientRect().top + window.scrollY + window.innerHeight * 0.1;
       mobileAnchoredYRef.current = y;
       wrapper.style.top = `${y}px`;
       wrapper.style.opacity = '1';
@@ -246,7 +246,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         const dcEl = document.getElementById('design-cycle');
         if (!dcEl) return;
 
-        const scrollEnd = dcEl.offsetTop + dcEl.offsetHeight * 0.30 - window.innerHeight / 2;
+        const scrollEnd = dcEl.offsetTop + dcEl.offsetHeight * 0.30 - window.innerHeight * 1 + window.innerHeight * 0.7;
         if (scrollEnd <= 0) return;
 
         const progress = Math.max(0, Math.min(1, scrollY / scrollEnd));
