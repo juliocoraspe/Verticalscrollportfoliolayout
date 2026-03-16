@@ -255,7 +255,6 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         if (progress === 0) {
           wrapper.style.top = `${mobileAnchoredYRef.current}px`;
           wrapper.style.opacity = '1';
-          wrapper.style.zIndex = '1';
           wrapper.style.visibility = '';
           scaler.style.transform = 'scale(1)';
           return;
@@ -264,11 +263,11 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         // Ease-out scale: grows fast then slows — max 3×
         const eased = Math.pow(progress, 0.55);
         const scale = 1 + eased * 3;
-        const opacity = 1 - Math.pow(progress, 7.0);
+        const opacity = 1 - Math.pow(progress, 6.0);
 
         wrapper.style.top = `${mobileAnchoredYRef.current}px`;
         wrapper.style.opacity = String(opacity);
-        wrapper.style.zIndex = progress >= 0.5 ? '0' : '1';
+        wrapper.style.zIndex = '1';
         wrapper.style.visibility = progress >= 1 ? 'hidden' : '';
         scaler.style.transform = `scale(${scale})`;
       });
