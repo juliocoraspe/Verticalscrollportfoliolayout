@@ -36,9 +36,9 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-4 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-1 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
       {!isMobile && <WireframeMesh isMobile={false} />}
-      <div className="relative w-full hero-breakout mx-auto space-y-14 min-w-0" style={{ zIndex: 2 }}>
+      <div className="relative w-full hero-breakout mx-auto space-y-6 sm:space-y-14 min-w-0" style={{ zIndex: 2 }}>
         <p className="type-subhead text-dark uppercase">Julio Coraspe - UX/UI Designer</p>
 
         <motion.h1
