@@ -250,7 +250,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
         <div className="space-y-10 sm:space-y-4">
 
           {/* Band 1 — My Design Philosophy */}
-          <div className="ticker-band" style={{ marginBottom: 100 }}>
+          <div className="ticker-band" style={{ marginBottom: isMobile ? 60 : 100 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>
               My Design Philosophy — The Three Lenses of Human-Centered Design by Tim Brown
             </p>
@@ -310,7 +310,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
           </div>
 
           {/* Band 2 — My Design Flow */}
-          <div className="ticker-band" style={{ marginBottom: 100 }}>
+          <div className="ticker-band" style={{ marginBottom: isMobile ? 60 : 100 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>My Design Flow</p>
 
             {isMobile ? (
