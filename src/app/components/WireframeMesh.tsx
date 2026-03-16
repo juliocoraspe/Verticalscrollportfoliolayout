@@ -224,7 +224,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
     if (!placeholder || !wrapper) return;
 
     const id = requestAnimationFrame(() => {
-      const y = placeholder.getBoundingClientRect().top + window.scrollY + window.innerHeight * 0.1;
+      const y = placeholder.getBoundingClientRect().top + window.scrollY + window.innerHeight * 0.1 - 48;
       mobileAnchoredYRef.current = y;
       wrapper.style.top = `${y}px`;
       wrapper.style.opacity = '1';
@@ -422,7 +422,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
   return (
     <div
       ref={outerRef}
-      className="absolute right-0 top-0 bottom-0 pointer-events-none overflow-hidden"
+      className="absolute right-[10%] top-0 bottom-0 pointer-events-none overflow-hidden"
       style={{ width: '90%' }}
     >
       <motion.div
