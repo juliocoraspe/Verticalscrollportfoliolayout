@@ -7,6 +7,7 @@ import { CaseStudiesSection } from './components/sections/CaseStudiesSection';
 import { AboutMeSection } from './components/sections/AboutMeSection';
 import { ContactSection } from './components/sections/ContactSection';
 import { MotionGarden } from './components/MotionGarden';
+import { Navbar } from './components/Navbar';
 import { CASE_STUDY } from './data/caseStudy';
 import { PROJECTS } from './data/projects';
 
@@ -158,7 +159,8 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-pure text-ink">
+    <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 44 }}>
+      <Navbar enterMotionGarden={enterMotionGarden} />
       <HeroSection isMobile={isMobile} />
       <PracticeSection enterMotionGarden={enterMotionGarden} />
       <CaseStudiesSection

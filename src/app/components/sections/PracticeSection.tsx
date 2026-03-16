@@ -240,47 +240,17 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
   }, []);
 
   return (
-    <section id="about" className="practice-section pt-8 pb-6 sm:pt-10 sm:pb-8 px-6 sm:px-8 bg-pure">
+    <section id="design-cycle" className="practice-section pt-8 pb-6 sm:pt-10 sm:pb-8 px-6 sm:px-8 bg-pure">
       <div className="max-w-6xl mx-auto">
 
-        {/* Navigation index — full-bleed background */}
-        <div style={{ ...fullBleedStyle, backgroundColor: '#fcfbfa' }}>
-          <div className="px-6 sm:px-8">
-            <div className="max-w-6xl mx-auto">
-              <div className="hero-index w-full min-w-0 border-y border-pale divide-y divide-pale">
-                <a href="#case-studies" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-                  <span className="hero-index-label">Case Studies</span>
-                  <span className="type-micro text-dark hero-index-count">01</span>
-                </a>
-                <a href="#about-me" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-                  <span className="hero-index-label">About Me</span>
-                  <span className="type-micro text-dark hero-index-count">02</span>
-                </a>
-                <a href="#contact" className="hero-index-item type-micro uppercase text-ink py-4 w-full">
-                  <span className="hero-index-label">Contact</span>
-                  <span className="type-micro text-dark hero-index-count">03</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={enterMotionGarden}
-                  className="hero-index-item type-micro uppercase text-accent py-4 w-full text-left"
-                >
-                  <span className="hero-index-label">Motion Garden</span>
-                  <span className="type-micro text-dark hero-index-count">04</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Section title */}
-        <h2 className="type-display-m text-ink mt-20 mb-5">My Design Cycle</h2>
+        <h2 className="type-display-m text-ink mt-4 sm:mt-20 mb-5">My Design Cycle</h2>
 
         {/* Ticker bands */}
         <div className="space-y-10 sm:space-y-4">
 
           {/* Band 1 — My Design Philosophy */}
-          <div className="ticker-band">
+          <div className="ticker-band" style={{ marginBottom: 100 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>
               My Design Philosophy — The Three Lenses of Human-Centered Design by Tim Brown
             </p>
@@ -340,7 +310,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
           </div>
 
           {/* Band 2 — My Design Flow */}
-          <div className="ticker-band">
+          <div className="ticker-band" style={{ marginBottom: 100 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>My Design Flow</p>
 
             {isMobile ? (

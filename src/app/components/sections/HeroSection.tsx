@@ -36,9 +36,9 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative min-h-[100svh] flex items-center px-4 pt-20 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-4 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
       {!isMobile && <WireframeMesh isMobile={false} />}
-      <div className="relative w-full hero-breakout mx-auto space-y-14 min-w-0" style={{ zIndex: 1 }}>
+      <div className="relative w-full hero-breakout mx-auto space-y-14 min-w-0" style={{ zIndex: 2 }}>
         <p className="type-subhead text-dark uppercase">Julio Coraspe - UX/UI Designer</p>
 
         <motion.h1
@@ -71,8 +71,6 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
               })}
         </motion.h1>
 
-        {isMobile && <WireframeMesh isMobile={true} />}
-
         <motion.p
           className="type-pull-quote text-dark hero-subtitle min-w-0"
           initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
@@ -83,8 +81,10 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             ease: [0.19, 1, 0.3, 1],
           }}
         >
-          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration. I care about how it looks. I care more about how it works. I care most about who gets left out.
+          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration. I care about how it looks. I care more about how it works. I care most about the mountain it takes to solve the right problem.
         </motion.p>
+
+        {isMobile && <WireframeMesh isMobile={true} />}
       </div>
     </section>
   );

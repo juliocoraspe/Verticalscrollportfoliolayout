@@ -1,192 +1,446 @@
 import { useEffect, useRef } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
+import * as THREE from 'three';
 
 interface WireframeMeshProps {
   isMobile: boolean;
 }
 
+// ── Height function — ported directly from reference ─────────────────────────
+
+function sinNoise(x: number, z: number, freq: number, amp: number): number {
+  return (
+    Math.sin(x * freq) * Math.cos(z * freq * 0.8) * amp +
+    Math.sin(x * freq * 2.1 + 1) * Math.cos(z * freq * 1.7 + 2) * amp * 0.5 +
+    Math.sin(x * freq * 3.7 + 3) * Math.cos(z * freq * 2.3 + 1) * amp * 0.25
+  );
+}
+
+function ridge(x: number, z: number): number {
+  const r = Math.sqrt(x * x + z * z);
+  const baseHeight = Math.max(0, 45 - r * 0.6);
+  const n =
+    sinNoise(x, z, 0.06, 8) +
+    sinNoise(x, z, 0.12, 4) +
+    sinNoise(x * 0.7 + 5, z * 0.8 + 3, 0.18, 2);
+  const spiky =
+    Math.pow(Math.max(0, 1 - r / 38), 2.2) * 10 * Math.abs(sinNoise(x, z, 0.15, 1));
+  const d1 = Math.sqrt((x + 4) * (x + 4) + z * z);
+  const d2 = Math.sqrt((x - 6) * (x - 6) + (z - 3) * (z - 3));
+  const d3 = Math.sqrt((x + 14) * (x + 14) + (z + 5) * (z + 5));
+  const d4 = Math.sqrt((x - 18) * (x - 18) + (z - 8) * (z - 8));
+  const peak1 = Math.max(0, 38 - Math.pow(d1, 1.12) * 4.2);
+  const peak2 = Math.max(0, 30 - Math.pow(d2, 1.15) * 5.0);
+  const peak3 = Math.max(0, 22 - d3 * 2.4);
+  const peak4 = Math.max(0, 18 - d4 * 2.6);
+
+  const da = Math.sqrt((x + 9)  * (x + 9)  + (z - 3) * (z - 3));
+  const db = Math.sqrt((x - 1)  * (x - 1)  + (z + 6) * (z + 6));
+  const dc = Math.sqrt((x + 5)  * (x + 5)  + (z + 8) * (z + 8));
+  const dd = Math.sqrt((x - 3)  * (x - 3)  + (z - 7) * (z - 7));
+  const de = Math.sqrt((x + 13) * (x + 13) + (z + 1) * (z + 1));
+  const peaka = Math.max(0, 10 - Math.pow(da, 1.12) * 3.8);
+  const peakb = Math.max(0,  9 - Math.pow(db, 1.12) * 4.0);
+  const peakc = Math.max(0,  8 - Math.pow(dc, 1.12) * 4.2);
+  const peakd = Math.max(0,  8 - Math.pow(dd, 1.12) * 4.5);
+  const peake = Math.max(0,  7 - Math.pow(de, 1.10) * 3.5);
+
+  return baseHeight + n + spiky + peak1 + peak2 + peak3 + peak4
+       + peaka + peakb + peakc + peakd + peake;
+}
+
+// ── Shaders ───────────────────────────────────────────────────────────────────
+
+const vertexShader = /* glsl */ `
+  varying float vY;
+  void main() {
+    vY = position.y;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const fragmentShader = /* glsl */ `
+  varying float vY;
+  uniform float uMaxY;
+  uniform float uMinY;
+  void main() {
+    float t = clamp((vY - uMinY) / (uMaxY - uMinY), 0.0, 1.0);
+    float alpha = pow(t, 1.6);
+    float brightness = mix(0.75, 0.04, t);
+    gl_FragColor = vec4(vec3(brightness), alpha);
+  }
+`;
+
+// ── Component ─────────────────────────────────────────────────────────────────
+
+// Approximate fraction of canvas width where the mountain visually appears.
+// The Three.js mesh is offset right (x=71) so the mountain is not at canvas center.
+const MOUNTAIN_CANVAS_FRACTION = 0.80;
+
 export function WireframeMesh({ isMobile }: WireframeMeshProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  // outerRef: outer wrapper, imperatively controlled for scroll animation
+  const outerRef = useRef<HTMLDivElement>(null);
   const animRef = useRef<number>(0);
+  const scrollRAFRef = useRef<number>(0);
+  const mobileWrapRef = useRef<HTMLDivElement>(null);
+  const mobileScaleRef = useRef<HTMLDivElement>(null);
+  const placeholderRef = useRef<HTMLDivElement>(null);
+  const mobileAnchoredYRef = useRef(0);
+  const mobileScrollRAFRef = useRef(0);
   const shouldReduceMotion = useReducedMotion();
 
+  // ── Three.js setup ─────────────────────────────────────────────────────────
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-    const dpr = window.devicePixelRatio || 1;
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio || 1);
+    renderer.setSize(container.offsetWidth, container.offsetHeight);
+    renderer.setClearColor(0x000000, 0);
+    Object.assign(renderer.domElement.style, {
+      width: '100%', height: '100%', display: 'block',
+    });
+    container.appendChild(renderer.domElement);
 
-    const setSize = () => {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    setSize();
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(
+      45,
+      container.offsetWidth / container.offsetHeight,
+      0.1,
+      1000,
+    );
 
-    const COLS = 34;
-    const ROWS = 22;
-    const STROKE_COLOR = '#1e1e1e';
+    const W = 160, D = 160, segs = 100;
+    const geo = new THREE.PlaneGeometry(W, D, segs, segs);
+    geo.rotateX(-Math.PI / 2);
+    const pos = geo.attributes.position as THREE.BufferAttribute;
+    const count = pos.count;
 
-    let t = 0;
+    let maxY = 0;
+    for (let i = 0; i < count; i++) {
+      const x = pos.getX(i), z = pos.getZ(i);
+      const y = Math.max(0, ridge(x, z));
+      pos.setY(i, y);
+      if (y > maxY) maxY = y;
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
 
-    // Mouse state — plain object so the draw closure always reads current values
-    const mouse = { u: 0.5, v: 0.5, inside: false };
-    let hoverStrength = 0;
+    const mat = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uMaxY: { value: maxY },
+        uMinY: { value: 0.0 },
+      },
+      wireframe: true,
+      transparent: true,
+      depthWrite: false,
+    });
 
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.u = (e.clientX - rect.left) / rect.width;
-      mouse.v = (e.clientY - rect.top) / rect.height;
-      mouse.inside =
-        mouse.u >= 0 && mouse.u <= 1 && mouse.v >= 0 && mouse.v <= 1;
-    };
-    const onMouseLeave = () => { mouse.inside = false; };
+    const mesh = new THREE.Mesh(geo, mat);
+    mesh.scale.setScalar(isMobile ? 0.5 : 0.75);
+    mesh.position.set(isMobile ? 0 : 71, -8, 5);
+    scene.add(mesh);
 
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseleave', onMouseLeave);
-
-    const RX = -0.28;
-    const RY = 0.14;
-
-    const project = (x: number, y: number, z: number, cw: number, ch: number) => {
-      const cosY = Math.cos(RY), sinY = Math.sin(RY);
-      const x1 = x * cosY + z * sinY;
-      const z1 = -x * sinY + z * cosY;
-
-      const cosX = Math.cos(RX), sinX = Math.sin(RX);
-      const y1 = y * cosX - z1 * sinX;
-      const z2 = y * sinX + z1 * cosX;
-
-      const fov = 700;
-      const d = fov / (fov + z2 + 300);
-      return { sx: cw * 0.62 + x1 * d, sy: ch * 0.5 + y1 * d };
-    };
-
-    const surfaceZ = (u: number, v: number, time: number, hover: number) => {
-      // More waves near the left edge
-      const turbulence = 1.0 + 2.2 * (1 - u);
-      const w1 = Math.sin(u * Math.PI * 2.5 + time * 0.7) * 55 * turbulence;
-      const w2 = Math.cos(v * Math.PI * 2 + time * 0.5) * 35 * turbulence;
-      const w3 = Math.sin((u * 2 + v) * Math.PI * 1.5 + time * 0.4) * 22 * turbulence;
-      const twist = Math.sin(v * Math.PI * 0.8 + time * 0.3) * (u - 0.5) * 80;
-
-      // Hover distortion: Gaussian bump + chaotic ripple at cursor position
-      const du = u - mouse.u;
-      const dv = v - mouse.v;
-      const dist2 = du * du + dv * dv;
-      const bump = Math.exp(-dist2 * 60) * 200 * hover;
-      const ripple = Math.exp(-dist2 * 100) *
-        Math.sin(Math.sqrt(dist2) * 28 - time * 6) * 90 * hover;
-
-      return w1 + w2 + w3 + twist + bump + ripple;
-    };
-
-    const draw = () => {
-      const cw = canvas.offsetWidth;
-      const ch = canvas.offsetHeight;
-      ctx.clearRect(0, 0, cw, ch);
-
-      // Smoothly ease hover strength in/out
-      const target = mouse.inside ? 1 : 0;
-      hoverStrength += (target - hoverStrength) * 0.06;
-
-      const spanX = cw * 1.1;
-      const spanYBase = ch * 1.05;
-
-      const pts: { sx: number; sy: number }[][] = [];
-      for (let j = 0; j <= ROWS; j++) {
-        pts[j] = [];
-        for (let i = 0; i <= COLS; i++) {
-          const u = i / COLS;
-          const v = j / ROWS;
-          const x = (u - 0.5) * spanX;
-          const heightScale = 0.18 + 0.82 * u;
-          const y = (v - 0.5) * spanYBase * heightScale;
-          const z = surfaceZ(u, v, t, hoverStrength);
-          pts[j][i] = project(x, y, z, cw, ch);
+    const fg = new THREE.Group();
+    for (let i = 0; i < count; i++) {
+      const y = pos.getY(i);
+      if (y > 0.5 && y < 4) {
+        const x = pos.getX(i), z = pos.getZ(i);
+        const r = Math.sqrt(x * x + z * z);
+        if (r > 30 && Math.random() < 0.038) {
+          const len = (Math.random() * 18 + 5) * (1 - y / 4);
+          const topAlpha = (y / 4) * 0.35;
+          const pts = [
+            new THREE.Vector3(x, y, z),
+            new THREE.Vector3(
+              x + (Math.random() - 0.5) * 6,
+              y - len,
+              z + (Math.random() - 0.5) * 6,
+            ),
+          ];
+          const lg = new THREE.BufferGeometry().setFromPoints(pts);
+          const lm = new THREE.LineBasicMaterial({
+            color: 0x111111,
+            transparent: true,
+            opacity: topAlpha,
+          });
+          fg.add(new THREE.Line(lg, lm));
         }
       }
+    }
+    fg.scale.setScalar(isMobile ? 0.5 : 0.75);
+    fg.position.copy(mesh.position);
+    scene.add(fg);
 
-      ctx.strokeStyle = STROKE_COLOR;
-      ctx.lineWidth = 0.6;
-      ctx.globalAlpha = 0.42;
+    const worldTop  = mesh.position.y + mesh.scale.y * maxY;
+    const worldBase = mesh.position.y;
+    const midY = (worldTop + worldBase) * 0.5;
+    const cameraY = isMobile ? worldBase - 30 : midY;
+    camera.position.set(0, cameraY, 185);
+    camera.lookAt(0, cameraY, 0);
 
-      for (let j = 0; j <= ROWS; j++) {
-        ctx.beginPath();
-        for (let i = 0; i <= COLS; i++) {
-          const { sx, sy } = pts[j][i];
-          i === 0 ? ctx.moveTo(sx, sy) : ctx.lineTo(sx, sy);
-        }
-        ctx.stroke();
-      }
-
-      for (let i = 0; i <= COLS; i++) {
-        ctx.beginPath();
-        for (let j = 0; j <= ROWS; j++) {
-          const { sx, sy } = pts[j][i];
-          j === 0 ? ctx.moveTo(sx, sy) : ctx.lineTo(sx, sy);
-        }
-        ctx.stroke();
-      }
-
-      ctx.globalAlpha = 1;
-
-      if (!shouldReduceMotion) t += 0.007;
-      animRef.current = requestAnimationFrame(draw);
+    const tick = () => {
+      animRef.current = requestAnimationFrame(tick);
+      if (!shouldReduceMotion) mesh.rotation.y += 0.003;
+      renderer.render(scene, camera);
     };
+    tick();
 
-    animRef.current = requestAnimationFrame(draw);
-
-    const ro = new ResizeObserver(setSize);
-    ro.observe(canvas);
+    const ro = new ResizeObserver(() => {
+      const w = container.offsetWidth;
+      const h = container.offsetHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    });
+    ro.observe(container);
 
     return () => {
       cancelAnimationFrame(animRef.current);
       ro.disconnect();
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseleave', onMouseLeave);
+      geo.dispose();
+      mat.dispose();
+      fg.children.forEach(child => {
+        const line = child as THREE.Line;
+        line.geometry.dispose();
+        (line.material as THREE.Material).dispose();
+      });
+      renderer.dispose();
+      if (container.contains(renderer.domElement)) {
+        container.removeChild(renderer.domElement);
+      }
     };
   }, [shouldReduceMotion]);
 
+  // ── Mobile: measure anchor position after layout settles ───────────────────
+  useEffect(() => {
+    if (!isMobile) return;
+    const placeholder = placeholderRef.current;
+    const wrapper = mobileWrapRef.current;
+    if (!placeholder || !wrapper) return;
+
+    const id = requestAnimationFrame(() => {
+      const y = placeholder.getBoundingClientRect().top + window.scrollY;
+      mobileAnchoredYRef.current = y;
+      wrapper.style.top = `${y}px`;
+      wrapper.style.opacity = '1';
+    });
+    return () => cancelAnimationFrame(id);
+  }, [isMobile]);
+
+  // ── Mobile scroll animation: grow + fade in place ──────────────────────────
+  useEffect(() => {
+    if (!isMobile || shouldReduceMotion) return;
+    const wrapper = mobileWrapRef.current;
+    const scaler = mobileScaleRef.current;
+    if (!wrapper || !scaler) return;
+
+    const handleScroll = () => {
+      cancelAnimationFrame(mobileScrollRAFRef.current);
+      mobileScrollRAFRef.current = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const dcEl = document.getElementById('design-cycle');
+        if (!dcEl) return;
+
+        const scrollEnd = dcEl.offsetTop + dcEl.offsetHeight * 0.60 - window.innerHeight / 2;
+        if (scrollEnd <= 0) return;
+
+        const progress = Math.max(0, Math.min(1, scrollY / scrollEnd));
+
+        // Reset on scroll back to top
+        if (progress === 0) {
+          wrapper.style.top = `${mobileAnchoredYRef.current}px`;
+          wrapper.style.opacity = '1';
+          wrapper.style.zIndex = '1';
+          wrapper.style.visibility = '';
+          scaler.style.transform = 'scale(1)';
+          return;
+        }
+
+        // Ease-out scale: grows fast then slows — max 3×
+        const eased = Math.pow(progress, 0.55);
+        const scale = 1 + eased * 3;
+        const opacity = 1 - Math.pow(progress, 3.0);
+
+        wrapper.style.top = `${mobileAnchoredYRef.current}px`;
+        wrapper.style.opacity = String(opacity);
+        wrapper.style.zIndex = progress >= 0.5 ? '0' : '1';
+        wrapper.style.visibility = progress >= 1 ? 'hidden' : '';
+        scaler.style.transform = `scale(${scale})`;
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(mobileScrollRAFRef.current);
+    };
+  }, [isMobile, shouldReduceMotion]);
+
+  // ── Scroll-driven animation (desktop only) ─────────────────────────────────
+  //
+  // The mountain is position:fixed in the viewport — it does NOT scroll with
+  // the page. As progress goes 0→1 the mountain moves horizontally toward
+  // viewport center while growing and fading.
+  //
+  // Key insight: the mountain appears at ~MOUNTAIN_CANVAS_FRACTION of canvas
+  // width (not at canvas center). The tx formula accounts for scale drift so
+  // the mountain's visual position interpolates linearly from start to center:
+  //
+  //   tx_target = vw/2 − mountainStartX − 2 × (MOUNTAIN_CANVAS_FRACTION − 0.5) × W
+  //
+  // At any progress p with scale = 1 + 2p:
+  //   mountainViewportX(p) = (1−p)·mountainStartX + p·(vw/2)  ← perfect linear path
+  useEffect(() => {
+    if (isMobile || shouldReduceMotion) return;
+
+    const outer = outerRef.current;
+    if (!outer) return;
+
+    let isFixed = false;
+    let txTarget = 0;
+
+    const handleScroll = () => {
+      cancelAnimationFrame(scrollRAFRef.current);
+      scrollRAFRef.current = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const dcEl = document.getElementById('design-cycle');
+        if (!dcEl) return;
+
+        // scrollEnd: scroll position when #design-cycle bottom hits viewport center
+        const scrollEnd =
+          dcEl.getBoundingClientRect().top + scrollY + dcEl.offsetHeight * 0.7 - window.innerHeight / 2;
+        if (scrollEnd <= 0) return;
+
+        const progress = Math.max(0, Math.min(1, scrollY / scrollEnd));
+
+        // ── Restore on scroll-back to top ──────────────────────────────────
+        if (progress === 0) {
+          if (isFixed) {
+            isFixed = false;
+            outer.style.cssText = '';
+          }
+          return;
+        }
+
+        // ── Switch to fixed on first scroll, record geometry ────────────────
+        if (!isFixed) {
+          const rect = outer.getBoundingClientRect();
+          isFixed = true;
+
+          const L  = rect.left;
+          const W  = rect.width;
+          const vw = window.innerWidth;
+
+          // Where the mountain visually appears in viewport x at scroll=0
+          const mountainStartX = L + MOUNTAIN_CANVAS_FRACTION * W;
+          // Translation that moves the mountain from mountainStartX to vw/2,
+          // compensating for the lateral drift caused by CSS scale growing.
+          // Derived so that: mountainViewportX(p) = lerp(mountainStartX, vw/2, p)
+          const MOC = MOUNTAIN_CANVAS_FRACTION - 0.5; // 0.30
+          txTarget = vw / 2 - mountainStartX - 2 * MOC * W;
+
+          outer.style.position = 'fixed';
+          outer.style.top     = `${rect.top}px`;
+          outer.style.left    = `${rect.left}px`;
+          outer.style.width   = `${rect.width}px`;
+          outer.style.height  = `${rect.height}px`;
+          outer.style.overflow       = 'visible';
+          outer.style.pointerEvents  = 'none';
+          outer.style.zIndex         = '1';
+        }
+
+        // ── Animate ────────────────────────────────────────────────────────
+        const tx      = txTarget * progress;
+        const scale   = 1 + 2 * progress;
+        const opacity = 1 - Math.pow(progress, 0.25);
+
+        outer.style.transform  = `translate(${tx}px, 0px) scale(${scale})`;
+        outer.style.opacity    = String(opacity);
+        outer.style.visibility = progress >= 1 ? 'hidden' : '';
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(scrollRAFRef.current);
+    };
+  }, [isMobile, shouldReduceMotion]);
+
+  // ── Mobile render — position:fixed, scroll-animated ────────────────────────
+  // A zero-height placeholder marks the natural anchor position; the actual
+  // canvas wrapper is fixed (removed from flow) and positioned imperatively.
   if (isMobile) {
     return (
-      <motion.div
-        className="overflow-hidden"
-        style={{
-          height: 200,
-          marginLeft: 'calc(-50vw + 50%)',
-          width: '100vw',
-          maskImage: 'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
-          maskComposite: 'intersect',
-          WebkitMaskComposite: 'source-in',
-        }}
-        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.7, ease: [0.2, 0.7, 0.2, 1] }}
-      >
-        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
-      </motion.div>
+      <>
+        <div ref={placeholderRef} style={{ height: 0, width: 0 }} />
+        {/* Outer: handles position + opacity. transform is translateX(-50%) only, set in JSX. */}
+        <div
+          ref={mobileWrapRef}
+          style={{
+            position: 'fixed',
+            top: 0,           // overwritten by anchor useEffect
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '100vw',
+            height: 500,
+            zIndex: 1,
+            pointerEvents: 'none',
+            opacity: 0,       // revealed after anchor is measured
+          }}
+        >
+          {/* Inner: handles scale only, origin at mountain peak (~35% from top) */}
+          <div
+            ref={mobileScaleRef}
+            style={{
+              width: '100%',
+              height: '100%',
+              transformOrigin: '50% 35%',
+              overflow: 'hidden',
+              maskImage:
+                'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent 0%, black 100%), linear-gradient(to bottom, black 55%, transparent 100%)',
+              maskComposite: 'intersect',
+              WebkitMaskComposite: 'source-in',
+            }}
+          >
+            <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+          </div>
+        </div>
+      </>
     );
   }
 
+  // ── Desktop render ─────────────────────────────────────────────────────────
+  // Outer div: imperatively controlled for scroll (position, transform, opacity)
+  // Inner motion.div: entry slide-in animation + gradient mask
   return (
-    <motion.div
+    <div
+      ref={outerRef}
       className="absolute right-0 top-0 bottom-0 pointer-events-none overflow-hidden"
-      style={{
-        width: '90%',
-        maskImage: 'linear-gradient(to right, transparent 0%, black 100%)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 100%)',
-      }}
-      initial={shouldReduceMotion ? { opacity: 1 } : { x: '100%' }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 1.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      style={{ width: '90%' }}
     >
-      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
-    </motion.div>
+      <motion.div
+        style={{
+          width: '100%',
+          height: '100%',
+          maskImage:
+            'linear-gradient(to right, transparent 0%, black 15%, black 68%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, transparent 0%, black 15%, black 68%, transparent 100%)',
+        }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { x: '100%' }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
+      </motion.div>
+    </div>
   );
 }
