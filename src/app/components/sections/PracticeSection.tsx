@@ -240,8 +240,8 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
   }, []);
 
   return (
-    <section id="design-cycle" className="practice-section pt-8 pb-6 sm:pt-10 sm:pb-8 px-6 sm:px-8 bg-pure">
-      <div className="max-w-6xl mx-auto">
+    <section id="design-cycle" className="practice-section pt-8 pb-6 sm:pt-10 sm:pb-8 px-6 sm:px-6 bg-pure">
+      <div className="hero-breakout mx-auto">
 
         {/* Section title */}
         <h2 className="type-display-m text-ink mt-4 sm:mt-20 mb-5">My Design Cycle</h2>

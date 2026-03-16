@@ -9,10 +9,10 @@ export function ContactSection({ enterMotionGarden }: ContactSectionProps) {
   return (
     <section
       id="contact"
-      className="py-24 px-6 sm:py-32 sm:px-8 border-t border-pale"
+      className="py-24 px-6 sm:py-32 sm:px-6 border-t border-pale"
       style={{ backgroundColor: '#fcfbfa' }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div className="hero-breakout mx-auto">
         <div className="space-y-6">
           <ScrollSection entryDirection="bottom" motionRole="contact-title" disableAnimation>
             <h2 className="type-display-m text-ink">Contact</h2>
@@ -62,6 +62,14 @@ export function ContactSection({ enterMotionGarden }: ContactSectionProps) {
               <button type="button" onClick={enterMotionGarden} className="type-meta uppercase text-accent cursor-pointer">
                 Motion Garden
               </button>
+              <a
+                href="https://juliocoraspe.github.io/photography-portfolio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="type-meta uppercase text-ink"
+              >
+                Creative Portfolio
+              </a>
             </div>
           </div>
         </div>
