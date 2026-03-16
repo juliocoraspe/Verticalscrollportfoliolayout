@@ -246,7 +246,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         const dcEl = document.getElementById('design-cycle');
         if (!dcEl) return;
 
-        const scrollEnd = dcEl.offsetTop + dcEl.offsetHeight * 0.60 - window.innerHeight / 2;
+        const scrollEnd = dcEl.offsetTop + dcEl.offsetHeight * 0.30 - window.innerHeight / 2;
         if (scrollEnd <= 0) return;
 
         const progress = Math.max(0, Math.min(1, scrollY / scrollEnd));
