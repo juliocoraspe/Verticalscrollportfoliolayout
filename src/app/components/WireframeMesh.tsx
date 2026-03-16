@@ -264,7 +264,7 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         // Ease-out scale: grows fast then slows — max 3×
         const eased = Math.pow(progress, 0.55);
         const scale = 1 + eased * 3;
-        const opacity = 1 - Math.pow(progress, 3.8);
+        const opacity = 1 - Math.pow(progress, 5.0);
 
         wrapper.style.top = `${mobileAnchoredYRef.current}px`;
         wrapper.style.opacity = String(opacity);
