@@ -5,9 +5,9 @@ import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DemoHost } from './demos/DemoHost';
 import type { Project } from '../data/projects';
 import lumnPreview from '../../assets/images/Lumn.jpg';
-import todoPreview from '../../assets/images/synco1.jpg';
+import todoPreview from '../../assets/images/todo-app.png';
 import lumnMobile from '../../assets/images/LUMN_mobile.jpg';
-import todoMobile from '../../assets/images/synco1.jpg';
+import todoMobile from '../../assets/images/synco-mobile.jpg';
 
 type ProjectDetailContentProps = {
   project: Project;
@@ -627,8 +627,8 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                           <img
                             src={todoMobile}
                             alt="ToDo outcome static preview"
-                            className="h-full w-full object-cover"
-                            style={{ objectPosition: 'left center', clipPath: 'inset(0 0 48px 0)' }}
+                            className="h-full w-full object-contain"
+                            style={{ objectPosition: 'center top', transform: 'scale(1.08)', transformOrigin: 'center top' }}
                           />
                           <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
                             Open Figma slides
