@@ -263,7 +263,8 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
         // Ease-out scale: grows fast then slows — max 3×
         const eased = Math.pow(progress, 0.55);
         const scale = 1 + eased * 3;
-        const opacity = 1 - Math.pow(progress, 6.0);
+        const lastFade = progress > 0.58 ? 1 - Math.pow((progress - 0.58) / 0.42, 1.5) : 1;
+        const opacity = (1 - Math.pow(progress, 6.0)) * lastFade;
 
         wrapper.style.top = `${mobileAnchoredYRef.current}px`;
         wrapper.style.opacity = String(opacity);
@@ -355,10 +356,11 @@ export function WireframeMesh({ isMobile }: WireframeMeshProps) {
 
         // ── Animate ────────────────────────────────────────────────────────
         const tx      = txTarget * progress;
+        const ty      = window.innerHeight * 0.18 * progress;
         const scale   = 1 + 2 * progress;
         const opacity = 1 - Math.pow(progress, 0.25);
 
-        outer.style.transform  = `translate(${tx}px, 0px) scale(${scale})`;
+        outer.style.transform  = `translate(${tx}px, ${ty}px) scale(${scale})`;
         outer.style.opacity    = String(opacity);
         outer.style.visibility = progress >= 1 ? 'hidden' : '';
       });
