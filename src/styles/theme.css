@@ -754,7 +754,10 @@
   }
 
   /* Pause on hover — CSS only, resumes from exact position */
-  .ticker-band:hover .ticker-track {
+  .ticker-band:hover .ticker-track,
+  .ticker-band:hover .num-appear-1,
+  .ticker-band:hover .num-appear-2,
+  .ticker-band:hover .num-appear-3 {
     animation-play-state: paused;
   }
 
