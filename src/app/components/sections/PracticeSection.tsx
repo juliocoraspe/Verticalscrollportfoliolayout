@@ -379,7 +379,6 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               >
                 {[...band3Cards, ...band3Cards].map((card, i) =>
                   isMobile ? (
-                    /* Mobile: title-only card, tap opens modal */
                     <button
                       key={i}
                       type="button"
