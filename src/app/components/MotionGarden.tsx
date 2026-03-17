@@ -515,7 +515,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
             <section className="relative left-1/2 right-1/2 w-screen -mx-[50vw] border-y border-pale bg-base px-6 sm:px-6">
               <div className="hero-breakout mx-auto py-12 sm:py-14">
                 <div className="space-y-8">
-                  <h2 className="type-display-m text-dark">Why Motion Matters</h2>
+                  <h2 className="type-section-title text-dark" style={{ fontWeight: 400 }}>Why Motion Matters</h2>
                   <div className="grid gap-8 md:grid-cols-3">
                     {[{
                       title: 'Provide feedback.',
