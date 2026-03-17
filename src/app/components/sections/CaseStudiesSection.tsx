@@ -92,7 +92,7 @@ export function CaseStudiesSection({
                   <img
                     src={caseStudy.heroImage}
                     alt={caseStudy.title}
-                    className="w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top"
+                    className="w-full h-[175px] object-cover object-top md:h-[420px]"
                   />
                 </div>
                 <div className="case-study-subtitle-row">
