@@ -69,16 +69,13 @@ export function CaseStudiesSection({
   isMobile,
 }: CaseStudiesSectionProps) {
   return (
-    <section id="case-studies" className="w-full border-y border-pale" style={{ backgroundColor: '#fcfbfa' }}>
-      <div className="max-w-6xl mx-auto px-6 py-24 sm:px-8 sm:py-32 relative z-20">
+    <section id="case-studies" className="w-full border-y border-pale px-6 sm:px-6" style={{ backgroundColor: '#fcfbfa' }}>
+      <div className="hero-breakout mx-auto pt-24 pb-0 sm:pt-32">
         <ScrollSection entryDirection="bottom" motionRole="case-intro">
-          <div className="mb-16">
-            <div className="flex flex-wrap items-center gap-3 type-meta text-dark">
-              <span className="type-meta uppercase">Case Studies</span>
-            </div>
-          </div>
+          <h2 className="type-display-m text-ink">Case Studies</h2>
         </ScrollSection>
-
+      </div>
+      <div className="max-w-6xl mx-auto pt-16 pb-24 sm:pt-20 sm:pb-32 relative z-20">
         <div className="space-y-20">
           <article id="case-study-stillen" ref={caseStudyStillenRef} className="case-study-card">
             <button
@@ -90,7 +87,7 @@ export function CaseStudiesSection({
               onClick={handleStillenToggle}
             >
               <div className="space-y-6">
-                <h3 className="type-display-l text-ink case-study-title case-study-title-wrap">{caseStudy.title}</h3>
+                <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{caseStudy.title}</h3>
                 <div>
                   <img
                     src={caseStudy.heroImage}
@@ -166,7 +163,7 @@ export function CaseStudiesSection({
               onClick={handleMiloToggle}
             >
               <div className="space-y-6">
-                <h3 className="type-display-l text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
+                <h3 className="type-display-s text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
                 <div>
                   <img
                     src={AI_COMPANION_BANNER.src}
@@ -233,7 +230,7 @@ export function CaseStudiesSection({
               onClick={handleTodoToggle}
             >
               <div className="space-y-6">
-                <h3 className="type-display-l text-ink case-study-title case-study-title-wrap">{todoProject.title}</h3>
+                <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{todoProject.title}</h3>
                 <div className="overflow-hidden">
                   <img
                     src={todoProject.imageUrl}
@@ -300,7 +297,7 @@ export function CaseStudiesSection({
               onClick={handleAsmrToggle}
             >
               <div className="space-y-6">
-                <h3 className="type-display-l text-ink case-study-title case-study-title-wrap">{asmrProject.title}</h3>
+                <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{asmrProject.title}</h3>
                 <div>
                   <img
                     src={asmrProject.imageUrl}

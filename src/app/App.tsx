@@ -155,7 +155,13 @@ export default function App() {
   }, []);
 
   if (view === 'motion-garden') {
-    return <MotionGarden onExit={exitMotionGarden} />;
+    return (
+      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 44 }}>
+        <Navbar enterMotionGarden={enterMotionGarden} />
+        <MotionGarden onExit={exitMotionGarden} />
+        <ContactSection enterMotionGarden={enterMotionGarden} />
+      </div>
+    );
   }
 
   return (

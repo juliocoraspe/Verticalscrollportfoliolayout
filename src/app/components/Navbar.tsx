@@ -101,13 +101,15 @@ export function Navbar({ enterMotionGarden }: NavbarProps) {
               className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
               style={{ flex: 1, gap: 3, textDecoration: 'none', padding: '0 4px' }}
             >
-              <Icon />
+              <span className="sm:hidden"><Icon /></span>
               <span className="sm:hidden text-ink" style={mobileLabel}>{label}</span>
               <span
-                className="hidden sm:flex items-center gap-1 type-micro uppercase"
+                className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
                 style={{ letterSpacing: '0.06em' }}
               >
                 <span className="text-dark">{num}</span>
+                <span className="text-dark">–</span>
+                <Icon />
                 <span className="text-ink">{label}</span>
               </span>
             </a>
@@ -122,13 +124,15 @@ export function Navbar({ enterMotionGarden }: NavbarProps) {
           className="text-accent flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
           style={{ flex: 1, gap: 3, background: 'none', border: 'none', cursor: 'pointer', padding: '0 4px' }}
         >
-          <IconPlay />
+          <span className="sm:hidden"><IconPlay /></span>
           <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>MOTION GARDEN</span>
           <span
-            className="hidden sm:flex items-center gap-1 type-micro uppercase"
+            className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
             style={{ letterSpacing: '0.06em' }}
           >
             <span className="text-dark">05</span>
+            <span className="text-dark">–</span>
+            <IconPlay />
             <span>MOTION GARDEN</span>
           </span>
         </button>

@@ -49,7 +49,7 @@ function MotionCard({ title, description, ctaLabel, onCta, children }: MotionCar
       <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
         <div className="space-y-4">
           <div className="space-y-5">
-            <h3 className="type-display-m text-ink">{title}</h3>
+            <h3 className="type-display-s text-ink">{title}</h3>
             <div className="h-px bg-pale" />
             <p className="type-body text-dark">{description}</p>
           </div>
@@ -498,32 +498,24 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
 
   return (
     <div className="min-h-screen bg-pure text-ink">
-      <div className="max-w-6xl mx-auto px-6 pt-16 pb-0 sm:px-8 sm:pt-24 sm:pb-0">
-        <a
-          href="#"
-          onClick={(event) => {
-            event.preventDefault();
-            onExit();
-          }}
-          className="type-meta text-accent uppercase"
-        >
-          ← Return to Portfolio
-        </a>
-
-        <div className="mt-16 space-y-16 sm:space-y-20">
-          <header className="border-t border-pale pt-10 space-y-6">
-            <h1 className="type-display-l text-ink">Motion Garden</h1>
-            <p className="type-subhead text-dark max-w-3xl">
+      <div className="px-6 sm:px-6 pt-10 sm:pt-12 pb-0">
+        <div className="hero-breakout mx-auto">
+          <header className="space-y-6">
+            <h1 className="type-display-m text-ink">Motion Garden</h1>
+            <p className="type-subhead text-dark">
               Motion is part of interface language. It explains change, confirms intent, and helps users stay oriented
               without adding visual noise.
             </p>
           </header>
-
+        </div>
+      </div>
+      <div className="max-w-6xl mx-auto px-6 pb-0 sm:px-8 sm:pb-0">
+        <div className="space-y-16 sm:space-y-20 mt-16 sm:mt-20">
           <ScrollSection entryDirection="bottom" motionRole="garden-grid">
-            <section className="relative left-1/2 right-1/2 w-screen -mx-[50vw] border-y border-pale bg-base">
-              <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12 sm:py-14">
+            <section className="relative left-1/2 right-1/2 w-screen -mx-[50vw] border-y border-pale bg-base px-6 sm:px-6">
+              <div className="hero-breakout mx-auto py-12 sm:py-14">
                 <div className="space-y-8">
-                  <h2 className="type-display-m text-ink">Why Motion Matters</h2>
+                  <h2 className="type-display-m text-dark">Why Motion Matters</h2>
                   <div className="grid gap-8 md:grid-cols-3">
                     {[{
                       title: 'Provide feedback.',

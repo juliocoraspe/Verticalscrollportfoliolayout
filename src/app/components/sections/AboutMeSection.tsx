@@ -9,12 +9,14 @@ export function AboutMeSection() {
         <ScrollSection entryDirection="bottom" motionRole="contact-title">
           <h2 className="type-display-m text-ink">About Me</h2>
         </ScrollSection>
-        <div className="border border-pale bg-pure">
-          <img
-            src={julsPortrait}
-            alt="Julio Coraspe portrait"
-            className="w-full aspect-[239/100] object-cover about-portrait-image"
-          />
+        <div className="max-w-6xl mx-auto w-full">
+          <div className="border border-pale bg-pure">
+            <img
+              src={julsPortrait}
+              alt="Julio Coraspe portrait"
+              className="w-full h-auto object-cover md:h-[420px] md:object-top about-portrait-image"
+            />
+          </div>
         </div>
 
         <div className="space-y-8 text-left">

@@ -111,6 +111,11 @@
   --type-display-m-tracking: -0.01em;
   --type-display-m-plus-size: 48px;
 
+  --type-display-s-size: 32px;
+  --type-display-s-weight: 500;
+  --type-display-s-line: 1.2;
+  --type-display-s-tracking: -0.005em;
+
   --type-pull-quote-size: 26px;
   --type-pull-quote-weight: 400;
   --type-pull-quote-line: 1.25;
@@ -197,6 +202,9 @@
     --type-display-m-tracking: 0em;
     --type-display-m-plus-size: 28px;
 
+    --type-display-s-size: 18px;
+    --type-display-s-line: 1.22;
+
     --type-pull-quote-size: 15px;
     --type-pull-quote-weight: 400;
     --type-pull-quote-line: 1.28;
@@ -240,6 +248,9 @@
     --type-display-m-size: 20px;
     --type-display-m-line: 1.18;
     --type-display-m-plus-size: 26px;
+
+    --type-display-s-size: 17px;
+    --type-display-s-line: 1.22;
   }
 }
 
@@ -397,6 +408,14 @@
 
   .type-display-m-plus {
     font-size: var(--type-display-m-plus-size);
+  }
+
+  .type-display-s {
+    font-family: var(--font-serif);
+    font-size: var(--type-display-s-size);
+    font-weight: var(--type-display-s-weight);
+    line-height: var(--type-display-s-line);
+    letter-spacing: var(--type-display-s-tracking);
   }
 
   .type-pull-quote {
