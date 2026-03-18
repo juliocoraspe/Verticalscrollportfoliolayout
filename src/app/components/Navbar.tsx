@@ -81,7 +81,7 @@ export function Navbar({ enterMotionGarden }: NavbarProps) {
         zIndex: 1000,
         backgroundColor: '#fcfbfa',
         borderBottom: '1px solid var(--color-pale)',
-        height: 44,
+        height: 48,
       }}
     >
       <div

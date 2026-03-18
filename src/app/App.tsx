@@ -156,7 +156,7 @@ export default function App() {
 
   if (view === 'motion-garden') {
     return (
-      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 44 }}>
+      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
         <Navbar enterMotionGarden={enterMotionGarden} />
         <MotionGarden onExit={exitMotionGarden} />
         <ContactSection enterMotionGarden={enterMotionGarden} />
@@ -165,7 +165,7 @@ export default function App() {
   }
 
   return (
-    <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 44 }}>
+    <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
       <Navbar enterMotionGarden={enterMotionGarden} />
       <HeroSection isMobile={isMobile} />
       <PracticeSection enterMotionGarden={enterMotionGarden} />

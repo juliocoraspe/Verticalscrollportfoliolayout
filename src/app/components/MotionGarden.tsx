@@ -47,7 +47,7 @@ function MotionCard({ title, description, ctaLabel, onCta, children }: MotionCar
     <article className="border border-pale bg-pure p-8 sm:p-10 h-auto sm:h-[486px] lg:h-[504px] overflow-visible sm:overflow-hidden">
       <div className="grid items-stretch gap-10 lg:grid-cols-[minmax(0,360px)_1fr] lg:gap-14">
         <div className="space-y-4">
-          <div className="space-y-5">
+          <div className="space-y-6">
             <h3 className="type-display-s text-ink">{title}</h3>
             <div className="h-px bg-pale" />
             <p className="type-body text-dark">{description}</p>
@@ -66,7 +66,7 @@ function MotionCard({ title, description, ctaLabel, onCta, children }: MotionCar
             </span>
           </button>
         </div>
-        <div className="border border-pale bg-base p-5 sm:p-6 h-full min-h-[260px]">{children}</div>
+        <div className="border border-pale bg-base p-6 h-full min-h-[260px]">{children}</div>
       </div>
     </article>
   );
@@ -469,7 +469,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                 key={item}
                 type="button"
                 onClick={openDetailView}
-                className="flex w-full items-center justify-between border border-pale bg-base px-3 py-2 motion-garden-hover-card"
+                className="flex w-full items-center justify-between border border-pale bg-base px-4 py-2 motion-garden-hover-card"
               >
                 <span className="type-meta uppercase text-dark">{item}</span>
                 <span className="type-meta text-dark">x1</span>
@@ -484,7 +484,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
         {navigationState === 'Settings' && (
           <div className="space-y-2">
             {['Notifications', 'Shipping', 'Payment'].map((label) => (
-              <div key={label} className="flex items-center justify-between border border-pale bg-base px-3 py-2">
+              <div key={label} className="flex items-center justify-between border border-pale bg-base px-4 py-2">
                 <span className="type-meta uppercase text-dark">{label}</span>
                 <span className="h-2.5 w-2.5 border border-pale bg-pure" />
               </div>
@@ -497,7 +497,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
 
   return (
     <div className="min-h-screen bg-pure text-ink">
-      <div className="px-6 sm:px-6 pt-10 sm:pt-12 pb-0">
+      <div className="px-6 sm:px-6 pt-8 sm:pt-32 pb-0">
         <div className="hero-breakout mx-auto">
           <header className="space-y-6">
             <h1 className="type-display-m text-ink">Motion Garden</h1>
@@ -575,7 +575,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                       </button>
                     ))}
                   </div>
-                  <div className="p-4 sm:p-5">
+                  <div className="p-4 sm:p-6">
                     <div className="flex items-center justify-between pb-2">
                       <p className="type-subhead text-dark">{navigationState}</p>
                       <span className="h-2.5 w-2.5 border border-pale bg-pure" />
@@ -611,7 +611,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                           ease: [0.22, 1, 0.36, 1],
                         }}
                       >
-                        <div className="h-full w-full p-5 sm:p-6 flex flex-col">
+                        <div className="h-full w-full p-6 flex flex-col">
                           <div className="flex items-center justify-between">
                             <p className="type-subhead text-ink">Item</p>
                             <button
@@ -623,13 +623,13 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                               ×
                             </button>
                           </div>
-                          <div className="mt-5 border border-pale bg-base h-32" />
-                          <div className="mt-5 space-y-3">
+                          <div className="mt-6 border border-pale bg-base h-32" />
+                          <div className="mt-6 space-y-4">
                             <div className="h-2 w-4/5 bg-pale" />
                             <div className="h-2 w-3/5 bg-pale" />
                             <div className="h-2 w-2/3 bg-pale" />
                           </div>
-                          <div className="mt-5 border-t border-pale pt-4 space-y-3">
+                          <div className="mt-6 border-t border-pale pt-4 space-y-4">
                             <div className="h-2 w-3/5 bg-pale" />
                             <div className="h-2 w-1/2 bg-pale" />
                           </div>
@@ -649,7 +649,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                 onCta={nudgeDepthScroll}
               >
                 <div className="border border-pale bg-pure h-full">
-                  <div className="px-4 py-3 border-b border-pale flex items-center justify-between">
+                  <div className="px-4 py-4 border-b border-pale flex items-center justify-between">
                     <p className="type-meta uppercase text-dark">Nested Scroll</p>
                     <div className="h-1.5 w-20 bg-pale overflow-hidden">
                       <div
@@ -718,8 +718,8 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                 ctaLabel="Swipe or Drag to Reveal Action"
                 onCta={triggerSwipeHint}
               >
-                <div className="border border-pale bg-pure p-5 sm:p-7 h-full">
-                  <div className="space-y-3">
+                <div className="border border-pale bg-pure p-6 sm:p-8 h-full">
+                  <div className="space-y-4">
                     <p className="type-meta uppercase text-dark">List of items</p>
                     <motion.div
                       className="relative overflow-hidden border border-pale bg-base w-full max-w-[260px] sm:max-w-none mx-auto"
@@ -749,7 +749,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                       </div>
                       <motion.div
                         ref={swipeItemRef}
-                        className="relative z-10 bg-base px-5 py-4 touch-none select-none"
+                        className="relative z-10 bg-base px-6 py-4 touch-none select-none"
                         style={{ x: swipeOffset }}
                         onPointerDown={handleSwipeStart}
                         onPointerMove={handleSwipeMove}
@@ -762,7 +762,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                         onTouchCancel={handleSwipeTouchEnd}
                       >
                         <div className="flex items-center justify-between gap-4">
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-4">
                             <svg
                               viewBox="0 0 24 24"
                               className="h-4 w-4 text-dark"
@@ -806,7 +806,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                       value={feedbackInput}
                       onChange={(event) => setFeedbackInput(event.target.value)}
                       placeholder="Type: Love"
-                      className="w-full border border-pale bg-pure px-5 py-3 type-body text-ink"
+                      className="w-full border border-pale bg-pure px-6 py-4 type-body text-ink"
                       aria-invalid={showFeedbackError}
                     />
                     {showFeedbackError && <p className="type-meta text-dark">{feedbackError}</p>}
@@ -816,14 +816,14 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
                       type="button"
                       onClick={triggerFeedback}
                       disabled={!isFeedbackValid}
-                      className="border border-pale bg-pure px-6 py-3 text-left type-section-title text-ink disabled:cursor-not-allowed disabled:opacity-40 inline-flex items-center gap-2"
+                      className="border border-pale bg-pure px-6 py-4 text-left type-section-title text-ink disabled:cursor-not-allowed disabled:opacity-40 inline-flex items-center gap-2"
                     >
                       {feedbackState === 'success' ? 'Sent' : feedbackState === 'loading' ? 'Sending…' : 'Send'}
                       <span aria-hidden="true">↗</span>
                     </button>
                   </div>
-                  <div className="border border-pale bg-pure px-5 py-4 min-h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-3">
+                  <div className="border border-pale bg-pure px-6 py-4 min-h-16 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
                       <span className="type-subhead text-dark">
                         {feedbackState === 'loading'
                           ? 'Sending…'

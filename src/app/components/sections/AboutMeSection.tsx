@@ -1,10 +1,12 @@
 import { ScrollSection } from '../ScrollSection';
 import { ABOUT_ME_PARAGRAPHS } from '../../data/about';
+import { useIsMobile } from '../ui/use-mobile';
 import julsPortrait from '../../../assets/images/Juls.JPG';
 
 export function AboutMeSection() {
+  const isMobile = useIsMobile();
   return (
-    <section id="about-me" aria-label="About Me" className="pt-6 pb-24 px-6 sm:py-32 sm:px-6 border-t border-pale bg-pure">
+    <section id="about-me" aria-label="About Me" className="pt-8 pb-24 px-6 sm:py-32 sm:px-6 border-t border-pale bg-pure">
       <div className="hero-breakout mx-auto space-y-12">
         <ScrollSection entryDirection="bottom" motionRole="contact-title">
           <h2 className="type-display-m text-ink">About Me</h2>
@@ -25,6 +27,7 @@ export function AboutMeSection() {
               key={paragraph.slice(0, 16)}
               entryDirection="none"
               disableTransform
+              disableAnimation={isMobile}
               duration={8}
               delay={index * 0.5}
             >

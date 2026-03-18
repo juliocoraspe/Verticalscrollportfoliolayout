@@ -70,7 +70,7 @@ export function CaseStudiesSection({
 }: CaseStudiesSectionProps) {
   return (
     <section id="case-studies" className="w-full border-y border-pale px-6 sm:px-6" style={{ backgroundColor: '#fcfbfa' }}>
-      <div className="hero-breakout mx-auto pt-24 pb-0 sm:pt-32">
+      <div className="hero-breakout mx-auto pt-8 pb-0 sm:pt-32">
         <ScrollSection entryDirection="bottom" motionRole="case-intro">
           <h2 className="type-display-m text-ink">Case Studies</h2>
         </ScrollSection>
@@ -92,7 +92,7 @@ export function CaseStudiesSection({
                   <img
                     src={caseStudy.heroImage}
                     alt={caseStudy.title}
-                    className="w-full h-[175px] object-cover object-top md:h-[420px]"
+                    className="w-full h-[176px] object-cover object-top md:h-[420px]"
                   />
                 </div>
                 <div className="case-study-subtitle-row">
