@@ -124,7 +124,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-1 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-0 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
       {!isMobile && <WireframeMesh isMobile={false} />}
 
       {!isMobile && (
@@ -139,7 +139,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
               transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : delay, ease: [0.19, 1, 0.3, 1] }}
             >
               {/* Label right-aligned above the right end of the line */}
-              <p style={{ fontWeight: 200, fontSize: '0.875rem', letterSpacing: '0.03em', marginBottom: '5px', textAlign: 'right' }} className="text-dark">
+              <p style={{ fontWeight: 200, fontSize: '0.875rem', letterSpacing: '0.03em', marginBottom: '4px', textAlign: 'right' }} className="text-dark">
                 {label}
               </p>
               {/* Dot at left anchor + line */}
@@ -163,15 +163,15 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
         const mobileLines = [
           {
             label: 'The why',
-            dotX: vw * 0.40, dotY: 42,               // left edge of mountain near peak
-            x1: vw * 0.40,   x2: vw * 0.14, y: 42,  // extends left into clear space
+            dotX: vw * 0.44, dotY: 22,               // closer to mountain peak
+            x1: vw * 0.44,   x2: vw * 0.20, y: 22,  // extends left into clear space
             textAnchor: 'start' as const,
             delay: 0.7,
           },
           {
             label: 'The how',
-            dotX: vw * 0.50, dotY: 90,               // left silhouette of mountain mid-body
-            x1: vw * 0.50,   x2: vw * 0.08, y: 90,  // extends left into clear space
+            dotX: vw * 0.40, dotY: 90,               // left silhouette of mountain mid-body
+            x1: vw * 0.40,   x2: vw * 0.08, y: 90,  // extends left into clear space
             textAnchor: 'start' as const,
             delay: 1.05,
           },

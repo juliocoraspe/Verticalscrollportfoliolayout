@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
+import { ScrollSection } from '../ScrollSection';
 
 type PracticeSectionProps = {
   enterMotionGarden: () => void;
@@ -13,10 +14,10 @@ type Band23Card = { title: string; bullets?: string[]; body?: ReactNode; width?:
 // ── BulletList ─────────────────────────────────────────────────────────────
 
 function BulletList({ items, columns = 3 }: { items: string[]; columns?: number }) {
-  const gap = 10;
+  const gap = 8;
   const itemWidth = `calc(${100 / columns}% - ${(gap * (columns - 1)) / columns}px)`;
   return (
-    <ul style={{ display: 'flex', flexWrap: 'wrap', gap: `6px ${gap}px`, listStyle: 'none', margin: 0, padding: 0 }}>
+    <ul style={{ display: 'flex', flexWrap: 'wrap', gap: `8px ${gap}px`, listStyle: 'none', margin: 0, padding: 0 }}>
       {items.map((item, i) => (
         <li key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 4, width: itemWidth }}>
           <span style={{
@@ -221,7 +222,6 @@ const fullBleedStyle: CSSProperties = {
 
 export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
   const [isMobile, setIsMobile] = useState(false);
-  const [modalCard, setModalCard] = useState<Band23Card | null>(null);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   const toggle = (key: string) =>
@@ -244,15 +244,18 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
       <div className="hero-breakout mx-auto">
 
         {/* Section title */}
-        <h2 className="type-display-m text-ink mt-4 sm:mt-20 mb-5">My Design Cycle</h2>
+        <ScrollSection entryDirection="bottom" motionRole="case-intro">
+          <h2 className="type-display-m text-ink sm:mt-20 mb-6">My Design Cycle</h2>
+        </ScrollSection>
 
         {/* Ticker bands */}
         <div className="space-y-10 sm:space-y-4">
 
           {/* Band 1 — My Design Philosophy */}
-          <div className="ticker-band" style={{ marginBottom: isMobile ? 60 : 100 }}>
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <div className="ticker-band" style={{ marginBottom: isMobile ? 64 : 96 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>
-              My Design Philosophy — The Three Lenses of Human-Centered Design by Tim Brown
+              My Design Philosophy: The Three Lenses of Human-Centered Design by Tim Brown
             </p>
 
             {isMobile ? (
@@ -265,7 +268,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggle(`b1-${card.num}`)}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', background: 'none', border: 'none', cursor: 'pointer' }}
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
                         <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
                           <span className="type-body text-ink">{card.category}</span>
@@ -274,7 +277,7 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                         <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
                       {open && (
-                        <p className="type-body text-dark" style={{ paddingBottom: 12 }}>{card.body}</p>
+                        <p className="type-body text-dark" style={{ paddingBottom: 16 }}>{card.body}</p>
                       )}
                     </div>
                   );
@@ -308,9 +311,11 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               </div>
             )}
           </div>
+          </ScrollSection>
 
           {/* Band 2 — My Design Flow */}
-          <div className="ticker-band" style={{ marginBottom: isMobile ? 60 : 100 }}>
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
+          <div className="ticker-band" style={{ marginBottom: isMobile ? 64 : 96 }}>
             <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>My Design Flow</p>
 
             {isMobile ? (
@@ -323,13 +328,13 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                       <button
                         type="button"
                         onClick={() => toggle(`b2-${i}`)}
-                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 0', background: 'none', border: 'none', cursor: 'pointer' }}
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
                         <span className="type-body text-ink">{card.title}</span>
                         <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
                       {open && (
-                        <div style={{ paddingBottom: 12 }}>
+                        <div style={{ paddingBottom: 16 }}>
                           {card.bullets && <BulletList items={card.bullets} columns={2} />}
                         </div>
                       )}
@@ -368,69 +373,57 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               </>
             )}
           </div>
+          </ScrollSection>
 
           {/* Band 3 — Capabilities & Toolkits · ticker on all sizes */}
+          <ScrollSection entryDirection="bottom" motionRole="case-block">
           <div className="ticker-band">
-            <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>Capabilities &amp; Toolkits</p>
-            <div className="ticker-overflow" style={fullBleedStyle}>
-              <div
-                className="ticker-track ticker-left ticker-wide"
-                aria-hidden={!isMobile}
-              >
-                {[...band3Cards, ...band3Cards].map((card, i) =>
-                  isMobile ? (
-                    <button
-                      key={i}
-                      type="button"
-                      onClick={() => setModalCard(band3Cards[i % band3Cards.length])}
-                      className="ticker-card flex items-center gap-3 border border-pale rounded px-4 py-3"
-                      style={{ minWidth: 180, maxWidth: 180 }}
-                    >
-                      <p className="type-body text-ink">{card.title}</p>
-                      <span className="type-micro text-pale shrink-0">↗</span>
-                    </button>
-                  ) : (
-                    <TickerCardBand23 key={i} card={card} defaultWidth={660} columns={3} />
-                  )
-                )}
+            <p className="type-section-title text-dark mb-2" style={{ fontWeight: 400 }}>My Capabilities &amp; Toolkits</p>
+
+            {isMobile ? (
+              /* Mobile: accordion list, same style as bands 1 & 2 */
+              <div>
+                {band3Cards.map((card, i) => {
+                  const open = expanded.has(`b3-${i}`);
+                  return (
+                    <div key={i} style={{ borderBottom: '1px solid var(--color-pale)' }}>
+                      <button
+                        type="button"
+                        onClick={() => toggle(`b3-${i}`)}
+                        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
+                      >
+                        <span className="type-body text-ink">{card.title}</span>
+                        <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
+                      </button>
+                      {open && (
+                        <div style={{ paddingBottom: 16 }}>
+                          {card.bullets && <BulletList items={card.bullets} columns={2} />}
+                          {card.body && <div className="type-body text-dark">{card.body}</div>}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
-            </div>
+            ) : (
+              /* Desktop: ticker */
+              <div className="ticker-overflow" style={fullBleedStyle}>
+                <div
+                  className="ticker-track ticker-left ticker-wide"
+                  aria-hidden
+                >
+                  {[...band3Cards, ...band3Cards].map((card, i) => (
+                    <TickerCardBand23 key={i} card={card} defaultWidth={660} columns={3} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+          </ScrollSection>
 
         </div>
       </div>
 
-      {/* Modal — Band 3 mobile card detail */}
-      {modalCard && (
-        <div
-          className="fixed inset-0 z-50 flex items-end justify-center"
-          style={{ backgroundColor: 'rgba(0,0,0,0.4)' }}
-          onClick={() => setModalCard(null)}
-        >
-          <div
-            className="bg-pure w-full rounded-t-2xl px-6 pt-5 pb-8 max-h-[80vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-4">
-              <p className="type-section-title text-ink">{modalCard.title}</p>
-              <button
-                type="button"
-                onClick={() => setModalCard(null)}
-                className="type-body text-dark"
-                aria-label="Close"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="w-full h-px bg-pale mb-4" />
-            {modalCard.bullets ? (
-              <BulletList items={modalCard.bullets} columns={2} />
-            ) : (
-              <div className="type-body text-dark">{modalCard.body}</div>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

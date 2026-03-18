@@ -23,13 +23,13 @@ export function ContactSection({ enterMotionGarden }: ContactSectionProps) {
               If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
             </p>
           </ScrollSection>
-          <div className="space-y-3 border-t border-pale pt-6">
+          <div className="space-y-4 border-t border-pale pt-6">
             <p className="type-meta text-dark uppercase">Email</p>
             <a className="type-body text-ink" href="mailto:juliocoraspe@gmail.com">
               juliocoraspe@gmail.com
             </a>
           </div>
-          <div className="space-y-3 border-t border-pale pt-6">
+          <div className="space-y-4 border-t border-pale pt-6">
             <p className="type-meta text-dark uppercase">Links</p>
             <div className="flex flex-wrap gap-6">
               <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className="type-meta uppercase text-ink">
