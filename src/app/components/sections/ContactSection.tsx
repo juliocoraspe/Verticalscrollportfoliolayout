@@ -19,7 +19,7 @@ export function ContactSection({ enterMotionGarden }: ContactSectionProps) {
           </ScrollSection>
           <ScrollSection entryDirection="bottom" motionRole="contact-title" disableAnimation>
             <p className="type-subhead text-dark">
-              I’m open to junior UX/UI roles, collaborations, and focused design work.
+              I’m open to UX/UI roles, collaborations, and focused design work.
               If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
             </p>
           </ScrollSection>

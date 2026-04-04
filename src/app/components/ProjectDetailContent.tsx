@@ -8,6 +8,7 @@ import lumnPreview from '../../assets/images/Lumn.jpg';
 import todoPreview from '../../assets/images/todo-app.png';
 import lumnMobile from '../../assets/images/LUMN_mobile.jpg';
 import todoMobile from '../../assets/images/synco-mobile.jpg';
+import syncoOutcomeMobile from '../../assets/images/Synco-mobile2.jpg';
 
 type ProjectDetailContentProps = {
   project: Project;
@@ -625,10 +626,9 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                           aria-label="Open ToDo slides in Figma"
                         >
                           <img
-                            src={todoMobile}
-                            alt="ToDo outcome static preview"
+                            src={syncoOutcomeMobile}
+                            alt="Synco outcome static preview"
                             className="h-full w-full object-contain"
-                            style={{ objectPosition: 'center top', transform: 'scale(1.08)', transformOrigin: 'center top' }}
                           />
                           <span className="absolute inset-x-0 bottom-0 flex h-12 items-center border-t border-pale bg-pure px-6 type-meta text-dark">
                             Open Figma slides

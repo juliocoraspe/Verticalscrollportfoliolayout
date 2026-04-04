@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 type NavbarProps = {
   enterMotionGarden: () => void;
+  currentView?: 'main' | 'motion-garden';
 };
 
 function IconCycle() {
@@ -54,6 +55,8 @@ const anchorItems = [
   { num: '04', label: 'CONTACT',         href: '#contact',      Icon: IconEnvelope },
 ];
 
+const sectionIds = anchorItems.map(item => item.href.slice(1));
+
 const mobileLabel: React.CSSProperties = {
   fontSize: 7,
   letterSpacing: '0.05em',
@@ -69,7 +72,49 @@ const divider = (
   />
 );
 
-export function Navbar({ enterMotionGarden }: NavbarProps) {
+export function Navbar({ enterMotionGarden, currentView }: NavbarProps) {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (currentView === 'motion-garden') {
+      setActiveSection('motion-garden');
+      return;
+    }
+
+    const updateActive = () => {
+      const navHeight = 48;
+      const scrollY = window.scrollY + navHeight + 1;
+
+      // If the user has scrolled to the bottom, activate the last section (Contact)
+      const atBottom =
+        window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 8;
+      if (atBottom) {
+        setActiveSection(sectionIds[sectionIds.length - 1]);
+        return;
+      }
+
+      let activeId: string | null = null;
+      for (const id of [...sectionIds].reverse()) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.offsetTop <= scrollY) {
+          activeId = id;
+          break;
+        }
+      }
+      setActiveSection(activeId);
+    };
+
+    updateActive();
+    window.addEventListener('scroll', updateActive, { passive: true });
+    return () => window.removeEventListener('scroll', updateActive);
+  }, [currentView]);
+
+  const activeUnderline: React.CSSProperties = {
+    borderBottom: '2px solid var(--color-ink)',
+    marginBottom: -1,
+  };
+
   return (
     <nav
       aria-label="Site navigation"
@@ -93,49 +138,79 @@ export function Navbar({ enterMotionGarden }: NavbarProps) {
           paddingRight: 'clamp(0px, 2vw, 32px)',
         }}
       >
-        {anchorItems.map(({ num, label, href, Icon }, i) => (
-          <React.Fragment key={num}>
-            {i > 0 && divider}
-            <a
-              href={href}
-              className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
-              style={{ flex: 1, gap: 3, textDecoration: 'none', padding: '0 4px' }}
+        {anchorItems.map(({ num, label, href, Icon }, i) => {
+          const id = href.slice(1);
+          const isActive = activeSection === id;
+          return (
+            <React.Fragment key={num}>
+              {i > 0 && divider}
+              <a
+                href={href}
+                aria-current={isActive ? 'page' : undefined}
+                className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
+                style={{
+                  flex: 1,
+                  gap: 3,
+                  textDecoration: 'none',
+                  padding: '0 4px',
+                  ...(isActive ? activeUnderline : {}),
+                }}
+              >
+                <span className="sm:hidden"><Icon /></span>
+                <span className="sm:hidden text-ink" style={mobileLabel}>{label}</span>
+                <span
+                  className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
+                  style={{ letterSpacing: '0.06em' }}
+                >
+                  <span className="text-dark">{num}</span>
+                  <span className="text-dark">–</span>
+                  <Icon />
+                  <span className="text-ink">{label}</span>
+                </span>
+              </a>
+            </React.Fragment>
+          );
+        })}
+
+        {divider}
+
+        {(() => {
+          const isActive = activeSection === 'motion-garden';
+          return (
+            <button
+              type="button"
+              onClick={enterMotionGarden}
+              aria-current={isActive ? 'page' : undefined}
+              className="text-accent flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
+              style={{
+                flex: 1,
+                gap: 3,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0 4px',
+                ...(isActive ? { borderBottom: '2px solid var(--color-accent)', marginBottom: -1 } : {}),
+              }}
             >
-              <span className="sm:hidden"><Icon /></span>
-              <span className="sm:hidden text-ink" style={mobileLabel}>{label}</span>
+              <span className="sm:hidden"><IconPlay /></span>
+              <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>MOTION GARDEN</span>
               <span
                 className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
                 style={{ letterSpacing: '0.06em' }}
               >
-                <span className="text-dark">{num}</span>
+                <svg width="11.3" height="11.3" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-dark" aria-hidden="true">
+                  <line x1="9" y1="1" x2="9" y2="17" />
+                  <line x1="1" y1="9" x2="17" y2="9" />
+                  <line x1="2.6" y1="2.6" x2="15.4" y2="15.4" />
+                  <line x1="15.4" y1="2.6" x2="2.6" y2="15.4" />
+                </svg>
                 <span className="text-dark">–</span>
-                <Icon />
-                <span className="text-ink">{label}</span>
+                <IconPlay />
+                <span>MOTION GARDEN</span>
               </span>
-            </a>
-          </React.Fragment>
-        ))}
-
-        {divider}
-
-        <button
-          type="button"
-          onClick={enterMotionGarden}
-          className="text-accent flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
-          style={{ flex: 1, gap: 3, background: 'none', border: 'none', cursor: 'pointer', padding: '0 4px' }}
-        >
-          <span className="sm:hidden"><IconPlay /></span>
-          <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>MOTION GARDEN</span>
-          <span
-            className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
-            style={{ letterSpacing: '0.06em' }}
-          >
-            <span className="text-dark">05</span>
-            <span className="text-dark">–</span>
-            <IconPlay />
-            <span>MOTION GARDEN</span>
-          </span>
-        </button>
+            </button>
+          );
+        })()}
       </div>
     </nav>
   );

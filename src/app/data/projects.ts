@@ -1,4 +1,4 @@
-import todoBanner from '../../assets/images/synco1.jpg';
+import todoBanner from '../../assets/images/Synco2.jpg';
 import asmrBanner from '../../assets/images/lumn_final.png';
 
 type EmbedConfig = {
