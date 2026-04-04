@@ -157,7 +157,7 @@ export default function App() {
   if (view === 'motion-garden') {
     return (
       <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
-        <Navbar enterMotionGarden={enterMotionGarden} />
+        <Navbar enterMotionGarden={enterMotionGarden} currentView="motion-garden" />
         <MotionGarden onExit={exitMotionGarden} />
         <ContactSection enterMotionGarden={enterMotionGarden} />
       </div>

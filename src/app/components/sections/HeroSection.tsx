@@ -10,7 +10,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const heroLines = [
     'I design with the precision of someone who builds.',
-    'because I know where every decision lands.',
+    'Because I know where every decision lands.',
   ];
   const heroText = heroLines.join(' ');
   const heroContainerVariants = {
