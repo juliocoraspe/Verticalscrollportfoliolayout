@@ -166,6 +166,12 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[2000] focus:px-4 focus:py-2 focus:bg-pure focus:text-ink focus:type-meta focus:border focus:border-pale"
+      >
+        Skip to main content
+      </a>
       <Navbar enterMotionGarden={enterMotionGarden} />
       <HeroSection isMobile={isMobile} />
       <PracticeSection enterMotionGarden={enterMotionGarden} />

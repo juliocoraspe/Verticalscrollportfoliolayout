@@ -49,12 +49,12 @@
   --about-portrait-position: 90% 30%;
 
   --color-ink: #111111;
-  --color-pale: #e2e1dd;
+  --color-pale: #959492;
   --color-mist: #f2f1ed;
   --color-base: #fcfbfa;
   --color-pure: #ffffff;
   --color-cloud: #eff2f2;
-  --color-dark: #999999;
+  --color-dark: #767676;
   --color-accent: #344040;
 
   --background: var(--color-base);
@@ -768,5 +768,11 @@
     .ticker-track {
       animation: none;
     }
+  }
+
+  /* ── F-04: Global focus-visible ring (WCAG 2.4.7) ────────────────── */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
   }
 }

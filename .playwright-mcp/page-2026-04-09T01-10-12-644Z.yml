@@ -1,0 +1,172 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - paragraph [ref=e12]:
+        - text: Ready to take the first step?
+        - link "book an appointment" [ref=e13] [cursor=pointer]:
+          - /url: https://bettertogethermentalhealth.net/contact/
+      - generic [ref=e22]: a
+  - generic [ref=e23]:
+    - article [ref=e25]:
+      - generic [ref=e28]:
+        - generic [ref=e32]:
+          - generic:
+            - generic: Video Player
+            - application "Video Player"
+          - img "Better Together Mental Health's logo shows here. They provide therapy in Columbia, Missouri." [ref=e37]
+        - generic [ref=e38]:
+          - heading "Therapy in Columbia, Missouri with Better Together Mental Health" [level=1] [ref=e43]:
+            - text: Therapy in Columbia, Missouri
+            - text: with Better Together Mental Health
+          - generic [ref=e44]:
+            - generic [ref=e47]:
+              - paragraph [ref=e48]: You’re ready for compassionate support, counseling, and a personalized plan to improve your well-being.
+              - paragraph [ref=e49]:
+                - strong [ref=e50]: And we’re here for it.
+            - paragraph [ref=e54]:
+              - text: Mental health is a big part of who we are and how to move through the world. At Better Together, we believe in a holistic approach to mental wellness.
+              - link "Our team" [ref=e55] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/our-team
+              - text: of licensed, professional therapists are ready to welcome you to a safe, judgement-free counseling relationship where you can open up and spew the feelings you’ve been carrying around. We don’t have a magic pill to make everything better. What we do have is extensive training in a variety of practices with tried-and-true methods for experiencing your emotions and moving through them to the place where you want to be. We’ll help you show up in life, in your relationships, and for yourself the way to wish you could.
+          - generic [ref=e56]:
+            - heading "If You’re" [level=2] [ref=e60]
+            - list [ref=e64]:
+              - listitem [ref=e65]: striving for positive change and self discovery…
+              - listitem [ref=e66]: looking for an empathetic ear and a big box of tissues to help heal after loss or trauma…
+              - listitem [ref=e67]: doing your best and still feel like you’re drowning…
+              - listitem [ref=e68]: juggling others’ feelings and not prioritizing your own well being…
+              - listitem [ref=e69]: doing well, but feel like there’s aspects you’d like to change and improve about yourself…
+        - generic [ref=e74]:
+          - heading "You’re in the right place" [level=3] [ref=e75]
+          - paragraph [ref=e76]: We provide compassionate and personalized mental health services to elevate individuals to be their best selves. We empower and assist clients on their journey to a better life.
+        - generic [ref=e78]:
+          - heading "Our Top Therapy Topics" [level=2] [ref=e82]:
+            - text: Our Top
+            - text: Therapy Topics
+          - generic [ref=e85]:
+            - paragraph [ref=e86]: "Our clients see us for a variety of reasons. Some of them include:"
+            - list [ref=e87]:
+              - listitem [ref=e88]: Anxiety (including panic disorders and OCD)
+              - listitem [ref=e89]: Personal Growth/Life Transitions
+              - listitem [ref=e90]: Relationships (Marriage, partners, polyamory, affairs)
+              - listitem [ref=e91]: Gender & Sexuality
+              - listitem [ref=e92]: Neurodiversity (Autism & ADHD)
+              - listitem [ref=e93]: Feeling overwhelmed & stress
+              - listitem [ref=e94]: Parenting Challenges
+              - listitem [ref=e95]: Trauma
+        - generic [ref=e96]:
+          - heading "Our Therapy Services" [level=2] [ref=e101]:
+            - text: Our Therapy
+            - text: Services
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e108]:
+                - heading "Individual Therapy" [level=3] [ref=e109]
+                - paragraph [ref=e111]: One-on-one sessions to explore your thoughts, feelings, and experiences to uncover insights empowering you to navigate life’s complexities with clarity and resilience.
+              - link "Learn More" [ref=e113] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/individual-therapy/
+              - generic [ref=e118]:
+                - heading "Couples Therapy" [level=3] [ref=e119]
+                - paragraph [ref=e121]: A supportive environment where you and your partner can work through challenges to rebuild a strong foundation and reignite a spark of love and understanding.
+              - link "Learn More" [ref=e123] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/couples-therapy-couples-counseling/
+              - generic [ref=e128]:
+                - heading "Child & Adolescent Therapy" [level=3] [ref=e129]
+                - paragraph [ref=e131]: Best suited for children capable of self-expression and verbal communication, our age-appropriate techniques help empower youth to be themselves, navigate challenges, and nurture interpersonal skills through trust and connection.
+              - link "Learn More" [ref=e133] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/individual-therapy/
+            - generic [ref=e134]:
+              - generic [ref=e139]:
+                - heading "VIrtual Therapy" [level=3] [ref=e140]
+                - paragraph [ref=e142]: Convenient and comfortable from the location that suits you through secure and confidential video calls, you can access personalized services with our team.
+              - link "Learn More" [ref=e144] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/what-to-expect-therapy-process/
+              - generic [ref=e149]:
+                - heading "SIngle Sessions" [level=3] [ref=e150]
+                - paragraph [ref=e152]: Whether you’re seeking guidance through a specific challenge, exploring personal growth opportunities, or simply in need of support, our experienced therapists are here for you.
+              - link "Learn More" [ref=e154] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/contact-get-in-touch/
+              - generic [ref=e159]:
+                - heading "Group Therapy" [level=3] [ref=e160]
+                - paragraph [ref=e162]: Groups help you explore a specific topic or area of growth with the help and support from others.
+              - link "Learn More" [ref=e164] [cursor=pointer]:
+                - /url: https://bettertogethermentalhealth.net/contact-get-in-touch/
+        - generic [ref=e168]:
+          - heading "Ready to get started?" [level=2] [ref=e170]
+          - link "book an appointment" [ref=e172] [cursor=pointer]:
+            - /url: https://bettertogethermentalhealth.net/contact-get-in-touch/
+        - generic [ref=e174]:
+          - img "Better Together Mental Health staff stands in front of their offices located on the south side of Columbia, Missouri. Their stances and expressions are welcome and inviting. They are dressed in business casual in front of a red brick building." [ref=e178]
+          - generic [ref=e179]:
+            - heading "Meet Our Therapists" [level=2] [ref=e182]:
+              - text: Meet
+              - text: Our Therapists
+            - link "about us" [ref=e184] [cursor=pointer]:
+              - /url: https://bettertogethermentalhealth.net/about-experienced-therapists/
+        - generic [ref=e186]:
+          - generic [ref=e188]:
+            - generic [ref=e193]:
+              - heading "What Our Clients Say" [level=2] [ref=e194]
+              - generic [ref=e195]:
+                - paragraph [ref=e196]: "\"I cannot stress enough how amazing Better Together is. Not only do I love my counselor, but the owner’s customer service is above and beyond. She took the time to explain how to save on my billing - just all around amazing. This is where you need to go for therapy. I have learned so much over the last several months.\""
+                - paragraph [ref=e197]: — Kayla M.
+            - generic:
+              - link "Previous" [ref=e198] [cursor=pointer]:
+                - /url: "#"
+                - text: "4"
+              - link "Next" [ref=e199] [cursor=pointer]:
+                - /url: "#"
+                - text: "5"
+            - generic [ref=e200]:
+              - link "1" [ref=e201] [cursor=pointer]:
+                - /url: "#"
+              - link "2" [ref=e202] [cursor=pointer]:
+                - /url: "#"
+              - link "3" [ref=e203] [cursor=pointer]:
+                - /url: "#"
+              - link "4" [ref=e204] [cursor=pointer]:
+                - /url: "#"
+              - link "5" [ref=e205] [cursor=pointer]:
+                - /url: "#"
+              - link "6" [ref=e206] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e207]:
+            - generic [ref=e209]:
+              - heading "Become a Client" [level=2] [ref=e210]:
+                - text: Become
+                - text: a Client
+              - paragraph [ref=e211]: Take the first step toward a better life by booking a discovery session today.
+            - link "book online" [ref=e213] [cursor=pointer]:
+              - /url: https://bettertogethermentalhealth.net/contact-get-in-touch/
+    - contentinfo [ref=e214]:
+      - generic [ref=e217]:
+        - generic [ref=e220]:
+          - paragraph [ref=e221]
+          - paragraph [ref=e222]:
+            - text: Better Together Mental Health
+            - link "1000 W Nifong BLVD, Building 6, Suite 140, Columbia MO 65203" [ref=e223] [cursor=pointer]:
+              - /url: https://maps.app.goo.gl/1Y1qCpq4NLVnBZLf7
+          - paragraph [ref=e224]:
+            - text: "P:"
+            - link "573-355-8844" [ref=e225] [cursor=pointer]:
+              - /url: tel:5733558844
+          - paragraph [ref=e226]:
+            - 'link "Email: office@bettertogethermentalhealth.net" [ref=e227] [cursor=pointer]':
+              - /url: mailto:office@BetterTogetherMentalHealth.net
+              - generic [ref=e228]: "Email: office@bettertogethermentalhealth.net"
+        - generic [ref=e230]:
+          - generic [ref=e237]: a
+          - generic [ref=e244]: a
+          - generic [ref=e245]:
+            - link "client portal" [ref=e247] [cursor=pointer]:
+              - /url: http://bettertogethermentalhealth.clientsecure.me/
+            - list [ref=e248]:
+              - listitem [ref=e249]:
+                - link "" [ref=e250] [cursor=pointer]:
+                  - /url: https://www.facebook.com/profile.php?id=100089922645688
+              - listitem [ref=e251]:
+                - link "" [ref=e252] [cursor=pointer]:
+                  - /url: https://www.instagram.com/bettertogethermentalhealth
+              - listitem [ref=e253]:
+                - link "" [ref=e254] [cursor=pointer]:
+                  - /url: https://youtube.com/@BetterTogetherCoMo?si=cAVXavf3BZxJTiKD

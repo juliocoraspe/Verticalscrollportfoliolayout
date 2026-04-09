@@ -58,7 +58,7 @@ const anchorItems = [
 const sectionIds = anchorItems.map(item => item.href.slice(1));
 
 const mobileLabel: React.CSSProperties = {
-  fontSize: 7,
+  fontSize: 10,
   letterSpacing: '0.05em',
   textTransform: 'uppercase',
   lineHeight: 1,

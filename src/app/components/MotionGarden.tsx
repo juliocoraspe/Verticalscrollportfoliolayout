@@ -857,7 +857,7 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
           </section>
 
           <section className="border-t border-pale pt-10 sm:pt-12">
-            <p className="type-body text-dark">
+            <p className="type-body text-dark mb-16">
               Design decisions become durable when they are built as systems. Timing, state, and transition rules
               create patterns that can be reused, scaled, and implemented beyond any single tool. This work explores
               movement not as an output, but as a set of principles that translate naturally from design intent to
