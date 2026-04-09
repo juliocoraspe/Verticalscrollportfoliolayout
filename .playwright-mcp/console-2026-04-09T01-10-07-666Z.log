@@ -1,0 +1,4 @@
+[    3909ms] [LOG]  Initializing Smart Data Protector @ https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js:0
+[    3983ms] [LOG] JQMIGRATE: Migrate is installed, version 3.4.1 @ https://bettertogethermentalhealth.net/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1:1
+[    4024ms] [LOG] [UC] Host not in V3 allowlist, skipping migration: bettertogethermentalhealth.net @ https://app.usercentrics.eu/browser-ui/latest/loader.js:0
+[    4024ms] [LOG] [UC] Loading V2 bundle @ https://app.usercentrics.eu/browser-ui/latest/loader.js:0

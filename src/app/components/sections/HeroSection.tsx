@@ -124,7 +124,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   ];
 
   return (
-    <section className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-0 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+    <section id="main-content" className="relative min-h-[100svh] flex items-start sm:items-center px-4 pt-0 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
       {!isMobile && <WireframeMesh isMobile={false} />}
 
       {!isMobile && (

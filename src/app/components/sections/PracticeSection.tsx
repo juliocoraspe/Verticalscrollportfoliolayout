@@ -17,10 +17,10 @@ function BulletList({ items, columns = 3 }: { items: string[]; columns?: number 
   const gap = 8;
   const itemWidth = `calc(${100 / columns}% - ${(gap * (columns - 1)) / columns}px)`;
   return (
-    <ul style={{ display: 'flex', flexWrap: 'wrap', gap: `8px ${gap}px`, listStyle: 'none', margin: 0, padding: 0 }}>
+    <ul role="list" style={{ display: 'flex', flexWrap: 'wrap', gap: `8px ${gap}px`, listStyle: 'none', margin: 0, padding: 0 }}>
       {items.map((item, i) => (
         <li key={i} style={{ display: 'flex', alignItems: 'baseline', gap: 4, width: itemWidth }}>
-          <span style={{
+          <span aria-hidden="true" style={{
             width: '4px', height: '4px',
             borderRadius: '50%',
             backgroundColor: 'var(--color-ink)',
@@ -263,10 +263,15 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               <div style={{ }}>
                 {band1Cards.map((card) => {
                   const open = expanded.has(`b1-${card.num}`);
+                  const panelId = `practice-b1-${card.num}-panel`;
+                  const btnId = `practice-b1-${card.num}-btn`;
                   return (
                     <div key={card.num} style={{ borderBottom: '1px solid var(--color-pale)' }}>
                       <button
                         type="button"
+                        id={btnId}
+                        aria-expanded={open}
+                        aria-controls={panelId}
                         onClick={() => toggle(`b1-${card.num}`)}
                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
@@ -274,11 +279,16 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
                           <span className="type-body text-ink">{card.category}</span>
                           <span className="type-micro uppercase text-dark">{card.subtitle}</span>
                         </div>
-                        <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
+                        <span className="type-micro text-pale" aria-hidden="true" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
-                      {open && (
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={btnId}
+                        hidden={!open}
+                      >
                         <p className="type-body text-dark" style={{ paddingBottom: 16 }}>{card.body}</p>
-                      )}
+                      </div>
                     </div>
                   );
                 })}
@@ -323,21 +333,31 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               <div style={{ }}>
                 {band2Cards.map((card, i) => {
                   const open = expanded.has(`b2-${i}`);
+                  const panelId = `practice-b2-${i}-panel`;
+                  const btnId = `practice-b2-${i}-btn`;
                   return (
                     <div key={i} style={{ borderBottom: '1px solid var(--color-pale)' }}>
                       <button
                         type="button"
+                        id={btnId}
+                        aria-expanded={open}
+                        aria-controls={panelId}
                         onClick={() => toggle(`b2-${i}`)}
                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
                         <span className="type-body text-ink">{card.title}</span>
-                        <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
+                        <span className="type-micro text-pale" aria-hidden="true" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
-                      {open && (
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={btnId}
+                        hidden={!open}
+                      >
                         <div style={{ paddingBottom: 16 }}>
                           {card.bullets && <BulletList items={card.bullets} columns={2} />}
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}
@@ -385,22 +405,32 @@ export function PracticeSection({ enterMotionGarden }: PracticeSectionProps) {
               <div>
                 {band3Cards.map((card, i) => {
                   const open = expanded.has(`b3-${i}`);
+                  const panelId = `practice-b3-${i}-panel`;
+                  const btnId = `practice-b3-${i}-btn`;
                   return (
                     <div key={i} style={{ borderBottom: '1px solid var(--color-pale)' }}>
                       <button
                         type="button"
+                        id={btnId}
+                        aria-expanded={open}
+                        aria-controls={panelId}
                         onClick={() => toggle(`b3-${i}`)}
                         style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer' }}
                       >
                         <span className="type-body text-ink">{card.title}</span>
-                        <span className="type-micro text-pale" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
+                        <span className="type-micro text-pale" aria-hidden="true" style={{ flexShrink: 0, marginLeft: 8 }}>{open ? '−' : '+'}</span>
                       </button>
-                      {open && (
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={btnId}
+                        hidden={!open}
+                      >
                         <div style={{ paddingBottom: 16 }}>
                           {card.bullets && <BulletList items={card.bullets} columns={2} />}
                           {card.body && <div className="type-body text-dark">{card.body}</div>}
                         </div>
-                      )}
+                      </div>
                     </div>
                   );
                 })}
