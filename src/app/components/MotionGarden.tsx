@@ -497,10 +497,10 @@ export function MotionGarden({ onExit }: MotionGardenProps) {
 
   return (
     <div className="min-h-screen bg-pure text-ink">
-      <div className="px-6 sm:px-6 pt-8 sm:pt-32 pb-0">
+      <div className="px-6 sm:px-6 pt-8 sm:pt-20 pb-0">
         <div className="hero-breakout mx-auto">
           <header className="space-y-6">
-            <h1 className="type-display-m text-ink">Motion Garden</h1>
+            <h1 className="type-display-l text-ink">Motion Garden</h1>
             <p className="type-subhead text-dark">
               Motion is part of interface language. It explains change, confirms intent, and helps users stay oriented
               without adding visual noise.

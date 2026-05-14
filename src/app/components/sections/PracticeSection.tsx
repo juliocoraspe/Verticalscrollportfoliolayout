@@ -3,132 +3,113 @@ import { useReducedMotion } from 'motion/react';
 import { ScrollSection } from '../ScrollSection';
 import { DESIGN_CYCLE_BUILDING_SLOT_ID } from '../WireframeMesh';
 
-// ── Connector lines between glossary rows and building levels ────────────────
-interface LineConfig {
-  level: 1 | 2 | 3;
-  yFraction: number; // 0 = top, 0.5 = middle, 1 = bottom of row/level
-  marginLeft: number;
-  marginRight: number;
-}
-
-function ConnectorLines({
-  isMobile,
-  activeLevel,
-  levelRefs,
+// ── Connector line — anchored to a single glossary level row ────────────────
+// Rendered as a position:absolute child of its BpLevel. Origin = right edge
+// of the cards container; vertical position = exact vertical center of the
+// cards. Width extends to canvas left + endMargin so each line reaches its
+// corresponding building feature with a different length. Hidden until the
+// panel finishes expanding (delay matches the 0.45s grid-rows animation).
+function ConnectorLine({
+  levelRef,
+  endMargin,
+  topOffset = 0,
+  isExpanded,
+  reducedMotion,
 }: {
-  isMobile: boolean;
-  activeLevel: null | 1 | 2 | 3;
-  levelRefs: Record<1 | 2 | 3, React.RefObject<HTMLDivElement>>;
+  levelRef: React.RefObject<HTMLDivElement>;
+  endMargin: number;
+  topOffset?: number;
+  isExpanded: boolean;
+  reducedMotion: boolean;
 }) {
-  const [lines, setLines] = useState<
-    Array<{
-      level: 1 | 2 | 3;
-      x1: number;
-      y1: number;
-      x2: number;
-      y2: number;
-      isExpanded: boolean;
-    }>
-  >([]);
+  const [pos, setPos] = useState<{ top: number; left: number; width: number } | null>(null);
 
   useEffect(() => {
-    if (isMobile) return;
+    const measure = () => {
+      const levelEl = levelRef.current;
+      const section = document.getElementById('design-cycle');
+      if (!levelEl || !section) return;
 
-    const lineConfigs: Record<1 | 2 | 3, LineConfig> = {
-      1: { level: 1, yFraction: 0.25, marginLeft: 120, marginRight: 120 },  // top
-      2: { level: 2, yFraction: 0.5, marginLeft: 80, marginRight: 80 },     // middle
-      3: { level: 3, yFraction: 0.75, marginLeft: 150, marginRight: 30 },   // bottom
+      // Walk down the panel structure to reach the cards' grid container:
+      // panel(role=region) > wrapper(overflow:hidden) > inner(paddingBottom) > cardsContainer
+      const panel = levelEl.querySelector('[role="region"]') as HTMLElement | null;
+      const wrapper = panel?.firstElementChild as HTMLElement | null;
+      const inner = wrapper?.firstElementChild as HTMLElement | null;
+      const cardsContainer = inner?.firstElementChild as HTMLElement | null;
+      if (!cardsContainer) return;
+
+      const cardsRect = cardsContainer.getBoundingClientRect();
+      if (cardsRect.height < 10 || cardsRect.width < 10) return;
+
+      const levelRect = levelEl.getBoundingClientRect();
+      const sectionRect = section.getBoundingClientRect();
+
+      // Vertical center of the cards (relative to level), plus optional offset
+      const top = (cardsRect.top + cardsRect.height / 2) - levelRect.top + topOffset;
+      // Right edge of the cards (relative to level) — line origin
+      const left = cardsRect.right - levelRect.left;
+      // Building canvas sits in the right 1/4 column of the 3fr/1fr grid.
+      const canvasLeft = sectionRect.left + sectionRect.width * 0.75;
+      const width = Math.max(0, (canvasLeft + endMargin) - cardsRect.right);
+
+      setPos({ top, left, width });
     };
 
-    const updateLines = () => {
-      const designCycleSection = document.getElementById('design-cycle');
-      if (!designCycleSection) return;
-
-      const sectionRect = designCycleSection.getBoundingClientRect();
-
-      const newLines = (Object.values(lineConfigs) as LineConfig[]).map((config) => {
-        const levelRef = levelRefs[config.level];
-        const levelDiv = levelRef.current;
-
-        if (!levelDiv) return null;
-
-        const levelRect = levelDiv.getBoundingClientRect();
-        const levelButton = levelDiv.querySelector(`#bp-level-0${config.level}-btn`) as HTMLElement | null;
-
-        if (!levelButton) return null;
-
-        const levelBtnRect = levelButton.getBoundingClientRect();
-
-        // Y position within the level: use fraction of level's height
-        const y = levelRect.top + levelRect.height * config.yFraction;
-
-        // X coordinates in viewport
-        const x1 = levelBtnRect.right - config.marginLeft;
-        const canvasLeft = sectionRect.left + sectionRect.width * 0.75;
-        const x2 = canvasLeft + config.marginRight;
-
-        const isExpanded = activeLevel === config.level;
-
-        return {
-          level: config.level,
-          x1,
-          y1: y,
-          x2,
-          y2: y,
-          isExpanded,
-        };
-      });
-
-      setLines(newLines.filter((l) => l !== null));
-    };
-
-    const handleScroll = () => {
-      requestAnimationFrame(updateLines);
-    };
-
-    updateLines();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', updateLines);
-
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (levelRef.current) ro.observe(levelRef.current);
+    const section = document.getElementById('design-cycle');
+    if (section) ro.observe(section);
+    window.addEventListener('resize', measure);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', updateLines);
+      ro.disconnect();
+      window.removeEventListener('resize', measure);
     };
-  }, [isMobile, activeLevel, levelRefs]);
+  }, [endMargin, topOffset, levelRef]);
 
-  if (isMobile) return null;
+  if (!pos) return null;
+
+  // Wait for the panel's grid-rows expansion (0.45s) before fading the line in.
+  const fadeInDelay = reducedMotion ? 0 : 0.55;
+  const fadeDuration = reducedMotion ? 0 : 0.3;
 
   return (
-    <svg
-      width={window.innerWidth}
-      height={window.innerHeight}
-      viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`}
+    <div
+      aria-hidden="true"
       style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
+        position: 'absolute',
+        left: pos.left,
+        top: pos.top,
+        width: pos.width,
+        height: 3,
+        display: 'flex',
+        alignItems: 'center',
+        transform: 'translateY(-50%)',
+        opacity: isExpanded ? 1 : 0,
+        transition: `opacity ${fadeDuration}s ease`,
+        transitionDelay: `${isExpanded ? fadeInDelay : 0}s`,
         pointerEvents: 'none',
         zIndex: 2,
       }}
     >
-      {lines.map((line) => (
-        <line
-          key={line.level}
-          x1={line.x1}
-          y1={line.y1}
-          x2={line.x2}
-          y2={line.y2}
-          stroke="currentColor"
-          strokeWidth="1"
-          strokeDasharray="3 4"
-          opacity={line.isExpanded ? 1 : 0.3}
-          style={{
-            color: 'rgba(26, 26, 26, 0.4)',
-            transition: 'opacity 0.45s ease',
-          }}
-        />
-      ))}
-    </svg>
+      <div
+        style={{
+          flex: 1,
+          height: 0,
+          borderTop: '1px dashed rgba(26, 26, 26, 0.55)',
+        }}
+      />
+      <div
+        style={{
+          width: '6px',
+          height: '6px',
+          borderRadius: '50%',
+          backgroundColor: 'var(--color-dark)',
+          opacity: 0.45,
+          flexShrink: 0,
+        }}
+      />
+    </div>
   );
 }
 
@@ -168,9 +149,9 @@ const lenses = [
 
 // ── Shared primitives ──────────────────────────────────────────────────────
 
-function BpCard({ children }: { children: ReactNode }) {
+function BpCard({ children, compact = false }: { children: ReactNode; compact?: boolean }) {
   return (
-    <div style={{ border: `1px solid ${BP_LINE}`, padding: '16px 18px', backgroundColor: BP_FILL }}>
+    <div style={{ border: `1px solid ${BP_LINE}`, padding: compact ? '14px 14px' : '16px 18px', backgroundColor: BP_FILL }}>
       {children}
     </div>
   );
@@ -197,11 +178,113 @@ function BpList({ items }: { items: string[] }) {
   );
 }
 
+function MobileCardRail({ children }: { children: ReactNode[] }) {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [scrollState, setScrollState] = useState({ progress: 0, thumb: 1 });
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return undefined;
+
+    const update = () => {
+      const maxScroll = rail.scrollWidth - rail.clientWidth;
+      const progress = maxScroll > 0 ? rail.scrollLeft / maxScroll : 0;
+      const thumb = rail.scrollWidth > 0 ? Math.min(1, Math.max(0.16, rail.clientWidth / rail.scrollWidth)) : 1;
+      setScrollState({ progress, thumb });
+    };
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(rail);
+    rail.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      ro.disconnect();
+      rail.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
+  }, [children.length]);
+
+  const thumbWidth = scrollState.thumb * 100;
+  const thumbLeft = scrollState.progress * (100 - thumbWidth);
+
+  return (
+    <div style={{ position: 'relative', marginRight: -24 }}>
+      <div
+        ref={railRef}
+        className="mobile-card-rail-scroll"
+        style={{
+          display: 'flex',
+          gap: 8,
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          paddingRight: 24,
+          paddingBottom: 0,
+          scrollSnapType: 'x mandatory',
+          scrollbarWidth: 'none',
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
+        {children.map((child, index) => (
+          <div
+            key={index}
+            style={{
+              flex: '0 0 auto',
+              display: 'inline-block',
+              width: 'fit-content',
+              maxWidth: 'min(74vw, 300px)',
+              scrollSnapAlign: 'start',
+            }}
+          >
+            {child}
+          </div>
+        ))}
+      </div>
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'relative',
+          height: 10,
+          marginTop: 18,
+          marginRight: 24,
+          pointerEvents: 'none',
+        }}
+      >
+        <div style={{ position: 'absolute', left: 0, right: 0, top: 5, borderTop: '0.5px solid rgba(149,148,146,0.32)' }} />
+        <div
+          style={{
+            position: 'absolute',
+            left: `${thumbLeft}%`,
+            top: 4,
+            width: `${thumbWidth}%`,
+            height: 2,
+            backgroundColor: 'rgba(17,17,17,0.28)',
+            transition: 'left 0.08s linear',
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 // ── Body content ───────────────────────────────────────────────────────────
 
 function CapabilitiesBody({ isMobile }: { isMobile: boolean }) {
+  if (isMobile) {
+    return (
+      <MobileCardRail>
+        {toolkits.map((tk) => (
+          <BpCard compact key={tk.title}>
+            <BpCardTitle>{tk.title}</BpCardTitle>
+            <BpList items={tk.items} />
+          </BpCard>
+        ))}
+      </MobileCardRail>
+    );
+  }
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr 1fr' : 'repeat(auto-fill, minmax(190px, 1fr))', gap: isMobile ? 10 : 14 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(190px, 1fr))', gap: 14 }}>
       {toolkits.map((tk) => (
         <BpCard key={tk.title}>
           <BpCardTitle>{tk.title}</BpCardTitle>
@@ -215,14 +298,14 @@ function CapabilitiesBody({ isMobile }: { isMobile: boolean }) {
 function FlowBody({ isMobile }: { isMobile: boolean }) {
   if (isMobile) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <MobileCardRail>
         {flowStages.map((stage) => (
-          <BpCard key={stage.title}>
+          <BpCard compact key={stage.title}>
             <BpCardTitle>{stage.title}</BpCardTitle>
             <BpList items={stage.items} />
           </BpCard>
         ))}
-      </div>
+      </MobileCardRail>
     );
   }
 
@@ -254,8 +337,25 @@ function FlowBody({ isMobile }: { isMobile: boolean }) {
 }
 
 function PhilosophyBody({ isMobile }: { isMobile: boolean }) {
+  if (isMobile) {
+    return (
+      <MobileCardRail>
+        {lenses.map((lens) => (
+          <BpCard compact key={lens.num}>
+            <div style={{ borderBottom: `1px solid ${BP_DASH}`, paddingBottom: 8, marginBottom: 10 }}>
+              <p style={{ fontSize: 28, fontWeight: 400, color: BP_MID, lineHeight: 1, marginBottom: 8, fontVariantNumeric: 'tabular-nums' }}>{lens.num}</p>
+              <p style={{ fontSize: 14, letterSpacing: '0.08em', color: BP_DARK, textTransform: 'uppercase', fontWeight: 600, lineHeight: 1.35 }}>{lens.category}</p>
+              <p style={{ fontSize: 14, letterSpacing: '0.04em', color: BP_MID, textTransform: 'uppercase', lineHeight: 1.35 }}>{lens.subtitle}</p>
+            </div>
+            <p style={{ fontSize: 15, color: BP_DARK, lineHeight: 1.6 }}>{lens.body}</p>
+          </BpCard>
+        ))}
+      </MobileCardRail>
+    );
+  }
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: isMobile ? 10 : 14 }}>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
       {lenses.map((lens) => (
         <BpCard key={lens.num}>
           <div style={{ borderBottom: `1px solid ${BP_DASH}`, paddingBottom: 8, marginBottom: 10 }}>
@@ -284,6 +384,8 @@ function BpLevel({
   onHoverStart,
   onHoverEnd,
   levelRef,
+  connectorEndMargin,
+  connectorTopOffset = 0,
 }: {
   num: string;
   title: string;
@@ -295,7 +397,9 @@ function BpLevel({
   reducedMotion: boolean;
   onHoverStart?: () => void;
   onHoverEnd?: () => void;
-  levelRef?: React.RefObject<HTMLDivElement>;
+  levelRef: React.RefObject<HTMLDivElement>;
+  connectorEndMargin: number;
+  connectorTopOffset?: number;
 }) {
   const [hovered, setHovered] = useState(false);
   const isOpen = isMobile ? mobileExpanded : hovered;
@@ -311,7 +415,7 @@ function BpLevel({
       ref={levelRef}
       onMouseEnter={() => { if (!isMobile) { setHovered(true); onHoverStart?.(); } }}
       onMouseLeave={() => { if (!isMobile) { setHovered(false); onHoverEnd?.(); } }}
-      style={{ borderBottom: `1px solid ${BP_LINE}`, minHeight: isMobile ? '120px' : '140px' }}
+      style={{ position: 'relative', borderBottom: `1px solid ${BP_LINE}`, minHeight: isMobile ? '120px' : '140px' }}
     >
       <button
         type="button"
@@ -322,41 +426,101 @@ function BpLevel({
         style={{
           width: '100%',
           display: 'flex',
-          alignItems: 'center',
-          gap: isMobile ? 14 : 22,
-          padding: isMobile ? '20px 0 10px' : '36px 0 14px',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'stretch' : 'center',
+          gap: isMobile ? 6 : 22,
+          padding: isMobile ? '18px 0 12px' : '48px 0 20px',
           background: 'none',
           border: 'none',
-          cursor: isMobile ? 'pointer' : 'default',
+          cursor: 'pointer',
           textAlign: 'left',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
-        <span style={{ fontSize: 14, letterSpacing: '0.1em', color: BP_MID, fontWeight: 600, flexShrink: 0, minWidth: 24, fontVariantNumeric: 'tabular-nums' }}>
-          {num}
-        </span>
-        <span style={{ fontSize: isMobile ? 16 : 19, letterSpacing: '0.06em', color: BP_INK, fontWeight: 600, textTransform: 'uppercase', flexShrink: 0 }}>
-          {title}
-        </span>
-        <div style={{ flex: 1, height: 0, borderBottom: `1px dashed ${BP_DASH}`, margin: '0 2px', minWidth: 16 }} aria-hidden="true" />
-        <span style={{ fontSize: isMobile ? 14 : 15, color: BP_DARK, flexShrink: 0, lineHeight: 1.4 }}>
-          {subtitle}
-        </span>
-        <span
+        {/* Top row on mobile: number + title + chevron. Single row on desktop. */}
+        <div
           style={{
-            fontSize: 18,
-            color: BP_MID,
-            flexShrink: 0,
-            lineHeight: 1,
-            marginLeft: 4,
-            display: 'inline-block',
-            transition: `transform ${reducedMotion ? '0s' : '0.25s'} ease`,
-            transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: isMobile ? 12 : 22,
+            width: '100%',
           }}
-          aria-hidden="true"
         >
-          +
-        </span>
+          <span style={{ fontSize: 14, letterSpacing: '0.1em', color: BP_MID, fontWeight: 600, flexShrink: 0, minWidth: 24, fontVariantNumeric: 'tabular-nums' }}>
+            {num}
+          </span>
+          <span style={{ fontSize: isMobile ? 16 : 19, letterSpacing: '0.06em', color: BP_INK, fontWeight: 600, textTransform: 'uppercase', flexShrink: 0 }}>
+            {title}
+          </span>
+          {!isMobile && (
+            <>
+              <div style={{ flex: 1, minWidth: 16 }} aria-hidden="true" />
+              <span style={{ fontSize: 15, color: BP_DARK, flexShrink: 0, lineHeight: 1.4 }}>
+                {subtitle}
+              </span>
+            </>
+          )}
+          <div style={{ flex: 1, minWidth: 16 }} aria-hidden="true" />
+          <span
+            style={{
+              flexShrink: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: isMobile ? 18 : 14,
+              height: isMobile ? 18 : 14,
+              transition: `transform ${reducedMotion ? '0s' : '0.25s'} ease`,
+              transform: isMobile
+                ? isOpen
+                  ? 'rotate(180deg)'
+                  : 'rotate(0deg)'
+                : isOpen
+                  ? 'rotate(45deg)'
+                  : 'rotate(0deg)',
+            }}
+            aria-hidden="true"
+          >
+            {isMobile ? (
+              <svg width="14" height="9" viewBox="0 0 14 9" fill="none">
+                <path
+                  d="M1 1.5L7 7L13 1.5"
+                  stroke={BP_MID}
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ) : (
+              <span style={{ fontSize: 18, color: BP_MID, lineHeight: 1 }}>+</span>
+            )}
+          </span>
+        </div>
+        {/* Bottom row on mobile: subtitle, indented to align under title. */}
+        {isMobile && (
+          <span
+            style={{
+              fontSize: 13,
+              color: BP_DARK,
+              lineHeight: 1.4,
+              paddingLeft: 36,
+              paddingRight: 24,
+            }}
+          >
+            {subtitle}
+          </span>
+        )}
       </button>
+
+      {!isMobile && (
+        <ConnectorLine
+          levelRef={levelRef}
+          endMargin={connectorEndMargin}
+          topOffset={connectorTopOffset}
+          isExpanded={isOpen}
+          reducedMotion={reducedMotion}
+        />
+      )}
 
       <div
         id={panelId}
@@ -371,7 +535,7 @@ function BpLevel({
         <div style={{ minHeight: 0, overflow: 'hidden' }}>
           <div
             style={{
-              paddingBottom: isMobile ? 28 : 36,
+              paddingBottom: isMobile ? 12 : 36,
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? 'translateY(0)' : 'translateY(-6px)',
               transition: `opacity ${fadeDuration} ease ${fadeDelay}, transform ${fadeDuration} ease ${fadeDelay}`,
@@ -393,6 +557,7 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [anchorTopPx, setAnchorTopPx] = useState<number | null>(null);
   const [activeLevel, setActiveLevel] = useState<null | 1 | 2 | 3>(null);
+  const [separatorProgress, setSeparatorProgress] = useState(0);
   const anchorParentRef = useRef<HTMLDivElement>(null);
   const levelRefs = {
     1: useRef<HTMLDivElement>(null),
@@ -429,6 +594,7 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
     return () => mq.removeEventListener('change', handler);
   }, []);
 
+
   // Position the building anchor so that the TOP edge of level3 (roof) lands
   // exactly on row 01's top edge. With the top anchored, level2 and level1
   // cascade downward, syncing each building level with its corresponding
@@ -437,7 +603,7 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
     if (isMobile) return;
     let raf = 0;
     const compute = () => {
-      const row01Btn = document.getElementById('bp-level-01-btn');
+      const row01Btn = document.getElementById('bp-level-03-btn');
       const parent = anchorParentRef.current;
       if (!row01Btn || !parent) return;
       const row01Rect = row01Btn.getBoundingClientRect();
@@ -458,13 +624,45 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
     scheduled();
     const ro = new ResizeObserver(scheduled);
     if (anchorParentRef.current) ro.observe(anchorParentRef.current);
-    const row01Btn = document.getElementById('bp-level-01-btn');
+    const row01Btn = document.getElementById('bp-level-03-btn');
     if (row01Btn) ro.observe(row01Btn);
     window.addEventListener('resize', scheduled);
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener('resize', scheduled);
+    };
+  }, [isMobile]);
+
+  // Separator line — draws left-to-right as the building crosses the hero/
+  // design-cycle boundary. Progress mirrors WireframeMesh Phase 1: starts
+  // when the section enters the viewport, completes when the section top
+  // reaches BUILDING_TOP_FRACTION (0.30) from the viewport top — the exact
+  // moment the building's top aligns with the glossary row 01 edge.
+  useEffect(() => {
+    if (isMobile) return;
+    let raf = 0;
+    const update = () => {
+      const section = document.getElementById('design-cycle');
+      if (!section) return;
+      const sectionTop = section.getBoundingClientRect().top;
+      const vh = window.innerHeight;
+      const startY = vh;                // section top at viewport bottom → 0
+      const endY   = vh * 0.10;        // section top at 10% → fully drawn
+      const p = Math.max(0, Math.min(1, (startY - sectionTop) / (startY - endY)));
+      setSeparatorProgress(p);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => { update(); raf = 0; });
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', update);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, [isMobile]);
 
@@ -477,8 +675,24 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
     <section
       id="design-cycle"
       className="practice-section bg-pure px-6 pt-8 pb-12 sm:px-6 sm:pt-20 sm:pb-24"
-      style={isMobile ? undefined : { minHeight: 'calc(100svh - 48px)' }}
+      style={isMobile ? undefined : { minHeight: 'calc(100svh - 48px)', position: 'relative' }}
     >
+      {/* Boundary separator — draws left→right as the building crosses into this section */}
+      {!isMobile && separatorProgress > 0 && (
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            height: '1px',
+            width: `${separatorProgress * 100}%`,
+            background: '#959492',
+            pointerEvents: 'none',
+            zIndex: 5,
+          }}
+        />
+      )}
       <div className="hero-breakout mx-auto">
         <div
           style={{
@@ -490,8 +704,16 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
 
           {/* Left 3/4 — content */}
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <ScrollSection entryDirection="bottom" motionRole="case-intro">
-              <h2 className="type-display-m type-display-m-plus" style={{ color: BP_INK, marginBottom: 12 }}>
+            <ScrollSection
+              entryDirection="bottom"
+              motionRole="case-intro"
+              threshold={isMobile ? 0.05 : 0.3}
+            >
+              <h2
+                id="design-cycle-title"
+                className="type-display-l"
+                style={{ color: BP_INK, marginBottom: 12, marginTop: isMobile ? 0 : 280 }}
+              >
                 My Design Cycle
               </h2>
               <p
@@ -499,16 +721,21 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
                 style={{
                   color: BP_DARK,
                   maxWidth: '56ch',
-                  marginBottom: isMobile ? 48 : 96,
+                  marginBottom: isMobile ? 48 : 40,
                   lineHeight: 1.45,
                   fontSize: isMobile ? 16 : 22,
                 }}
               >
-                A human-centered design cycle ensuring solutions are functional, meaningful, and sustainable.
+                Three layers: the base that justifies everything above it, the structure that makes it possible, and the surface the user reaches.
               </p>
             </ScrollSection>
 
-            <ScrollSection entryDirection="bottom" motionRole="case-block">
+            <ScrollSection
+              entryDirection="bottom"
+              motionRole="case-block"
+              threshold={isMobile ? 0.02 : 0.3}
+              disableTransform={isMobile}
+            >
               <div
                 style={{
                   borderTop: `1px solid ${BP_LINE}`,
@@ -521,14 +748,16 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
 
                 <BpLevel
                   {...levelProps}
-                  num="01"
+                  num="03"
                   title="My Capabilities & Toolkits"
-                  subtitle="Research · Design · Technical · AI-Augmented"
+                  subtitle="Strategy · Research · Design · Technical · AI-Augmented"
                   mobileExpanded={expanded.has('01')}
                   onMobileToggle={() => toggle('01')}
                   onHoverStart={() => dispatchLevel(1)}
                   onHoverEnd={() => dispatchLevel(null)}
                   levelRef={levelRefs[1]}
+                  connectorEndMargin={40}
+                  connectorTopOffset={-60}
                 >
                   <CapabilitiesBody isMobile={isMobile} />
                 </BpLevel>
@@ -543,13 +772,15 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
                   onHoverStart={() => dispatchLevel(2)}
                   onHoverEnd={() => dispatchLevel(null)}
                   levelRef={levelRefs[2]}
+                  connectorEndMargin={100}
+                  connectorTopOffset={-20}
                 >
                   <FlowBody isMobile={isMobile} />
                 </BpLevel>
 
                 <BpLevel
                   {...levelProps}
-                  num="03"
+                  num="01"
                   title="My Design Philosophy"
                   subtitle="Three Lenses of Human-Centered Design"
                   mobileExpanded={expanded.has('03')}
@@ -557,6 +788,8 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
                   onHoverStart={() => dispatchLevel(3)}
                   onHoverEnd={() => dispatchLevel(null)}
                   levelRef={levelRefs[3]}
+                  connectorEndMargin={170}
+                  connectorTopOffset={52}
                 >
                   <PhilosophyBody isMobile={isMobile} />
                 </BpLevel>
@@ -593,7 +826,6 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
           )}
         </div>
       </div>
-      <ConnectorLines isMobile={isMobile} activeLevel={activeLevel} levelRefs={levelRefs} />
     </section>
   );
 }

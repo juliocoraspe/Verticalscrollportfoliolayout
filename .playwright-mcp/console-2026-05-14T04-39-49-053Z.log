@@ -1,0 +1,33 @@
+[      85ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[     272ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:139
+[     298ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142808ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142809ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142809ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142809ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142809ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142809ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=008470e5:6032
+[  142837ms] [ERROR] Warning: %s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.%s Removing borderBottom border 
+    at button
+    at div
+    at nav
+    at Navbar (http://localhost:5173/src/app/components/Navbar.tsx:169:26)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1778733312131:34:30) @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:520
+[  149624ms] [ERROR] Warning: %s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.%s Removing borderBottom border 
+    at button
+    at div
+    at nav
+    at Navbar (http://localhost:5173/src/app/components/Navbar.tsx:169:26)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1778733312131:34:30) @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:520

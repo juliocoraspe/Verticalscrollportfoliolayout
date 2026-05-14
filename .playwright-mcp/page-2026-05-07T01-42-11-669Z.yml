@@ -1,0 +1,182 @@
+- generic [ref=e3]:
+  - navigation "Site navigation" [ref=e4]:
+    - generic [ref=e5]:
+      - link "MY DESIGN CYCLE" [ref=e599] [cursor=pointer]:
+        - /url: "#design-cycle"
+        - img [ref=e601]
+        - generic [ref=e604]: MY DESIGN CYCLE
+      - link "CASE STUDIES" [ref=e606] [cursor=pointer]:
+        - /url: "#case-studies"
+        - img [ref=e608]
+        - generic [ref=e610]: CASE STUDIES
+      - link "ABOUT / CONTACT" [ref=e612] [cursor=pointer]:
+        - /url: "#about-me"
+        - img [ref=e614]
+        - generic [ref=e617]: ABOUT / CONTACT
+      - button "ACCESSIBILITY" [ref=e619] [cursor=pointer]:
+        - img [ref=e621]
+        - generic [ref=e624]: ACCESSIBILITY
+      - button "MOTION GARDEN" [ref=e626] [cursor=pointer]:
+        - img [ref=e628]
+        - generic [ref=e630]: MOTION GARDEN
+  - main [ref=e46]:
+    - region "Accessibility workflow" [ref=e631]:
+      - generic [ref=e633]:
+        - paragraph [ref=e635]: 04 — Accessibility Workflow
+        - heading "How a website learns to be read by everyone." [level=2] [ref=e637]
+        - generic [ref=e638]:
+          - generic [ref=e639]:
+            - paragraph [ref=e640]: Abstract
+            - paragraph [ref=e641]: An AI-assisted audit pipeline. Six movements. Claude Code as the conductor, Playwright as the hands, axe-core as the ear, and a final report that turns findings into fixes.
+          - generic [ref=e642]:
+            - paragraph [ref=e643]: Standard
+            - paragraph [ref=e644]:
+              - text: WCAG 2.1 / 2.2
+              - text: Level AA
+          - generic [ref=e645]:
+            - paragraph [ref=e646]: Acts
+            - paragraph [ref=e647]: "06"
+          - generic [ref=e648]:
+            - paragraph [ref=e649]: Year
+            - paragraph [ref=e650]: "2026"
+      - generic [ref=e652]:
+        - generic [ref=e653]:
+          - paragraph [ref=e655]: 01 — Setup & Bridge
+          - heading "The toolbox assembles." [level=3] [ref=e656]
+          - generic [ref=e658]:
+            - generic [ref=e659]:
+              - generic [ref=e660]: ORCHESTRATOR
+              - generic [ref=e661]: Claude Code
+            - generic [ref=e662]:
+              - generic [ref=e663]: Node.js
+              - generic [ref=e664]: npm
+              - generic [ref=e665]: Playwright
+              - generic [ref=e666]: Chromium
+              - generic [ref=e667]: axe-core
+          - paragraph [ref=e668]: Bridge connected. The browser is now an instrument.
+        - generic [ref=e669]:
+          - paragraph [ref=e671]: 02 — The Scan
+          - heading "The page is read." [level=3] [ref=e672]
+          - paragraph [ref=e683]: "Automated coverage: 30–40% of all issues."
+        - generic [ref=e684]:
+          - paragraph [ref=e686]: 03 — Full Coverage
+          - heading "One page becomes eleven." [level=3] [ref=e687]
+          - paragraph [ref=e705]: Issues consolidated by criterion, not by page.
+        - generic [ref=e706]:
+          - paragraph [ref=e708]: 04 — Human Check
+          - heading "What machines can't see." [level=3] [ref=e709]
+          - generic [ref=e711]:
+            - generic [ref=e712]:
+              - generic [ref=e713]: A
+              - generic [ref=e714]: KEYBOARD
+            - generic [ref=e715]:
+              - generic [ref=e716]: B
+              - generic [ref=e717]: READER
+            - generic [ref=e718]:
+              - generic [ref=e719]: C
+              - generic [ref=e720]: CONTRAST
+          - paragraph [ref=e721]: Three checks no scanner can replicate.
+        - generic [ref=e722]:
+          - paragraph [ref=e724]: 05 — Remediation
+          - heading "Findings become fixes." [level=3] [ref=e725]
+          - generic [ref=e727]:
+            - generic [ref=e728]:
+              - generic [ref=e730]: Missing alt text
+              - generic [ref=e731]: 1.1.1
+            - generic [ref=e732]:
+              - generic [ref=e734]: Form input no label
+              - generic [ref=e735]: 4.1.2
+            - generic [ref=e736]:
+              - generic [ref=e738]: Contrast 2.1:1
+              - generic [ref=e739]: 1.4.3
+          - paragraph [ref=e740]: Fixed in Divi · re-audited with the same prompt.
+        - generic [ref=e741]:
+          - paragraph [ref=e743]: 06 — The Report
+          - heading "A report the client can use." [level=3] [ref=e744]
+          - generic [ref=e746]:
+            - generic [ref=e747]:
+              - generic [ref=e748]: Consolidated Report
+              - generic [ref=e749]: Client Project · WCAG Audit
+            - generic [ref=e750]:
+              - generic [ref=e751]:
+                - generic [ref=e752]: Total
+                - generic [ref=e753]: "47"
+              - generic [ref=e754]:
+                - generic [ref=e755]: Found
+                - generic [ref=e756]: "41"
+              - generic [ref=e757]:
+                - generic [ref=e758]: Resolved
+                - generic [ref=e759]: "47"
+          - paragraph [ref=e763]: Filterable. Trackable. Self-documenting.
+      - generic [ref=e765]:
+        - paragraph [ref=e767]: Outcome
+        - heading "A site that passes, and a client that understands why." [level=2] [ref=e769]
+        - generic [ref=e770]:
+          - generic [ref=e771]:
+            - paragraph [ref=e772]: Stack
+            - paragraph [ref=e773]: Claude Code · Playwright MCP · axe-core · WordPress / Divi · WebAIM
+          - generic [ref=e774]:
+            - paragraph [ref=e775]: Standard
+            - paragraph [ref=e776]: WCAG 2.1 AA + WCAG 2.2 AA
+          - generic [ref=e777]:
+            - paragraph [ref=e778]: Deliverable
+            - paragraph [ref=e779]: Interactive HTML report with progress tracking
+    - generic [ref=e517]:
+      - generic [ref=e518]:
+        - heading "This portfolio's accessibility" [level=2] [ref=e519]
+        - paragraph [ref=e520]: Accessibility is a foundational constraint in this portfolio—not an afterthought. The following outlines the standards and design decisions applied throughout.
+      - generic [ref=e521]:
+        - generic [ref=e522]:
+          - paragraph [ref=e523]: Standards
+          - paragraph [ref=e524]: This portfolio targets WCAG 2.1 Level AA compliance as a baseline. Color contrast, focus visibility, semantic structure, and keyboard operability are treated as non-negotiable requirements rather than optional enhancements.
+        - generic [ref=e525]:
+          - paragraph [ref=e526]: Keyboard Navigation
+          - generic [ref=e527]:
+            - paragraph [ref=e528]: All interactive elements—buttons, links, toggles, and embedded prototypes—are fully reachable and operable by keyboard alone. Tab order follows the natural reading sequence.
+            - paragraph [ref=e529]: A skip-to-main-content link is available at the top of the page for keyboard and assistive technology users. It becomes visible on focus.
+        - generic [ref=e530]:
+          - paragraph [ref=e531]: Motion
+          - paragraph [ref=e532]:
+            - text: All animations and transitions respect the
+            - code [ref=e533]: prefers-reduced-motion
+            - text: system setting. When reduced motion is enabled, scroll animations, slide transitions, and decorative motion are fully disabled without any loss of content or functionality.
+        - generic [ref=e534]:
+          - paragraph [ref=e535]: Screen Readers
+          - paragraph [ref=e536]:
+            - text: Semantic HTML elements and ARIA landmark regions provide structure for assistive technologies. Interactive components use explicit ARIA labels and
+            - code [ref=e537]: aria-expanded
+            - text: /
+            - code [ref=e538]: aria-controls
+            - text: attributes to communicate state. Images include descriptive alt text.
+        - generic [ref=e539]:
+          - paragraph [ref=e540]: Color & Contrast
+          - paragraph [ref=e541]: Text and interactive elements meet WCAG AA contrast ratios against their backgrounds. Color is never used as the sole means of conveying information—state changes and distinctions are also communicated through text, shape, or position.
+        - generic [ref=e542]:
+          - paragraph [ref=e543]: Focus Indicators
+          - paragraph [ref=e544]: Visible focus rings are preserved on all interactive elements. Default browser outlines are not suppressed unless replaced with a clearly visible custom indicator that meets or exceeds the original contrast.
+        - generic [ref=e545]:
+          - paragraph [ref=e546]: Feedback
+          - generic [ref=e547]:
+            - paragraph [ref=e548]: If you encounter an accessibility barrier or have feedback on how this portfolio can better support your needs, please reach out directly.
+            - link "juliocoraspe@gmail.com" [ref=e549] [cursor=pointer]:
+              - /url: mailto:juliocoraspe@gmail.com
+  - generic [ref=e552]:
+    - generic [ref=e553]:
+      - heading "Contact" [level=2] [ref=e555]
+      - paragraph [ref=e557]: I’m open to UX/UI roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e558]:
+      - paragraph [ref=e559]: Links
+      - generic [ref=e560]:
+        - link "Resume" [ref=e561] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e562] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e563] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e564] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - button "Accessibility" [ref=e565] [cursor=pointer]
+        - button "Motion Garden" [ref=e566] [cursor=pointer]
+        - link "Creative Portfolio" [ref=e567] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

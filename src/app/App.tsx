@@ -6,12 +6,14 @@ import { PracticeSection } from './components/sections/PracticeSection';
 import { CaseStudiesSection } from './components/sections/CaseStudiesSection';
 import { AboutMeSection } from './components/sections/AboutMeSection';
 import { ContactSection } from './components/sections/ContactSection';
+import { AccessibilitySection } from './components/sections/AccessibilitySection';
 import { MotionGarden } from './components/MotionGarden';
+import { AiExperience } from './components/AiExperience';
 import { Navbar } from './components/Navbar';
 import { CASE_STUDY } from './data/caseStudy';
 import { PROJECTS } from './data/projects';
 
-type View = 'main' | 'motion-garden';
+type View = 'main' | 'motion-garden' | 'accessibility' | 'ai-experience';
 
 export default function App() {
   const shouldReduceMotion = useReducedMotion();
@@ -85,29 +87,34 @@ export default function App() {
     });
   };
 
-  const handleStillenCollapse = () => {
-    pendingCollapseScrollRef.current = caseStudyStillenRef.current;
-    setIsStillenOpen(false);
-  };
-
-  const handleMiloCollapse = () => {
-    pendingCollapseScrollRef.current = caseStudyMiloRef.current;
-    setIsMiloOpen(false);
-  };
-
-  const handleTodoCollapse = () => {
-    pendingCollapseScrollRef.current = caseStudyTodoRef.current;
-    setIsTodoOpen(false);
-  };
-
-  const handleAsmrCollapse = () => {
-    pendingCollapseScrollRef.current = caseStudyAsmrRef.current;
-    setIsAsmrOpen(false);
-  };
+  const handleStillenCollapse = () => setIsStillenOpen(false);
+  const handleMiloCollapse = () => setIsMiloOpen(false);
+  const handleTodoCollapse = () => setIsTodoOpen(false);
+  const handleAsmrCollapse = () => setIsAsmrOpen(false);
 
   const caseStudy = CASE_STUDY;
   const todoProject = PROJECTS.find((project) => project.id === 'todo-app')!;
   const asmrProject = PROJECTS.find((project) => project.id === 'asmr-app')!;
+  const getDesignCycleTitleTargetY = useCallback(() => {
+    const title = document.getElementById('design-cycle-title');
+    const fallback = document.getElementById('design-cycle');
+    const target = title ?? fallback;
+    if (!target) return null;
+
+    // Match the visual landing point used by the other section titles:
+    // navbar height (48px) + section top padding (32px mobile / 80px desktop).
+    const titleViewportTop = isMobile ? 80 : 128;
+    return Math.max(0, target.getBoundingClientRect().top + window.scrollY - titleViewportTop);
+  }, [isMobile]);
+
+  const scrollToDesignCycleTitle = useCallback(() => {
+    const targetY = getDesignCycleTitleTargetY();
+    if (targetY == null) return;
+    window.scrollTo({
+      top: targetY,
+      behavior: shouldReduceMotion ? 'auto' : 'smooth',
+    });
+  }, [getDesignCycleTitleTargetY, shouldReduceMotion]);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -119,8 +126,36 @@ export default function App() {
         return;
       }
 
+      if (hash === '#accessibility') {
+        setView('accessibility');
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+        return;
+      }
+
+      if (hash === '#ai-experience') {
+        setView('ai-experience');
+        requestAnimationFrame(() => window.scrollTo(0, 0));
+        return;
+      }
+
+      if (hash === '#design-cycle') {
+        setView((currentView) => {
+          requestAnimationFrame(scrollToDesignCycleTitle);
+          return currentView === 'motion-garden' ||
+            currentView === 'accessibility' ||
+            currentView === 'ai-experience'
+            ? 'main'
+            : currentView;
+        });
+        return;
+      }
+
       setView((currentView) => {
-        if (currentView !== 'motion-garden') {
+        if (
+          currentView !== 'motion-garden' &&
+          currentView !== 'accessibility' &&
+          currentView !== 'ai-experience'
+        ) {
           return currentView;
         }
 
@@ -143,7 +178,73 @@ export default function App() {
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [shouldReduceMotion]);
+  }, [scrollToDesignCycleTitle, shouldReduceMotion]);
+
+  // Magnet snap: when scrolling down and the design-cycle section top enters
+  // the trigger zone, auto-scroll to pin it below the navbar.
+  // Scroll-down during snap is ignored (magnet wins). Only scroll-up breaks it.
+  useEffect(() => {
+    if (isMobile || shouldReduceMotion) return;
+
+    let isSnapping = false;
+    let snapRAF = 0;
+    let cooldown = false;
+    let cooldownTimer = 0;
+
+    const cancelSnap = () => {
+      cancelAnimationFrame(snapRAF);
+      isSnapping = false;
+      snapRAF = 0;
+    };
+
+    const snapTo = (targetY: number) => {
+      cancelAnimationFrame(snapRAF);
+      isSnapping = true;
+      const startY = window.scrollY;
+      const diff = targetY - startY;
+      if (Math.abs(diff) < 2) { isSnapping = false; return; }
+      const duration = 420;
+      const start = performance.now();
+      const step = (now: number) => {
+        if (!isSnapping) return;
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 4);
+        window.scrollTo(0, startY + diff * eased);
+        if (t < 1) {
+          snapRAF = requestAnimationFrame(step);
+        } else {
+          isSnapping = false;
+          cooldown = true;
+          clearTimeout(cooldownTimer);
+          cooldownTimer = window.setTimeout(() => { cooldown = false; }, 800);
+        }
+      };
+      snapRAF = requestAnimationFrame(step);
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      // Scroll-up always breaks the snap
+      if (isSnapping && e.deltaY < 0) { cancelSnap(); return; }
+      // Scroll-down during snap: magnet wins, ignore user input
+      if (isSnapping && e.deltaY > 0) return;
+      if (cooldown) return;
+      const section = document.getElementById('design-cycle');
+      if (!section) return;
+      const sectionTop = section.getBoundingClientRect().top;
+      const vh = window.innerHeight;
+      if (e.deltaY > 0 && sectionTop > vh * 0.25 && sectionTop < vh * 0.72) {
+        const targetY = getDesignCycleTitleTargetY() ?? section.offsetTop - 48;
+        snapTo(targetY);
+      }
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: true });
+    return () => {
+      cancelSnap();
+      clearTimeout(cooldownTimer);
+      window.removeEventListener('wheel', onWheel);
+    };
+  }, [getDesignCycleTitleTargetY, isMobile, shouldReduceMotion]);
 
   const enterMotionGarden = useCallback(() => {
     scrollPositionRef.current = window.scrollY;
@@ -154,12 +255,57 @@ export default function App() {
     window.location.hash = '';
   }, []);
 
+  const enterAccessibility = useCallback(() => {
+    scrollPositionRef.current = window.scrollY;
+    window.location.hash = 'accessibility';
+  }, []);
+
+  const enterAiExperience = useCallback(() => {
+    scrollPositionRef.current = window.scrollY;
+    window.location.hash = 'ai-experience';
+  }, []);
+
   if (view === 'motion-garden') {
     return (
       <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
-        <Navbar enterMotionGarden={enterMotionGarden} currentView="motion-garden" />
+        <Navbar
+          enterMotionGarden={enterMotionGarden}
+          enterAccessibility={enterAccessibility}
+          enterAiExperience={enterAiExperience}
+          currentView="motion-garden"
+        />
         <MotionGarden onExit={exitMotionGarden} />
-        <ContactSection enterMotionGarden={enterMotionGarden} />
+        <ContactSection enterMotionGarden={enterMotionGarden} enterAccessibility={enterAccessibility} enterAiExperience={enterAiExperience} />
+      </div>
+    );
+  }
+
+  if (view === 'accessibility') {
+    return (
+      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
+        <Navbar
+          enterMotionGarden={enterMotionGarden}
+          enterAccessibility={enterAccessibility}
+          enterAiExperience={enterAiExperience}
+          currentView="accessibility"
+        />
+        <AccessibilitySection />
+        <ContactSection enterMotionGarden={enterMotionGarden} enterAccessibility={enterAccessibility} enterAiExperience={enterAiExperience} />
+      </div>
+    );
+  }
+
+  if (view === 'ai-experience') {
+    return (
+      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
+        <Navbar
+          enterMotionGarden={enterMotionGarden}
+          enterAccessibility={enterAccessibility}
+          enterAiExperience={enterAiExperience}
+          currentView="ai-experience"
+        />
+        <AiExperience />
+        <ContactSection enterMotionGarden={enterMotionGarden} enterAccessibility={enterAccessibility} enterAiExperience={enterAiExperience} />
       </div>
     );
   }
@@ -172,7 +318,11 @@ export default function App() {
       >
         Skip to main content
       </a>
-      <Navbar enterMotionGarden={enterMotionGarden} />
+      <Navbar
+        enterMotionGarden={enterMotionGarden}
+        enterAccessibility={enterAccessibility}
+        enterAiExperience={enterAiExperience}
+      />
       <HeroSection isMobile={isMobile} />
       <PracticeSection enterMotionGarden={enterMotionGarden} />
       <CaseStudiesSection
@@ -199,7 +349,7 @@ export default function App() {
       />
 
       <AboutMeSection />
-      <ContactSection enterMotionGarden={enterMotionGarden} />
+      <ContactSection enterMotionGarden={enterMotionGarden} enterAccessibility={enterAccessibility} enterAiExperience={enterAiExperience} />
     </div>
   );
 }

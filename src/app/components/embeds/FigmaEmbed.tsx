@@ -17,7 +17,12 @@ type FigmaEmbedProps = {
   mobileStaticImageSrc?: string;
   mobileStaticImageAlt?: string;
   mobileStaticImageObjectFit?: 'cover' | 'contain';
-  mobileFooterBarHeightPx?: number;
+  /** External URL the mobile static image links to (e.g., Figma / GitHub).
+   *  Defaults to `src` when omitted. */
+  mobileLinkHref?: string;
+  /** CTA label shown in the bar below the mobile static image. When
+   *  omitted no CTA bar is rendered and the image alone is clickable. */
+  mobileLinkLabel?: string;
 };
 
 export function FigmaEmbed({
@@ -35,7 +40,8 @@ export function FigmaEmbed({
   mobileStaticImageSrc,
   mobileStaticImageAlt,
   mobileStaticImageObjectFit = 'cover',
-  mobileFooterBarHeightPx = 48,
+  mobileLinkHref,
+  mobileLinkLabel,
 }: FigmaEmbedProps) {
   const shouldReduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
@@ -67,28 +73,39 @@ export function FigmaEmbed({
     return () => observer.disconnect();
   }, [prefersInteraction, rootMargin, unmountOnExit]);
 
+  const mobileHref = mobileLinkHref ?? src;
+  const mobileAltText = mobileStaticImageAlt ?? `${title} preview`;
+
   return (
     <div ref={wrapperRef} className={wrapperClassName}>
       {shouldUseMobileStaticImage ? (
-        <div className="relative h-full w-full overflow-hidden">
-          <iframe
-            title={title}
-            src={src}
-            className={iframeClassName}
-            loading={loading}
-            allow={allow}
-            allowFullScreen={allowFullScreen}
-          />
-          <img
-            src={mobileStaticImageSrc}
-            alt={mobileStaticImageAlt ?? `${title} preview`}
-            className="absolute inset-0 z-10 h-full w-full"
-            style={{
-              objectFit: mobileStaticImageObjectFit,
-              clipPath: `inset(0 0 ${mobileFooterBarHeightPx}px 0)`,
-            }}
-          />
-        </div>
+        // Mobile fallback: never insert the iframe into the DOM. Wrap the
+        // static image in an external link so tapping the card opens the
+        // real prototype/repo. Optionally render a CTA bar underneath
+        // (e.g., "Open Figma Design", "See full code on GitHub").
+        <a
+          href={mobileHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={mobileLinkLabel ?? `Open ${title}`}
+          className="block h-full w-full"
+        >
+          <div className="flex h-full w-full flex-col overflow-hidden">
+            <div className="relative min-h-0 flex-1 overflow-hidden">
+              <img
+                src={mobileStaticImageSrc}
+                alt={mobileAltText}
+                className="h-full w-full"
+                style={{ objectFit: mobileStaticImageObjectFit }}
+              />
+            </div>
+            {mobileLinkLabel ? (
+              <span className="flex h-12 shrink-0 items-center border-t border-pale bg-pure px-6 type-meta uppercase text-accent">
+                {mobileLinkLabel}
+              </span>
+            ) : null}
+          </div>
+        </a>
       ) : isMounted ? (
         <iframe
           title={title}

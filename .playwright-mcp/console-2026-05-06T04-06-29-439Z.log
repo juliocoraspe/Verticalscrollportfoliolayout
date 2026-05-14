@@ -1,0 +1,23 @@
+[     114ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[    9146ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[    9146ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[    9146ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   28563ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   53223ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   78106ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   78106ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   78106ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   88700ms] Failed to parse import map: invalid JSON
+[   92479ms] [LOG] Running frontend commit 29e500cedf3ecfec196af409505d772d2eca65a3 @ https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fdesign%2FfYwhBS4WdU21aEjBQKEGVl%2FJulio-Coraspe-Lumn%3Fembed-host%3Dshare%26kind%3Dfile%26node-id%3D0-1%26page-selector%3D1%26theme%3Dlight%26version%3D2%26viewer%3D1&theme=light&version=2:448
+[   93060ms] [LOG] Reloading the embed... reason: refreshOnReadyForEmbed @ https://www.figma.com/webpack-artifacts/assets/embed_interstitial-a54c01771fc378f0.min.js.br:85
+[   93787ms] [LOG] Running frontend commit 29e500cedf3ecfec196af409505d772d2eca65a3 @ https://www.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?embed-host=share&kind=file&node-id=0-1&page-selector=1&theme=light&version=2&viewer=1:448
+[   93835ms] [ERROR] Fetching compiled_wasm.wasm failed: TypeError: Failed to fetch @ https://www.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?embed-host=share&kind=file&node-id=0-1&page-selector=1&theme=light&version=2&viewer=1:456
+[   93849ms] Failed to parse import map: invalid JSON
