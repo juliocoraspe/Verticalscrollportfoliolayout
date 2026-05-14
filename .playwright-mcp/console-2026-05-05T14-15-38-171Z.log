@@ -1,0 +1,5 @@
+[     670ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[     859ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5174/favicon.ico:0
+[   59252ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   59252ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   59252ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47

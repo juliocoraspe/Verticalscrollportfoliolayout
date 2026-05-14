@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import type { BlueprintSection } from './CaseStudyBlueprint';
 import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { ScrollSection } from './ScrollSection';
 import { useIsMobile } from './ui/use-mobile';
@@ -194,3 +195,87 @@ function CaseStudyContentComponent({
 }
 
 export const CaseStudyContent = memo(CaseStudyContentComponent);
+
+export function getStillenBlueprintSections({
+  title,
+  problem,
+  process,
+  exploration,
+  solution,
+  prototype,
+}: CaseStudyProps): BlueprintSection[] {
+  return [
+    {
+      id: '01',
+      label: problem.title,
+      body: <p>{problem.description}</p>,
+    },
+    {
+      id: '02',
+      label: process.title,
+      body: (
+        <>
+          <p>{process.description}</p>
+          <ul>
+            {process.steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ul>
+        </>
+      ),
+    },
+    {
+      id: '03',
+      label: exploration.title,
+      body: (
+        <>
+          <p style={{ marginBottom: 12 }}>{exploration.description}</p>
+          <div
+            className="cs-bp-media"
+            style={{ height: 280, width: 'auto', aspectRatio: '1973 / 852', maxWidth: '100%' }}
+          >
+            <div className="cs-bp-media-frame">
+              <img src={testingImage} alt={`${title} testing`} style={{ objectFit: 'cover' }} />
+            </div>
+          </div>
+        </>
+      ),
+    },
+    {
+      id: '04',
+      label: solution.title,
+      body: (
+        <>
+          <p>{solution.description}</p>
+          <ul>
+            {solution.outcomes.map((outcome) => (
+              <li key={outcome}>{outcome}</li>
+            ))}
+          </ul>
+        </>
+      ),
+    },
+    {
+      id: '05',
+      label: prototype.title,
+      body: prototype.embedUrl ? (
+        <div className="cs-bp-media cs-bp-media-landscape" style={{ height: 280, maxWidth: '100%' }}>
+          <div className="cs-bp-media-frame">
+            <FigmaEmbed
+              title={`${title} prototype`}
+              src={prototype.embedUrl}
+              wrapperClassName="cs-bp-media-fill"
+              iframeClassName="cs-bp-media-fill"
+              mobileStaticImageSrc={stillenMobile}
+              mobileStaticImageAlt="Stillen solution static preview"
+              mobileLinkHref={prototype.externalUrl ?? prototype.embedUrl}
+              mobileLinkLabel="Open Figma Design"
+            />
+          </div>
+        </div>
+      ) : (
+        <p className="cs-bp-muted">Prototype embed pending.</p>
+      ),
+    },
+  ];
+}

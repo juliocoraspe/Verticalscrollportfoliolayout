@@ -1,0 +1,17 @@
+[      98ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[     324ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5174/favicon.ico:0
+[    9317ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[   10129ms] [LOG] Running frontend commit 29e500cedf3ecfec196af409505d772d2eca65a3 @ https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fdesign%2Fj53F6cGj6FfpQISnyeSRMd%2FSTILLEN-by-Julio-Coraspe%3Fembed-host%3Dshare%26kind%3Dfile%26node-id%3D277-5077%26page-selector%3D1%26theme%3Dlight%26version%3D2%26viewer%3D1&theme=light&version=2:448
+[   10829ms] [LOG] Reloading the embed... reason: refreshOnReadyForEmbed @ https://www.figma.com/webpack-artifacts/assets/embed_interstitial-a54c01771fc378f0.min.js.br:85
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   12638ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   59766ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   59766ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   59767ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47

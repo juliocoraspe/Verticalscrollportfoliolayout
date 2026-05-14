@@ -1,0 +1,146 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Site navigation" [ref=e5]:
+    - generic [ref=e6]:
+      - link "MY DESIGN CYCLE" [ref=e7] [cursor=pointer]:
+        - /url: "#design-cycle"
+        - img [ref=e9]
+        - generic [ref=e12]: MY DESIGN CYCLE
+      - link "CASE STUDIES" [ref=e14] [cursor=pointer]:
+        - /url: "#case-studies"
+        - img [ref=e16]
+        - generic [ref=e18]: CASE STUDIES
+      - link "ABOUT ME" [ref=e20] [cursor=pointer]:
+        - /url: "#about-me"
+        - img [ref=e22]
+        - generic [ref=e25]: ABOUT ME
+      - link "CONTACT" [ref=e27] [cursor=pointer]:
+        - /url: "#contact"
+        - img [ref=e29]
+        - generic [ref=e32]: CONTACT
+      - button "MOTION GARDEN" [ref=e34] [cursor=pointer]:
+        - img [ref=e36]
+        - generic [ref=e38]: MOTION GARDEN
+  - generic [ref=e40]:
+    - paragraph [ref=e41]: Julio Coraspe - UX/UI Designer
+    - heading "I design with the precision of someone who builds. Because I know where every decision lands." [level=1] [ref=e42]:
+      - generic [ref=e43]: I design with the precision of someone who builds.
+      - generic [ref=e44]: Because I know where every decision lands.
+    - paragraph [ref=e45]: My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration. I care about how it looks. I care more about how it works. I care most about the mountain it takes to solve the right problem.
+  - generic [ref=e48]:
+    - heading "My Design Cycle" [level=2] [ref=e50]
+    - generic [ref=e51]:
+      - generic [ref=e53]:
+        - paragraph [ref=e54]: "My Design Philosophy: The Three Lenses of Human-Centered Design by Tim Brown"
+        - generic [ref=e55]:
+          - button "USER Desirability" [ref=e57] [cursor=pointer]:
+            - generic [ref=e58]:
+              - generic [ref=e59]: USER
+              - generic [ref=e60]: Desirability
+            - generic [ref=e61]: +
+          - button "BUSINESS Viability" [ref=e63] [cursor=pointer]:
+            - generic [ref=e64]:
+              - generic [ref=e65]: BUSINESS
+              - generic [ref=e66]: Viability
+            - generic [ref=e67]: +
+          - button "TECHNOLOGY Feasibility" [ref=e69] [cursor=pointer]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: TECHNOLOGY
+              - generic [ref=e72]: Feasibility
+            - generic [ref=e73]: +
+      - generic [ref=e75]:
+        - paragraph [ref=e76]: My Design Flow
+        - generic [ref=e77]:
+          - button "Discovery" [ref=e79] [cursor=pointer]:
+            - generic [ref=e80]: Discovery
+            - generic [ref=e81]: +
+          - button "Design" [ref=e83] [cursor=pointer]:
+            - generic [ref=e84]: Design
+            - generic [ref=e85]: +
+          - button "Delivery" [ref=e87] [cursor=pointer]:
+            - generic [ref=e88]: Delivery
+            - generic [ref=e89]: +
+      - generic [ref=e91]:
+        - paragraph [ref=e92]: My Capabilities & Toolkits
+        - generic [ref=e93]:
+          - button "UX Strategy Toolkit" [ref=e95] [cursor=pointer]:
+            - generic [ref=e96]: UX Strategy Toolkit
+            - generic [ref=e97]: +
+          - button "Research Toolkit" [ref=e99] [cursor=pointer]:
+            - generic [ref=e100]: Research Toolkit
+            - generic [ref=e101]: +
+          - button "Design Toolkit" [ref=e103] [cursor=pointer]:
+            - generic [ref=e104]: Design Toolkit
+            - generic [ref=e105]: +
+          - button "Technical Collaboration" [ref=e107] [cursor=pointer]:
+            - generic [ref=e108]: Technical Collaboration
+            - generic [ref=e109]: +
+          - button "AI-Augmented Workflow" [ref=e111] [cursor=pointer]:
+            - generic [ref=e112]: AI-Augmented Workflow
+            - generic [ref=e113]: +
+  - generic [ref=e114]:
+    - heading "Case Studies" [level=2] [ref=e117]
+    - generic [ref=e119]:
+      - article [ref=e120]:
+        - 'button "STILLEN: AI-Enhanced Furniture E-Commerce STILLEN: AI-Enhanced Furniture E-Commerce A research-driven furniture e-commerce platform combining AI concierge guidance, AR spatial visualization, and transparent delivery systems to reduce purchase uncertainty." [ref=e121] [cursor=pointer]':
+          - generic [ref=e122]:
+            - 'heading "STILLEN: AI-Enhanced Furniture E-Commerce" [level=3] [ref=e123]'
+            - 'img "STILLEN: AI-Enhanced Furniture E-Commerce" [ref=e125]'
+            - generic [ref=e126]:
+              - paragraph [ref=e127]: A research-driven furniture e-commerce platform combining AI concierge guidance, AR spatial visualization, and transparent delivery systems to reduce purchase uncertainty.
+              - img [ref=e128]
+      - article [ref=e130]:
+        - 'button "Milo: Voice-First AI Companion Milo interface banner Designed a behavior-driven voice AI companion focused on emotional presence. Modeled interaction logic, motion systems, and adaptive states through AI-assisted prototyping workflows." [ref=e131] [cursor=pointer]':
+          - generic [ref=e132]:
+            - 'heading "Milo: Voice-First AI Companion" [level=3] [ref=e133]'
+            - img "Milo interface banner" [ref=e135]
+            - generic [ref=e136]:
+              - paragraph [ref=e137]: Designed a behavior-driven voice AI companion focused on emotional presence. Modeled interaction logic, motion systems, and adaptive states through AI-assisted prototyping workflows.
+              - img [ref=e138]
+      - article [ref=e140]:
+        - 'button "Synco: Calendar Native To-Do app Synco: Calendar Native To-Do app Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping." [ref=e141] [cursor=pointer]':
+          - generic [ref=e142]:
+            - 'heading "Synco: Calendar Native To-Do app" [level=3] [ref=e143]'
+            - 'img "Synco: Calendar Native To-Do app" [ref=e145]'
+            - generic [ref=e146]:
+              - paragraph [ref=e147]: Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping.
+              - img [ref=e148]
+      - article [ref=e150]:
+        - 'button "LUMN: Sound reactive ASMR app LUMN: Sound reactive ASMR app Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments." [ref=e151] [cursor=pointer]':
+          - generic [ref=e152]:
+            - 'heading "LUMN: Sound reactive ASMR app" [level=3] [ref=e153]'
+            - 'img "LUMN: Sound reactive ASMR app" [ref=e155]'
+            - generic [ref=e156]:
+              - paragraph [ref=e157]: Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments.
+              - img [ref=e158]
+  - region "About Me" [ref=e160]:
+    - generic [ref=e161]:
+      - heading "About Me" [level=2] [ref=e163]
+      - img "Julio Coraspe portrait" [ref=e166]
+      - generic [ref=e167]:
+        - paragraph [ref=e169]: I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of technology and creative practice, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.
+        - paragraph [ref=e171]: "Technology entered my life not as a destination, but as a question. Watching how it reshapes labor, compresses history, and redefines what expertise means, at a pace that leaves little room for reflection, I felt compelled to understand it from the inside. My first serious entry was through a software engineering program where I built a working foundation in frontend development: HTML, CSS, JavaScript, APIs, and version control through GitHub. That experience confirmed that technology was exactly the kind of world I wanted to operate in, and it was there that I encountered design as a discipline. Learning how UX/UI worked, what problems it solved, and what kind of thinking it required made the direction clear. It gave me a framework I had already been practicing intuitively: define a problem, establish a process, move through a cycle, arrive at something purposeful. That alignment is what made the transition feel less like a career choice and more like a clarification."
+        - paragraph [ref=e173]: "My creative profile is strongly visual, spanning photography (digital, mobile, and film, including film development and digitization), videography, professional editing, digital drawing, generative art through code, and motion design. These practices share a common thread: patience, process, and attention to detail. Exploring them has been less about collecting skills and more about developing craft, curiosity, and a lasting commitment to learning and making things with care."
+        - paragraph [ref=e175]: I have a strong fascination with artificial intelligence as a creative and procedural tool. I see it as an extension of thought and making, something that amplifies research, exploration, and execution rather than replacing them. I work with AI through prompt and context engineering, using it generatively for research, coding, and audiovisual experimentation, including local LLM setups, custom tooling such as code editor assistants and Figma plugins, and the design and implementation of MCP servers for extending AI capabilities within real workflows. This approach allows me to work with AI in a more intentional, productive, and secure way.
+  - generic [ref=e178]:
+    - heading "Contact" [level=2] [ref=e180]
+    - paragraph [ref=e182]: I’m open to UX/UI roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e183]:
+      - paragraph [ref=e184]: Email
+      - link "juliocoraspe@gmail.com" [ref=e185] [cursor=pointer]:
+        - /url: mailto:juliocoraspe@gmail.com
+    - generic [ref=e186]:
+      - paragraph [ref=e187]: Links
+      - generic [ref=e188]:
+        - link "Resume" [ref=e189] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e190] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e191] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Behance" [ref=e192] [cursor=pointer]:
+          - /url: https://www.behance.net/juliocoraspe
+        - button "Motion Garden" [ref=e193] [cursor=pointer]
+        - link "Creative Portfolio" [ref=e194] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

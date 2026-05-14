@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 type NavbarProps = {
   enterMotionGarden: () => void;
-  currentView?: 'main' | 'motion-garden';
+  enterAccessibility: () => void;
+  enterAiExperience: () => void;
+  currentView?: 'main' | 'motion-garden' | 'accessibility' | 'ai-experience';
 };
 
 function IconCycle() {
@@ -31,28 +33,40 @@ function IconPerson() {
   );
 }
 
-function IconEnvelope() {
+function IconHash() {
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="1" y="3.5" width="14" height="9" rx="1" />
-      <path d="M1 5l7 4.5L15 5" />
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="5.5" y1="2" x2="4.5" y2="14" />
+      <line x1="11.5" y1="2" x2="10.5" y2="14" />
+      <line x1="2.5" y1="6" x2="13.5" y2="6" />
+      <line x1="2" y1="10" x2="13" y2="10" />
     </svg>
   );
 }
 
-function IconPlay() {
+function IconEye() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polygon points="3,2 13,8 3,14" />
+      <path d="M1.75 8s2.25-4 6.25-4 6.25 4 6.25 4-2.25 4-6.25 4S1.75 8 1.75 8z" />
+      <circle cx="8" cy="8" r="1.85" />
+    </svg>
+  );
+}
+
+function IconSignal() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" aria-hidden="true">
+      <line x1="2.5" y1="11.5" x2="13.5" y2="4.5" />
+      <line x1="2.5" y1="7.5" x2="13.5" y2="7.5" />
+      <line x1="2.5" y1="3.5" x2="13.5" y2="10.5" />
     </svg>
   );
 }
 
 const anchorItems = [
-  { num: '01', label: 'MY DESIGN CYCLE', href: '#design-cycle', Icon: IconCycle },
-  { num: '02', label: 'CASE STUDIES',    href: '#case-studies', Icon: IconFolder },
-  { num: '03', label: 'ABOUT ME',        href: '#about-me',     Icon: IconPerson },
-  { num: '04', label: 'CONTACT',         href: '#contact',      Icon: IconEnvelope },
+  { num: '01', label: 'MY DESIGN CYCLE',  href: '#design-cycle', Icon: IconCycle },
+  { num: '02', label: 'CASE STUDIES',     href: '#case-studies', Icon: IconFolder },
+  { num: '03', label: 'ABOUT / CONTACT',  href: '#about-me',     Icon: IconPerson },
 ];
 
 const sectionIds = anchorItems.map(item => item.href.slice(1));
@@ -72,12 +86,20 @@ const divider = (
   />
 );
 
-export function Navbar({ enterMotionGarden, currentView }: NavbarProps) {
+export function Navbar({ enterAccessibility, enterAiExperience, currentView }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
     if (currentView === 'motion-garden') {
       setActiveSection('motion-garden');
+      return;
+    }
+    if (currentView === 'accessibility') {
+      setActiveSection('accessibility');
+      return;
+    }
+    if (currentView === 'ai-experience') {
+      setActiveSection('ai-experience');
       return;
     }
 
@@ -175,11 +197,44 @@ export function Navbar({ enterMotionGarden, currentView }: NavbarProps) {
         {divider}
 
         {(() => {
-          const isActive = activeSection === 'motion-garden';
+          const isActive = activeSection === 'accessibility';
           return (
             <button
               type="button"
-              onClick={enterMotionGarden}
+              onClick={enterAccessibility}
+              aria-current={isActive ? 'page' : undefined}
+              className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
+              style={{
+                flex: 1,
+                gap: 3,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0 4px',
+                ...(isActive ? activeUnderline : {}),
+              }}
+            >
+              <span className="sm:hidden text-dark"><IconEye /></span>
+              <span className="sm:hidden text-ink" style={mobileLabel}>ACCESSIBILITY</span>
+              <span
+                className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
+                style={{ letterSpacing: '0.06em' }}
+              >
+                <IconEye />
+                <span className="text-ink">ACCESSIBILITY</span>
+              </span>
+            </button>
+          );
+        })()}
+
+        {divider}
+
+        {(() => {
+          const isActive = activeSection === 'ai-experience';
+          return (
+            <button
+              type="button"
+              onClick={enterAiExperience}
               aria-current={isActive ? 'page' : undefined}
               className="text-accent flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
               style={{
@@ -192,21 +247,14 @@ export function Navbar({ enterMotionGarden, currentView }: NavbarProps) {
                 ...(isActive ? { borderBottom: '2px solid var(--color-accent)', marginBottom: -1 } : {}),
               }}
             >
-              <span className="sm:hidden"><IconPlay /></span>
-              <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>MOTION GARDEN</span>
+              <span className="sm:hidden"><IconSignal /></span>
+              <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>AI PRACTICE</span>
               <span
                 className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
                 style={{ letterSpacing: '0.06em' }}
               >
-                <svg width="11.3" height="11.3" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" className="text-dark" aria-hidden="true">
-                  <line x1="9" y1="1" x2="9" y2="17" />
-                  <line x1="1" y1="9" x2="17" y2="9" />
-                  <line x1="2.6" y1="2.6" x2="15.4" y2="15.4" />
-                  <line x1="15.4" y1="2.6" x2="2.6" y2="15.4" />
-                </svg>
-                <span className="text-dark">–</span>
-                <IconPlay />
-                <span>MOTION GARDEN</span>
+                <IconSignal />
+                <span>AI PRACTICE</span>
               </span>
             </button>
           );

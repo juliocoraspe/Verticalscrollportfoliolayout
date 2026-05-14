@@ -46,7 +46,7 @@
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "Source Sans 3", system-ui, -apple-system, Segoe UI, Roboto,
     Arial, sans-serif;
-  --about-portrait-position: 90% 30%;
+  --about-portrait-position: 50% 30%;
 
   --color-ink: #111111;
   --color-pale: #959492;
@@ -311,9 +311,12 @@
 /* Fixed navbar offset for anchor links */
 #design-cycle,
 #case-studies,
-#about-me,
 #contact {
   scroll-margin-top: 48px;
+}
+
+#about-me {
+  scroll-margin-top: 44px;
 }
 
 @layer base {
@@ -332,6 +335,19 @@
     font-family: var(--font-sans);
     width: 100%;
     overflow-x: hidden;
+  }
+
+  html.ai-experience-route,
+  body.ai-experience-route {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  html.ai-experience-route::-webkit-scrollbar,
+  body.ai-experience-route::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   /**
@@ -511,6 +527,14 @@
     max-width: 92rem;
   }
 
+  .mobile-card-rail-scroll {
+    -ms-overflow-style: none;
+  }
+
+  .mobile-card-rail-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
   .hero-title {
     --type-display-xl-size: clamp(2.1rem, 5vw + 1rem, 6.2rem);
     max-width: 100%;
@@ -575,7 +599,6 @@
   }
 
   .case-study-title {
-    --type-display-l-size: clamp(2rem, 2.8vw + 0.8rem, 3rem);
     text-wrap: balance;
   }
 
@@ -583,11 +606,21 @@
     white-space: normal;
   }
 
-  .case-study-subtitle-row {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 1.5rem;
+  .case-study-title-row {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-right: 0.5rem;
+  }
+
+  .case-study-title-row > h3 {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .case-study-subtitle-row {
+    display: block;
   }
 
   .case-study-chevron {
@@ -613,12 +646,12 @@
 
   .case-study-collapse-button:hover .case-study-chevron,
   .case-study-collapse-button:focus-visible .case-study-chevron {
-    transform: translateY(-4px) rotate(180deg);
+    transform: translateX(-4px) rotate(180deg);
   }
 
   .case-study-toggle:hover .case-study-chevron,
   .case-study-toggle:focus-visible .case-study-chevron {
-    transform: translateY(4px);
+    transform: translateX(4px);
   }
 
   .case-study-toggle[aria-expanded='true'] .case-study-chevron {
@@ -627,7 +660,7 @@
 
   .case-study-toggle[aria-expanded='true']:hover .case-study-chevron,
   .case-study-toggle[aria-expanded='true']:focus-visible .case-study-chevron {
-    transform: translateY(4px) rotate(180deg);
+    transform: translateX(-4px) rotate(180deg);
   }
 
   .motion-garden-hover-card {
@@ -653,6 +686,7 @@
 
     .case-study-title {
       white-space: nowrap;
+      --type-display-s-size: 36px;
     }
 
     .case-study-title-wrap {
@@ -774,5 +808,1039 @@
   :focus-visible {
     outline: 2px solid var(--color-accent);
     outline-offset: 3px;
+  }
+
+  /* ── Case Study Blueprint (desktop slide-in two-panel view) ─────── */
+  .cs-bp-stage {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .cs-bp-cover-layer,
+  .cs-bp-blueprint-layer {
+    width: 100%;
+    will-change: transform, opacity;
+  }
+
+  .cs-bp-shell {
+    --bp-bg: var(--color-base);
+    --bp-bg-soft: var(--color-mist);
+    --bp-text: var(--color-ink);
+    --bp-muted: var(--color-dark);
+    --bp-dim: var(--color-pale);
+    --bp-accent: var(--color-accent);
+    --bp-accent-soft: rgba(52, 64, 64, 0.06);
+    --bp-border: rgba(149, 148, 146, 0.3);
+    --bp-border-strong: var(--color-pale);
+
+    position: relative;
+    width: 100%;
+    height: 600px;
+    padding: 36px 32px;
+    background: var(--bp-bg);
+    color: var(--bp-text);
+    border: 1px solid var(--bp-border-strong);
+    border-radius: 2px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'meta meta'
+      'glossary display';
+    column-gap: 80px;
+    row-gap: 24px;
+    font-feature-settings: 'tnum';
+  }
+
+  .cs-bp-grid-bg {
+    display: none;
+  }
+
+  .cs-bp-shell > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cs-bp-meta {
+    grid-area: meta;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--bp-muted);
+  }
+
+  .cs-bp-meta-label {
+    color: var(--bp-accent);
+    font-weight: 500;
+  }
+
+  .cs-bp-meta-divider {
+    flex: 0 0 24px;
+    height: 1px;
+    background: var(--bp-border-strong);
+  }
+
+  .cs-bp-meta-title {
+    color: var(--bp-text);
+    font-weight: 400;
+  }
+
+  .cs-bp-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--bp-border);
+    border-radius: 2px;
+    color: var(--bp-muted);
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+    z-index: 5;
+  }
+
+  .cs-bp-close:hover,
+  .cs-bp-close:focus-visible {
+    color: var(--bp-accent);
+    border-color: var(--bp-accent);
+    background: var(--bp-accent-soft);
+  }
+
+  .cs-bp-close svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* ── Glossary (left panel) ──────────────────────────────────────── */
+  .cs-bp-glossary {
+    grid-area: glossary;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+  }
+
+  .cs-bp-glossary-heading {
+    font-size: 0.625rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--bp-dim);
+    margin: 0 0 4px 0;
+    font-weight: 500;
+  }
+
+  .cs-bp-glossary-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    border-top: 1px solid var(--bp-border);
+  }
+
+  .cs-bp-glossary-row {
+    position: relative;
+    border-bottom: 1px solid var(--bp-border);
+  }
+
+  .cs-bp-glossary-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 12px 14px 0;
+    background: transparent;
+    border: 0;
+    color: var(--bp-muted);
+    cursor: pointer;
+    text-align: left;
+    transition: color 180ms ease, background 180ms ease, padding 180ms ease;
+  }
+
+  .cs-bp-glossary-item:hover,
+  .cs-bp-glossary-item:focus-visible,
+  .cs-bp-glossary-item.is-active {
+    color: var(--bp-text);
+    background: linear-gradient(
+      to right,
+      var(--bp-accent-soft) 0%,
+      transparent 100%
+    );
+    padding-left: 12px;
+  }
+
+  .cs-bp-glossary-item.is-active {
+    box-shadow: inset 2px 0 0 0 var(--bp-accent);
+  }
+
+  .cs-bp-glossary-num {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--bp-accent);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.7;
+    transition: opacity 180ms ease;
+  }
+
+  .cs-bp-glossary-item:hover .cs-bp-glossary-num,
+  .cs-bp-glossary-item.is-active .cs-bp-glossary-num {
+    opacity: 1;
+  }
+
+  .cs-bp-glossary-label {
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    line-height: 1.3;
+  }
+
+  /* ── Connector (line + arrow) ───────────────────────────────────── */
+  .cs-bp-connector {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 80px;
+    height: 1px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 200ms ease, transform 200ms ease;
+    z-index: 4;
+  }
+
+  .cs-bp-glossary-item.is-active ~ .cs-bp-connector,
+  .cs-bp-glossary-item:hover ~ .cs-bp-connector,
+  .cs-bp-glossary-item:focus-visible ~ .cs-bp-connector {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .cs-bp-connector-line {
+    flex: 1;
+    height: 1px;
+    background: var(--bp-accent);
+  }
+
+  .cs-bp-connector-arrow {
+    width: 0;
+    height: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid var(--bp-accent);
+    margin-left: -1px;
+  }
+
+  /* ── Display (right panel) ──────────────────────────────────────── */
+  .cs-bp-display {
+    grid-area: display;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    border-left: 1px solid var(--bp-border);
+    padding-left: 32px;
+    position: relative;
+  }
+
+  .cs-bp-display-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--bp-border);
+  }
+
+  .cs-bp-display-num {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--bp-accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cs-bp-display-title {
+    font-family: inherit;
+    font-size: 1.125rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--bp-text);
+    margin: 0;
+  }
+
+  .cs-bp-display-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: var(--bp-text);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bp-border-strong) transparent;
+  }
+
+  .cs-bp-display-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .cs-bp-display-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .cs-bp-display-body::-webkit-scrollbar-thumb {
+    background: var(--bp-border-strong);
+    border-radius: 3px;
+  }
+
+  .cs-bp-display-body p {
+    color: var(--bp-text);
+    margin: 0 0 14px 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .cs-bp-display-body p.cs-bp-muted {
+    color: var(--bp-muted);
+  }
+
+  .cs-bp-display-body ul {
+    list-style: none;
+    margin: 14px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cs-bp-display-body li {
+    position: relative;
+    padding: 10px 0 10px 22px;
+    border-bottom: 1px solid var(--bp-border);
+    color: var(--bp-text);
+  }
+
+  .cs-bp-display-body li:last-child {
+    border-bottom: 0;
+  }
+
+  .cs-bp-display-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 12px;
+    height: 1px;
+    background: var(--bp-accent);
+    opacity: 0.6;
+  }
+
+  /* ── Media slots (uniform across all cards) ─────────────────────── */
+  .cs-bp-media {
+    background: var(--bp-bg-soft);
+    border: 1px solid var(--bp-border-strong);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin-top: 18px;
+  }
+
+  .cs-bp-media-landscape {
+    width: 720px;
+    max-width: 100%;
+    height: 280px;
+  }
+
+  /* Media frame + bottom link bar (single bordered container) */
+  .cs-bp-media-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .cs-bp-media-frame > img,
+  .cs-bp-media-frame > iframe,
+  .cs-bp-media-frame > .cs-bp-media-fill {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border: 0;
+  }
+
+  .cs-bp-media:has(.cs-bp-media-link) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cs-bp-media:has(.cs-bp-media-link) .cs-bp-media-frame {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .cs-bp-media-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 14px;
+    background: transparent;
+    border-top: 1px solid var(--bp-border-strong);
+    color: var(--bp-accent);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+    flex-shrink: 0;
+  }
+
+  .cs-bp-media-link:hover,
+  .cs-bp-media-link:focus-visible {
+    background: var(--bp-accent-soft);
+    color: var(--bp-text);
+  }
+
+  .cs-bp-media-link .cs-bp-cta-arrow {
+    transition: transform 160ms ease;
+  }
+
+  .cs-bp-media-link:hover .cs-bp-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  .cs-bp-media-portrait {
+    width: 320px;
+    height: 570px;
+  }
+
+  .cs-bp-media > img,
+  .cs-bp-media > iframe,
+  .cs-bp-media > .cs-bp-media-fill {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border: 0;
+  }
+
+  /* Ensure nested wrappers (FigmaEmbed, DeferredIframe) also fill the slot */
+  .cs-bp-media .cs-bp-media-fill {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .cs-bp-media iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+  }
+
+  .cs-bp-media-portrait > img {
+    object-fit: cover;
+  }
+
+  /* Layout helper: media fills entire display body height */
+  .cs-bp-body-fill {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .cs-bp-body-fill .cs-bp-media {
+    flex: 1;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .cs-bp-body-fill .cs-bp-cta {
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  /* Layout helper: vertical media + text side-by-side */
+  .cs-bp-split {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .cs-bp-split > .cs-bp-media-portrait {
+    margin-top: 0;
+  }
+
+  /* ── Vertical-embed split layout (no internal scroll) ──────────────── */
+  .cs-bp-display.is-vsplit > .cs-bp-display-header {
+    display: none;
+  }
+
+  .cs-bp-display.is-vsplit {
+    padding-right: 48px;
+  }
+
+  .cs-bp-display.is-vsplit > .cs-bp-display-body {
+    overflow: visible;
+    padding-right: 0;
+    margin-top: 0;
+    height: 100%;
+  }
+
+  .cs-bp-vsplit {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 36px;
+    height: 100%;
+    min-height: 0;
+    align-items: stretch;
+  }
+
+  .cs-bp-vsplit-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .cs-bp-vsplit-title-row {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--bp-border);
+    margin-bottom: 18px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .cs-bp-vsplit-title-row .cs-bp-display-num,
+  .cs-bp-vsplit-title-row .cs-bp-display-title {
+    margin: 0;
+  }
+
+  .cs-bp-vsplit-title-row .cs-bp-display-num {
+    position: absolute;
+    left: 0;
+  }
+
+  .cs-bp-vsplit-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bp-border-strong) transparent;
+  }
+
+  .cs-bp-vsplit-body::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .cs-bp-vsplit-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .cs-bp-vsplit-body::-webkit-scrollbar-thumb {
+    background: var(--bp-border-strong);
+    border-radius: 3px;
+  }
+
+  .cs-bp-vsplit-body p {
+    color: var(--bp-text);
+    margin: 0 0 14px 0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .cs-bp-vsplit-body ul {
+    list-style: none;
+    margin: 14px 0 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .cs-bp-vsplit-body li {
+    position: relative;
+    padding: 10px 0 10px 22px;
+    border-bottom: 1px solid var(--bp-border);
+    color: var(--bp-text);
+  }
+
+  .cs-bp-vsplit-body li:last-child {
+    border-bottom: 0;
+  }
+
+  .cs-bp-vsplit-body li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 12px;
+    height: 1px;
+    background: var(--bp-accent);
+    opacity: 0.6;
+  }
+
+  .cs-bp-vsplit-cta {
+    margin-top: auto;
+    padding-top: 16px;
+    flex-shrink: 0;
+  }
+
+  .cs-bp-vsplit-cta .cs-bp-cta {
+    margin-top: 0;
+    min-width: 220px;
+    justify-content: space-between;
+  }
+
+  .cs-bp-vsplit-media {
+    background: var(--bp-bg-soft);
+    border: 1px solid var(--bp-border-strong);
+    position: relative;
+    overflow: hidden;
+    min-height: 0;
+    height: 100%;
+    width: auto;
+    aspect-ratio: var(--media-aspect, 390 / 844);
+    margin: 0;
+    justify-self: end;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Phone-frame: render iframe at native phone dimensions, then scale to fit */
+  .cs-bp-vsplit-media-frame {
+    width: var(--frame-w, 390px);
+    height: var(--frame-h, 844px);
+    transform: scale(var(--frame-scale, 0.55));
+    transform-origin: center center;
+    flex-shrink: 0;
+  }
+
+  .cs-bp-vsplit-frame {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+  }
+
+  .cs-bp-vsplit-media > img,
+  .cs-bp-vsplit-media > .cs-bp-media-fill {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border: 0;
+  }
+
+  /* CTA inside blueprint */
+  .cs-bp-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 8px 14px;
+    background: transparent;
+    border: 1px solid var(--bp-border-strong);
+    border-radius: 2px;
+    color: var(--bp-accent);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
+  }
+
+  .cs-bp-cta:hover,
+  .cs-bp-cta:focus-visible {
+    background: var(--bp-accent-soft);
+    color: var(--bp-text);
+    border-color: var(--bp-accent);
+  }
+
+  .cs-bp-cta-arrow {
+    display: inline-block;
+    transform: translateX(0);
+    transition: transform 160ms ease;
+  }
+
+  .cs-bp-cta:hover .cs-bp-cta-arrow {
+    transform: translateX(3px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-bp-cover-layer,
+    .cs-bp-blueprint-layer,
+    .cs-bp-connector,
+    .cs-bp-glossary-item,
+    .cs-bp-cta-arrow {
+      transition: none !important;
+    }
+  }
+
+  /* ── Case Study Blueprint — mobile (≤639px) ─────────────────────── */
+  /* Same desktop layout (1/3 glossary + 2/3 display) but shrunk to fit a
+     narrow viewport: tighter padding, smaller glossary column, no external
+     connector lines, taller min-height so the body has room to scroll. */
+  @media (max-width: 639px) {
+    .cs-bp-shell {
+      height: auto;
+      min-height: 540px;
+      padding: 20px 14px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+      column-gap: 14px;
+      row-gap: 16px;
+    }
+
+    .cs-bp-close {
+      top: 12px;
+      right: 12px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .cs-bp-close svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .cs-bp-meta {
+      font-size: 0.625rem;
+      letter-spacing: 0.14em;
+      gap: 10px;
+      padding-right: 40px;
+    }
+
+    .cs-bp-meta-divider {
+      flex: 0 0 14px;
+    }
+
+    .cs-bp-glossary {
+      gap: 10px;
+    }
+
+    .cs-bp-glossary-heading {
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+    }
+
+    .cs-bp-glossary-item {
+      grid-template-columns: 22px 1fr;
+      gap: 6px;
+      padding: 10px 6px 10px 0;
+    }
+
+    .cs-bp-glossary-item:hover,
+    .cs-bp-glossary-item:focus-visible,
+    .cs-bp-glossary-item.is-active {
+      padding-left: 6px;
+    }
+
+    .cs-bp-glossary-num {
+      font-size: 0.625rem;
+    }
+
+    .cs-bp-glossary-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+      line-height: 1.25;
+    }
+
+    /* The connector arrow is purely decorative and crowds the narrow
+       mobile layout — hide it. The active state highlight on the glossary
+       row already communicates the selection. */
+    .cs-bp-connector {
+      display: none;
+    }
+
+    .cs-bp-display {
+      padding-left: 14px;
+      min-height: 360px;
+    }
+
+    .cs-bp-display-header {
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+    }
+
+    .cs-bp-display-num {
+      font-size: 0.625rem;
+      letter-spacing: 0.12em;
+    }
+
+    .cs-bp-display-title {
+      font-size: 0.9375rem;
+      letter-spacing: 0.02em;
+    }
+
+    .cs-bp-display-body,
+    .cs-bp-display-body p,
+    .cs-bp-display-body li {
+      font-size: 0.8125rem;
+      line-height: 1.55;
+    }
+
+    .cs-bp-display-body li {
+      padding: 8px 0 8px 18px;
+    }
+
+    .cs-bp-display-body li::before {
+      top: 16px;
+      width: 10px;
+    }
+
+    /* Landscape media containers: callsites set inline `height: 280px` and
+       `maxWidth: 100%`. Override with `!important` so the desktop slot
+       collapses to a phone-friendly box; let content (the static image
+       at native aspect ratio + optional CTA bar) determine the height
+       instead of forcing 280px. */
+    .cs-bp-media,
+    .cs-bp-media-landscape {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      overflow: visible;
+    }
+
+    /* The static-image fallback uses a flex column with the optional
+       CTA bar; let it size itself naturally rather than being clipped
+       to a fixed parent height. */
+    .cs-bp-media-frame {
+      height: auto;
+      min-height: 0;
+    }
+
+    .cs-bp-media-frame > img,
+    .cs-bp-media-frame > .cs-bp-media-fill {
+      height: auto;
+      max-height: 100%;
+    }
+
+    /* When the fallback link is the direct child of .cs-bp-media,
+       give the image its natural height so the CTA bar sits cleanly
+       below the picture instead of being clipped. */
+    .cs-bp-media > a {
+      display: block;
+      height: auto !important;
+    }
+
+    .cs-bp-media > a img {
+      height: auto !important;
+      width: 100%;
+      display: block;
+    }
+
+    /* VSplit (phone-prototype previews like Milo & LUMN): on desktop the
+       text sits left and a scaled-down phone frame sits right. On mobile
+       there isn't room for both side-by-side, so stack them and shrink
+       the phone frame so it fits the viewport width. */
+    .cs-bp-display.is-vsplit {
+      padding-right: 14px;
+    }
+
+    .cs-bp-vsplit {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+      height: auto;
+    }
+
+    .cs-bp-vsplit-media {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 5;
+      justify-self: stretch;
+      max-width: 280px;
+      margin-inline: auto;
+    }
+
+    /* Phone-frame uses a desktop-tuned scale factor + fixed --frame-w/h.
+       On mobile we render the static image instead, so let the image
+       fill the slot directly and ignore the scale transform that would
+       only matter for an iframe. */
+    .cs-bp-vsplit-media-frame {
+      width: 100% !important;
+      height: 100% !important;
+      transform: none !important;
+    }
+
+    /* The vsplit text column carries a "See full code on GitHub" CTA
+       button that mirrors the same link rendered as the CTA bar below
+       the static image. On mobile both end up stacked one above the
+       other; hide the desktop CTA so the image's footer bar is the
+       single, primary action. */
+    .cs-bp-vsplit-cta {
+      display: none;
+    }
+  }
+
+  /* ── Accessibility workflow scrollytelling — mobile (≤639px) ────── */
+  /* Strategy: keep the original desktop horizontal layout of each scene
+     (multi-column row) instead of letting it collapse to a single
+     column, then scale the whole stage to fit a phone viewport. This
+     keeps the composition recognizable and prevents the tall vertical
+     stack that pushes content out of the 100vh sticky frame.
+
+     Source widths the scale must accommodate:
+       - A15 SceneFrame:           forced to 1040px (override below)
+       - WCAG Scene1 (chain):      1040px intrinsic
+       - WCAG Scene3+ (smaller):   ≤700px intrinsic
+     Targeting 1040px as the worst case keeps both workflows in lockstep,
+     so they never visually disagree on width. */
+  @media (max-width: 639px) {
+    /* Hide blueprint chrome that has no functional value at small sizes.
+       The SceneTitle ("The toolbox assembles.", "The page is read.", etc.)
+       is hidden too: at mobile scale its heading + description block
+       overlaps the centered scene content vertically, and the top HUD
+       already shows the act name. The marketing-style heading is
+       desktop-only context, not navigation. */
+    .wkf-chrome,
+    .wkf-side-annotation,
+    .wkf-hud-subline,
+    .wkf-bottom-meta,
+    .wkf-scene-title {
+      display: none !important;
+    }
+
+    /* Center the remaining bottom HUD (just the progress ring) */
+    .wkf-bottom-hud > div {
+      justify-content: center;
+    }
+
+    /* Shorten the scroll-pin container so mobile users don't have to
+       scroll through 6 × 100vh of empty space — scenes fade just as
+       fast since useScroll percentages are relative. */
+    .wkf-scroll-container {
+      height: 480vh !important;
+    }
+
+    /* Clip horizontal overflow from wider scenes; allow vertical
+       overflow inside the sticky so nothing critical is cut. */
+    .wkf-sticky {
+      overflow: hidden;
+    }
+
+    /* Force the A15 SceneFrame to a fixed source width that matches
+       the WCAG workflow's widest scene (1040px). Both workflows then
+       share the same scale math below. */
+    .wkf-stage .absolute.left-1\/2.top-1\/2 {
+      width: 1040px !important;
+      max-width: none !important;
+    }
+
+    /* WCAG scenes wrap their fixed-width content in a flex parent
+       (`.absolute.inset-0.flex.items-center.justify-center`). The
+       default `flex-shrink: 1` would shrink the 1040px / 700px inner
+       block to fit the 360px sticky frame, killing the scaled
+       composition. Prevent shrinking so the inner element keeps its
+       authored width and overflows naturally before scale. */
+    .wkf-stage .absolute.inset-0 > * {
+      flex-shrink: 0 !important;
+    }
+
+    /* Promote the `md:grid-cols-*` utilities from md+ down to mobile
+       so the scenes' internal columns stay side-by-side. */
+    .wkf-stage .md\:grid-cols-\[0\.85fr_0\.55fr_0\.9fr\] {
+      grid-template-columns: 0.85fr 0.55fr 0.9fr;
+    }
+    .wkf-stage .md\:grid-cols-\[0\.8fr_0\.55fr_0\.85fr\] {
+      grid-template-columns: 0.8fr 0.55fr 0.85fr;
+    }
+    .wkf-stage .md\:grid-cols-\[0\.8fr_1fr\] {
+      grid-template-columns: 0.8fr 1fr;
+    }
+    .wkf-stage .md\:grid-cols-\[1fr_0\.85fr\] {
+      grid-template-columns: 1fr 0.85fr;
+    }
+    .wkf-stage .md\:grid-cols-\[0\.95fr_1fr\] {
+      grid-template-columns: 0.95fr 1fr;
+    }
+    .wkf-stage .md\:grid-cols-\[0\.7fr_1fr\] {
+      grid-template-columns: 0.7fr 1fr;
+    }
+    .wkf-stage .md\:grid-cols-\[1fr_0\.5fr_1fr\] {
+      grid-template-columns: 1fr 0.5fr 1fr;
+    }
+    .wkf-stage .md\:grid-cols-\[1fr_1fr\] {
+      grid-template-columns: 1fr 1fr;
+    }
+    .wkf-stage .md\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .wkf-stage .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  /* Scale targets fit the *widest visible extent*, not just the named
+     authored width. WCAG Scene 1's Inspector node lives at left:960
+     with width:150 → right edge at 1110px in source coords (it
+     overflows the 1040 wrapper by design). Anchor the scale to 1110px
+     so nothing in the chain ever gets clipped on mobile. */
+
+  /* Phone narrow (≤359px, e.g. iPhone SE 320px): 1110 × 0.27 → 300px
+     visual width, fits 320 viewport with ~10px each side. */
+  @media (max-width: 359px) {
+    .wkf-stage {
+      transform: scale(0.27);
+      transform-origin: 50% 50%;
+    }
+  }
+
+  /* Phone standard (360–479px): 1110 × 0.31 → 344px visual width.
+     Fits 360–479 viewports with ~15px margin. */
+  @media (min-width: 360px) and (max-width: 479px) {
+    .wkf-stage {
+      transform: scale(0.31);
+      transform-origin: 50% 50%;
+    }
+  }
+
+  /* Phone large (480–639px): 1110 × 0.40 → 444px visual width. */
+  @media (min-width: 480px) and (max-width: 639px) {
+    .wkf-stage {
+      transform: scale(0.40);
+      transform-origin: 50% 50%;
+    }
+  }
+
+  /* Tablet (640–839px): less aggressive scale */
+  @media (min-width: 640px) and (max-width: 839px) {
+    .wkf-stage {
+      transform: scale(0.62);
+      transform-origin: 50% 50%;
+    }
+    .wkf-side-annotation {
+      display: none;
+    }
   }
 }

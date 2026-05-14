@@ -1,0 +1,8 @@
+[     105ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[     373ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[   35854ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[  190967ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://localhost:5173/:0
+[  190967ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=008470e5:273
+[  191972ms] [LOG] THREE.WebGLRenderer: Context Restored. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=008470e5:273
+[  241946ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://localhost:5173/:0
+[  241946ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=008470e5:273

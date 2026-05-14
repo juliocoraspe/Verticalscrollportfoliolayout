@@ -1,0 +1,490 @@
+- generic [ref=e3]:
+  - navigation "Site navigation" [ref=e4]:
+    - generic [ref=e5]:
+      - link "01 – MY DESIGN CYCLE" [ref=e6] [cursor=pointer]:
+        - /url: "#design-cycle"
+        - generic [ref=e7]:
+          - generic [ref=e8]: "01"
+          - generic [ref=e9]: –
+          - img [ref=e10]
+          - generic [ref=e13]: MY DESIGN CYCLE
+      - link "02 – CASE STUDIES" [ref=e14] [cursor=pointer]:
+        - /url: "#case-studies"
+        - generic [ref=e15]:
+          - generic [ref=e16]: "02"
+          - generic [ref=e17]: –
+          - img [ref=e18]
+          - generic [ref=e20]: CASE STUDIES
+      - link "03 – ABOUT / CONTACT" [ref=e21] [cursor=pointer]:
+        - /url: "#about-me"
+        - generic [ref=e22]:
+          - generic [ref=e23]: "03"
+          - generic [ref=e24]: –
+          - img [ref=e25]
+          - generic [ref=e28]: ABOUT / CONTACT
+      - button "– ACCESSIBILITY" [ref=e29] [cursor=pointer]:
+        - generic [ref=e30]:
+          - img [ref=e32]
+          - generic [ref=e35]: –
+          - generic [ref=e36]: ACCESSIBILITY
+      - button "– MOTION GARDEN" [ref=e37] [cursor=pointer]:
+        - generic [ref=e38]:
+          - img [ref=e39]
+          - generic [ref=e42]: –
+          - img [ref=e43]
+          - generic [ref=e45]: MOTION GARDEN
+  - main [ref=e46]:
+    - region "Accessibility workflow" [ref=e47]:
+      - generic [ref=e49]:
+        - heading "How a website learns to be used by everyone." [level=2] [ref=e51]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - paragraph [ref=e54]: 04 — Accessibility Workflow
+            - paragraph [ref=e55]: An AI-assisted audit pipeline. Six movements. Claude Code as the conductor, Playwright as the hands, axe-core as the ear, and a final report that turns findings into fixes.
+          - generic [ref=e56]:
+            - paragraph [ref=e57]: Standard
+            - paragraph [ref=e58]:
+              - text: WCAG 2.2
+              - text: Level AA
+          - generic [ref=e59]:
+            - paragraph [ref=e60]: Acts
+            - paragraph [ref=e61]: "06"
+          - generic [ref=e62]:
+            - paragraph [ref=e63]: Year
+            - paragraph [ref=e64]: "2026"
+      - generic [ref=e66]:
+        - generic:
+          - generic:
+            - generic: Workflow · WCAG Audit
+            - generic: 01 — Setup & Bridge
+            - generic: 06 / Acts
+          - generic:
+            - generic: "00.000"
+            - generic: "0.000"
+            - generic: "01.000"
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic:
+              - generic: Act 01 / Setup
+              - heading "The toolbox assembles." [level=3]
+            - generic:
+              - generic:
+                - generic: A · NODE
+              - generic: Runtime · v20
+              - generic: JavaScript engine
+            - generic:
+              - generic:
+                - generic: B · BRIDGE
+              - generic: Model Context Protocol
+              - generic: Claude ↔ Playwright
+            - generic [ref=e69]:
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e74]: ↑ ORCHESTRATOR
+                  - generic [ref=e75]: "00"
+                - generic [ref=e76]:
+                  - generic [ref=e77]: Claude Code
+                  - generic [ref=e78]: cli · anthropic
+                - generic [ref=e79]: ANALYZE → REPORT
+              - img
+              - generic [ref=e82]:
+                - generic [ref=e84]: TOOL · 01
+                - generic [ref=e85]:
+                  - generic [ref=e86]: Node.js
+                  - generic [ref=e87]: RUNTIME · v20
+              - generic [ref=e90]:
+                - generic [ref=e92]: TOOL · 02
+                - generic [ref=e93]:
+                  - generic [ref=e94]: npm
+                  - generic [ref=e95]: PKG MANAGER
+              - generic [ref=e98]:
+                - generic [ref=e100]: TOOL · 03
+                - generic [ref=e101]:
+                  - generic [ref=e102]: Playwright
+                  - generic [ref=e103]: BROWSER CTRL
+              - generic [ref=e106]:
+                - generic [ref=e108]: TOOL · 04
+                - generic [ref=e109]:
+                  - generic [ref=e110]: Chromium
+                  - generic [ref=e111]: ENGINE · HEADLESS
+              - generic [ref=e114]:
+                - generic [ref=e116]: TOOL · 05
+                - generic [ref=e117]:
+                  - generic [ref=e118]: axe-core
+                  - generic [ref=e119]: WCAG ENGINE
+              - img
+              - generic [ref=e121]: ← MCP →
+            - generic:
+              - generic: Bridge connected. The browser is now an instrument.
+          - generic [ref=e122]:
+            - generic:
+              - generic: Act 02 / Scan
+              - heading "The page is read." [level=3]
+            - generic:
+              - generic:
+                - generic: A · SCAN
+              - generic: 90+ rules · WCAG 2.2
+              - generic: injected at runtime
+            - generic:
+              - generic:
+                - generic: B · OUTPUT
+              - generic: Findings grouped
+              - generic: by severity & criterion
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - generic [ref=e126]: TARGET · 01
+                - generic [ref=e127]: 360 × 400 px
+              - generic [ref=e132]: client-project.example
+              - generic [ref=e133]:
+                - generic [ref=e147]: axe.run( )
+                - generic:
+                  - generic:
+                    - generic: 1.1.1
+                - generic:
+                  - generic:
+                    - generic: 1.4.3
+                - generic:
+                  - generic:
+                    - generic: 1.3.1
+                - generic:
+                  - generic:
+                    - generic: 4.1.2
+                - generic:
+                  - generic:
+                    - generic: 2.4.4
+                - generic:
+                  - generic:
+                    - generic: 2.4.7
+            - generic:
+              - generic: "Automated coverage: 30–40% of all issues."
+          - generic [ref=e148]:
+            - generic:
+              - generic: Act 03 / Coverage
+              - heading "One page becomes eleven." [level=3]
+            - generic:
+              - generic:
+                - generic: A · METHOD
+              - generic: Crawl from navbar + footer
+              - generic: every internal route
+            - generic:
+              - generic:
+                - generic: B · CONSOLIDATION
+              - generic: Grouped by criterion
+              - generic: not by page
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic [ref=e151]: PLATE INDEX · 01–11
+                - generic [ref=e152]: SITE-WIDE CRAWL
+              - generic [ref=e153]:
+                - generic [ref=e156]: P/01
+                - generic [ref=e167]: P/02
+                - generic [ref=e179]: P/03
+                - generic [ref=e192]: P/04
+                - generic [ref=e203]: P/05
+                - generic [ref=e215]: P/06
+                - generic [ref=e228]: P/07
+                - generic [ref=e239]: P/08
+                - generic [ref=e251]: P/09
+                - generic [ref=e264]: P/10
+                - generic [ref=e275]: P/11
+            - generic:
+              - generic: Issues consolidated by criterion, not by page.
+          - generic [ref=e285]:
+            - generic:
+              - generic: Act 04 / Manual
+              - heading "What machines can't see." [level=3]
+            - generic:
+              - generic:
+                - generic: A · STAGE 5
+              - generic: Manual verification
+              - generic: 2.1.1 · 2.4.7 · 1.4.3
+            - generic:
+              - generic:
+                - generic: B · CRITERIA
+              - generic: Beyond automation
+              - generic: screen readers · contrast
+            - generic [ref=e286]:
+              - generic [ref=e288]:
+                - generic [ref=e289]:
+                  - generic [ref=e290]: INSTR · A
+                  - text: KEYBOARD
+                - generic [ref=e292]:
+                  - generic [ref=e293]: ⇥ Tab
+                  - generic [ref=e294]:
+                    - generic [ref=e295]: Skip to content
+                    - generic [ref=e296]: Home
+                    - generic [ref=e297]: About
+                    - generic [ref=e298]: Contact
+              - generic [ref=e300]:
+                - generic [ref=e301]:
+                  - generic [ref=e302]: INSTR · B
+                  - text: SCREEN READER
+                - img [ref=e306]
+              - generic [ref=e312]:
+                - generic [ref=e313]:
+                  - generic [ref=e314]: INSTR · C
+                  - text: CONTRAST
+                - generic [ref=e316]:
+                  - generic [ref=e318]: Aa
+                  - generic [ref=e319]:
+                    - generic [ref=e320]: RATIO
+                    - generic [ref=e321]: 1.5:1
+                    - generic [ref=e322]: FAIL
+            - generic:
+              - generic: Three checks no scanner can replicate.
+          - generic [ref=e323]:
+            - generic:
+              - generic: Act 05 / Repair
+              - heading "Findings become fixes." [level=3]
+            - generic:
+              - generic:
+                - generic: A · STAGE 6
+              - generic: WordPress · Divi
+              - generic: module-level fixes
+            - generic:
+              - generic:
+                - generic: B · LOOP
+              - generic: Re-audit with axe
+              - generic: confirm every patch
+            - generic [ref=e324]:
+              - generic [ref=e325]:
+                - generic [ref=e326]:
+                  - generic [ref=e327]: Issue Ledger
+                  - generic [ref=e328]: 06 ITEMS
+                - generic [ref=e329]:
+                  - generic [ref=e330]:
+                    - generic [ref=e332]: Missing alt text
+                    - generic [ref=e333]: 1.1.1
+                    - generic [ref=e334]: ✓
+                  - generic [ref=e335]:
+                    - generic [ref=e337]: Form input no label
+                    - generic [ref=e338]: 4.1.2
+                    - generic [ref=e339]: ✓
+                  - generic [ref=e340]:
+                    - generic [ref=e342]: Contrast 2.1:1
+                    - generic [ref=e343]: 1.4.3
+                    - generic [ref=e344]: ✓
+                  - generic [ref=e345]:
+                    - generic [ref=e347]: Heading skip h1→h3
+                    - generic [ref=e348]: 1.3.1
+                    - generic [ref=e349]: ✓
+                  - generic [ref=e350]:
+                    - generic [ref=e352]: Focus invisible
+                    - generic [ref=e353]: 2.4.7
+                    - generic [ref=e354]: ✓
+                  - generic [ref=e355]:
+                    - generic [ref=e357]: Empty link text
+                    - generic [ref=e358]: 2.4.4
+                    - generic [ref=e359]: ✓
+              - generic [ref=e360]:
+                - generic [ref=e361]:
+                  - generic [ref=e362]: WordPress · Divi
+                  - generic [ref=e363]: PANEL · 01
+                - generic [ref=e364]:
+                  - generic [ref=e366]: Image Alt Text
+                  - generic [ref=e368]:
+                    - generic [ref=e369]: Title Level
+                    - generic [ref=e370]:
+                      - generic [ref=e371]: H2
+                      - generic [ref=e372]: ⌄
+                  - generic [ref=e373]:
+                    - generic [ref=e374]: Text Color
+                    - generic [ref=e375]:
+                      - generic [ref=e377]: "#111111"
+                      - generic [ref=e378]: ✓ 12.6:1 PASS
+                - generic [ref=e379]:
+                  - generic [ref=e380]: FIELDS · 03
+                  - generic [ref=e381]: SAVE
+            - generic:
+              - generic: Fixed in Divi · re-audited with the same prompt.
+          - generic [ref=e382]:
+            - generic:
+              - generic:
+                - generic: A · FORMAT
+              - generic: Self-hosted HTML
+              - generic: no external dependencies
+            - generic:
+              - generic:
+                - generic: B · TRACKING
+              - generic: Persisted progress
+              - generic: filterable · re-auditable
+            - generic:
+              - generic: Act 06 / Deliverable
+              - heading "A report the client can use." [level=3]
+            - generic [ref=e383]:
+              - generic [ref=e384]:
+                - generic [ref=e385]: DELIVERABLE · HTML
+                - generic [ref=e386]: CLIENT-RPT-2026.04
+              - generic [ref=e388]:
+                - generic [ref=e389]:
+                  - generic [ref=e390]: Consolidated Accessibility Report
+                  - generic [ref=e391]: Client Project · WCAG Audit
+                  - generic [ref=e392]: WCAG 2.2 LEVEL AA · APR 2026
+                - generic [ref=e393]:
+                  - generic [ref=e394]: RPT
+                  - generic [ref=e395]: "02"
+              - generic [ref=e396]:
+                - generic [ref=e397]:
+                  - generic [ref=e399]: Total
+                  - generic [ref=e400]: "0"
+                - generic [ref=e401]:
+                  - generic [ref=e403]: Found
+                  - generic [ref=e404]: "0"
+                - generic [ref=e405]:
+                  - generic [ref=e407]: Reviewed
+                  - generic [ref=e408]: "0"
+                - generic [ref=e409]:
+                  - generic [ref=e411]: Queued
+                  - generic [ref=e412]: "0"
+                - generic [ref=e413]:
+                  - generic [ref=e415]: Resolved
+                  - generic [ref=e416]: "0"
+              - generic [ref=e418]:
+                - generic [ref=e419]: Remediation Progress
+                - generic [ref=e420]: 0%
+              - generic [ref=e422]:
+                - generic [ref=e424]:
+                  - generic [ref=e428]:
+                    - generic [ref=e429]: Footer CTA contrast
+                    - generic [ref=e430]:
+                      - generic [ref=e431]: ISSUE
+                      - generic [ref=e432]: 1.4.3
+                  - generic [ref=e434]: ✓
+                - generic [ref=e436]:
+                  - generic [ref=e440]:
+                    - generic [ref=e441]: Missing alt on hero
+                    - generic [ref=e442]:
+                      - generic [ref=e443]: ISSUE
+                      - generic [ref=e444]: 1.1.1
+                  - generic [ref=e446]: ✓
+                - generic [ref=e448]:
+                  - generic [ref=e452]:
+                    - generic [ref=e453]: Heading skip in About
+                    - generic [ref=e454]:
+                      - generic [ref=e455]: ISSUE
+                      - generic [ref=e456]: 1.3.1
+                  - generic [ref=e458]: ✓
+                - generic [ref=e460]:
+                  - generic [ref=e464]:
+                    - generic [ref=e465]: Form label missing
+                    - generic [ref=e466]:
+                      - generic [ref=e467]: ISSUE
+                      - generic [ref=e468]: 4.1.2
+                  - generic [ref=e470]: ✓
+                - generic [ref=e472]:
+                  - generic [ref=e476]:
+                    - generic [ref=e477]: Focus indicator hidden
+                    - generic [ref=e478]:
+                      - generic [ref=e479]: ISSUE
+                      - generic [ref=e480]: 2.4.7
+                  - generic [ref=e482]: ✓
+                - generic [ref=e484]:
+                  - generic [ref=e488]:
+                    - generic [ref=e489]: Link text "click here"
+                    - generic [ref=e490]:
+                      - generic [ref=e491]: ISSUE
+                      - generic [ref=e492]: 2.4.4
+                  - generic [ref=e494]: ✓
+              - generic [ref=e495]:
+                - generic [ref=e496]: 06 / 06 ISSUES SHOWN
+                - generic [ref=e497]: FILTERABLE · TRACKABLE
+            - generic:
+              - generic: Filterable. Trackable. Self-documenting.
+        - generic:
+          - generic:
+            - generic:
+              - generic: DWG · 01
+              - generic: WCAG-AUDIT-FLOW
+            - generic:
+              - generic: SCALE
+              - generic: "1 : 1"
+            - generic:
+              - generic: REV.
+              - generic: "2026.04"
+      - generic [ref=e499]:
+        - paragraph [ref=e501]: Outcome
+        - heading "A site that passes, and a client that understands why." [level=2] [ref=e503]
+        - generic [ref=e504]:
+          - generic [ref=e505]:
+            - paragraph [ref=e506]: Stack
+            - paragraph [ref=e507]: Claude Code · Playwright MCP · axe-core · WebAIM
+          - generic [ref=e508]:
+            - paragraph [ref=e509]: Standard
+            - paragraph [ref=e510]: WCAG 2.2 AA
+          - generic [ref=e511]:
+            - paragraph [ref=e512]: Deliverable
+            - paragraph [ref=e513]: Interactive HTML report with progress tracking
+    - generic [ref=e515]:
+      - generic [ref=e516]:
+        - heading "Standards I work toward." [level=2] [ref=e518]
+        - generic [ref=e519]:
+          - paragraph [ref=e520]: Note
+          - paragraph [ref=e521]: Accessibility is a foundational constraint in my practice—not an afterthought. The following are the directions I follow on every project I take on.
+      - generic [ref=e523]:
+        - generic [ref=e524]: Idx
+        - generic [ref=e525]: Criterion
+        - generic [ref=e526]: Implementation
+        - generic [ref=e527]: Detail
+      - generic [ref=e528]:
+        - generic [ref=e530]:
+          - generic [ref=e531]: "01"
+          - generic [ref=e532]:
+            - paragraph [ref=e533]: Standards
+            - paragraph [ref=e534]: WCAG 2.2 AA
+          - paragraph [ref=e535]: I target WCAG 2.2 Level AA compliance as a baseline across every project. Color contrast, focus visibility, semantic structure, and keyboard operability are treated as non-negotiable requirements rather than optional enhancements.
+          - paragraph [ref=e536]: Baseline · non-negotiable
+        - generic [ref=e538]:
+          - generic [ref=e539]: "02"
+          - generic [ref=e540]:
+            - paragraph [ref=e541]: Keyboard Navigation
+            - paragraph [ref=e542]: 2.1.1 · 2.4.7
+          - paragraph [ref=e543]: All interactive elements—buttons, links, toggles, and embedded prototypes—are fully reachable and operable by keyboard alone. Tab order follows the natural reading sequence. A skip-to-main-content link is available at the top of the page for keyboard and assistive technology users.
+          - paragraph [ref=e544]: Tab · Shift+Tab · Enter · Space
+        - generic [ref=e546]:
+          - generic [ref=e547]: "03"
+          - generic [ref=e548]:
+            - paragraph [ref=e549]: Motion
+            - paragraph [ref=e550]: 2.3.3
+          - paragraph [ref=e551]: All animations and transitions respect the prefers-reduced-motion system setting. When reduced motion is enabled, scroll animations, slide transitions, and decorative motion are fully disabled without any loss of content or functionality.
+          - paragraph [ref=e552]: prefers-reduced-motion respected
+        - generic [ref=e554]:
+          - generic [ref=e555]: "04"
+          - generic [ref=e556]:
+            - paragraph [ref=e557]: Screen Readers
+            - paragraph [ref=e558]: 4.1.2
+          - paragraph [ref=e559]: Semantic HTML elements and ARIA landmark regions provide structure for assistive technologies. Interactive components use explicit ARIA labels and aria-expanded / aria-controls attributes to communicate state. Images include descriptive alt text.
+          - paragraph [ref=e560]: Semantic HTML · ARIA roles
+        - generic [ref=e562]:
+          - generic [ref=e563]: "05"
+          - generic [ref=e564]:
+            - paragraph [ref=e565]: Color & Contrast
+            - paragraph [ref=e566]: 1.4.3
+          - paragraph [ref=e567]: Text and interactive elements meet WCAG AA contrast ratios against their backgrounds. Color is never used as the sole means of conveying information—state changes and distinctions are also communicated through text, shape, or position.
+          - paragraph [ref=e568]: 4.5:1 normal · 3:1 large
+        - generic [ref=e570]:
+          - generic [ref=e571]: "06"
+          - generic [ref=e572]:
+            - paragraph [ref=e573]: Focus Indicators
+            - paragraph [ref=e574]: 2.4.7
+          - paragraph [ref=e575]: Visible focus rings are preserved on all interactive elements. Default browser outlines are not suppressed unless replaced with a clearly visible custom indicator that meets or exceeds the original contrast.
+          - paragraph [ref=e576]: Outline preserved
+  - generic [ref=e579]:
+    - generic [ref=e580]:
+      - heading "Contact" [level=2] [ref=e582]
+      - paragraph [ref=e584]: I’m open to UX/UI roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e585]:
+      - paragraph [ref=e586]: Links
+      - generic [ref=e587]:
+        - link "Resume" [ref=e588] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e589] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e590] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e591] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - button "Accessibility" [ref=e592] [cursor=pointer]
+        - button "Motion Garden" [ref=e593] [cursor=pointer]
+        - link "Creative Portfolio" [ref=e594] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

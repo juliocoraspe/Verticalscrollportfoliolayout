@@ -1,0 +1,6 @@
+[      88ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[   10136ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[   35944ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   35944ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   35944ms] [ERROR] Error: <path> attribute d: Expected moveto path command ('M' or 'm'), "undefined". @ https://juliocoraspe.github.io/Milo/assets/index-MylASv9j.js:47
+[   58151ms] Failed to parse import map: invalid JSON

@@ -3,6 +3,7 @@ import { FigmaEmbed } from './embeds/FigmaEmbed';
 import { DeferredIframe } from './DeferredIframe';
 import { ScrollSection } from './ScrollSection';
 import { useIsMobile } from './ui/use-mobile';
+import type { BlueprintSection } from './CaseStudyBlueprint';
 import miloBanner from '../../assets/images/Milo 2.svg';
 import miloMobile from '../../assets/images/Milo_mobile.jpg';
 import miloPrototype from '../../assets/images/Milo_prototype.png';
@@ -17,7 +18,7 @@ export const AI_COMPANION_SUMMARY =
 export const AI_COMPANION_BANNER = {
   src: miloBanner,
   alt: 'Milo interface banner',
-  className: 'w-full h-auto object-contain md:h-[420px] md:object-cover md:object-top',
+  className: 'w-full h-[128px] object-cover object-top sm:h-[176px] md:h-[420px]',
   style: { backgroundColor: '#F0F3F3' },
 };
 
@@ -287,3 +288,174 @@ function AiCompanionCaseStudyContentComponent({
 }
 
 export const AiCompanionCaseStudyContent = memo(AiCompanionCaseStudyContentComponent);
+
+export function getMiloBlueprintSections(): BlueprintSection[] {
+  return [
+    {
+      id: '01',
+      label: 'Context',
+      body: (
+        <p>
+          Designed as an interface study for AI companionship rather than task execution. The goal is to explore
+          how a system can feel continuously present—like a conversational partner—through pacing, subtle motion,
+          and state-based feedback.
+        </p>
+      ),
+    },
+    {
+      id: '02',
+      label: 'Foundation Research',
+      body: (
+        <p>
+          Foundation draws from Google&apos;s PAIR Guidebook, Microsoft&apos;s Guidelines for Human-AI Interaction,
+          Apple HIG (motion + feedback), OpenAI Safety Best Practices, and Anthropic&apos;s Constitutional AI
+          work—all emphasizing transparency, predictability, gradual engagement, and human control.
+        </p>
+      ),
+    },
+    {
+      id: '03',
+      label: 'Design Hypotheses',
+      body: (
+        <p>
+          If an AI companion is meant to feel present rather than transactional, its interface should communicate
+          &ldquo;state&rdquo; through continuous, calm feedback instead of abrupt UI changes. If conversation is
+          ongoing rather than task-based, the system should prioritize gradual transitions, restrained contrast,
+          and ambient motion that signals presence without demanding attention.
+        </p>
+      ),
+    },
+    {
+      id: '04',
+      label: 'Interaction States',
+      body: (
+        <>
+          <p>The interface is organized around states rather than isolated screens:</p>
+          <ul>
+            <li>Idle presence</li>
+            <li>Listening</li>
+            <li>Thinking</li>
+            <li>Speaking</li>
+            <li>Uncertainty</li>
+            <li>Error / disconnected</li>
+          </ul>
+        </>
+      ),
+    },
+    {
+      id: '05',
+      label: 'Ideation & Visual Direction',
+      body: (
+        <>
+          <p style={{ marginBottom: 12 }}>
+            Intentionally minimal: neutral background, restrained color, organic forms. Motion is slow and
+            ambient—designed to suggest life and continuity without demanding attention.
+          </p>
+          <div className="cs-bp-media cs-bp-media-landscape" style={{ height: 280, maxWidth: '100%' }}>
+            <div className="cs-bp-media-frame">
+              <FigmaEmbed
+                title="AI Companion Interface Figma exploration"
+                src={FIGMA_EMBED_URL}
+                wrapperClassName="cs-bp-media-fill"
+                iframeClassName="cs-bp-media-fill"
+                mobileStaticImageSrc={miloMobile}
+                mobileStaticImageAlt="Milo ideation static preview"
+                mobileLinkLabel="Open Figma Design"
+                allow="fullscreen"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </>
+      ),
+    },
+    {
+      id: '06',
+      label: 'Prototyping & Execution',
+      layout: 'vsplit',
+      body: (
+        <div className="cs-bp-vsplit">
+          <div className="cs-bp-vsplit-text">
+            <div className="cs-bp-vsplit-title-row">
+              <span className="cs-bp-display-num" aria-hidden="true">06</span>
+              <h4 className="cs-bp-display-title">Prototyping & Execution</h4>
+            </div>
+            <div className="cs-bp-vsplit-body">
+              <p>
+                Figma established structure and state logic. Figma Make introduced motion and temporal behavior.
+                VS Code with Codex handled implementation refinement. GitHub Pages provided runtime validation.
+              </p>
+              <p>This workflow treats code as an extension of the design process—not a downstream deliverable.</p>
+            </div>
+            <div className="cs-bp-vsplit-cta">
+              <a
+                className="cs-bp-cta"
+                href="https://github.com/juliocoraspe/Milo"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See full code on GitHub
+                <span className="cs-bp-cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <div
+            className="cs-bp-vsplit-media"
+            style={{ ['--media-aspect' as string]: '390 / 844' }}
+          >
+            <div
+              className="cs-bp-vsplit-media-frame"
+              style={{
+                ['--frame-w' as string]: '390px',
+                ['--frame-h' as string]: '844px',
+                ['--frame-scale' as string]: '0.582',
+              }}
+            >
+              <FigmaEmbed
+                title="AI Companion Interface prototype"
+                src={GITHUB_PAGES_EMBED_URL}
+                wrapperClassName="cs-bp-vsplit-frame"
+                iframeClassName="cs-bp-vsplit-frame border-0 no-scrollbar"
+                mobileStaticImageSrc={miloPrototype}
+                mobileStaticImageAlt="Milo prototype preview"
+                mobileStaticImageObjectFit="cover"
+                mobileLinkHref="https://github.com/juliocoraspe/Milo"
+                mobileLinkLabel="See full code on GitHub"
+              />
+            </div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      id: '07',
+      label: 'Outcome',
+      body: (
+        <p>
+          Not a finished product, but a validated interaction foundation: a state-driven visual language,
+          motion pacing rules, and a UI system that can support future prototyping, testing, and implementation.
+        </p>
+      ),
+    },
+    {
+      id: '08',
+      label: 'What Comes Next',
+      body: (
+        <>
+          <p>
+            Next phase focuses on refining typographic scale and hierarchy for accessibility across interaction
+            states, and calibrating color behavior and motion logic of the perimeter gradients.
+          </p>
+          <p>
+            Background animations will be revisited for better motion pacing in sustained interactions.
+            A formal design system will define reusable rules for color, typography, motion, and state behavior.
+          </p>
+          <p>
+            Future exploration will expand into additional interface surfaces—supporting views and interaction
+            moments that maintain continuity without introducing visual noise.
+          </p>
+        </>
+      ),
+    },
+  ];
+}
