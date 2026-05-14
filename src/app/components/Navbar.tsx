@@ -214,7 +214,7 @@ export function Navbar({ enterAccessibility, enterAiExperience, currentView }: N
                 ...(isActive ? activeUnderline : {}),
               }}
             >
-              <span className="sm:hidden text-dark"><IconEye /></span>
+              <span className="sm:hidden text-ink"><IconEye /></span>
               <span className="sm:hidden text-ink" style={mobileLabel}>ACCESSIBILITY</span>
               <span
                 className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
