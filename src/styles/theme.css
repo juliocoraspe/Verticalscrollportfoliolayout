@@ -527,6 +527,99 @@
     max-width: 92rem;
   }
 
+  .hero-meta-lockup {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
+    align-items: center;
+    column-gap: clamp(1rem, 4vw, 3.75rem);
+    min-height: clamp(3.25rem, 6vw, 5.75rem);
+    color: var(--color-dark);
+  }
+
+  .hero-meta-name,
+  .hero-meta-role {
+    font-family: var(--font-serif);
+    text-transform: uppercase;
+    color: var(--color-dark);
+    overflow-wrap: anywhere;
+  }
+
+  .hero-meta-name {
+    justify-self: end;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: clamp(0.2em, 0.75vw, 0.58em);
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .hero-meta-divider {
+    display: block;
+    width: 1px;
+    height: clamp(2.75rem, 7vw, 5.5rem);
+    background-color: var(--color-dark);
+    opacity: 0.82;
+  }
+
+  .hero-meta-role {
+    justify-self: start;
+    max-width: 42rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: clamp(0.12em, 0.48vw, 0.34em);
+    line-height: 2;
+  }
+
+  .hero-meta-role-line {
+    display: inline;
+  }
+
+  .hero-meta-role-line + .hero-meta-role-line::before {
+    content: " ";
+  }
+
+  .hero-copy-stack {
+    margin-top: 3.5rem;
+  }
+
+  .hero-mobile-animation {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .hero-mobile-building {
+    margin-top: 0.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-meta-lockup {
+      transform: translateY(-3.25rem);
+    }
+
+    .hero-meta-role {
+      line-height: 1.85;
+    }
+
+    .hero-meta-role-line {
+      display: block;
+    }
+
+    .hero-meta-role-line + .hero-meta-role-line::before {
+      content: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .hero-meta-role-line {
+      display: block;
+    }
+
+    .hero-meta-role-line + .hero-meta-role-line::before {
+      content: none;
+    }
+  }
+
   .mobile-card-rail-scroll {
     -ms-overflow-style: none;
   }
@@ -548,6 +641,34 @@
     --type-subhead-size: clamp(0.95rem, 1.8vw + 0.6rem, 1.25rem);
     max-width: 100%;
     overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 639px) {
+    .hero-meta-lockup {
+      column-gap: 0.85rem;
+      min-height: 3.75rem;
+      transform: translateY(-2.25rem);
+    }
+
+    .hero-copy-stack {
+      margin-top: -1rem;
+    }
+
+    .hero-meta-name {
+      font-size: 0.875rem;
+      letter-spacing: 0.22em;
+      white-space: normal;
+    }
+
+    .hero-meta-divider {
+      height: 2.65rem;
+    }
+
+    .hero-meta-role {
+      font-size: 0.75rem;
+      letter-spacing: 0.13em;
+      line-height: 1.75;
+    }
   }
 
   .hero-index {
@@ -1704,136 +1825,41 @@
   }
 
   /* ── Accessibility workflow scrollytelling — mobile (≤639px) ────── */
-  /* Strategy: keep the original desktop horizontal layout of each scene
-     (multi-column row) instead of letting it collapse to a single
-     column, then scale the whole stage to fit a phone viewport. This
-     keeps the composition recognizable and prevents the tall vertical
-     stack that pushes content out of the 100vh sticky frame.
-
-     Source widths the scale must accommodate:
-       - A15 SceneFrame:           forced to 1040px (override below)
-       - WCAG Scene1 (chain):      1040px intrinsic
-       - WCAG Scene3+ (smaller):   ≤700px intrinsic
-     Targeting 1040px as the worst case keeps both workflows in lockstep,
-     so they never visually disagree on width. */
+  /* At ≤639px each scene renders a dedicated single-column mobile
+     layout in React (see WcagWorkflow / A15FigmaPluginWorkflow), authored
+     at full accessible font sizes. No global transform:scale here — that
+     was the old approach and it shrank the type to ~4px. Instead each
+     scene is constrained to the SAFE BAND between the top HUD and the
+     bottom HUD (see .wkf-mobile-scene) and auto-fits within it, so a
+     scene never overlaps the progress bars and never crops off-screen. */
   @media (max-width: 639px) {
-    /* Hide blueprint chrome that has no functional value at small sizes.
-       The SceneTitle ("The toolbox assembles.", "The page is read.", etc.)
-       is hidden too: at mobile scale its heading + description block
-       overlaps the centered scene content vertically, and the top HUD
-       already shows the act name. The marketing-style heading is
-       desktop-only context, not navigation. */
-    .wkf-chrome,
-    .wkf-side-annotation,
-    .wkf-hud-subline,
-    .wkf-bottom-meta,
-    .wkf-scene-title {
-      display: none !important;
+    .wkf-sticky {
+      overflow: hidden;
     }
-
-    /* Center the remaining bottom HUD (just the progress ring) */
     .wkf-bottom-hud > div {
       justify-content: center;
     }
 
-    /* Shorten the scroll-pin container so mobile users don't have to
-       scroll through 6 × 100vh of empty space — scenes fade just as
-       fast since useScroll percentages are relative. */
-    .wkf-scroll-container {
-      height: 480vh !important;
-    }
-
-    /* Clip horizontal overflow from wider scenes; allow vertical
-       overflow inside the sticky so nothing critical is cut. */
-    .wkf-sticky {
+    /* Safe band: the vertical area a scene may occupy. Top inset clears
+       the top HUD (act label + progress bar ≈ 75px from the top edge);
+       bottom inset clears the bottom HUD (progress ring ≈ 70px from the
+       bottom edge). The scene is centered within this band and scaled
+       to fit it by the FitToBand component, so it always shows in one
+       screen with no overlap and no cropping. */
+    .wkf-mobile-scene {
+      /* Top inset clears the fixed 48px site navbar AND the workflow HUD
+         that sits below it (act title + progress line, ≈64–96px), so the
+         scene starts below the full HUD and never covers its metadata.
+         Bottom inset clears the bottom progress HUD. */
+      top: 112px;
+      bottom: 76px;
       overflow: hidden;
     }
-
-    /* Force the A15 SceneFrame to a fixed source width that matches
-       the WCAG workflow's widest scene (1040px). Both workflows then
-       share the same scale math below. */
-    .wkf-stage .absolute.left-1\/2.top-1\/2 {
-      width: 1040px !important;
-      max-width: none !important;
-    }
-
-    /* WCAG scenes wrap their fixed-width content in a flex parent
-       (`.absolute.inset-0.flex.items-center.justify-center`). The
-       default `flex-shrink: 1` would shrink the 1040px / 700px inner
-       block to fit the 360px sticky frame, killing the scaled
-       composition. Prevent shrinking so the inner element keeps its
-       authored width and overflows naturally before scale. */
-    .wkf-stage .absolute.inset-0 > * {
-      flex-shrink: 0 !important;
-    }
-
-    /* Promote the `md:grid-cols-*` utilities from md+ down to mobile
-       so the scenes' internal columns stay side-by-side. */
-    .wkf-stage .md\:grid-cols-\[0\.85fr_0\.55fr_0\.9fr\] {
-      grid-template-columns: 0.85fr 0.55fr 0.9fr;
-    }
-    .wkf-stage .md\:grid-cols-\[0\.8fr_0\.55fr_0\.85fr\] {
-      grid-template-columns: 0.8fr 0.55fr 0.85fr;
-    }
-    .wkf-stage .md\:grid-cols-\[0\.8fr_1fr\] {
-      grid-template-columns: 0.8fr 1fr;
-    }
-    .wkf-stage .md\:grid-cols-\[1fr_0\.85fr\] {
-      grid-template-columns: 1fr 0.85fr;
-    }
-    .wkf-stage .md\:grid-cols-\[0\.95fr_1fr\] {
-      grid-template-columns: 0.95fr 1fr;
-    }
-    .wkf-stage .md\:grid-cols-\[0\.7fr_1fr\] {
-      grid-template-columns: 0.7fr 1fr;
-    }
-    .wkf-stage .md\:grid-cols-\[1fr_0\.5fr_1fr\] {
-      grid-template-columns: 1fr 0.5fr 1fr;
-    }
-    .wkf-stage .md\:grid-cols-\[1fr_1fr\] {
-      grid-template-columns: 1fr 1fr;
-    }
-    .wkf-stage .md\:grid-cols-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .wkf-stage .md\:grid-cols-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
   }
 
-  /* Scale targets fit the *widest visible extent*, not just the named
-     authored width. WCAG Scene 1's Inspector node lives at left:960
-     with width:150 → right edge at 1110px in source coords (it
-     overflows the 1040 wrapper by design). Anchor the scale to 1110px
-     so nothing in the chain ever gets clipped on mobile. */
-
-  /* Phone narrow (≤359px, e.g. iPhone SE 320px): 1110 × 0.27 → 300px
-     visual width, fits 320 viewport with ~10px each side. */
-  @media (max-width: 359px) {
-    .wkf-stage {
-      transform: scale(0.27);
-      transform-origin: 50% 50%;
-    }
-  }
-
-  /* Phone standard (360–479px): 1110 × 0.31 → 344px visual width.
-     Fits 360–479 viewports with ~15px margin. */
-  @media (min-width: 360px) and (max-width: 479px) {
-    .wkf-stage {
-      transform: scale(0.31);
-      transform-origin: 50% 50%;
-    }
-  }
-
-  /* Phone large (480–639px): 1110 × 0.40 → 444px visual width. */
-  @media (min-width: 480px) and (max-width: 639px) {
-    .wkf-stage {
-      transform: scale(0.40);
-      transform-origin: 50% 50%;
-    }
-  }
-
-  /* Tablet (640–839px): less aggressive scale */
+  /* Tablet (640–839px) still renders the *desktop* scenes (the mobile
+     breakpoint is ≤639px), so the original fit-to-viewport scale is
+     still required here. */
   @media (min-width: 640px) and (max-width: 839px) {
     .wkf-stage {
       transform: scale(0.62);

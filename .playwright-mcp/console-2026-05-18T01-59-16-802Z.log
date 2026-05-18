@@ -1,0 +1,8 @@
+[     765ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:21608
+[     928ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:5173/node_modules/.vite/deps/chunk-IRR2YQCS.js?v=3dcf0143:136
+[     949ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[  224181ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://localhost:5173/#design-cycle:0
+[  224181ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=7751f462:273
+[  225192ms] [LOG] THREE.WebGLRenderer: Context Restored. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=7751f462:273
+[  277565ms] [WARNING] WebGL: CONTEXT_LOST_WEBGL: loseContext: context lost @ http://localhost:5173/#design-cycle:0
+[  277566ms] [LOG] THREE.WebGLRenderer: Context Lost. @ http://localhost:5173/node_modules/.vite/deps/three.js?v=7751f462:273

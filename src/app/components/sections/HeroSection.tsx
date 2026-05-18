@@ -186,7 +186,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   ];
 
   return (
-    <section id="main-content" className="relative min-h-[100svh] flex flex-col items-stretch sm:flex-row sm:items-center px-4 pt-0 pb-4 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
+    <section id="main-content" className="relative min-h-[100svh] flex flex-col items-stretch sm:flex-row sm:items-center px-4 pt-0 pb-0 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
       {!isMobile && <WireframeMesh isMobile={false} opennessRef={opennessRef} />}
 
       {!isMobile && (
@@ -216,86 +216,98 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
         </div>
       )}
 
-      <div className="relative w-full hero-breakout mx-auto space-y-6 sm:space-y-14 min-w-0 mt-12 sm:-mt-40" style={{ zIndex: 2, transform: isMobile ? undefined : 'translateX(-7%)', pointerEvents: isMobile ? undefined : 'none' }}>
-        <p className="type-subhead text-dark" style={{ pointerEvents: isMobile ? undefined : 'auto' }}>Julio Coraspe: UX/UI Designer with Frontend Implementation Skills</p>
-
-        <motion.h1
-          className="type-display-xl text-ink break-words hero-title min-w-0"
+      <div className="relative w-full hero-breakout mx-auto min-w-0 mt-12 sm:-mt-16" style={{ zIndex: 2, pointerEvents: isMobile ? undefined : 'none' }}>
+        <div
+          className="hero-meta-lockup"
+          aria-label="Julio Coraspe: UX/UI Designer with Front-end Implementation Skills"
           style={{ pointerEvents: isMobile ? undefined : 'auto' }}
-          variants={heroContainerVariants}
-          initial="hidden"
-          animate="show"
-          aria-label={heroText}
         >
-          {isMobile
-            ? heroLines.map((line, lineIndex) => (
-                <span key={line} className="block" style={lineIndex === 0 || lineIndex === 1 ? { marginBottom: '0.45em' } : undefined}>
-                  {line}
-                </span>
-              ))
-            : heroLines.map((line, lineIndex) => {
-                const words = line.split(' ');
-                return (
-                  <span key={line} className="block" style={lineIndex === 0 || lineIndex === 1 ? { marginBottom: '0.45em' } : undefined}>
-                    {words.map((word, wordIndex) => (
-                      <Fragment key={`${lineIndex}-${wordIndex}`}>
-                        <motion.span variants={heroWordVariants} className="inline-block" aria-hidden="true">
-                          {word}
-                        </motion.span>
-                        {wordIndex < words.length - 1 ? <span aria-hidden="true"> </span> : null}
-                      </Fragment>
-                    ))}
-                  </span>
-                );
-              })}
-        </motion.h1>
-
-        <motion.p
-          className="type-pull-quote text-dark hero-subtitle min-w-0"
-          style={{ pointerEvents: isMobile ? undefined : 'auto' }}
-          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
-          animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-          transition={{
-            duration: shouldReduceMotion ? 0.1 : 0.36,
-            delay: shouldReduceMotion ? 0 : 0.12,
-            ease: [0.19, 1, 0.3, 1],
-          }}
-        >
-          My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration, anchored in accessibility and AI-driven workflows. I care about how it looks. I care more about how it works. I care most about{' '}
-          <span style={{ display: 'inline-flex', flexDirection: 'column', verticalAlign: 'baseline' }}>
-            <span style={{ position: 'relative' }}>
-              pouring the concrete before painting it.
-              <motion.span
-                aria-hidden="true"
-                initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
-                animate={strikethroughControls}
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: '50%',
-                  marginTop: '-0.5px',
-                  height: '1px',
-                  width: '100%',
-                  backgroundColor: 'currentColor',
-                  transformOrigin: 'left center',
-                  display: 'block',
-                  opacity: 0.8,
-                }}
-              />
-            </span>
-            <motion.span
-              initial={
-                shouldReduceMotion
-                  ? { clipPath: 'inset(0 0% 0 0)', opacity: 1 }
-                  : { clipPath: 'inset(0 100% 0 0)', opacity: 0 }
-              }
-              animate={replacementControls}
-              style={{ paddingTop: '0.1em' }}
-            >
-              designing the structure before the surface.
-            </motion.span>
+          <span className="hero-meta-name" aria-hidden="true">Julio Coraspe</span>
+          <span className="hero-meta-divider" aria-hidden="true" />
+          <span className="hero-meta-role" aria-hidden="true">
+            <span className="hero-meta-role-line">UX/UI Designer</span><span className="hero-meta-role-line">with Front-end Implementation Skills</span>
           </span>
-        </motion.p>
+        </div>
+
+        <div className="hero-copy-stack space-y-6 sm:space-y-14" style={{ transform: isMobile ? undefined : 'translateX(-7%)' }}>
+          <motion.h1
+            className="type-display-xl text-ink break-words hero-title min-w-0"
+            style={{ pointerEvents: isMobile ? undefined : 'auto' }}
+            variants={heroContainerVariants}
+            initial="hidden"
+            animate="show"
+            aria-label={heroText}
+          >
+            {isMobile
+              ? heroLines.map((line, lineIndex) => (
+                  <span key={line} className="block" style={lineIndex === 0 || lineIndex === 1 ? { marginBottom: '0.45em' } : undefined}>
+                    {line}
+                  </span>
+                ))
+              : heroLines.map((line, lineIndex) => {
+                  const words = line.split(' ');
+                  return (
+                    <span key={line} className="block" style={lineIndex === 0 || lineIndex === 1 ? { marginBottom: '0.45em' } : undefined}>
+                      {words.map((word, wordIndex) => (
+                        <Fragment key={`${lineIndex}-${wordIndex}`}>
+                          <motion.span variants={heroWordVariants} className="inline-block" aria-hidden="true">
+                            {word}
+                          </motion.span>
+                          {wordIndex < words.length - 1 ? <span aria-hidden="true"> </span> : null}
+                        </Fragment>
+                      ))}
+                    </span>
+                  );
+                })}
+          </motion.h1>
+
+          <motion.p
+            className="type-pull-quote text-dark hero-subtitle min-w-0"
+            style={{ pointerEvents: isMobile ? undefined : 'auto' }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0.1 : 0.36,
+              delay: shouldReduceMotion ? 0 : 0.12,
+              ease: [0.19, 1, 0.3, 1],
+            }}
+          >
+            My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration, anchored in accessibility and AI-driven workflows. I care about how it looks. I care more about how it works. I care most about{' '}
+            <span style={{ display: 'inline-flex', flexDirection: 'column', verticalAlign: 'baseline' }}>
+              <span style={{ position: 'relative' }}>
+                pouring the concrete before painting it.
+                <motion.span
+                  aria-hidden="true"
+                  initial={shouldReduceMotion ? { scaleX: 1 } : { scaleX: 0 }}
+                  animate={strikethroughControls}
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    top: '50%',
+                    marginTop: '-0.5px',
+                    height: '1px',
+                    width: '100%',
+                    backgroundColor: 'currentColor',
+                    transformOrigin: 'left center',
+                    display: 'block',
+                    opacity: 0.8,
+                  }}
+                />
+              </span>
+              <motion.span
+                initial={
+                  shouldReduceMotion
+                    ? { clipPath: 'inset(0 0% 0 0)', opacity: 1 }
+                    : { clipPath: 'inset(0 100% 0 0)', opacity: 0 }
+                }
+                animate={replacementControls}
+                style={{ paddingTop: '0.1em' }}
+              >
+                designing the structure before the surface.
+              </motion.span>
+            </span>
+          </motion.p>
+        </div>
 
       </div>
 
@@ -306,11 +318,11 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
           as the building expands. Order matches desktop: The what / The how /
           The why mapped to level3 (roof) / level2 (mid) / level1 (base). */}
       {isMobile && (
-        <div className="relative w-full mt-6 mb-2" style={{ zIndex: 2 }}>
+        <div className="hero-mobile-animation relative w-full" style={{ zIndex: 2 }}>
           <div className="relative" style={{ width: '100%' }}>
             {/* Building pinned to the left half so the right half is clear for
                 the pointer labels. */}
-            <div ref={mobileBuildingRef} style={{ width: '60%', marginLeft: '-4%', marginTop: 36 }}>
+            <div ref={mobileBuildingRef} className="hero-mobile-building" style={{ width: '60%', marginLeft: '-4%' }}>
               <WireframeMesh
                 isMobile
                 mobileStatic
