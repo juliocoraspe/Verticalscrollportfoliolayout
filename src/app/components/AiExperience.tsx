@@ -210,7 +210,7 @@ export function AiExperience() {
             2.1 / 2.2 AA across every page — replacing paid auditing tools end-to-end.
           </p>
           <WcagPipelinePhases />
-          <TagRail tags={['Claude Code', 'Playwright MCP', 'axe-core', 'NVDA / VoiceOver', 'WordPress / HTML / CSS / Frameworks']} />
+          <TagRail tags={['Claude Code', 'Playwright MCP', 'axe-core', 'NVDA / VoiceOver', 'HTML / CSS / JS / Any Framework']} />
         </Beat>
 
         <Beat id="tools" label="My stack · 04" align="center">
@@ -3111,7 +3111,7 @@ function WcagPipelinePhases() {
     },
     {
       title: 'Remediation',
-      detail: 'Findings grouped by WCAG criterion. Fixes implemented at the code level, regardless of platform: WordPress, HTML/CSS, frameworks, or custom builds.',
+      detail: 'Findings grouped by WCAG criterion. Fixes implemented at the code level, regardless of stack: HTML/CSS, JavaScript frameworks, templating engines, or custom builds.',
       tools: ['CODE-LEVEL REMEDIATION', 'PLATFORM-AGNOSTIC', 'ANY TECH STACK'],
     },
   ] as const;

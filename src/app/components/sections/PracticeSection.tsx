@@ -674,7 +674,7 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
   return (
     <section
       id="design-cycle"
-      className="practice-section bg-pure px-6 pt-8 pb-12 sm:px-6 sm:pt-20 sm:pb-24"
+      className="practice-section bg-pure px-6 pt-4 pb-12 sm:px-6 sm:pt-20 sm:pb-24"
       style={isMobile ? undefined : { minHeight: 'calc(100svh - 48px)', position: 'relative' }}
     >
       {/* Boundary separator — draws left→right as the building crosses into this section */}

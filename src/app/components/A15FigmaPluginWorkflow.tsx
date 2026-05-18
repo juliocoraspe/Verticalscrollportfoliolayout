@@ -9,6 +9,12 @@ import {
 } from 'motion/react';
 import { useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { ScrollSection } from './ScrollSection';
+import { FitToBand } from './MobileSceneBand';
+import { useViewportWidth } from '../hooks/use-viewport-width';
+
+// Below this width the desktop multi-column scenes can't be shown at a
+// legible size, so we render the dedicated mobile scene layouts instead.
+const MOBILE_MAX_WIDTH = 639;
 
 const TECH_LABEL_STYLE: CSSProperties = {
   fontFamily: 'var(--font-sans)',
@@ -32,15 +38,17 @@ type SceneProps = {
 
 export function A15FigmaPluginWorkflow() {
   const shouldReduceMotion = useReducedMotion();
+  const viewportWidth = useViewportWidth();
+  const isMobile = viewportWidth <= MOBILE_MAX_WIDTH;
 
-  // Mobile now uses the same desktop scrollytelling, just scaled to fit the
-  // viewport via CSS. Only fall back to the static mobile layout when the
-  // user has prefers-reduced-motion enabled.
+  // prefers-reduced-motion: fully static stacked fallback (no scroll motion).
   if (shouldReduceMotion) return <A15MobileWorkflow />;
-  return <A15DesktopWorkflow />;
+  // Mobile: same scroll-driven scene system, but each scene is re-authored
+  // for a single narrow column at full, accessible font sizes (no CSS scale).
+  return <A15ScrollWorkflow mobile={isMobile} />;
 }
 
-function A15DesktopWorkflow() {
+function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -79,19 +87,36 @@ function A15DesktopWorkflow() {
     >
       <A15Intro />
 
-      <div ref={containerRef} className="relative wkf-scroll-container" style={{ height: '560vh' }}>
+      <div
+        ref={containerRef}
+        className="relative wkf-scroll-container"
+        style={{ height: mobile ? '480vh' : '560vh' }}
+      >
         <div className="sticky top-0 h-screen overflow-hidden wkf-sticky" style={{ backgroundColor: 'var(--color-base)' }}>
-          <div className="wkf-chrome"><A15BlueprintGrid /></div>
-          <A15Hud progress={p} progressWidth={progressWidth} />
-          <div className="wkf-chrome"><A15CornerMarks /></div>
+          {!mobile && <div className="wkf-chrome"><A15BlueprintGrid /></div>}
+          <A15Hud progress={p} progressWidth={progressWidth} mobile={mobile} />
+          {!mobile && <div className="wkf-chrome"><A15CornerMarks /></div>}
 
           <div className="relative flex h-full w-full items-center justify-center wkf-stage">
-            <A15Scene1 opacity={scene1} local={s1Local} />
-            <A15Scene2 opacity={scene2} local={s2Local} />
-            <A15Scene3 opacity={scene3} local={s3Local} />
-            <A15Scene4 opacity={scene4} local={s4Local} />
-            <A15Scene5 opacity={scene5} local={s5Local} />
-            <A15Scene6 opacity={scene6} local={s6Local} />
+            {mobile ? (
+              <>
+                <A15Scene1Mobile opacity={scene1} local={s1Local} />
+                <A15Scene2Mobile opacity={scene2} local={s2Local} />
+                <A15Scene3Mobile opacity={scene3} local={s3Local} />
+                <A15Scene4Mobile opacity={scene4} local={s4Local} />
+                <A15Scene5Mobile opacity={scene5} local={s5Local} />
+                <A15Scene6Mobile opacity={scene6} local={s6Local} />
+              </>
+            ) : (
+              <>
+                <A15Scene1 opacity={scene1} local={s1Local} />
+                <A15Scene2 opacity={scene2} local={s2Local} />
+                <A15Scene3 opacity={scene3} local={s3Local} />
+                <A15Scene4 opacity={scene4} local={s4Local} />
+                <A15Scene5 opacity={scene5} local={s5Local} />
+                <A15Scene6 opacity={scene6} local={s6Local} />
+              </>
+            )}
           </div>
 
           <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-50 px-6 pb-5 sm:px-8 wkf-bottom-hud">
@@ -99,14 +124,18 @@ function A15DesktopWorkflow() {
               className="flex items-end justify-between border-t pt-3 type-micro uppercase"
               style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)', borderColor: 'var(--color-pale)' }}
             >
-              <div className="wkf-bottom-meta">
-                <div style={{ opacity: 0.6 }}>DWG · 02</div>
-                <div style={{ color: 'var(--color-dark)' }}>A15-FIGMA-AUDIT</div>
-              </div>
-              <div className="text-center wkf-bottom-meta">
-                <div style={{ opacity: 0.6 }}>MODE</div>
-                <div style={{ color: 'var(--color-dark)' }}>PRE-LAUNCH</div>
-              </div>
+              {!mobile && (
+                <div className="wkf-bottom-meta">
+                  <div style={{ opacity: 0.6 }}>DWG · 02</div>
+                  <div style={{ color: 'var(--color-dark)' }}>A15-FIGMA-AUDIT</div>
+                </div>
+              )}
+              {!mobile && (
+                <div className="text-center wkf-bottom-meta">
+                  <div style={{ opacity: 0.6 }}>MODE</div>
+                  <div style={{ color: 'var(--color-dark)' }}>PRE-LAUNCH</div>
+                </div>
+              )}
               <A15ProgressNumber progress={p} />
             </div>
           </div>
@@ -152,17 +181,22 @@ function A15Intro() {
 function A15Hud({
   progress,
   progressWidth,
+  mobile,
 }: {
   progress: MotionValue<number>;
   progressWidth: MotionValue<string>;
+  mobile?: boolean;
 }) {
   return (
-    <div className="pointer-events-none absolute left-0 right-0 top-0 z-50 px-6 pt-16 sm:px-8">
+    <div
+      className="pointer-events-none absolute left-0 right-0 top-0 z-50 px-6 sm:px-8"
+      style={{ paddingTop: 64 }}
+    >
       <div
         className="flex items-center justify-between type-micro uppercase"
         style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
       >
-        <span>A15 · Figma Plugin</span>
+        <span>A15 · Figma</span>
         <A15SceneLabel progress={progress} />
         <span>06 / Acts</span>
       </div>
@@ -176,11 +210,13 @@ function A15Hud({
           />
         ))}
       </div>
-      <div className="mt-1.5 flex justify-between type-micro uppercase wkf-hud-subline" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)' }}>
-        <span>DESIGN FILE</span>
-        <span>LOCAL · PRIVATE · ITERATIVE</span>
-        <span>HANDOFF</span>
-      </div>
+      {!mobile && (
+        <div className="mt-1.5 flex justify-between type-micro uppercase wkf-hud-subline" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)' }}>
+          <span>DESIGN FILE</span>
+          <span>LOCAL · PRIVATE · ITERATIVE</span>
+          <span>HANDOFF</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -247,7 +283,25 @@ function A15BlueprintGrid() {
   );
 }
 
-function A15SceneFrame({ opacity, children }: { opacity: MotionValue<number>; children: ReactNode }) {
+function A15SceneFrame({
+  opacity,
+  children,
+  mobile,
+}: {
+  opacity: MotionValue<number>;
+  children: ReactNode;
+  mobile?: boolean;
+}) {
+  if (mobile) {
+    return (
+      <motion.div
+        className="absolute left-0 right-0 wkf-mobile-scene flex items-center justify-center px-5"
+        style={{ opacity }}
+      >
+        <FitToBand>{children}</FitToBand>
+      </motion.div>
+    );
+  }
   return (
     <motion.div
       className="absolute left-1/2 top-1/2 w-[min(1180px,88vw)]"
@@ -262,14 +316,78 @@ function A15SceneFrame({ opacity, children }: { opacity: MotionValue<number>; ch
   );
 }
 
+function A15Scene1Mobile({ opacity, local }: SceneProps) {
+  const bridgeHeight = useTransform(local, [0.18, 0.42], ['0%', '100%']);
+  const dotY = useTransform(local, [0.18, 0.42], ['0%', '100%']);
+  const pluginY = useTransform(local, [0, 0.18], [24, 0]);
+  const canvasO = useTransform(local, [0.25, 0.45], [0.35, 1]);
+  const canvasY = useTransform(local, [0.25, 0.45], [20, 0]);
+
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col gap-5">
+        <motion.div style={{ y: pluginY }}>
+          <PluginWindow title="A15 Plugin" eyebrow="Local audit for the design">
+            <div className="space-y-3">
+              <A15Metric label="Mode" value="Design-time" />
+              <A15Metric label="Scope" value="Selected frame" />
+              <A15Metric label="Standard" value="WCAG 2.2 AA" />
+            </div>
+            <div
+              className="mt-6 border px-4 py-3 type-micro uppercase text-center"
+              style={{ ...TECH_LABEL_STYLE, borderColor: 'var(--color-ink)', color: 'var(--color-ink)' }}
+            >
+              Scan this design
+            </div>
+          </PluginWindow>
+        </motion.div>
+
+        <div className="relative mx-auto h-16 w-px">
+          <div className="absolute inset-x-0 top-0 bottom-0 w-px mx-auto" style={{ backgroundColor: 'var(--color-pale)' }} />
+          <motion.div
+            className="absolute top-0 left-1/2 w-px -translate-x-1/2"
+            style={{ height: bridgeHeight, backgroundColor: 'var(--color-ink)' }}
+          />
+          <motion.div
+            className="absolute left-1/2 h-3 w-3 rounded-full"
+            style={{ top: dotY, x: '-50%', y: '-50%', backgroundColor: 'var(--color-ink)' }}
+          />
+        </div>
+
+        <motion.div style={{ opacity: canvasO, y: canvasY }}>
+          <FigmaCanvas title="Design canvas · Checkout mobile">
+            <div
+              className="mx-auto mt-5 w-[200px] max-w-full border bg-[var(--color-pure)] p-4"
+              style={{ borderColor: 'var(--color-pale)', aspectRatio: '180 / 310' }}
+            >
+              <div className="mb-4 h-5 w-20" style={{ backgroundColor: 'var(--color-ink)' }} />
+              <div className="space-y-3">
+                <div className="h-3 w-full" style={{ backgroundColor: 'var(--color-mist)' }} />
+                <div className="h-3 w-3/4" style={{ backgroundColor: 'var(--color-mist)' }} />
+                <div className="h-16 w-full border" style={{ borderColor: 'var(--color-pale)' }} />
+                <div className="h-9 w-full" style={{ backgroundColor: 'var(--color-dark)' }} />
+              </div>
+            </div>
+          </FigmaCanvas>
+        </motion.div>
+      </div>
+
+      <A15Caption local={local} from={0.7} mobile text="The check starts with the design, before engineering inherits the product interface." />
+    </A15SceneFrame>
+  );
+}
+
 function A15Scene1({ opacity, local }: SceneProps) {
   const bridgeWidth = useTransform(local, [0.18, 0.42], ['0%', '100%']);
   const dotX = useTransform(local, [0.18, 0.42], ['0%', '100%']);
+  const pluginY = useTransform(local, [0, 0.18], [30, 0]);
+  const canvasO = useTransform(local, [0.25, 0.45], [0.35, 1]);
+  const canvasY = useTransform(local, [0.25, 0.45], [24, 0]);
 
   return (
     <A15SceneFrame opacity={opacity}>
       <div className="grid items-center gap-10 md:grid-cols-[0.85fr_0.55fr_0.9fr]">
-        <motion.div style={{ y: useTransform(local, [0, 0.18], [30, 0]) }}>
+        <motion.div style={{ y: pluginY }}>
           <PluginWindow title="A15 Plugin" eyebrow="Local audit for the design">
             <div className="space-y-4">
               <A15Metric label="Mode" value="Design-time" />
@@ -308,12 +426,7 @@ function A15Scene1({ opacity, local }: SceneProps) {
           </div>
         </div>
 
-        <motion.div
-          style={{
-            opacity: useTransform(local, [0.25, 0.45], [0.35, 1]),
-            y: useTransform(local, [0.25, 0.45], [24, 0]),
-          }}
-        >
+        <motion.div style={{ opacity: canvasO, y: canvasY }}>
           <FigmaCanvas title="Design canvas · Checkout mobile">
             <div className="mx-auto mt-6 h-[310px] w-[180px] border bg-[var(--color-pure)] p-4" style={{ borderColor: 'var(--color-pale)' }}>
               <div className="mb-4 h-5 w-20" style={{ backgroundColor: 'var(--color-ink)' }} />
@@ -329,6 +442,62 @@ function A15Scene1({ opacity, local }: SceneProps) {
       </div>
 
       <A15Caption local={local} from={0.7} text="The check starts with the design, before engineering inherits the product interface." />
+    </A15SceneFrame>
+  );
+}
+
+const A15_STRUCTURE_NODES = [
+  { label: 'main', indent: 0, delay: 0.1 },
+  { label: 'heading · level 1', indent: 1, delay: 0.22 },
+  { label: 'form', indent: 1, delay: 0.34 },
+  { label: 'design button · checkout', indent: 2, delay: 0.46 },
+  { label: 'image · decorative', indent: 2, delay: 0.58 },
+] as const;
+
+function A15Scene2MobileNode({
+  node,
+  local,
+}: {
+  node: (typeof A15_STRUCTURE_NODES)[number];
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [node.delay, node.delay + 0.08], [0, 1]);
+  const x = useTransform(local, [node.delay, node.delay + 0.08], [-16, 0]);
+  return (
+    <motion.div style={{ paddingLeft: node.indent * 18, opacity, x }}>
+      <div className="flex items-center gap-3">
+        <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ backgroundColor: 'var(--color-ink)' }} />
+        <span className="type-body text-ink">{node.label}</span>
+      </div>
+    </motion.div>
+  );
+}
+
+function A15Scene2Mobile({ opacity, local }: SceneProps) {
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col gap-5">
+        <PluginWindow title="Design Scan" eyebrow="Figma layer tree">
+          <div className="space-y-2">
+            {['Design frame / Checkout', 'Design header / Title', 'Design card / Total', 'Design CTA / Pay now', 'Design icon / Lock', 'Design input / Email'].map((label, i) => (
+              <ScanRow key={label} label={label} index={i} local={local} />
+            ))}
+          </div>
+        </PluginWindow>
+
+        <div className="border bg-[var(--color-pure)] p-5" style={{ borderColor: 'var(--color-pale)' }}>
+          <p className="type-micro uppercase mb-5" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            Accessibility structure from the design
+          </p>
+          <div className="space-y-3">
+            {A15_STRUCTURE_NODES.map((n) => (
+              <A15Scene2MobileNode key={n.label} node={n} local={local} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <A15Caption local={local} from={0.72} mobile text="The design layers become the structure assistive technology will eventually need." />
     </A15SceneFrame>
   );
 }
@@ -358,6 +527,43 @@ function A15Scene2({ opacity, local }: SceneProps) {
       </div>
 
       <A15Caption local={local} from={0.72} text="The design layers become the structure assistive technology will eventually need." />
+    </A15SceneFrame>
+  );
+}
+
+function A15Scene3Mobile({ opacity, local }: SceneProps) {
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col gap-5">
+        <FigmaCanvas title="Design canvas · scanned frame">
+          <div
+            className="relative mx-auto w-[220px] max-w-full border bg-[var(--color-pure)] p-4"
+            style={{ borderColor: 'var(--color-pale)', aspectRatio: '285 / 420' }}
+          >
+            <div className="mb-4 h-6 w-28" style={{ backgroundColor: 'var(--color-ink)' }} />
+            <div className="space-y-3">
+              <div className="h-3.5 w-full" style={{ backgroundColor: 'var(--color-mist)' }} />
+              <div className="h-3.5 w-4/5" style={{ backgroundColor: 'var(--color-mist)' }} />
+              <div className="h-20 w-full border" style={{ borderColor: 'var(--color-pale)' }} />
+              <div className="h-9 w-full" style={{ backgroundColor: 'var(--color-dark)' }} />
+              <div className="h-12 w-full border" style={{ borderColor: 'var(--color-pale)' }} />
+            </div>
+            <IssuePin local={local} x="78%" y="22%" delay={0.18} label="1.4.3" />
+            <IssuePin local={local} x="8%" y="58%" delay={0.28} label="2.4.7" />
+            <IssuePin local={local} x="76%" y="76%" delay={0.38} label="4.1.2" />
+          </div>
+        </FigmaCanvas>
+
+        <PluginWindow title="Design Findings" eyebrow="Grouped by standard">
+          <div className="space-y-3">
+            <FindingRow code="1.4.3" title="Design text contrast below AA" delay={0.2} local={local} />
+            <FindingRow code="2.4.7" title="Design focus state missing" delay={0.32} local={local} />
+            <FindingRow code="4.1.2" title="Design control name is ambiguous" delay={0.44} local={local} />
+          </div>
+        </PluginWindow>
+      </div>
+
+      <A15Caption local={local} from={0.72} mobile text="The plugin marks the design without leaving the canvas." />
     </A15SceneFrame>
   );
 }
@@ -396,7 +602,63 @@ function A15Scene3({ opacity, local }: SceneProps) {
   );
 }
 
+function A15Scene4Mobile({ opacity, local }: SceneProps) {
+  const boxShadow = useTransform(local, [0.35, 0.62], ['0 0 0 0 rgba(26,26,26,0)', '0 0 0 1px rgba(26,26,26,0.28)']);
+  const btnO = useTransform(local, [0.35, 0.6], [0.65, 1]);
+  const ringO = useTransform(local, [0.12, 0.3], [0, 1]);
+
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col gap-5">
+        <PluginWindow title="Design Repair" eyebrow="Human-readable repair">
+          <div className="border-t pt-5" style={{ borderColor: 'var(--color-pale)' }}>
+            <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-accent)' }}>
+              WCAG 1.4.3 · Contrast
+            </p>
+            <h4 className="type-display-s text-ink mb-5">The design button label does not survive the background.</h4>
+            <div className="grid grid-cols-2 gap-3">
+              <TokenCard label="Current" value="2.7 : 1" dim />
+              <TokenCard label="Target" value="4.5 : 1" />
+            </div>
+            <div
+              className="mt-6 border px-4 py-3 type-micro uppercase text-center"
+              style={{ ...TECH_LABEL_STYLE, borderColor: 'var(--color-ink)', color: 'var(--color-ink)' }}
+            >
+              Apply accessible token
+            </div>
+          </div>
+        </PluginWindow>
+
+        <motion.div
+          className="relative w-full border bg-[var(--color-pure)]"
+          style={{ borderColor: 'var(--color-pale)', aspectRatio: '4 / 3', boxShadow }}
+        >
+          <div className="absolute left-[12%] top-[14%] h-[18%] w-[55%]" style={{ backgroundColor: 'var(--color-mist)' }} />
+          <motion.div
+            className="absolute left-[12%] top-[44%] h-[16%] w-[62%] flex items-center"
+            style={{ backgroundColor: 'var(--color-ink)', opacity: btnO }}
+          >
+            <span className="pl-3 type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pure)' }}>
+              Confirm order
+            </span>
+          </motion.div>
+          <motion.div
+            className="absolute left-[8%] top-[40%] h-[24%] w-[70%] border"
+            style={{ borderColor: 'var(--color-accent)', opacity: ringO }}
+          />
+        </motion.div>
+      </div>
+
+      <A15Caption local={local} from={0.72} mobile text="Each finding is attached to a standard and a practical next move." />
+    </A15SceneFrame>
+  );
+}
+
 function A15Scene4({ opacity, local }: SceneProps) {
+  const boxShadow = useTransform(local, [0.35, 0.62], ['0 0 0 0 rgba(26,26,26,0)', '0 0 0 1px rgba(26,26,26,0.28)']);
+  const btnO = useTransform(local, [0.35, 0.6], [0.65, 1]);
+  const ringO = useTransform(local, [0.12, 0.3], [0, 1]);
+
   return (
     <A15SceneFrame opacity={opacity}>
       <div className="grid items-center gap-12 md:grid-cols-[0.95fr_1fr]">
@@ -421,29 +683,19 @@ function A15Scene4({ opacity, local }: SceneProps) {
 
         <motion.div
           className="relative h-[430px] border bg-[var(--color-pure)]"
-          style={{
-            borderColor: 'var(--color-pale)',
-            boxShadow: useTransform(local, [0.35, 0.62], ['0 0 0 0 rgba(26,26,26,0)', '0 0 0 1px rgba(26,26,26,0.28)']),
-          }}
+          style={{ borderColor: 'var(--color-pale)', boxShadow }}
         >
           <div className="absolute left-16 top-16 h-16 w-48" style={{ backgroundColor: 'var(--color-mist)' }} />
           <motion.div
             className="absolute left-16 h-14 w-56"
-            style={{
-              top: 180,
-              backgroundColor: 'var(--color-ink)',
-              opacity: useTransform(local, [0.35, 0.6], [0.65, 1]),
-            }}
+            style={{ top: 180, backgroundColor: 'var(--color-ink)', opacity: btnO }}
           />
           <div className="absolute left-24 top-[198px] type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pure)' }}>
             Confirm order
           </div>
           <motion.div
             className="absolute left-12 top-[156px] h-[86px] w-[248px] border"
-            style={{
-              borderColor: 'var(--color-accent)',
-              opacity: useTransform(local, [0.12, 0.3], [0, 1]),
-            }}
+            style={{ borderColor: 'var(--color-accent)', opacity: ringO }}
           />
         </motion.div>
       </div>
@@ -453,7 +705,64 @@ function A15Scene4({ opacity, local }: SceneProps) {
   );
 }
 
+function A15Scene5Mobile({ opacity, local }: SceneProps) {
+  const rotate = useTransform(local, [0, 1], [0, 160]);
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col items-center gap-5">
+        <FigmaCanvas title="Design canvas · image frame">
+          <div
+            className="mx-auto w-[200px] max-w-full border p-3"
+            style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-pure)', aspectRatio: '260 / 300' }}
+          >
+            <div
+              className="h-full w-full"
+              style={{
+                border: '1px solid var(--color-pale)',
+                backgroundImage:
+                  'linear-gradient(135deg, rgba(33,39,38,0.16) 0%, transparent 55%), linear-gradient(to right, rgba(149,148,146,0.2) 1px, transparent 1px), linear-gradient(to bottom, rgba(149,148,146,0.2) 1px, transparent 1px)',
+                backgroundSize: '100% 100%, 24px 24px, 24px 24px',
+              }}
+            />
+          </div>
+        </FigmaCanvas>
+
+        <div className="relative h-24 w-full">
+          <motion.div
+            className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+            style={{ borderColor: 'var(--color-pale)', rotate }}
+          />
+          <div
+            className="absolute left-1/2 top-1/2 w-40 -translate-x-1/2 -translate-y-1/2 text-center type-micro uppercase"
+            style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+          >
+            local model
+            <br />
+            no cloud roundtrip
+          </div>
+        </div>
+
+        <PluginWindow title="Suggested Alt Text" eyebrow="Assistive draft">
+          <div className="min-h-[120px] border p-4" style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-base)' }}>
+            <StreamingText
+              local={local}
+              from={0.2}
+              text="Illustration of a checkout confirmation card with visible order summary and payment button."
+            />
+          </div>
+          <p className="type-body text-ink mt-5">
+            The output is a draft for the design review, not an automatic replacement for judgment.
+          </p>
+        </PluginWindow>
+      </div>
+
+      <A15Caption local={local} from={0.72} mobile text="AI is used as a local assistant, with the designer still responsible for the decision." />
+    </A15SceneFrame>
+  );
+}
+
 function A15Scene5({ opacity, local }: SceneProps) {
+  const rotate = useTransform(local, [0, 1], [0, 160]);
   return (
     <A15SceneFrame opacity={opacity}>
       <div className="grid items-center gap-10 md:grid-cols-[0.8fr_0.55fr_0.85fr]">
@@ -474,7 +783,7 @@ function A15Scene5({ opacity, local }: SceneProps) {
         <div className="relative h-56">
           <motion.div
             className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border"
-            style={{ borderColor: 'var(--color-pale)', rotate: useTransform(local, [0, 1], [0, 160]) }}
+            style={{ borderColor: 'var(--color-pale)', rotate }}
           />
           <div
             className="absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 text-center type-micro uppercase"
@@ -501,6 +810,95 @@ function A15Scene5({ opacity, local }: SceneProps) {
       </div>
 
       <A15Caption local={local} from={0.72} text="AI is used as a local assistant, with the designer still responsible for the decision." />
+    </A15SceneFrame>
+  );
+}
+
+const A15_RESOLVE_CARDS: [string, string][] = [
+  ['1.4.3', 'Button contrast adjusted'],
+  ['2.4.7', 'Focus state documented'],
+  ['4.1.2', 'Control name clarified'],
+  ['1.1.1', 'Alt text drafted locally'],
+];
+
+function A15ResolveCard({
+  code,
+  title,
+  index,
+  local,
+}: {
+  code: string;
+  title: string;
+  index: number;
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [0.42 + index * 0.08, 0.5 + index * 0.08], [0, 1]);
+  const y = useTransform(local, [0.42 + index * 0.08, 0.5 + index * 0.08], [10, 0]);
+  return (
+    <motion.div className="border p-3" style={{ borderColor: 'var(--color-pale)', opacity, y }}>
+      <p className="type-micro uppercase mb-2" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-accent)' }}>
+        {code}
+      </p>
+      <p className="type-body text-ink">{title}</p>
+    </motion.div>
+  );
+}
+
+function A15Scene6Mobile({ opacity, local }: SceneProps) {
+  const total = useTransform(local, [0.15, 0.45], [0, 6]);
+  const resolved = useTransform(local, [0.35, 0.72], [0, 5]);
+  const dismissed = useTransform(local, [0.45, 0.78], [0, 1]);
+  const progressWidth = useTransform(local, [0.25, 0.82], ['0%', '100%']);
+
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col gap-6">
+        <div>
+          <p className="type-micro uppercase mb-4" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            Design file covered
+          </p>
+          <h3 className="type-display-s text-ink">
+            The design audit lives where the design happens.
+          </h3>
+          <p className="type-body text-ink mt-4">
+            Before launch, the file leaves with accessibility decisions documented, not hidden inside
+            scattered comments.
+          </p>
+        </div>
+
+        <div className="border bg-[var(--color-pure)]" style={{ borderColor: 'var(--color-pale)' }}>
+          <div className="border-b px-4 py-4" style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-ink)' }}>
+            <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pure)', opacity: 0.7 }}>
+              A15 · Audit Session
+            </p>
+            <h4 className="type-display-s mt-2" style={{ color: 'var(--color-pure)' }}>
+              Design frame / Checkout
+            </h4>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2 border-b p-3" style={{ borderColor: 'var(--color-pale)' }}>
+            <StatCard label="Total" value={total} />
+            <StatCard label="Resolved" value={resolved} />
+            <StatCard label="Reviewed" value={dismissed} />
+          </div>
+
+          <div className="border-b px-4 py-4" style={{ borderColor: 'var(--color-pale)' }}>
+            <div className="mb-2 flex justify-between type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+              <span>Resolution</span>
+              <span>Handoff</span>
+            </div>
+            <div className="h-1.5" style={{ backgroundColor: 'var(--color-mist)' }}>
+              <motion.div className="h-full" style={{ width: progressWidth, backgroundColor: 'var(--color-ink)' }} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2 p-3">
+            {A15_RESOLVE_CARDS.map(([code, title], i) => (
+              <A15ResolveCard key={code} code={code} title={title} index={i} local={local} />
+            ))}
+          </div>
+        </div>
+      </div>
     </A15SceneFrame>
   );
 }
@@ -554,26 +952,8 @@ function A15Scene6({ opacity, local }: SceneProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-3 p-4">
-            {[
-              ['1.4.3', 'Button contrast adjusted'],
-              ['2.4.7', 'Focus state documented'],
-              ['4.1.2', 'Control name clarified'],
-              ['1.1.1', 'Alt text drafted locally'],
-            ].map(([code, title], i) => (
-              <motion.div
-                key={code}
-                className="border p-3"
-                style={{
-                  borderColor: 'var(--color-pale)',
-                  opacity: useTransform(local, [0.42 + i * 0.08, 0.5 + i * 0.08], [0, 1]),
-                  y: useTransform(local, [0.42 + i * 0.08, 0.5 + i * 0.08], [10, 0]),
-                }}
-              >
-                <p className="type-micro uppercase mb-2" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-accent)' }}>
-                  {code}
-                </p>
-                <p className="type-body text-ink">{title}</p>
-              </motion.div>
+            {A15_RESOLVE_CARDS.map(([code, title], i) => (
+              <A15ResolveCard key={code} code={code} title={title} index={i} local={local} />
             ))}
           </div>
         </div>
@@ -691,8 +1071,8 @@ function IssuePin({
   label,
 }: {
   local: MotionValue<number>;
-  x: number;
-  y: number;
+  x: number | string;
+  y: number | string;
   delay: number;
   label: string;
 }) {
@@ -793,15 +1173,34 @@ function StatCard({ label, value }: { label: string; value: MotionValue<number> 
   );
 }
 
-function A15Caption({ local, from, text }: { local: MotionValue<number>; from: number; text: string }) {
+function A15Caption({
+  local,
+  from,
+  text,
+  mobile,
+}: {
+  local: MotionValue<number>;
+  from: number;
+  text: string;
+  mobile?: boolean;
+}) {
+  const opacity = useTransform(local, [from, from + 0.08], [0, 1]);
+  const y = useTransform(local, [from, from + 0.08], [12, 0]);
+
+  if (mobile) {
+    return (
+      <motion.p
+        className="mt-6 text-center type-body"
+        style={{ color: 'var(--color-dark)', opacity, y }}
+      >
+        {text}
+      </motion.p>
+    );
+  }
   return (
     <motion.p
       className="absolute left-1/2 top-[calc(100%+34px)] w-[min(640px,70vw)] -translate-x-1/2 text-center type-body"
-      style={{
-        color: 'var(--color-dark)',
-        opacity: useTransform(local, [from, from + 0.08], [0, 1]),
-        y: useTransform(local, [from, from + 0.08], [12, 0]),
-      }}
+      style={{ color: 'var(--color-dark)', opacity, y }}
     >
       {text}
     </motion.p>

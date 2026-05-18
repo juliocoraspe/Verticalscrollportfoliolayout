@@ -1,0 +1,265 @@
+[   57264ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57265ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57265ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57266ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57266ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57266ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57268ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57268ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57268ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57268ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57268ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57269ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene1Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1336:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene2Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:2435:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene3Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:2924:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene4Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:3282:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene5Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:4022:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57271ms] [ERROR] The above error occurred in the <FitToBand> component:
+
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1283:22)
+    at div
+    at MotionDOMComponent (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=7abe225f:1184:40)
+    at MobileScene (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1230:3)
+    at Scene6Mobile (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:4405:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5173/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14079
+[   57272ms] ReferenceError: useLayoutEffect is not defined
+    at FitToBand (http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070213807:1287:3)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:15962:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19806:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19190:13)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:19169:15)
+    at recoverFromConcurrentError (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=3dcf0143:18932:28)
+[  188494ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/app/components/WcagWorkflow.tsx?t=1779070345212:0
+[  188495ms] [ERROR] [vite] Failed to reload /src/app/components/WcagWorkflow.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881

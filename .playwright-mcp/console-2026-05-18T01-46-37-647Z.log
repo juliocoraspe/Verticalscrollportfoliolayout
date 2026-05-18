@@ -1,0 +1,271 @@
+[  150993ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  150994ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  150995ms] [ERROR] Warning: React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+%s Scene3 1. useRef                     useRef
+2. useRef                     useRef
+3. useContext                 useContext
+4. useLayoutEffect            useLayoutEffect
+5. useRef                     useRef
+6. useRef                     useRef
+7. useContext                 useContext
+8. useLayoutEffect            useLayoutEffect
+9. undefined                  useRef
+ 
+    at Scene3 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:2813:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30) @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:520
+[  150995ms] Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11726:21)
+    at updateRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12112:22)
+    at Object.useRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12793:22)
+    at useRef (http://localhost:5176/node_modules/.vite/deps/chunk-QJTFJ6OV.js?v=008470e5:1074:29)
+    at useConstant (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:295:40)
+    at useListTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4274:18)
+    at useTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4271:72)
+    at Scene3 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:2935:29)
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11596:26)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+[  150996ms] [ERROR] Warning: React has detected a change in the order of Hooks called by %s. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks
+
+   Previous render            Next render
+   ------------------------------------------------------
+%s   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+%s Scene5 1. useRef                     useRef
+2. useRef                     useRef
+3. useContext                 useContext
+4. useLayoutEffect            useLayoutEffect
+5. useRef                     useRef
+6. useRef                     useRef
+7. useContext                 useContext
+8. useLayoutEffect            useLayoutEffect
+9. useRef                     useRef
+10. useRef                    useRef
+11. useContext                useContext
+12. useLayoutEffect           useLayoutEffect
+13. undefined                 useRef
+ 
+    at Scene5 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:3910:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30) @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:520
+[  150996ms] Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11726:21)
+    at updateRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12112:22)
+    at Object.useRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12793:22)
+    at useRef (http://localhost:5176/node_modules/.vite/deps/chunk-QJTFJ6OV.js?v=008470e5:1074:29)
+    at useConstant (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:295:40)
+    at useListTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4274:18)
+    at useTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4271:72)
+    at Scene5 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:4125:22)
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11596:26)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+[  150999ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  150999ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  150999ms] Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11726:21)
+    at updateRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12112:22)
+    at Object.useRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12793:22)
+    at useRef (http://localhost:5176/node_modules/.vite/deps/chunk-QJTFJ6OV.js?v=008470e5:1074:29)
+    at useConstant (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:295:40)
+    at useListTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4274:18)
+    at useTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4271:72)
+    at Scene3 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:2935:29)
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11596:26)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+[  151000ms] Error: Rendered more hooks than during the previous render.
+    at updateWorkInProgressHook (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11726:21)
+    at updateRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12112:22)
+    at Object.useRef (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:12793:22)
+    at useRef (http://localhost:5176/node_modules/.vite/deps/chunk-QJTFJ6OV.js?v=008470e5:1074:29)
+    at useConstant (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:295:40)
+    at useListTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4274:18)
+    at useTransform (http://localhost:5176/node_modules/.vite/deps/motion_react.js?v=008470e5:4271:72)
+    at Scene5 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:4125:22)
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11596:26)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+[  151003ms] [ERROR] The above error occurred in the <Scene1> component:
+
+    at Scene1 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:1241:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14079
+[  151003ms] [ERROR] The above error occurred in the <Scene2> component:
+
+    at Scene2 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:2266:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14079
+[  151003ms] [ERROR] The above error occurred in the <Scene3> component:
+
+    at Scene3 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:2813:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14079
+[  151003ms] [ERROR] The above error occurred in the <Scene5> component:
+
+    at Scene5 (http://localhost:5176/src/app/components/WcagWorkflow.tsx:3910:3)
+    at div
+    at div
+    at div
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14079
+[  151004ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19806:22)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+    at recoverFromConcurrentError (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:18932:28)
+    at flushSyncCallbacks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:9166:30)
+[  681936ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  681939ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3705:24)
+    at invokeGuardedCallback (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:3739:39)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19818:15)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+[  681940ms] [ERROR] The above error occurred in the <A15Scene6> component:
+
+    at A15Scene6 (http://localhost:5176/src/app/components/A15FigmaPluginWorkflow.tsx?t=1779069479430:2018:22)
+    at div
+    at div
+    at div
+    at section
+    at A15ScrollWorkflow (http://localhost:5176/src/app/components/A15FigmaPluginWorkflow.tsx?t=1779069479430:63:30)
+    at A15FigmaPluginWorkflow (http://localhost:5176/src/app/components/A15FigmaPluginWorkflow.tsx?t=1779069479430:45:30)
+    at section
+    at WcagWorkflowDesktop (http://localhost:5176/src/app/components/WcagWorkflow.tsx?t=1779069164504:203:32)
+    at WcagWorkflow
+    at main
+    at AccessibilitySection
+    at div
+    at App (http://localhost:5176/src/app/App.tsx:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14079
+[  681941ms] Error: Rendered fewer hooks than expected. This may be caused by an accidental early return statement.
+    at renderWithHooks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:11643:19)
+    at updateFunctionComponent (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:14630:28)
+    at beginWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:15972:22)
+    at beginWork$1 (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19806:22)
+    at performUnitOfWork (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19251:20)
+    at workLoopSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19190:13)
+    at renderRootSync (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:19169:15)
+    at recoverFromConcurrentError (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:18932:28)
+    at flushSyncCallbacks (http://localhost:5176/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:9166:30)

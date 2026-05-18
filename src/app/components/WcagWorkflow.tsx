@@ -9,6 +9,12 @@ import {
 } from 'motion/react';
 import { useRef, useState, type ReactNode } from 'react';
 import { ScrollSection } from './ScrollSection';
+import { FitToBand } from './MobileSceneBand';
+import { useViewportWidth } from '../hooks/use-viewport-width';
+
+// Below this width the desktop multi-column scenes can't be shown at a
+// legible size, so we render the dedicated mobile scene layouts instead.
+const MOBILE_MAX_WIDTH = 639;
 
 /* ============================================================
    ACCESSIBILITY WORKFLOW — scroll-driven 6-act narrative
@@ -39,9 +45,10 @@ type WcagWorkflowProps = {
 };
 
 export function WcagWorkflow({ beforeWorkflow, standardsConnector }: WcagWorkflowProps = {}) {
-  // Mobile uses the same desktop scrollytelling, scaled via CSS. The static
-  // mobile fallback only fires for users with prefers-reduced-motion (handled
-  // inside the desktop component).
+  // Mobile runs the same scroll-driven scene system, but each scene is
+  // re-authored for a single narrow column at full, accessible font sizes
+  // (no CSS scale). The fully static fallback only fires for
+  // prefers-reduced-motion (handled inside WcagWorkflowDesktop).
   return (
     <WcagWorkflowDesktop
       beforeWorkflow={beforeWorkflow}
@@ -148,6 +155,8 @@ function ScrollProgress({ progress }: { progress: MotionValue<number> }) {
 function WcagWorkflowDesktop({ beforeWorkflow, standardsConnector }: WcagWorkflowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const viewportWidth = useViewportWidth();
+  const isMobile = viewportWidth <= MOBILE_MAX_WIDTH;
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -200,22 +209,26 @@ function WcagWorkflowDesktop({ beforeWorkflow, standardsConnector }: WcagWorkflo
 
       <div
         ref={containerRef}
-        style={{ height: '600vh', position: 'relative' }}
+        style={{ height: isMobile ? '480vh' : '600vh', position: 'relative' }}
         className="relative wkf-scroll-container"
       >
         <div
           className="sticky top-0 h-screen overflow-hidden wkf-sticky"
           style={{ backgroundColor: 'var(--color-base)' }}
         >
-          <div className="wkf-chrome"><BlueprintGrid /></div>
+          {!isMobile && <div className="wkf-chrome"><BlueprintGrid /></div>}
 
-          {/* HUD */}
-          <div className="absolute top-0 left-0 right-0 z-50 pointer-events-none px-6 sm:px-8 pt-16">
+          {/* HUD — paddingTop clears the fixed 48px site navbar so the
+              workflow title + progress line are visible on every screen. */}
+          <div
+            className="absolute top-0 left-0 right-0 z-50 pointer-events-none px-6 sm:px-8"
+            style={{ paddingTop: 64 }}
+          >
             <div
               className="flex justify-between items-center type-micro uppercase"
               style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
             >
-              <span>Workflow · WCAG Audit</span>
+              <span>WCAG Audit</span>
               <SceneLabel scrollProgress={p} />
               <span>06 / Acts</span>
             </div>
@@ -247,26 +260,41 @@ function WcagWorkflowDesktop({ beforeWorkflow, standardsConnector }: WcagWorkflo
                 />
               ))}
             </div>
-            <div
-              className="mt-1.5 type-micro uppercase flex justify-between wkf-hud-subline"
-              style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)' }}
-            >
-              <span>00.000</span>
-              <DimensionLabel scrollProgress={p} />
-              <span>01.000</span>
-            </div>
+            {!isMobile && (
+              <div
+                className="mt-1.5 type-micro uppercase flex justify-between wkf-hud-subline"
+                style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)' }}
+              >
+                <span>00.000</span>
+                <DimensionLabel scrollProgress={p} />
+                <span>01.000</span>
+              </div>
+            )}
           </div>
 
-          <div className="wkf-chrome"><CornerMarks /></div>
+          {!isMobile && <div className="wkf-chrome"><CornerMarks /></div>}
 
           {/* Stage */}
           <div className="relative w-full h-full flex items-center justify-center wkf-stage">
-            <Scene1 opacity={scene1} local={s1Local} />
-            <Scene2 opacity={scene2} local={s2Local} />
-            <Scene3 opacity={scene3} local={s3Local} />
-            <Scene4 opacity={scene4} local={s4Local} />
-            <Scene5 opacity={scene5} local={s5Local} />
-            <Scene6 opacity={scene6} local={s6Local} />
+            {isMobile ? (
+              <>
+                <Scene1Mobile opacity={scene1} local={s1Local} />
+                <Scene2Mobile opacity={scene2} local={s2Local} />
+                <Scene3Mobile opacity={scene3} local={s3Local} />
+                <Scene4Mobile opacity={scene4} local={s4Local} />
+                <Scene5Mobile opacity={scene5} local={s5Local} />
+                <Scene6Mobile opacity={scene6} local={s6Local} />
+              </>
+            ) : (
+              <>
+                <Scene1 opacity={scene1} local={s1Local} />
+                <Scene2 opacity={scene2} local={s2Local} />
+                <Scene3 opacity={scene3} local={s3Local} />
+                <Scene4 opacity={scene4} local={s4Local} />
+                <Scene5 opacity={scene5} local={s5Local} />
+                <Scene6 opacity={scene6} local={s6Local} />
+              </>
+            )}
           </div>
 
           {/* Bottom drawing-block */}
@@ -279,14 +307,18 @@ function WcagWorkflowDesktop({ beforeWorkflow, standardsConnector }: WcagWorkflo
                 borderTop: '1px solid var(--color-pale)',
               }}
             >
-              <div className="wkf-bottom-meta">
-                <div style={{ opacity: 0.6 }}>DWG · 01</div>
-                <div style={{ color: 'var(--color-dark)' }}>WCAG-AUDIT-FLOW</div>
-              </div>
-              <div className="text-center wkf-bottom-meta">
-                <div style={{ opacity: 0.6 }}>SCALE</div>
-                <div style={{ color: 'var(--color-dark)' }}>1 : 1</div>
-              </div>
+              {!isMobile && (
+                <div className="wkf-bottom-meta">
+                  <div style={{ opacity: 0.6 }}>DWG · 01</div>
+                  <div style={{ color: 'var(--color-dark)' }}>WCAG-AUDIT-FLOW</div>
+                </div>
+              )}
+              {!isMobile && (
+                <div className="text-center wkf-bottom-meta">
+                  <div style={{ opacity: 0.6 }}>SCALE</div>
+                  <div style={{ color: 'var(--color-dark)' }}>1 : 1</div>
+                </div>
+              )}
               <ScrollProgress progress={p} />
             </div>
           </div>
@@ -449,7 +481,7 @@ function WcagWorkflowMobile({ beforeWorkflow, standardsConnector }: WcagWorkflow
           <MobileAct
             title={ACT_TITLES[4]}
             heading="Findings become fixes."
-            caption="Fixed in Divi · re-audited with the same prompt."
+            caption="Patched in the source · re-audited with the same prompt."
           >
             <MobileRemediationDiagram />
           </MobileAct>
@@ -571,9 +603,33 @@ function BlueprintGrid() {
   );
 }
 
-function CaptionWrap({ local, from, text }: { local: MotionValue<number>; from: number; text: string }) {
+function CaptionWrap({
+  local,
+  from,
+  text,
+  mobile,
+}: {
+  local: MotionValue<number>;
+  from: number;
+  text: string;
+  mobile?: boolean;
+}) {
   const opacity = useTransform(local, [from, from + 0.05], [0, 1]);
   const y = useTransform(local, [from, from + 0.05], [8, 0]);
+
+  if (mobile) {
+    return (
+      <motion.div style={{ opacity, y }} className="mt-6 text-center">
+        <div
+          className="type-meta uppercase"
+          style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+        >
+          {text}
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       style={{ opacity, y, bottom: '9%' }}
@@ -589,9 +645,130 @@ function CaptionWrap({ local, from, text }: { local: MotionValue<number>; from: 
   );
 }
 
+/* Mobile scene wrapper — single narrow column at full accessible font
+   sizes. The scene is laid out inside the SAFE BAND between the top HUD
+   (~80px) and the bottom HUD (~72px) so it never overlaps or is cropped
+   by them. The whole scene is then auto-scaled down (never up) just
+   enough to fit the band's height, so every scene shows in ONE screen
+   without scrolling and without shrinking the type unless a scene is
+   genuinely taller than the viewport allows.
+   The act heading is shown inline (desktop hides it via wkf-scene-title). */
+function MobileScene({
+  opacity,
+  act,
+  heading,
+  children,
+}: {
+  opacity: MotionValue<number>;
+  act: string;
+  heading: string;
+  children: ReactNode;
+}) {
+  return (
+    <motion.div
+      style={{ opacity }}
+      className="absolute left-0 right-0 wkf-mobile-scene flex items-center justify-center px-5"
+    >
+      <FitToBand>
+        <div
+          className="type-micro uppercase mb-2"
+          style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+        >
+          Act {act}
+        </div>
+        <h3 className="type-display-s text-ink mb-5">{heading}</h3>
+        {children}
+      </FitToBand>
+    </motion.div>
+  );
+}
+
+
 /* ============================================================
    SCENE 1 — SETUP & MCP BRIDGE
    ============================================================ */
+
+function Scene1Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  const stepBrain = useTransform(local, [0.05, 0.18], [0, 1]);
+  const arrow1Progress = useTransform(local, [0.18, 0.3], [0, 1]);
+  const stepBridge = useTransform(local, [0.25, 0.36], [0, 1]);
+  const arrow2Progress = useTransform(local, [0.36, 0.48], [0, 1]);
+  const stepHands = useTransform(local, [0.42, 0.54], [0, 1]);
+  const arrow3Progress = useTransform(local, [0.54, 0.66], [0, 1]);
+  const stepInspector = useTransform(local, [0.6, 0.72], [0, 1]);
+  const foundation = useTransform(local, [0.72, 0.85], [0, 1]);
+  const foundationY = useTransform(foundation, [0, 1], [8, 0]);
+
+  const chain = [
+    { appear: stepBrain, variant: 'primary' as const, num: '01', label: 'Claude Code', role: 'the brain', spec: 'cli · anthropic' },
+    { appear: stepBridge, variant: 'bridge' as const, num: '02', label: 'MCP', role: 'the bridge', spec: 'model context protocol' },
+    { appear: stepHands, variant: 'secondary' as const, num: '03', label: 'Playwright + Chromium', role: 'the hands', spec: 'browser automation' },
+    { appear: stepInspector, variant: 'secondary' as const, num: '04', label: 'axe-core', role: 'the inspector', spec: 'wcag rule engine' },
+  ];
+  const connectors = [arrow1Progress, arrow2Progress, arrow3Progress];
+
+  return (
+    <MobileScene opacity={opacity} act="01 / Setup" heading="The toolbox assembles.">
+      <div className="flex flex-col">
+        {chain.map((node, i) => (
+          <div key={node.num}>
+            <MobileChainNode {...node} />
+            {i < chain.length - 1 && (
+              <div className="relative mx-auto h-7 w-px">
+                <div className="absolute inset-0 w-px mx-auto" style={{ backgroundColor: 'var(--color-pale)' }} />
+                <motion.div
+                  className="absolute top-0 left-1/2 w-px -translate-x-1/2 origin-top"
+                  style={{ height: '100%', scaleY: connectors[i], backgroundColor: 'var(--color-ink)', opacity: 0.55 }}
+                />
+              </div>
+            )}
+          </div>
+        ))}
+
+        <motion.div
+          style={{ opacity: foundation, y: foundationY }}
+          className="mt-5 grid grid-cols-2 gap-3"
+        >
+          {[
+            ['A', 'Node.js', 'runtime · v20'],
+            ['B', 'npm', 'pkg manager'],
+          ].map(([num, label, detail]) => (
+            <div
+              key={num}
+              className="border p-3"
+              style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-pure)' }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)', opacity: 0.7 }}>
+                  {num}
+                </span>
+                <span className="type-meta" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
+                  {label}
+                </span>
+              </div>
+              <div className="type-micro uppercase mt-1" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+                {detail}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+
+      <CaptionWrap
+        local={local}
+        from={0.86}
+        mobile
+        text="Claude orchestrates · MCP carries instructions · the browser performs the audit."
+      />
+    </MobileScene>
+  );
+}
 
 function Scene1({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleY = useTransform(local, [0, 0.2], [40, 0]);
@@ -885,6 +1062,70 @@ function ChainNode({
   );
 }
 
+/* ── Mobile chain node — full-width single-column version of ChainNode ── */
+function MobileChainNode({
+  appear,
+  variant,
+  num,
+  label,
+  role,
+  spec,
+}: {
+  appear: MotionValue<number>;
+  variant: 'primary' | 'bridge' | 'secondary';
+  num: string;
+  label: string;
+  role: string;
+  spec: string;
+}) {
+  const opacity = useTransform(appear, [0, 1], [0, 1]);
+  const y = useTransform(appear, [0, 1], [12, 0]);
+  const isPrimary = variant === 'primary';
+  const isBridge = variant === 'bridge';
+
+  const bg = isPrimary ? 'var(--color-ink)' : 'var(--color-pure)';
+  const fg = isPrimary ? 'var(--color-pure)' : 'var(--color-ink)';
+  const muted = isPrimary ? 'rgba(255,255,255,0.55)' : 'var(--color-dark)';
+  const borderStyle = isBridge ? '1px dashed var(--color-accent)' : '1px solid var(--color-pale)';
+
+  return (
+    <motion.div style={{ opacity, y }}>
+      <div style={{ backgroundColor: bg, border: borderStyle, color: fg }}>
+        <div
+          className="px-4 py-2 flex justify-between items-center type-micro uppercase"
+          style={{
+            ...TECH_LABEL_STYLE,
+            borderBottom: `1px solid ${isPrimary ? 'rgba(255,255,255,0.15)' : 'var(--color-pale)'}`,
+            color: muted,
+          }}
+        >
+          <span>{num}</span>
+          <span style={{ fontStyle: 'italic', textTransform: 'lowercase', letterSpacing: '0.05em' }}>
+            {role}
+          </span>
+        </div>
+        <div className="px-4 py-3">
+          <div
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 20,
+              fontWeight: 400,
+              lineHeight: 1.15,
+              color: fg,
+              letterSpacing: '-0.005em',
+            }}
+          >
+            {label}
+          </div>
+          <div className="type-micro uppercase mt-1" style={{ ...TECH_LABEL_STYLE, color: muted }}>
+            {spec}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 /* ── Foundation cell — Node.js / npm at the bottom row ──────────────── */
 function FoundationCell({
   x,
@@ -1035,6 +1276,86 @@ function SideAnnotation({
    SCENE 2 — THE SCAN
    ============================================================ */
 
+const SCAN_ISSUES = [
+  { x: 80, y: 60, weight: 'heavy', t: 0.42, code: '1.1.1' },
+  { x: 220, y: 110, weight: 'medium', t: 0.5, code: '1.4.3' },
+  { x: 140, y: 170, weight: 'light', t: 0.55, code: '1.3.1' },
+  { x: 280, y: 220, weight: 'heavy', t: 0.6, code: '4.1.2' },
+  { x: 60, y: 270, weight: 'light', t: 0.65, code: '2.4.4' },
+  { x: 200, y: 320, weight: 'medium', t: 0.7, code: '2.4.7' },
+] as const;
+
+const SCAN_ISSUE_LABELS: Record<string, string> = {
+  '1.1.1': 'Non-text content',
+  '1.4.3': 'Contrast (minimum)',
+  '1.3.1': 'Info & relationships',
+  '4.1.2': 'Name, role, value',
+  '2.4.4': 'Link purpose',
+  '2.4.7': 'Focus visible',
+};
+
+function Scene2MobileRow({
+  iss,
+  local,
+}: {
+  iss: (typeof SCAN_ISSUES)[number];
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [iss.t, iss.t + 0.05], [0, 1]);
+  const x = useTransform(local, [iss.t, iss.t + 0.05], [-14, 0]);
+  const dim = iss.weight === 'heavy' ? 10 : iss.weight === 'medium' ? 8 : 6;
+  return (
+    <motion.div
+      className="flex items-center gap-3 px-4 py-3"
+      style={{ borderBottom: '1px solid var(--color-pale)', opacity, x }}
+    >
+      <span className="shrink-0" style={{ width: dim, height: dim, backgroundColor: 'var(--color-ink)' }} />
+      <span className="type-body text-ink flex-1">{SCAN_ISSUE_LABELS[iss.code]}</span>
+      <span className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+        {iss.code}
+      </span>
+    </motion.div>
+  );
+}
+
+function Scene2Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  const injectO = useTransform(local, [0.25, 0.4], [0, 1]);
+  return (
+    <MobileScene opacity={opacity} act="02 / Scan" heading="The page is read.">
+      <motion.div
+        style={{ opacity: injectO }}
+        className="mb-4 inline-flex w-fit items-center gap-2 border px-3 py-1.5 type-micro uppercase"
+      >
+        <span style={{ ...TECH_LABEL_STYLE, color: 'var(--color-accent)' }}>axe.run( )</span>
+        <span style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>90+ rules · WCAG 2.2</span>
+      </motion.div>
+
+      <div className="border bg-[var(--color-pure)]" style={{ borderColor: 'var(--color-pale)' }}>
+        <div
+          className="flex justify-between px-4 py-2 type-micro uppercase"
+          style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)', borderBottom: '1px solid var(--color-pale)' }}
+        >
+          <span>Findings</span>
+          <span>06 issues</span>
+        </div>
+        <div>
+          {SCAN_ISSUES.map((iss) => (
+            <Scene2MobileRow key={iss.code} iss={iss} local={local} />
+          ))}
+        </div>
+      </div>
+
+      <CaptionWrap local={local} from={0.88} mobile text="Automated coverage: 30–40% of all issues." />
+    </MobileScene>
+  );
+}
+
 function Scene2({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleO = useTransform(local, [0, 0.15], [0, 1]);
   const titleY = useTransform(local, [0, 0.15], [40, 0]);
@@ -1044,15 +1365,7 @@ function Scene2({ opacity, local }: { opacity: MotionValue<number>; local: Motio
   const scanY = useTransform(local, [0.35, 0.75], [0, 360]);
   const scanO = useTransform(local, [0.32, 0.4, 0.75, 0.8], [0, 1, 1, 0]);
 
-  // Severity replaced with weight/opacity hierarchy. All dots use --color-ink.
-  const issues = [
-    { x: 80, y: 60, weight: 'heavy', t: 0.42, code: '1.1.1' },
-    { x: 220, y: 110, weight: 'medium', t: 0.5, code: '1.4.3' },
-    { x: 140, y: 170, weight: 'light', t: 0.55, code: '1.3.1' },
-    { x: 280, y: 220, weight: 'heavy', t: 0.6, code: '4.1.2' },
-    { x: 60, y: 270, weight: 'light', t: 0.65, code: '2.4.4' },
-    { x: 200, y: 320, weight: 'medium', t: 0.7, code: '2.4.7' },
-  ] as const;
+  const issues = SCAN_ISSUES;
 
   return (
     <motion.div style={{ opacity }} className="absolute inset-0 flex items-center justify-center">
@@ -1222,6 +1535,33 @@ function IssueDot({
    SCENE 3 — FULL COVERAGE
    ============================================================ */
 
+function Scene3Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  const pages = Array.from({ length: 11 }, (_, i) => i);
+  return (
+    <MobileScene opacity={opacity} act="03 / Coverage" heading="One page becomes eleven.">
+      <div
+        className="mb-3 flex justify-between type-micro uppercase"
+        style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+      >
+        <span>Plate index · 01–11</span>
+        <span>Site-wide crawl</span>
+      </div>
+      <div className="grid grid-cols-3 gap-3">
+        {pages.map((i) => (
+          <MiniPage key={i} index={i} local={local} mobile />
+        ))}
+      </div>
+      <CaptionWrap local={local} from={0.85} mobile text="Issues consolidated by criterion, not by page." />
+    </MobileScene>
+  );
+}
+
 function Scene3({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleO = useTransform(local, [0, 0.15], [0, 1]);
   const titleY = useTransform(local, [0, 0.15], [40, 0]);
@@ -1278,7 +1618,15 @@ function Scene3({ opacity, local }: { opacity: MotionValue<number>; local: Motio
   );
 }
 
-function MiniPage({ index, local }: { index: number; local: MotionValue<number> }) {
+function MiniPage({
+  index,
+  local,
+  mobile,
+}: {
+  index: number;
+  local: MotionValue<number>;
+  mobile?: boolean;
+}) {
   const t0 = 0.15 + index * 0.025;
   const t1 = t0 + 0.1;
   const opacity = useTransform(local, [t0, t1], [0, 1]);
@@ -1287,11 +1635,12 @@ function MiniPage({ index, local }: { index: number; local: MotionValue<number> 
   const dotT = t1 + 0.05;
 
   return (
-    <motion.div style={{ opacity, y }} className="relative">
+    <motion.div style={{ opacity, y }} className="relative w-full">
       <div
         style={{
-          width: 120,
-          height: 95,
+          width: mobile ? '100%' : 120,
+          height: mobile ? undefined : 95,
+          aspectRatio: mobile ? '120 / 95' : undefined,
           backgroundColor: 'var(--color-pure)',
           border: '1px solid var(--color-pale)',
           position: 'relative',
@@ -1369,6 +1718,31 @@ function MiniPageDot({
    SCENE 4 — HUMAN CHECK
    ============================================================ */
 
+function Scene4Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  return (
+    <MobileScene opacity={opacity} act="04 / Manual" heading="What machines can't see.">
+      <div className="flex flex-col gap-8">
+        <Instrument label="KEYBOARD" code="A" local={local} from={0.1} mobile>
+          <TabKeyDemo local={local} />
+        </Instrument>
+        <Instrument label="SCREEN READER" code="B" local={local} from={0.3} mobile>
+          <ScreenReaderDemo local={local} />
+        </Instrument>
+        <Instrument label="CONTRAST" code="C" local={local} from={0.5} mobile>
+          <ContrastDemo local={local} />
+        </Instrument>
+      </div>
+      <CaptionWrap local={local} from={0.88} mobile text="Three checks no scanner can replicate." />
+    </MobileScene>
+  );
+}
+
 function Scene4({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleO = useTransform(local, [0, 0.15], [0, 1]);
   const titleY = useTransform(local, [0, 0.15], [40, 0]);
@@ -1428,20 +1802,22 @@ function Instrument({
   children,
   local,
   from,
+  mobile,
 }: {
   label: string;
   code: string;
   children: ReactNode;
   local: MotionValue<number>;
   from: number;
+  mobile?: boolean;
 }) {
   const opacity = useTransform(local, [from, from + 0.1], [0, 1]);
   const y = useTransform(local, [from, from + 0.1], [20, 0]);
   return (
-    <motion.div style={{ opacity, y }} className="relative">
+    <motion.div style={{ opacity, y }} className="relative w-full">
       <div
         style={{
-          width: 200,
+          width: mobile ? '100%' : 200,
           padding: '16px 16px 24px',
           borderLeft: '1px solid var(--color-pale)',
           borderTop: '1px solid var(--color-pale)',
@@ -1461,7 +1837,7 @@ function Instrument({
           <span style={{ color: 'var(--color-dark)' }}>INSTR · {code}</span>
           <span style={{ color: 'var(--color-ink)', marginLeft: 8 }}>{label}</span>
         </div>
-        <div className="flex items-center justify-center" style={{ minHeight: 200 }}>
+        <div className="flex items-center justify-center" style={{ minHeight: mobile ? 160 : 200 }}>
           {children}
         </div>
       </div>
@@ -1639,6 +2015,148 @@ function ContrastDemo({ local }: { local: MotionValue<number> }) {
    SCENE 5 — REMEDIATION
    ============================================================ */
 
+const LEDGER_ITEMS: [string, string][] = [
+  ['Missing alt text', '1.1.1'],
+  ['Form input no label', '4.1.2'],
+  ['Contrast fails 4.5:1', '1.4.3'],
+  ['Heading skip h1→h3', '1.3.1'],
+  ['Focus invisible', '2.4.7'],
+  ['Empty link text', '2.4.4'],
+];
+
+/* Universal remediation panel — a source-level diff view. Accessibility
+   fixes are shown as edits to the markup/styles themselves (alt attribute,
+   heading tag, color token), which is how remediation works in ANY stack
+   (HTML, JSX, Vue, templating, frameworks) — not tied to any CMS or
+   page builder. */
+function SourceFixPanel({ local }: { local: MotionValue<number> }) {
+  const codeStyle: React.CSSProperties = {
+    fontFamily: 'var(--font-sans)',
+    fontVariantNumeric: 'tabular-nums',
+    fontFeatureSettings: '"tnum"',
+    letterSpacing: '0.01em',
+  };
+  return (
+    <>
+      <div
+        className="px-3 py-2 type-micro uppercase flex justify-between items-center"
+        style={{ ...TECH_LABEL_STYLE, backgroundColor: 'var(--color-ink)', color: 'var(--color-pure)' }}
+      >
+        <span>Source · Diff</span>
+        <span style={{ color: 'rgba(255,255,255,0.4)' }}>PATCH · 01</span>
+      </div>
+      <div className="p-4 space-y-4">
+        {/* Fix 1 — add an alt attribute to an image */}
+        <div>
+          <div className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            1.1.1 · Image alt text
+          </div>
+          <div
+            className="mt-1 px-2.5 py-2 type-meta"
+            style={{ border: '1px solid var(--color-pale)', backgroundColor: 'var(--color-base)', ...codeStyle }}
+          >
+            <span style={{ color: 'var(--color-dark)' }}>&lt;img src="hero.jpg" </span>
+            <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>
+              alt="<Typewriter local={local} from={0.45} to={0.7} text="Counseling session in progress" />"
+            </span>
+            <span style={{ color: 'var(--color-dark)' }}> /&gt;</span>
+          </div>
+        </div>
+        {/* Fix 2 — correct the heading level */}
+        <div>
+          <div className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            1.3.1 · Heading level
+          </div>
+          <div
+            className="mt-1 px-2.5 py-2 type-meta flex items-center gap-2"
+            style={{ border: '1px solid var(--color-pale)', backgroundColor: 'var(--color-base)', ...codeStyle }}
+          >
+            <span
+              style={{
+                color: 'var(--color-dark)',
+                textDecoration: 'line-through',
+                textDecorationColor: 'var(--color-pale)',
+              }}
+            >
+              &lt;h3&gt;
+            </span>
+            <span style={{ color: 'var(--color-dark)' }}>→</span>
+            <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>&lt;h2&gt;</span>
+            <span className="ml-auto type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+              order fixed
+            </span>
+          </div>
+        </div>
+        {/* Fix 3 — bump the text color token to a passing contrast */}
+        <div>
+          <div className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            1.4.3 · Text color token
+          </div>
+          <div className="mt-1 flex items-center gap-2 type-meta" style={codeStyle}>
+            <div
+              style={{ width: 18, height: 18, backgroundColor: 'var(--color-ink)', border: '1px solid var(--color-pale)' }}
+            />
+            <span style={{ color: 'var(--color-dark)' }}>color:</span>
+            <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>#111111</span>
+            <span className="ml-auto type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-ink)' }}>
+              ✓ 12.6:1 PASS
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        className="px-3 py-2 type-micro uppercase flex justify-between"
+        style={{ ...TECH_LABEL_STYLE, borderTop: '1px solid var(--color-pale)', color: 'var(--color-dark)' }}
+      >
+        <span>DIFF · 03 EDITS</span>
+        <span>COMMIT</span>
+      </div>
+    </>
+  );
+}
+
+function Scene5Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  const panelO = useTransform(local, [0.2, 0.4], [0, 1]);
+  return (
+    <MobileScene opacity={opacity} act="05 / Repair" heading="Findings become fixes.">
+      <div className="flex flex-col gap-6">
+        <div>
+          <div
+            className="pb-1.5 mb-3 flex justify-between type-micro uppercase"
+            style={{ ...TECH_LABEL_STYLE, borderBottom: '1px solid var(--color-pale)', color: 'var(--color-dark)' }}
+          >
+            <span>Issue Ledger</span>
+            <span>06 items</span>
+          </div>
+          <div className="space-y-2">
+            {LEDGER_ITEMS.map(([label, code], i) => (
+              <HealingRow key={i} label={label} code={code} index={i} local={local} />
+            ))}
+          </div>
+        </div>
+
+        <motion.div
+          style={{
+            opacity: panelO,
+            backgroundColor: 'var(--color-pure)',
+            border: '1px solid var(--color-pale)',
+          }}
+        >
+          <SourceFixPanel local={local} />
+        </motion.div>
+      </div>
+
+      <CaptionWrap local={local} from={0.88} mobile text="Patched in the source · re-audited with the same prompt." />
+    </MobileScene>
+  );
+}
+
 function Scene5({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleO = useTransform(local, [0, 0.15], [0, 1]);
   const titleY = useTransform(local, [0, 0.15], [40, 0]);
@@ -1648,7 +2166,7 @@ function Scene5({ opacity, local }: { opacity: MotionValue<number>; local: Motio
       <SceneTitle
         act="05 / Repair"
         heading="Findings become fixes."
-        description="Each issue gets patched directly in Divi—alt text, heading levels, contrast colors—then the audit runs again to confirm the fix."
+        description="Each issue is patched at the source—alt attributes, heading levels, contrast tokens—then the audit runs again to confirm the fix. Same approach in any stack."
         titleO={titleO}
         titleY={titleY}
       />
@@ -1657,8 +2175,8 @@ function Scene5({ opacity, local }: { opacity: MotionValue<number>; local: Motio
         side="right"
         position="top"
         code="A · STAGE 6"
-        label="WordPress · Divi"
-        detail="module-level fixes"
+        label="Source-level edits"
+        detail="markup · styles · tokens"
         local={local}
         from={0.4}
       />
@@ -1689,20 +2207,13 @@ function Scene5({ opacity, local }: { opacity: MotionValue<number>; local: Motio
             <span>06 ITEMS</span>
           </div>
           <div className="space-y-2">
-            {[
-              ['Missing alt text', '1.1.1'],
-              ['Form input no label', '4.1.2'],
-              ['Contrast fails 4.5:1', '1.4.3'],
-              ['Heading skip h1→h3', '1.3.1'],
-              ['Focus invisible', '2.4.7'],
-              ['Empty link text', '2.4.4'],
-            ].map(([label, code], i) => (
+            {LEDGER_ITEMS.map(([label, code], i) => (
               <HealingRow key={i} label={label} code={code} index={i} local={local} />
             ))}
           </div>
         </motion.div>
 
-        {/* Right — Divi panel */}
+        {/* Right — source diff panel */}
         <motion.div
           style={{
             opacity: useTransform(local, [0.2, 0.4], [0, 1]),
@@ -1712,94 +2223,11 @@ function Scene5({ opacity, local }: { opacity: MotionValue<number>; local: Motio
             border: '1px solid var(--color-pale)',
           }}
         >
-          <div
-            className="px-3 py-1.5 type-micro uppercase flex justify-between items-center"
-            style={{
-              ...TECH_LABEL_STYLE,
-              backgroundColor: 'var(--color-ink)',
-              color: 'var(--color-pure)',
-            }}
-          >
-            <span>WordPress · Divi</span>
-            <span style={{ color: 'rgba(255,255,255,0.4)' }}>PANEL · 01</span>
-          </div>
-          <div className="p-4 space-y-4">
-            <div>
-              <div
-                className="type-micro uppercase"
-                style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
-              >
-                Image Alt Text
-              </div>
-              <div
-                className="mt-1 px-2.5 py-1.5 type-meta"
-                style={{
-                  border: '1px solid var(--color-pale)',
-                  backgroundColor: 'var(--color-base)',
-                }}
-              >
-                <Typewriter local={local} from={0.45} to={0.75} text="Patient receiving counseling support" />
-              </div>
-            </div>
-            <div>
-              <div
-                className="type-micro uppercase"
-                style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
-              >
-                Title Level
-              </div>
-              <div
-                className="mt-1 px-2.5 py-1.5 type-meta flex justify-between"
-                style={{
-                  border: '1px solid var(--color-pale)',
-                  backgroundColor: 'var(--color-base)',
-                }}
-              >
-                <span>H2</span>
-                <span style={{ color: 'var(--color-dark)' }}>⌄</span>
-              </div>
-            </div>
-            <div>
-              <div
-                className="type-micro uppercase"
-                style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
-              >
-                Text Color
-              </div>
-              <div className="mt-1 flex items-center gap-2 type-meta">
-                <div
-                  style={{
-                    width: 18,
-                    height: 18,
-                    backgroundColor: 'var(--color-ink)',
-                    border: '1px solid var(--color-pale)',
-                  }}
-                />
-                <span style={TECH_LABEL_STYLE}>#111111</span>
-                <span
-                  className="ml-auto type-micro uppercase"
-                  style={{ ...TECH_LABEL_STYLE, color: 'var(--color-ink)' }}
-                >
-                  ✓ 12.6:1 PASS
-                </span>
-              </div>
-            </div>
-          </div>
-          <div
-            className="px-3 py-1.5 type-micro uppercase flex justify-between"
-            style={{
-              ...TECH_LABEL_STYLE,
-              borderTop: '1px solid var(--color-pale)',
-              color: 'var(--color-dark)',
-            }}
-          >
-            <span>FIELDS · 03</span>
-            <span>SAVE</span>
-          </div>
+          <SourceFixPanel local={local} />
         </motion.div>
       </div>
 
-      <CaptionWrap local={local} from={0.88} text="Fixed in Divi · re-audited with the same prompt." />
+      <CaptionWrap local={local} from={0.88} text="Patched in the source · re-audited with the same prompt." />
     </motion.div>
   );
 }
@@ -1877,6 +2305,97 @@ function HealingRow({
 /* ============================================================
    SCENE 6 — THE REPORT
    ============================================================ */
+
+const REPORT_CARDS = [
+  { label: 'Footer CTA contrast', code: '1.4.3', t: 0.55 },
+  { label: 'Missing alt on hero', code: '1.1.1', t: 0.62 },
+  { label: 'Heading skip in About', code: '1.3.1', t: 0.69 },
+  { label: 'Form label missing', code: '4.1.2', t: 0.76 },
+  { label: 'Focus indicator hidden', code: '2.4.7', t: 0.82 },
+  { label: 'Link text "click here"', code: '2.4.4', t: 0.88 },
+] as const;
+
+function Scene6Mobile({
+  opacity,
+  local,
+}: {
+  opacity: MotionValue<number>;
+  local: MotionValue<number>;
+}) {
+  const total = useTransform(local, [0.15, 0.4], [0, 47]);
+  const found = useTransform(local, [0.18, 0.4], [0, 41]);
+  const reviewed = useTransform(local, [0.21, 0.4], [0, 35]);
+  const queued = useTransform(local, [0.24, 0.4], [0, 19]);
+  const resolved = useTransform(local, [0.5, 0.95], [0, 47]);
+  const progressW = useTransform(local, [0.5, 0.95], ['0%', '100%']);
+  const cardO = useTransform(local, [0.1, 0.25], [0, 1]);
+  const cardY = useTransform(local, [0.1, 0.25], [30, 0]);
+
+  return (
+    <MobileScene opacity={opacity} act="06 / Deliverable" heading="A report the client can use.">
+      <motion.div
+        style={{
+          opacity: cardO,
+          y: cardY,
+          backgroundColor: 'var(--color-pure)',
+          border: '1px solid var(--color-pale)',
+        }}
+      >
+        <div className="px-4 py-4" style={{ backgroundColor: 'var(--color-ink)', color: 'var(--color-pure)' }}>
+          <div className="type-micro uppercase mb-1" style={{ ...TECH_LABEL_STYLE, color: 'rgba(255,255,255,0.55)' }}>
+            Consolidated Accessibility Report
+          </div>
+          <div style={{ fontFamily: 'var(--font-serif)', fontSize: 20, lineHeight: 1.2, color: 'var(--color-pure)' }}>
+            Client Project · WCAG Audit
+          </div>
+          <div className="type-micro uppercase mt-1" style={{ ...TECH_LABEL_STYLE, color: 'rgba(255,255,255,0.55)' }}>
+            WCAG 2.2 LEVEL AA · APR 2026
+          </div>
+        </div>
+
+        <div
+          className="grid grid-cols-3 gap-2 p-4"
+          style={{ backgroundColor: 'var(--color-base)', borderBottom: '1px solid var(--color-pale)' }}
+        >
+          <StatCard label="Total" value={total} />
+          <StatCard label="Found" value={found} />
+          <StatCard label="Reviewed" value={reviewed} />
+          <StatCard label="Queued" value={queued} />
+          <StatCard label="Resolved" value={resolved} />
+        </div>
+
+        <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--color-pale)' }}>
+          <div
+            className="flex justify-between type-micro uppercase mb-1.5"
+            style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+          >
+            <span>Remediation Progress</span>
+            <ProgressLabel local={local} />
+          </div>
+          <div style={{ height: 6, backgroundColor: 'var(--color-mist)' }}>
+            <motion.div style={{ height: '100%', width: progressW, backgroundColor: 'var(--color-ink)' }} />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-2 p-4">
+          {REPORT_CARDS.map((c, i) => (
+            <ReportCard key={i} {...c} local={local} />
+          ))}
+        </div>
+
+        <div
+          className="px-4 py-2 type-micro uppercase flex justify-between"
+          style={{ ...TECH_LABEL_STYLE, borderTop: '1px solid var(--color-pale)', color: 'var(--color-dark)' }}
+        >
+          <span>06 / 06 shown</span>
+          <span>Filterable</span>
+        </div>
+      </motion.div>
+
+      <CaptionWrap local={local} from={0.92} mobile text="Filterable. Trackable. Self-documenting." />
+    </MobileScene>
+  );
+}
 
 function Scene6({ opacity, local }: { opacity: MotionValue<number>; local: MotionValue<number> }) {
   const titleO = useTransform(local, [0, 0.15], [0, 1]);
@@ -2020,16 +2539,7 @@ function Scene6({ opacity, local }: { opacity: MotionValue<number>; local: Motio
         </div>
 
         <div className="grid grid-cols-3 gap-2 p-4">
-          {(
-            [
-              { label: 'Footer CTA contrast', code: '1.4.3', t: 0.55 },
-              { label: 'Missing alt on hero', code: '1.1.1', t: 0.62 },
-              { label: 'Heading skip in About', code: '1.3.1', t: 0.69 },
-              { label: 'Form label missing', code: '4.1.2', t: 0.76 },
-              { label: 'Focus indicator hidden', code: '2.4.7', t: 0.82 },
-              { label: 'Link text "click here"', code: '2.4.4', t: 0.88 },
-            ] as const
-          ).map((c, i) => (
+          {REPORT_CARDS.map((c, i) => (
             <ReportCard key={i} {...c} local={local} />
           ))}
         </div>
