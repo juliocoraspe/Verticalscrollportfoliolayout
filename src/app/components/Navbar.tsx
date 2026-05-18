@@ -71,20 +71,11 @@ const anchorItems = [
 
 const sectionIds = anchorItems.map(item => item.href.slice(1));
 
-const mobileLabel: React.CSSProperties = {
-  fontSize: 10,
-  letterSpacing: '0.05em',
-  textTransform: 'uppercase',
-  lineHeight: 1,
-  textAlign: 'center',
-};
-
-const divider = (
-  <div
-    className="sm:hidden"
-    style={{ width: 1, alignSelf: 'stretch', backgroundColor: 'var(--color-pale)', flexShrink: 0 }}
-  />
-);
+// The two groups are separated purely by a split layout: anchor links
+// flush-left, separate-view links flush-right, with the empty space
+// between them acting as the visual separator (and the labelled lists
+// providing the semantic grouping for assistive tech). No drawn divider —
+// that avoids the visual clash with the hero section's vertical rule.
 
 export function Navbar({ enterAccessibility, enterAiExperience, currentView }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -155,110 +146,134 @@ export function Navbar({ enterAccessibility, enterAiExperience, currentView }: N
         style={{
           display: 'flex',
           alignItems: 'stretch',
+          justifyContent: 'space-between',
           height: '100%',
-          paddingLeft: 'clamp(0px, 2vw, 32px)',
-          paddingRight: 'clamp(0px, 2vw, 32px)',
+          paddingLeft: 'clamp(12px, 2vw, 32px)',
+          paddingRight: 'clamp(12px, 2vw, 32px)',
         }}
       >
-        {anchorItems.map(({ num, label, href, Icon }, i) => {
-          const id = href.slice(1);
-          const isActive = activeSection === id;
-          return (
-            <React.Fragment key={num}>
-              {i > 0 && divider}
-              <a
-                href={href}
-                aria-current={isActive ? 'page' : undefined}
-                className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
-                style={{
-                  flex: 1,
-                  gap: 3,
-                  textDecoration: 'none',
-                  padding: '0 4px',
-                  ...(isActive ? activeUnderline : {}),
-                }}
-              >
-                <span className="sm:hidden"><Icon /></span>
-                <span className="sm:hidden text-ink" style={mobileLabel}>{label}</span>
-                <span
-                  className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
-                  style={{ letterSpacing: '0.06em' }}
+        {/* Group 1 — in-page anchor links (same-page scroll). Flush-left. */}
+        <ul
+          aria-label="On this page"
+          style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {anchorItems.map(({ num, label, href, Icon }) => {
+            const id = href.slice(1);
+            const isActive = activeSection === id;
+            return (
+              <li key={num} style={{ display: 'flex' }}>
+                <a
+                  href={href}
+                  aria-label={label}
+                  aria-current={isActive ? 'page' : undefined}
+                  className="text-ink flex items-center justify-center"
+                  style={{
+                    gap: 3,
+                    textDecoration: 'none',
+                    padding: '0 clamp(8px, 1.4vw, 14px)',
+                    ...(isActive ? activeUnderline : {}),
+                  }}
                 >
-                  <span className="text-dark">{num}</span>
-                  <span className="text-dark">–</span>
-                  <Icon />
-                  <span className="text-ink">{label}</span>
-                </span>
-              </a>
-            </React.Fragment>
-          );
-        })}
+                  {/* Mobile: icon only. Desktop: number + icon + text. */}
+                  <span className="sm:hidden"><Icon /></span>
+                  <span
+                    className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
+                    style={{ letterSpacing: '0.06em' }}
+                  >
+                    <span className="text-dark">{num}</span>
+                    <span className="text-dark">–</span>
+                    <Icon />
+                    <span className="text-ink">{label}</span>
+                  </span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
 
-        {divider}
+        {/* Group 2 — links to separate full-screen views, not in-page
+            anchors. Flush-right. Distinct label so AT users know these
+            behave differently from the on-page links above. */}
+        <ul
+          aria-label="Sections"
+          style={{
+            display: 'flex',
+            alignItems: 'stretch',
+            listStyle: 'none',
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {(() => {
+            const isActive = activeSection === 'accessibility';
+            return (
+              <li style={{ display: 'flex' }}>
+                <button
+                  type="button"
+                  onClick={enterAccessibility}
+                  aria-label="ACCESSIBILITY"
+                  aria-current={isActive ? 'page' : undefined}
+                  className="text-ink flex items-center justify-center"
+                  style={{
+                    gap: 3,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '0 clamp(8px, 1.4vw, 14px)',
+                    ...(isActive ? activeUnderline : {}),
+                  }}
+                >
+                  <span className="sm:hidden text-ink"><IconEye /></span>
+                  <span
+                    className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
+                    style={{ letterSpacing: '0.06em' }}
+                  >
+                    <IconEye />
+                    <span className="text-ink">ACCESSIBILITY</span>
+                  </span>
+                </button>
+              </li>
+            );
+          })()}
 
-        {(() => {
-          const isActive = activeSection === 'accessibility';
-          return (
-            <button
-              type="button"
-              onClick={enterAccessibility}
-              aria-current={isActive ? 'page' : undefined}
-              className="text-ink flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
-              style={{
-                flex: 1,
-                gap: 3,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '0 4px',
-                ...(isActive ? activeUnderline : {}),
-              }}
-            >
-              <span className="sm:hidden text-ink"><IconEye /></span>
-              <span className="sm:hidden text-ink" style={mobileLabel}>ACCESSIBILITY</span>
-              <span
-                className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
-                style={{ letterSpacing: '0.06em' }}
-              >
-                <IconEye />
-                <span className="text-ink">ACCESSIBILITY</span>
-              </span>
-            </button>
-          );
-        })()}
-
-        {divider}
-
-        {(() => {
-          const isActive = activeSection === 'ai-experience';
-          return (
-            <button
-              type="button"
-              onClick={enterAiExperience}
-              aria-current={isActive ? 'page' : undefined}
-              className="text-accent flex flex-col sm:flex-row items-center justify-center sm:gap-1.5"
-              style={{
-                flex: 1,
-                gap: 3,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '0 4px',
-                ...(isActive ? { borderBottom: '2px solid var(--color-accent)', marginBottom: -1 } : {}),
-              }}
-            >
-              <span className="sm:hidden"><IconSignal /></span>
-              <span className="sm:hidden" style={{ ...mobileLabel, color: 'currentColor' }}>AI PRACTICE</span>
-              <span
-                className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
-                style={{ letterSpacing: '0.06em' }}
-              >
-                <IconSignal />
-                <span>AI PRACTICE</span>
-              </span>
-            </button>
-          );
-        })()}
+          {(() => {
+            const isActive = activeSection === 'ai-experience';
+            return (
+              <li style={{ display: 'flex' }}>
+                <button
+                  type="button"
+                  onClick={enterAiExperience}
+                  aria-label="AI PRACTICE"
+                  aria-current={isActive ? 'page' : undefined}
+                  className="text-accent flex items-center justify-center"
+                  style={{
+                    gap: 3,
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    padding: '0 clamp(8px, 1.4vw, 14px)',
+                    ...(isActive ? { borderBottom: '2px solid var(--color-accent)', marginBottom: -1 } : {}),
+                  }}
+                >
+                  <span className="sm:hidden"><IconSignal /></span>
+                  <span
+                    className="hidden sm:flex items-center gap-1.5 type-micro uppercase"
+                    style={{ letterSpacing: '0.06em' }}
+                  >
+                    <IconSignal />
+                    <span>AI PRACTICE</span>
+                  </span>
+                </button>
+              </li>
+            );
+          })()}
+        </ul>
       </div>
     </nav>
   );
