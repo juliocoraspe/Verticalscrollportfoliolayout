@@ -28,7 +28,8 @@ const A15_ACT_TITLES = [
   '03 — Design Findings',
   '04 — Design Repair',
   '05 — Local Assist',
-  '06 — Resolve',
+  '06 — Focus Order',
+  '07 — Resolve',
 ] as const;
 
 type SceneProps = {
@@ -61,19 +62,26 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
     mass: 0.4,
   });
 
-  const scene1 = useTransform(p, [0, 0.04, 0.155, 0.175], [0, 1, 1, 0]);
-  const scene2 = useTransform(p, [0.16, 0.18, 0.32, 0.34], [0, 1, 1, 0]);
-  const scene3 = useTransform(p, [0.325, 0.345, 0.485, 0.505], [0, 1, 1, 0]);
-  const scene4 = useTransform(p, [0.49, 0.51, 0.65, 0.67], [0, 1, 1, 0]);
-  const scene5 = useTransform(p, [0.655, 0.675, 0.815, 0.835], [0, 1, 1, 0]);
-  const scene6 = useTransform(p, [0.82, 0.84, 1, 1], [0, 1, 1, 1]);
+  // Seven scenes split the scroll progress into ~1/7 windows. Each scene
+  // fades in over the first ≈0.02, holds at 1 through a long dwell, then
+  // cross-fades to the next over ≈0.02 at the boundary. Local progress
+  // runs over the first ~0.11 of the window, leaving the rest as a static
+  // "look at the result" hold.
+  const scene1 = useTransform(p, [0, 0.035, 0.13, 0.15], [0, 1, 1, 0]);
+  const scene2 = useTransform(p, [0.138, 0.158, 0.272, 0.292], [0, 1, 1, 0]);
+  const scene3 = useTransform(p, [0.28, 0.3, 0.415, 0.435], [0, 1, 1, 0]);
+  const scene4 = useTransform(p, [0.423, 0.443, 0.558, 0.578], [0, 1, 1, 0]);
+  const scene5 = useTransform(p, [0.566, 0.586, 0.7, 0.72], [0, 1, 1, 0]);
+  const scene6 = useTransform(p, [0.708, 0.728, 0.843, 0.863], [0, 1, 1, 0]);
+  const scene7 = useTransform(p, [0.851, 0.871, 1, 1], [0, 1, 1, 1]);
 
-  const s1Local = useTransform(p, [0, 0.125], [0, 1]);
-  const s2Local = useTransform(p, [0.165, 0.29], [0, 1]);
-  const s3Local = useTransform(p, [0.33, 0.455], [0, 1]);
-  const s4Local = useTransform(p, [0.495, 0.62], [0, 1]);
-  const s5Local = useTransform(p, [0.66, 0.785], [0, 1]);
-  const s6Local = useTransform(p, [0.825, 0.95], [0, 1]);
+  const s1Local = useTransform(p, [0, 0.108], [0, 1]);
+  const s2Local = useTransform(p, [0.142, 0.25], [0, 1]);
+  const s3Local = useTransform(p, [0.284, 0.392], [0, 1]);
+  const s4Local = useTransform(p, [0.427, 0.535], [0, 1]);
+  const s5Local = useTransform(p, [0.57, 0.678], [0, 1]);
+  const s6Local = useTransform(p, [0.712, 0.82], [0, 1]);
+  const s7Local = useTransform(p, [0.855, 0.95], [0, 1]);
 
   const progressWidth = useTransform(p, [0, 1], ['0%', '100%']);
 
@@ -106,6 +114,7 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
                 <A15Scene4Mobile opacity={scene4} local={s4Local} />
                 <A15Scene5Mobile opacity={scene5} local={s5Local} />
                 <A15Scene6Mobile opacity={scene6} local={s6Local} />
+                <A15Scene7Mobile opacity={scene7} local={s7Local} />
               </>
             ) : (
               <>
@@ -115,6 +124,7 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
                 <A15Scene4 opacity={scene4} local={s4Local} />
                 <A15Scene5 opacity={scene5} local={s5Local} />
                 <A15Scene6 opacity={scene6} local={s6Local} />
+                <A15Scene7 opacity={scene7} local={s7Local} />
               </>
             )}
           </div>
@@ -198,11 +208,11 @@ function A15Hud({
       >
         <span>A15 · Figma</span>
         <A15SceneLabel progress={progress} />
-        <span>06 / Acts</span>
+        <span>07 / Acts</span>
       </div>
       <div className="relative mt-3" style={{ height: 1, backgroundColor: 'var(--color-pale)', opacity: 0.4 }}>
         <motion.div className="absolute inset-y-0 left-0" style={{ width: progressWidth, backgroundColor: 'var(--color-ink)' }} />
-        {[0.166, 0.333, 0.5, 0.666, 0.833].map((t, i) => (
+        {[1, 2, 3, 4, 5, 6].map((n) => n / 7).map((t, i) => (
           <div
             key={i}
             className="absolute top-0"
@@ -225,7 +235,7 @@ function A15SceneLabel({ progress }: { progress: MotionValue<number> }) {
   const [label, setLabel] = useState(A15_ACT_TITLES[0]);
 
   useMotionValueEvent(progress, 'change', (v) => {
-    const idx = Math.min(5, Math.max(0, Math.floor(v * 6)));
+    const idx = Math.min(6, Math.max(0, Math.floor(v * 7)));
     setLabel(A15_ACT_TITLES[idx]);
   });
 
@@ -814,6 +824,311 @@ function A15Scene5({ opacity, local }: SceneProps) {
   );
 }
 
+/* ============================================================
+   SCENE 6 — FOCUS ORDER
+   The same local model that drafts alt text also reads the layout
+   and proposes a keyboard focus path. Numbered pins appear in
+   sequence on the mockup, connected by a drawn path; a plugin panel
+   streams the same order and flags the decorative icon as skipped.
+   ============================================================ */
+
+// Each step's position is a % within the mockup box so it scales with
+// any canvas size (desktop or mobile). `seq` drives the appearance order.
+const A15_FOCUS_STEPS = [
+  { n: 1, label: 'Email field', x: '50%', y: '40%', seq: 0.16 },
+  { n: 2, label: 'Card field', x: '50%', y: '58%', seq: 0.3 },
+  { n: 3, label: 'Secure note', x: '24%', y: '74%', seq: 0.44 },
+  { n: 4, label: 'Pay now', x: '50%', y: '86%', seq: 0.58 },
+] as const;
+
+// Decorative icon the model deliberately leaves OUT of the focus path.
+const A15_FOCUS_SKIP = { x: '82%', y: '12%', seq: 0.66 } as const;
+
+function A15FocusPin({
+  n,
+  x,
+  y,
+  seq,
+  local,
+}: {
+  n: number;
+  x: string;
+  y: string;
+  seq: number;
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [seq, seq + 0.06], [0, 1]);
+  const scale = useTransform(local, [seq, seq + 0.06, seq + 0.1], [0.6, 1.15, 1]);
+  return (
+    <motion.div
+      className="absolute flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border"
+      style={{
+        left: x,
+        top: y,
+        borderColor: 'var(--color-accent)',
+        backgroundColor: 'var(--color-pure)',
+        color: 'var(--color-accent)',
+        opacity,
+        scale,
+      }}
+    >
+      <span className="type-micro" style={{ ...TECH_LABEL_STYLE, fontWeight: 600 }}>
+        {n}
+      </span>
+    </motion.div>
+  );
+}
+
+// Decorative-icon marker: a dashed ring with a slash, labelled "skip".
+function A15FocusSkip({
+  x,
+  y,
+  seq,
+  local,
+}: {
+  x: string;
+  y: string;
+  seq: number;
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [seq, seq + 0.06], [0, 0.85]);
+  return (
+    <motion.div
+      className="absolute -translate-x-1/2 -translate-y-1/2"
+      style={{ left: x, top: y, opacity }}
+    >
+      <div
+        className="flex h-7 w-7 items-center justify-center rounded-full"
+        style={{ border: '1px dashed var(--color-dark)' }}
+      >
+        <div
+          style={{
+            width: 14,
+            height: 1,
+            backgroundColor: 'var(--color-dark)',
+            transform: 'rotate(-45deg)',
+          }}
+        />
+      </div>
+      <span
+        className="mt-1 block text-center type-micro uppercase"
+        style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+      >
+        skip
+      </span>
+    </motion.div>
+  );
+}
+
+// Progressively-drawn polyline connecting the pins in focus order.
+function A15FocusPath({ local }: { local: MotionValue<number> }) {
+  // Points mirror A15_FOCUS_STEPS positions as fractions of the viewBox.
+  const pts = [
+    [0.5, 0.4],
+    [0.5, 0.58],
+    [0.24, 0.74],
+    [0.5, 0.86],
+  ];
+  const d =
+    `M ${pts[0][0] * 100} ${pts[0][1] * 100} ` +
+    pts
+      .slice(1)
+      .map(([px, py]) => `L ${px * 100} ${py * 100}`)
+      .join(' ');
+  const pathLength = useTransform(local, [0.18, 0.6], [0, 1]);
+  return (
+    <svg
+      className="pointer-events-none absolute inset-0 h-full w-full"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+    >
+      <motion.path
+        d={d}
+        fill="none"
+        stroke="var(--color-accent)"
+        strokeOpacity={0.5}
+        strokeWidth={0.8}
+        strokeDasharray="2 2"
+        vectorEffect="non-scaling-stroke"
+        style={{ pathLength }}
+      />
+    </svg>
+  );
+}
+
+// One row of the streamed tab-order plan in the plugin panel.
+function A15FocusListRow({
+  n,
+  label,
+  seq,
+  local,
+}: {
+  n: number;
+  label: string;
+  seq: number;
+  local: MotionValue<number>;
+}) {
+  const opacity = useTransform(local, [seq, seq + 0.06], [0, 1]);
+  const x = useTransform(local, [seq, seq + 0.06], [-14, 0]);
+  return (
+    <motion.div
+      className="flex items-center gap-3 border px-3 py-2"
+      style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-pure)', opacity, x }}
+    >
+      <span
+        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full type-micro"
+        style={{
+          ...TECH_LABEL_STYLE,
+          fontWeight: 600,
+          color: 'var(--color-pure)',
+          backgroundColor: 'var(--color-ink)',
+        }}
+      >
+        {n}
+      </span>
+      <span className="type-body text-ink">{label}</span>
+    </motion.div>
+  );
+}
+
+// The mockup the focus overlay sits on — same visual language as the
+// Scene 2/3 checkout canvas (header bar, text lines, fields, CTA).
+function A15FocusMockup() {
+  return (
+    <>
+      <div className="mb-4 h-6 w-28" style={{ backgroundColor: 'var(--color-ink)' }} />
+      <div className="space-y-3">
+        <div className="h-3.5 w-full" style={{ backgroundColor: 'var(--color-mist)' }} />
+        <div className="h-3.5 w-4/5" style={{ backgroundColor: 'var(--color-mist)' }} />
+        <div className="h-10 w-full border" style={{ borderColor: 'var(--color-pale)' }} />
+        <div className="h-10 w-full border" style={{ borderColor: 'var(--color-pale)' }} />
+        <div className="h-7 w-1/2 border" style={{ borderColor: 'var(--color-pale)' }} />
+        <div className="h-9 w-full" style={{ backgroundColor: 'var(--color-dark)' }} />
+      </div>
+    </>
+  );
+}
+
+function A15FocusPlanPanel({ local }: { local: MotionValue<number> }) {
+  return (
+    <PluginWindow title="Tab Order Plan" eyebrow="Local model · keyboard path">
+      <div className="space-y-2">
+        {A15_FOCUS_STEPS.map((s) => (
+          <A15FocusListRow key={s.n} n={s.n} label={s.label} seq={s.seq} local={local} />
+        ))}
+      </div>
+      <motion.div
+        className="mt-5 border-l-2 pl-3"
+        style={{
+          borderColor: 'var(--color-accent)',
+          opacity: useTransform(local, [0.62, 0.7], [0, 1]),
+        }}
+      >
+        <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-accent)' }}>
+          Decorative icon skipped
+        </p>
+        <p className="type-body text-ink mt-1">
+          Logical order matches the visual order — no override needed.
+        </p>
+      </motion.div>
+    </PluginWindow>
+  );
+}
+
+function A15Scene6Mobile({ opacity, local }: SceneProps) {
+  const rotate = useTransform(local, [0, 1], [0, 160]);
+  return (
+    <A15SceneFrame opacity={opacity} mobile>
+      <div className="flex flex-col items-center gap-5">
+        <FigmaCanvas title="Design canvas · focus path">
+          <div
+            className="relative mx-auto w-[210px] max-w-full border bg-[var(--color-pure)] p-4"
+            style={{ borderColor: 'var(--color-pale)', aspectRatio: '285 / 420' }}
+          >
+            <A15FocusMockup />
+            <A15FocusPath local={local} />
+            {A15_FOCUS_STEPS.map((s) => (
+              <A15FocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
+            ))}
+            <A15FocusSkip x={A15_FOCUS_SKIP.x} y={A15_FOCUS_SKIP.y} seq={A15_FOCUS_SKIP.seq} local={local} />
+          </div>
+        </FigmaCanvas>
+
+        <div className="relative h-20 w-full">
+          <motion.div
+            className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+            style={{ borderColor: 'var(--color-pale)', rotate }}
+          />
+          <div
+            className="absolute left-1/2 top-1/2 w-40 -translate-x-1/2 -translate-y-1/2 text-center type-micro uppercase"
+            style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+          >
+            local model
+            <br />
+            no cloud roundtrip
+          </div>
+        </div>
+
+        <A15FocusPlanPanel local={local} />
+      </div>
+
+      <A15Caption
+        local={local}
+        from={0.72}
+        mobile
+        text="The same local model proposes a keyboard path, the designer confirms the intent."
+      />
+    </A15SceneFrame>
+  );
+}
+
+function A15Scene6({ opacity, local }: SceneProps) {
+  const rotate = useTransform(local, [0, 1], [0, 160]);
+  return (
+    <A15SceneFrame opacity={opacity}>
+      <div className="grid items-center gap-10 md:grid-cols-[0.8fr_0.55fr_0.85fr]">
+        <FigmaCanvas title="Design canvas · focus path">
+          <div
+            className="relative mx-auto h-[380px] w-[260px] border bg-[var(--color-pure)] p-5"
+            style={{ borderColor: 'var(--color-pale)' }}
+          >
+            <A15FocusMockup />
+            <A15FocusPath local={local} />
+            {A15_FOCUS_STEPS.map((s) => (
+              <A15FocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
+            ))}
+            <A15FocusSkip x={A15_FOCUS_SKIP.x} y={A15_FOCUS_SKIP.y} seq={A15_FOCUS_SKIP.seq} local={local} />
+          </div>
+        </FigmaCanvas>
+
+        <div className="relative h-56">
+          <motion.div
+            className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+            style={{ borderColor: 'var(--color-pale)', rotate }}
+          />
+          <div
+            className="absolute left-1/2 top-1/2 w-36 -translate-x-1/2 -translate-y-1/2 text-center type-micro uppercase"
+            style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
+          >
+            local model
+            <br />
+            no cloud roundtrip
+          </div>
+        </div>
+
+        <A15FocusPlanPanel local={local} />
+      </div>
+
+      <A15Caption
+        local={local}
+        from={0.72}
+        text="The same local model proposes a keyboard path, the designer confirms the intent."
+      />
+    </A15SceneFrame>
+  );
+}
+
 const A15_RESOLVE_CARDS: [string, string][] = [
   ['1.4.3', 'Button contrast adjusted'],
   ['2.4.7', 'Focus state documented'],
@@ -844,7 +1159,7 @@ function A15ResolveCard({
   );
 }
 
-function A15Scene6Mobile({ opacity, local }: SceneProps) {
+function A15Scene7Mobile({ opacity, local }: SceneProps) {
   const total = useTransform(local, [0.15, 0.45], [0, 6]);
   const resolved = useTransform(local, [0.35, 0.72], [0, 5]);
   const dismissed = useTransform(local, [0.45, 0.78], [0, 1]);
@@ -903,7 +1218,7 @@ function A15Scene6Mobile({ opacity, local }: SceneProps) {
   );
 }
 
-function A15Scene6({ opacity, local }: SceneProps) {
+function A15Scene7({ opacity, local }: SceneProps) {
   const total = useTransform(local, [0.15, 0.45], [0, 6]);
   const resolved = useTransform(local, [0.35, 0.72], [0, 5]);
   const dismissed = useTransform(local, [0.45, 0.78], [0, 1]);
@@ -1219,6 +1534,7 @@ function A15MobileWorkflow() {
             ['Design findings', 'Risks are grouped by WCAG direction and kept attached to the design.'],
             ['Design repair', 'Each design issue includes a practical next move rather than a vague warning.'],
             ['Local assist', 'AI support stays local and works as a draft for the design review.'],
+            ['Focus order', 'The same local model reads the layout and proposes a keyboard path; the decorative icon is left out.'],
             ['Resolve', 'The design file leaves with accessibility decisions documented for handoff.'],
           ].map(([title, body], i) => (
             <ScrollSection key={title} entryDirection="bottom" motionRole="case-block" delay={i * 0.04}>
