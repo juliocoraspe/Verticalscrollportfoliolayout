@@ -815,9 +815,23 @@ export function WireframeMesh({
     if (!outer) return;
 
     let isFixed = false;
-    let startLeft = 0;
-    let startTop = 0;
-    let outerHeight = 0;
+
+    // BASELINE — the building's natural hero position, measured eagerly
+    // while the element is NOT yet position:fixed. The pinned viewport
+    // top is just `baselineTop` (a viewport coordinate captured at
+    // scrollY=0 equivalent). The scroll handler derives ty/tx from this
+    // baseline instead of re-reading getBoundingClientRect() each time.
+    // Without this, a programmatic teleport (e.g. clicking "My Design
+    // Cycle" in the nav) would land mid-page on the first scroll event,
+    // the lazy capture would read a now-off-screen rect, and the building
+    // would get pinned at a stale viewport y — which is the "stuck in
+    // hero" bug.
+    let baselineLeft = 0;
+    let baselineTop = 0; // viewport y the building should pin to (= natural hero rect.top)
+    let baselineWidth = 0;
+    let baselineHeight = 0;
+    let baselineReady = false;
+
     const resetOuter = () => {
       outer.style.position = '';
       outer.style.top = '';
@@ -832,6 +846,51 @@ export function WireframeMesh({
       outer.style.visibility = '';
     };
 
+    // Measure the natural rect. If currently fixed, briefly revert so we
+    // read the in-flow position; restore afterwards in the same frame so
+    // no flicker is visible.
+    const measureBaseline = () => {
+      const wasFixed = isFixed;
+      if (wasFixed) {
+        outer.style.position = '';
+        outer.style.top = '';
+        outer.style.left = '';
+        outer.style.width = '90%';
+        outer.style.height = '';
+        outer.style.transform = '';
+      }
+      const rect = outer.getBoundingClientRect();
+      // Skip degenerate measurements (display:none, 0×0, etc.)
+      if (rect.width < 10 || rect.height < 10) {
+        if (wasFixed) {
+          // Best-effort restore so we don't leave the element broken.
+          outer.style.position = 'fixed';
+        }
+        return;
+      }
+      // The building is positioned absolute in the hero. Its rect.left
+      // is the viewport x at the current scroll, but since it's
+      // absolute-positioned relative to a non-scrolling ancestor the
+      // viewport x doesn't change as the page scrolls — so rect.left is
+      // already the value we want for the fixed pin. For top: at any
+      // scrollY, rect.top + scrollY equals the building's would-be
+      // viewport top when scrollY were 0 (which is what we'd pin it at).
+      baselineLeft = rect.left;
+      baselineTop = rect.top + window.scrollY;
+      baselineWidth = rect.width;
+      baselineHeight = rect.height;
+      baselineReady = true;
+      if (wasFixed) {
+        // Restore fixed positioning at the new baseline (handleScroll
+        // will recompute transform on the next frame).
+        outer.style.position = 'fixed';
+        outer.style.top = `${baselineTop}px`;
+        outer.style.left = `${baselineLeft}px`;
+        outer.style.width = `${baselineWidth}px`;
+        outer.style.height = `${baselineHeight}px`;
+      }
+    };
+
     // Building's TOP edge as a fraction of the canvas height. Derived from the
     // camera framing: scaled scene-y of the roof top ≈ 21.95, lookAt y = 12,
     // vertical extent at distance 110 with FOV 28° ≈ 54.86, so the top sits
@@ -842,6 +901,7 @@ export function WireframeMesh({
     const handleScroll = () => {
       cancelAnimationFrame(scrollRAFRef.current);
       scrollRAFRef.current = requestAnimationFrame(() => {
+        if (!baselineReady) return;
         const scrollY = window.scrollY;
         const anchorEl = document.getElementById(anchorId);
         const row01Btn = document.getElementById('bp-level-03-btn');
@@ -855,18 +915,22 @@ export function WireframeMesh({
           return;
         }
 
-        if (!isFixed) {
-          const rect = outer.getBoundingClientRect();
-          isFixed = true;
-          startLeft = rect.left;
-          startTop = rect.top;
-          outerHeight = rect.height;
+        // The building's pinned viewport position (`startTop`/`startLeft`)
+        // is a CONSTANT derived from the eager baseline — it doesn't
+        // depend on scrollY. position:fixed already keeps the element at
+        // a viewport-fixed coordinate; the phase-1/phase-2 transform
+        // does all the motion on top of that pin.
+        const startTop = baselineTop;
+        const startLeft = baselineLeft;
+        const outerHeight = baselineHeight;
 
+        if (!isFixed) {
+          isFixed = true;
           outer.style.position = 'fixed';
-          outer.style.top = `${rect.top}px`;
-          outer.style.left = `${rect.left}px`;
-          outer.style.width = `${rect.width}px`;
-          outer.style.height = `${rect.height}px`;
+          outer.style.top = `${startTop}px`;
+          outer.style.left = `${startLeft}px`;
+          outer.style.width = `${baselineWidth}px`;
+          outer.style.height = `${outerHeight}px`;
           outer.style.overflow = 'visible';
           outer.style.pointerEvents = 'none';
           outer.style.zIndex = '1';
@@ -913,9 +977,32 @@ export function WireframeMesh({
       });
     };
 
+    // Initial baseline. Defer one frame so layout has settled (fonts,
+    // images, etc.) before measuring.
+    requestAnimationFrame(() => {
+      measureBaseline();
+      // Run the scroll handler once so the building is positioned
+      // correctly even on initial page load with a non-zero scroll
+      // (e.g. user reloaded mid-page or arrived via #design-cycle).
+      handleScroll();
+    });
+
+    const onResize = () => {
+      measureBaseline();
+      handleScroll();
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', onResize);
+    // ResizeObserver catches hero content reflow that doesn't fire a
+    // window resize event (e.g. fonts loading, container queries).
+    const ro = new ResizeObserver(onResize);
+    ro.observe(outer);
+    if (outer.parentElement) ro.observe(outer.parentElement);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', onResize);
+      ro.disconnect();
       cancelAnimationFrame(scrollRAFRef.current);
       resetOuter();
     };

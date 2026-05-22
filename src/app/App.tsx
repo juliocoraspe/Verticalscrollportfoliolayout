@@ -116,6 +116,18 @@ export default function App() {
     });
   }, [getDesignCycleTitleTargetY, shouldReduceMotion]);
 
+  // Controlled handler for the My Design Cycle nav button. Replaces the
+  // native anchor jump (which races the hashchange-triggered smooth scroll
+  // and was leaving the building stuck in the hero / the title drifting on
+  // repeated clicks). Updates the URL via replaceState so the address bar
+  // still reflects the section, but without re-firing hashchange.
+  const selectDesignCycle = useCallback(() => {
+    scrollToDesignCycleTitle();
+    if (window.location.hash !== '#design-cycle') {
+      window.history.replaceState(null, '', '#design-cycle');
+    }
+  }, [scrollToDesignCycleTitle]);
+
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
@@ -322,6 +334,7 @@ export default function App() {
         enterMotionGarden={enterMotionGarden}
         enterAccessibility={enterAccessibility}
         enterAiExperience={enterAiExperience}
+        onSelectDesignCycle={selectDesignCycle}
       />
       <HeroSection isMobile={isMobile} />
       <PracticeSection enterMotionGarden={enterMotionGarden} />
