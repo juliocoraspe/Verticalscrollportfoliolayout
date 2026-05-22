@@ -1,0 +1,10 @@
+[     767ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:21608
+[    1060ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0
+[  115453ms] ReferenceError: baselineTopDocY is not defined
+    at measureBaseline (http://localhost:5173/src/app/components/WireframeMesh.tsx?t=1779410635407:822:23)
+    at http://localhost:5173/src/app/components/WireframeMesh.tsx?t=1779410635407:889:7
+[  115453ms] ReferenceError: baselineTopDocY is not defined
+    at measureBaseline (http://localhost:5173/src/app/components/WireframeMesh.tsx?t=1779410635407:822:23)
+    at ResizeObserver.onResize (http://localhost:5173/src/app/components/WireframeMesh.tsx?t=1779410635407:893:7)
+[  130510ms] ReferenceError: baselineTopDocY is not defined
+    at http://localhost:5173/src/app/components/WireframeMesh.tsx?t=1779410650515:850:26

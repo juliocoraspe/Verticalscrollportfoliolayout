@@ -4,6 +4,12 @@ type NavbarProps = {
   enterMotionGarden: () => void;
   enterAccessibility: () => void;
   enterAiExperience: () => void;
+  // Optional controlled handler for the My Design Cycle button. When
+  // provided, left-clicks on the #design-cycle anchor are intercepted and
+  // routed through this handler so the scroll lands deterministically on
+  // every click (avoids the native-jump vs smooth-scroll race that
+  // otherwise leaves the section misaligned on repeated clicks).
+  onSelectDesignCycle?: () => void;
   currentView?: 'main' | 'motion-garden' | 'accessibility' | 'ai-experience';
 };
 
@@ -77,7 +83,7 @@ const sectionIds = anchorItems.map(item => item.href.slice(1));
 // providing the semantic grouping for assistive tech). No drawn divider —
 // that avoids the visual clash with the hero section's vertical rule.
 
-export function Navbar({ enterAccessibility, enterAiExperience, currentView }: NavbarProps) {
+export function Navbar({ enterAccessibility, enterAiExperience, onSelectDesignCycle, currentView }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
@@ -166,10 +172,24 @@ export function Navbar({ enterAccessibility, enterAiExperience, currentView }: N
           {anchorItems.map(({ num, label, href, Icon }) => {
             const id = href.slice(1);
             const isActive = activeSection === id;
+            // Left-clicks on #design-cycle go through the controlled
+            // handler (deterministic offset-aware smooth scroll). Middle-
+            // click, ⌘-click, etc. fall through to the native anchor.
+            const handleClick =
+              id === 'design-cycle' && onSelectDesignCycle
+                ? (e: React.MouseEvent<HTMLAnchorElement>) => {
+                    if (e.defaultPrevented) return;
+                    if (e.button !== 0) return;
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    e.preventDefault();
+                    onSelectDesignCycle();
+                  }
+                : undefined;
             return (
               <li key={num} style={{ display: 'flex' }}>
                 <a
                   href={href}
+                  onClick={handleClick}
                   aria-label={label}
                   aria-current={isActive ? 'page' : undefined}
                   className="text-ink flex items-center justify-center"

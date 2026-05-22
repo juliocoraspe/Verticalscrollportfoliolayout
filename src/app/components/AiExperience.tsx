@@ -330,7 +330,7 @@ function Beat({
             : 'min-h-0 md:min-h-[44vh]';
   const sectionSpace =
     size === 'hero'
-      ? 'px-6 pt-9 pb-0 sm:px-6 sm:pt-12 sm:pb-2'
+      ? 'px-6 pt-9 pb-0 sm:px-6 sm:pt-20 sm:pb-2'
       : id === 'figma-auditor'
         ? 'px-6 pt-4 pb-6 sm:px-6 sm:pt-4 sm:pb-8'
       : id === 'bem-namer'
