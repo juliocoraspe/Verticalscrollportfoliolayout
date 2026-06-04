@@ -20,14 +20,6 @@ type Standard = {
 const STANDARDS: Standard[] = [
   {
     num: '01',
-    code: 'WCAG 2.2 AA',
-    title: 'Standards',
-    body:
-      'I target WCAG 2.2 Level AA compliance as a baseline across every project. Color contrast, focus visibility, semantic structure, and keyboard operability are treated as non-negotiable requirements rather than optional enhancements.',
-    detail: 'Baseline · non-negotiable',
-  },
-  {
-    num: '02',
     code: '2.1.1 · 2.4.7',
     title: 'Keyboard Navigation',
     body:
@@ -35,7 +27,7 @@ const STANDARDS: Standard[] = [
     detail: 'Tab · Shift+Tab · Enter · Space',
   },
   {
-    num: '03',
+    num: '02',
     code: '2.3.3',
     title: 'Motion',
     body:
@@ -43,7 +35,7 @@ const STANDARDS: Standard[] = [
     detail: 'prefers-reduced-motion respected',
   },
   {
-    num: '04',
+    num: '03',
     code: '4.1.2',
     title: 'Screen Readers',
     body:
@@ -51,7 +43,7 @@ const STANDARDS: Standard[] = [
     detail: 'Semantic HTML · ARIA roles',
   },
   {
-    num: '05',
+    num: '04',
     code: '1.4.3',
     title: 'Color & Contrast',
     body:
@@ -59,7 +51,7 @@ const STANDARDS: Standard[] = [
     detail: '4.5:1 normal · 3:1 large',
   },
   {
-    num: '06',
+    num: '05',
     code: '2.4.7',
     title: 'Focus Indicators',
     body:
@@ -226,7 +218,7 @@ function StandardsConnector() {
 
           {/* Mobile fallback — same data as the desktop standards rows.
               Renders before the "Second method" handoff block so the
-              reading order stays: header → standards 01–06 → handoff
+              reading order stays: header → standards 01–05 → handoff
               → next workflow. (Desktop hides this block; the rows
               above already cover the same content.) */}
           <div className="md:hidden mt-10 space-y-8">
