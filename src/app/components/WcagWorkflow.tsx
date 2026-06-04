@@ -349,41 +349,39 @@ function WorkflowIntro() {
 
         <div className="mt-16 grid grid-cols-3 md:grid-cols-12 gap-x-4 gap-y-8 md:gap-8 pt-8" style={{ borderTop: '1px solid var(--color-pale)' }}>
           <ScrollSection entryDirection="bottom" motionRole="about-paragraph" delay={0.05} className="col-span-3 md:col-span-8">
-            <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+            <p className="type-meta uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
               Accessibility Systems
             </p>
-            <p className="type-body text-ink">
-              I built two tools for accessibility auditing that run entirely on my own machine. No
-              external APIs, no cloud calls, no token costs. A15 is a Figma plugin I designed and
-              wrote myself; it audits the design file in real time, before engineering ever touches
-              it. My web audit workflow uses Claude Code, Playwright, and axe-core to audit live
-              sites, including ones that have been in production for years. Same WCAG 2.2 AA
-              standards. Two moments in the product lifecycle. One coherent practice.
+            <p className="type-subhead text-ink">
+              I approach accessibility auditing at two points in the product lifecycle. A15 runs
+              locally in Figma to review design files before development. My web audit workflow
+              combines several tools to scan and remediate accessibility issues in live sites.
+              Together, they form one continuous practice guided by the same WCAG standards.
             </p>
           </ScrollSection>
           <ScrollSection entryDirection="bottom" motionRole="about-paragraph" delay={0.1} className="col-span-3 md:col-span-4">
             <div className="grid grid-cols-3 md:grid-cols-4 gap-x-4 md:gap-8">
               <div className="md:col-span-2">
-                <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+                <p className="type-meta uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
                   Standard
                 </p>
-                <p className="type-body text-ink">
+                <p className="type-subhead text-ink">
                   WCAG 2.2
                   <br />
                   Level AA
                 </p>
               </div>
               <div>
-                <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+                <p className="type-meta uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
                   Modes
                 </p>
-                <p className="type-body text-ink">02</p>
+                <p className="type-subhead text-ink">02</p>
               </div>
               <div>
-                <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
+                <p className="type-meta uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
                   Year
                 </p>
-                <p className="type-body text-ink">2026</p>
+                <p className="type-subhead text-ink">2026</p>
               </div>
             </div>
           </ScrollSection>
