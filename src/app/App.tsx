@@ -128,6 +128,20 @@ export default function App() {
     }
   }, [scrollToDesignCycleTitle]);
 
+  const selectHero = useCallback(() => {
+    scrollPositionRef.current = 0;
+    if (window.location.hash) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}`);
+    }
+    setView('main');
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: shouldReduceMotion ? 'auto' : 'smooth',
+      });
+    });
+  }, [shouldReduceMotion]);
+
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.toLowerCase();
@@ -284,6 +298,7 @@ export default function App() {
           enterMotionGarden={enterMotionGarden}
           enterAccessibility={enterAccessibility}
           enterAiExperience={enterAiExperience}
+          onSelectHero={selectHero}
           currentView="motion-garden"
         />
         <MotionGarden onExit={exitMotionGarden} />
@@ -299,6 +314,7 @@ export default function App() {
           enterMotionGarden={enterMotionGarden}
           enterAccessibility={enterAccessibility}
           enterAiExperience={enterAiExperience}
+          onSelectHero={selectHero}
           currentView="accessibility"
         />
         <AccessibilitySection />
@@ -314,6 +330,7 @@ export default function App() {
           enterMotionGarden={enterMotionGarden}
           enterAccessibility={enterAccessibility}
           enterAiExperience={enterAiExperience}
+          onSelectHero={selectHero}
           currentView="ai-experience"
         />
         <AiExperience />
@@ -334,6 +351,7 @@ export default function App() {
         enterMotionGarden={enterMotionGarden}
         enterAccessibility={enterAccessibility}
         enterAiExperience={enterAiExperience}
+        onSelectHero={selectHero}
         onSelectDesignCycle={selectDesignCycle}
       />
       <HeroSection isMobile={isMobile} />

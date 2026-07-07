@@ -4,6 +4,7 @@ type NavbarProps = {
   enterMotionGarden: () => void;
   enterAccessibility: () => void;
   enterAiExperience: () => void;
+  onSelectHero?: () => void;
   // Optional controlled handler for the My Design Cycle button. When
   // provided, left-clicks on the #design-cycle anchor are intercepted and
   // routed through this handler so the scroll lands deterministically on
@@ -12,6 +13,26 @@ type NavbarProps = {
   onSelectDesignCycle?: () => void;
   currentView?: 'main' | 'motion-garden' | 'accessibility' | 'ai-experience';
 };
+
+function IconHome() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M2.5 7.25 8 2.75l5.5 4.5" />
+      <path d="M4.25 6.6v6.15h7.5V6.6" />
+      <path d="M6.7 12.75V9.4h2.6v3.35" />
+    </svg>
+  );
+}
 
 function IconCycle() {
   return (
@@ -83,7 +104,7 @@ const sectionIds = anchorItems.map(item => item.href.slice(1));
 // providing the semantic grouping for assistive tech). No drawn divider —
 // that avoids the visual clash with the hero section's vertical rule.
 
-export function Navbar({ enterAccessibility, enterAiExperience, onSelectDesignCycle, currentView }: NavbarProps) {
+export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, onSelectDesignCycle, currentView }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
   useEffect(() => {
@@ -133,6 +154,8 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectDesignCy
     borderBottom: '2px solid var(--color-ink)',
     marginBottom: -1,
   };
+  const isMainView = currentView == null || currentView === 'main';
+  const isHeroActive = isMainView && activeSection === null;
 
   return (
     <nav
@@ -169,6 +192,33 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectDesignCy
             padding: 0,
           }}
         >
+          <li className="hidden sm:flex" style={{ marginRight: 'clamp(24px, 4vw, 72px)' }}>
+            <a
+              href="#main-content"
+              onClick={
+                onSelectHero
+                  ? (e) => {
+                      if (e.defaultPrevented) return;
+                      if (e.button !== 0) return;
+                      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                      e.preventDefault();
+                      onSelectHero();
+                    }
+                  : undefined
+              }
+              aria-label="Home"
+              aria-current={isHeroActive ? 'page' : undefined}
+              className="text-ink flex items-center justify-center"
+              style={{
+                textDecoration: 'none',
+                width: 48,
+                color: 'var(--color-ink)',
+                ...(isHeroActive ? activeUnderline : {}),
+              }}
+            >
+              <IconHome />
+            </a>
+          </li>
           {anchorItems.map(({ num, label, href, Icon }) => {
             const id = href.slice(1);
             const isActive = activeSection === id;
