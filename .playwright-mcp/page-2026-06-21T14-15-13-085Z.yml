@@ -1,0 +1,505 @@
+- generic [ref=e3]:
+  - navigation "Site navigation" [ref=e4]:
+    - generic [ref=e5]:
+      - list "On this page" [ref=e6]:
+        - listitem [ref=e7]:
+          - link "MY DESIGN CYCLE" [ref=e8] [cursor=pointer]:
+            - /url: "#design-cycle"
+            - generic [ref=e9]:
+              - generic [ref=e10]: "01"
+              - generic [ref=e11]: –
+              - img [ref=e12]
+              - generic [ref=e15]: MY DESIGN CYCLE
+        - listitem [ref=e16]:
+          - link "CASE STUDIES" [ref=e17] [cursor=pointer]:
+            - /url: "#case-studies"
+            - generic [ref=e18]:
+              - generic [ref=e19]: "02"
+              - generic [ref=e20]: –
+              - img [ref=e21]
+              - generic [ref=e23]: CASE STUDIES
+        - listitem [ref=e24]:
+          - link "ABOUT / CONTACT" [ref=e25] [cursor=pointer]:
+            - /url: "#about-me"
+            - generic [ref=e26]:
+              - generic [ref=e27]: "03"
+              - generic [ref=e28]: –
+              - img [ref=e29]
+              - generic [ref=e32]: ABOUT / CONTACT
+      - list "Sections" [ref=e33]:
+        - listitem [ref=e34]:
+          - button "ACCESSIBILITY" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - generic [ref=e40]: ACCESSIBILITY
+        - listitem [ref=e41]:
+          - button "AI PRACTICE" [ref=e42] [cursor=pointer]:
+            - generic [ref=e43]:
+              - img [ref=e44]
+              - generic [ref=e47]: AI PRACTICE
+  - main [ref=e48]:
+    - generic [ref=e50]:
+      - generic:
+        - generic:
+          - img
+        - generic:
+          - generic:
+            - generic: Frame 1483
+            - generic: card__title
+            - generic: nav__item
+            - generic: footer__cta
+            - generic: btn--primary
+        - generic:
+          - generic:
+            - generic: 1.4.3
+          - generic:
+            - generic: 2.5.5
+          - generic:
+            - generic: 2.4.7
+          - generic:
+            - generic: 1.4.11
+          - generic:
+            - generic: 2.4.11
+        - generic:
+          - img
+        - generic:
+          - generic:
+            - generic:
+              - generic: ~/portfolio
+            - generic:
+              - generic: localhost:5173
+            - generic:
+              - generic: prototype.tsx
+        - generic:
+          - generic:
+            - generic: Claude
+          - generic:
+            - generic: Ollama
+          - generic:
+            - generic: MCP
+          - generic:
+            - generic: Figma
+          - generic:
+            - generic: axe-core
+        - generic:
+          - img
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - img:
+                - generic:
+                  - generic:
+                    - generic: "336"
+                    - generic: "336"
+                    - generic: "00"
+                    - generic: "01"
+                    - generic: "02"
+                    - generic: "03"
+                    - generic: "04"
+                    - generic: "05"
+                    - generic: "06"
+                  - generic: "00"
+                  - generic: "11"
+                  - generic: "10"
+                  - generic: "01"
+          - generic:
+            - paragraph: AI Practice · 00
+            - heading "I build the systems that make AI useful." [level=2]
+            - paragraph: I don't treat AI as a trend layer or a generator bolted onto the end. I build with it — local models, custom workflows, and automation that cut cost, protect context, and make the work measurably better.
+            - paragraph: What follows is the toolkit I have built — two Figma plugins I wrote myself, a pipeline I assembled to audit live websites, the stack I deliberately chose, and what I have learned running it day to day.
+            - generic:
+              - generic: WCAG audits automated
+              - generic: Custom Figma plugins
+              - generic: Local AI — no API costs
+              - generic: Full design-to-code cycle
+              - generic: Agentic MCP pipelines
+              - generic: Multimodal vision models
+      - generic:
+        - generic:
+          - generic:
+            - img:
+              - generic:
+                - generic:
+                  - generic: page
+                - generic:
+                  - generic: page__hero
+                - generic:
+                  - generic: page__hero-title
+                - generic:
+                  - generic: page__section--featured
+                - generic:
+                  - generic: page__cards
+                - generic:
+                  - generic: card
+                - generic:
+                  - generic: card__title
+                - generic:
+                  - generic: card__meta
+                - generic:
+                  - generic: nav
+                - generic:
+                  - generic: nav__item
+                - generic:
+                  - generic: nav__item--active
+                - generic:
+                  - generic: footer__cta
+                - generic:
+                  - generic: footer__cta-text
+          - generic:
+            - paragraph: Plugin I built · 01 of 02
+            - heading "Figma BEM Layer Name" [level=2]
+            - paragraph: It renames Figma layers with pure BEM so component structure stays legible and handoff predictable. A deterministic heuristics engine runs first at zero latency; a local LLM bridge refines ambiguous names with semantic context.
+            - paragraph: TypeScript, Figma Plugin API, esbuild, and a local Express service that proxies to Ollama — fully offline, no cloud, no subscriptions.
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - paragraph [ref=e54]: "01"
+                - generic [ref=e55]:
+                  - paragraph [ref=e56]: Heuristic engine — zero latency
+                  - paragraph [ref=e57]: A DFS tree-walk builds a NodeSummary per layer, then a priority cascade (screen → keyword → structure) assigns the BEM block. Runs in ~0ms.
+                  - generic [ref=e58]:
+                    - paragraph [ref=e59]: summarizeNode()
+                    - paragraph [ref=e60]: detectBlock()
+                    - paragraph [ref=e61]: detectModifiers()
+              - generic [ref=e62]:
+                - paragraph [ref=e63]: "02"
+                - generic [ref=e64]:
+                  - paragraph [ref=e65]: AI refinement via Ollama bridge
+                  - paragraph [ref=e66]: Ambiguous nodes go to a local Express service (port 3333) with a fingerprint for LRU caching. gpt-oss:20b refines at temperature 0.1; falls back to heuristic on failure.
+                  - generic [ref=e67]:
+                    - paragraph [ref=e68]: gpt-oss:20b
+                    - paragraph [ref=e69]: LRU cache (TTL 30 min)
+                    - paragraph [ref=e70]: Express / Zod
+              - generic [ref=e71]:
+                - paragraph [ref=e72]: "03"
+                - generic [ref=e73]:
+                  - paragraph [ref=e74]: Plugin architecture
+                  - paragraph [ref=e75]: esbuild (IIFE) for Figma's sandbox; UI ↔ plugin via message-passing, hover-to-select on the canvas; panel size persists via clientStorage.
+                  - generic [ref=e76]:
+                    - paragraph [ref=e77]: esbuild 0.24
+                    - paragraph [ref=e78]: figma.ui.postMessage
+                    - paragraph [ref=e79]: clientStorage
+              - generic [ref=e80]:
+                - paragraph [ref=e81]: "04"
+                - generic [ref=e82]:
+                  - paragraph [ref=e83]: Local-first, private by design
+                  - paragraph [ref=e84]: "No design data leaves the machine — production build sets allowedDomains: [\"none\"]. The heuristic layer keeps it working offline, zero config."
+                  - generic [ref=e85]:
+                    - paragraph [ref=e86]: Local inference
+                    - paragraph [ref=e87]: Graceful degradation
+                    - paragraph [ref=e88]: Zero config baseline
+            - generic:
+              - generic: Figma Plugin API
+              - generic: Ollama (local)
+              - generic: gpt-oss:20b
+              - generic: BEM Methodology
+              - generic: TypeScript
+              - generic: Localhost Bridge
+      - generic:
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - paragraph: Plugin I built · 02 of 02
+            - heading "Figma Accessibility Auditor" [level=2]
+            - paragraph: It checks six WCAG 2.2 AA criteria right on the Figma canvas — contrast, tap targets, focus visibility — with overlay annotations. A local llama3.2-vision model via Ollama suggests alt text and reviews tab order. No API keys, no per-token costs.
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - paragraph [ref=e92]: "01"
+                - generic [ref=e94]:
+                  - paragraph [ref=e95]: Detect
+                  - paragraph [ref=e96]: Walks the canvas tree and runs the six WCAG checks in parallel — contrast, component, tap target, type size, focus state, and focus indicator.
+              - generic [ref=e97]:
+                - paragraph [ref=e98]: "02"
+                - generic [ref=e100]:
+                  - paragraph [ref=e101]: Annotate
+                  - paragraph [ref=e102]: Collects findings into a structured issue model and draws overlay annotations back on the canvas where each issue happens.
+              - generic [ref=e103]:
+                - paragraph [ref=e104]: "03"
+                - generic [ref=e106]:
+                  - paragraph [ref=e107]: Suggest (AI)
+                  - paragraph [ref=e108]: A local llama3.2-vision model generates alt text and reviews tab order so keyboard flow matches the design.
+            - generic:
+              - generic: TypeScript 5.x
+              - generic: React 18
+              - generic: Ollama
+              - generic: llama3.2-vision
+              - generic: Figma Plugin API
+              - generic: Vitest (28 tests)
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+                    - generic:
+                      - img
+          - generic:
+            - paragraph: Pipeline I built · 03
+            - heading "My Automated WCAG Audit Pipeline" [level=2]
+            - paragraph: The plugins live where designs are drawn; this lives where they already shipped. Claude Code drives a real Chromium via the Playwright MCP, injects axe-core, and runs WCAG 2.1 / 2.2 AA across every page — replacing paid auditing tools end-to-end.
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - paragraph [ref=e112]: "01"
+                - generic [ref=e113]:
+                  - paragraph [ref=e114]: Setup & MCP orchestration
+                  - paragraph [ref=e115]: Playwright MCP server registered with Claude Code — Claude drives a real Chromium directly.
+                  - generic [ref=e116]:
+                    - paragraph [ref=e117]: Playwright
+                    - paragraph [ref=e118]: Chromium
+                    - paragraph [ref=e119]: axe-core
+              - generic [ref=e120]:
+                - paragraph [ref=e121]: "02"
+                - generic [ref=e122]:
+                  - paragraph [ref=e123]: Automated scanning
+                  - paragraph [ref=e124]: axe-core injected per page; full site crawled from navbar + footer; dynamic states simulated.
+                  - generic [ref=e125]:
+                    - paragraph [ref=e126]: axe-core 90+ rules
+                    - paragraph [ref=e127]: navbar/footer crawl
+                    - paragraph [ref=e128]: dynamic-state simulation
+              - generic [ref=e129]:
+                - paragraph [ref=e130]: "03"
+                - generic [ref=e131]:
+                  - paragraph [ref=e132]: Manual verification
+                  - paragraph [ref=e133]: DevTools a11y tree, keyboard nav, contrast inspector, and screen readers cover what automation misses.
+                  - generic [ref=e134]:
+                    - paragraph [ref=e135]: DevTools
+                    - paragraph [ref=e136]: NVDA / VoiceOver
+                    - paragraph [ref=e137]: WebAIM Contrast
+              - generic [ref=e138]:
+                - paragraph [ref=e139]: "04"
+                - generic [ref=e140]:
+                  - paragraph [ref=e141]: Remediation
+                  - paragraph [ref=e142]: Findings grouped by WCAG criterion; fixes at the code level on any stack — HTML/CSS, JS frameworks, templating, or custom builds.
+                  - generic [ref=e143]:
+                    - paragraph [ref=e144]: CODE-LEVEL REMEDIATION
+                    - paragraph [ref=e145]: PLATFORM-AGNOSTIC
+                    - paragraph [ref=e146]: ANY TECH STACK
+            - generic:
+              - generic: Claude Code
+              - generic: Playwright MCP
+              - generic: axe-core
+              - generic: NVDA / VoiceOver
+              - generic: HTML / CSS / JS / Any Framework
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - img:
+                - generic:
+                  - generic: EXPLORATION · A
+                  - generic: 360×300
+                - generic:
+                  - generic: EXPLORATION · B
+                  - generic: 170×240
+                - generic:
+                  - generic: EXPLORATION · C
+                  - generic: 170×240
+          - generic:
+            - paragraph: Working with AI · 04
+            - heading "From idea to working artifact, faster." [level=2]
+            - paragraph: "I am a UX/UI designer and a frontend developer, and AI is the layer that lets me move between those two roles without waiting on either of them. Not \"write the code for me because I don't know how,\" but execute the idea I already have in mind: prototype it, test it, explore around it, and verify whether it stands up technically before it ships."
+            - paragraph: The model lives in my terminal and my editor. It is how I shorten the gap between "what if it looked like this" and a real thing on the screen.
+            - generic [ref=e148]:
+              - generic [ref=e149]:
+                - paragraph [ref=e150]: "01"
+                - generic [ref=e151]:
+                  - paragraph [ref=e152]: Code & Prototyping
+                  - paragraph [ref=e153]: I work the model through the terminal, CLIs, and editors like VS Code with Claude Code and Codex, not as a substitute for knowing the code. I read the architecture, I make the calls, and AI executes faster. This portfolio is built that way.
+                  - generic [ref=e154]:
+                    - paragraph [ref=e155]: Terminal · CLI
+                    - paragraph [ref=e156]: Claude Code
+                    - paragraph [ref=e157]: Codex
+                    - paragraph [ref=e158]: React + Vite (this site)
+              - generic [ref=e159]:
+                - paragraph [ref=e160]: "02"
+                - generic [ref=e161]:
+                  - paragraph [ref=e162]: Visual Exploration
+                  - paragraph [ref=e163]: When I need to test a visual idea before committing, I generate it. Small generative-art-style probes like shape systems, motion sketches, and color studies let me feel a direction out in minutes instead of hours. The frames on the left hold a few of those artifacts.
+                  - generic [ref=e164]:
+                    - paragraph [ref=e165]: Generative probes
+                    - paragraph [ref=e166]: Motion sketches
+                    - paragraph [ref=e167]: Shape & color studies
+              - generic [ref=e168]:
+                - paragraph [ref=e169]: "03"
+                - generic [ref=e170]:
+                  - paragraph [ref=e171]: Context Engineering
+                  - paragraph [ref=e172]: "Good output is less about clever prompts and more about how the context is structured: system instructions, MCP servers, skills, and choosing the right model for the job. I have trained through Anthropic and Claude Code on MCP and agentic patterns, and I treat that layer as part of the design, not an afterthought."
+                  - generic [ref=e173]:
+                    - paragraph [ref=e174]: MCP servers
+                    - paragraph [ref=e175]: Skills & system prompts
+                    - paragraph [ref=e176]: Model selection
+                    - paragraph [ref=e177]: Anthropic MCP certified
+            - generic:
+              - generic: Claude Code
+              - generic: Codex
+              - generic: VS Code
+              - generic: MCPs
+              - generic: Skills
+      - generic:
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - paragraph: My stack · 05
+            - heading "The tools I chose to work with." [level=2]
+            - paragraph: The plugins and pipeline aren't the goal — they're products of a stack I keep curating, grouped by the job each tool does.
+            - generic [ref=e179]:
+              - generic [ref=e180]:
+                - paragraph [ref=e181]: Development AI
+                - generic [ref=e182]:
+                  - generic [ref=e183]:
+                    - paragraph [ref=e184]: Claude / Claude Code
+                    - paragraph [ref=e185]: Architecture, coding, agentic workflows
+                  - generic [ref=e186]:
+                    - paragraph [ref=e187]: Ollama (local)
+                    - paragraph [ref=e188]: llama3.2-vision, gpt-oss:20b — offline inference
+                  - generic [ref=e189]:
+                    - paragraph [ref=e190]: OpenAI Codex
+                    - paragraph [ref=e191]: Code assistance via desktop
+              - generic [ref=e192]:
+                - paragraph [ref=e193]: Design AI
+                - generic [ref=e194]:
+                  - generic [ref=e195]:
+                    - paragraph [ref=e196]: Figma Make
+                    - paragraph [ref=e197]: AI component & layout prototyping
+                  - generic [ref=e198]:
+                    - paragraph [ref=e199]: Custom Figma Plugins
+                    - paragraph [ref=e200]: A11y audits + BEM naming, built in-house
+                  - generic [ref=e201]:
+                    - paragraph [ref=e202]: Google Stitch · Recraft
+                    - paragraph [ref=e203]: UI exploration & vector generation
+              - generic [ref=e204]:
+                - paragraph [ref=e205]: Infrastructure
+                - generic [ref=e206]:
+                  - generic [ref=e207]:
+                    - paragraph [ref=e208]: MCP Servers
+                    - paragraph [ref=e209]: Playwright + Figma-Context — custom pipelines
+                  - generic [ref=e210]:
+                    - paragraph [ref=e211]: CLAUDE.md + slash cmds
+                    - paragraph [ref=e212]: Workflow-specific prompts, local LLM routing
+                  - generic [ref=e213]:
+                    - paragraph [ref=e214]: Anthropic MCP Certified
+                    - paragraph [ref=e215]: Official MCP course completed
+            - generic:
+              - generic: Development AI
+              - generic: Design AI
+              - generic: Infrastructure
+      - generic:
+        - generic:
+          - generic:
+            - img
+          - generic:
+            - paragraph: What I know · 06
+            - heading "What I have learned running it." [level=2]
+            - paragraph: Tools alone do not make a system. Context windows, cost, privacy, and runtime behavior shape the output — six things I have come to understand from running this stack myself.
+            - generic [ref=e217]:
+              - generic [ref=e218]:
+                - paragraph [ref=e219]: "01"
+                - generic [ref=e220]:
+                  - heading "Context Windows & Model Limits" [level=3] [ref=e221]
+                  - paragraph [ref=e222]: I work within each model's context window — when to be concise, and how to structure long sessions so they don't degrade.
+              - generic [ref=e223]:
+                - paragraph [ref=e224]: "02"
+                - generic [ref=e225]:
+                  - heading "System Prompts & Custom Modes" [level=3] [ref=e226]
+                  - paragraph [ref=e227]: I configure Claude with persistent instructions (CLAUDE.md) and custom slash commands — specialized modes, not just chat.
+              - generic [ref=e228]:
+                - paragraph [ref=e229]: "03"
+                - generic [ref=e230]:
+                  - heading "Local-First AI Architecture" [level=3] [ref=e231]
+                  - paragraph [ref=e232]: "Running models locally via Ollama is a design constraint I build around: streaming, vision inference, sandbox-to-localhost bridges."
+              - generic [ref=e233]:
+                - paragraph [ref=e234]: "04"
+                - generic [ref=e235]:
+                  - heading "Agentic Pipelines with MCP" [level=3] [ref=e236]
+                  - paragraph [ref=e237]: With MCP I build pipelines where Claude Code drives live sites, runs a11y checks across pages, and reports back.
+              - generic [ref=e238]:
+                - paragraph [ref=e239]: "05"
+                - generic [ref=e240]:
+                  - heading "Rate Limits, Tiers & Token Economics" [level=3] [ref=e241]
+                  - paragraph [ref=e242]: I think in token budgets — when to run local, when to batch, when a smaller model is enough.
+              - generic [ref=e243]:
+                - paragraph [ref=e244]: "06"
+                - generic [ref=e245]:
+                  - heading "AI as a Design Systems Tool" [level=3] [ref=e246]
+                  - paragraph [ref=e247]: I use AI to systematize design decisions — BEM naming, canvas-level a11y, generative exploration — not to replace judgment.
+            - generic:
+              - generic: Context windows
+              - generic: MCP
+              - generic: Local-first
+              - generic: Token economics
+      - generic:
+        - generic: x:0584 y:0294
+        - generic: 00 / 06
+  - generic [ref=e250]:
+    - generic [ref=e251]:
+      - heading "Contact" [level=2] [ref=e253]
+      - paragraph [ref=e255]: I’m open to UX/UI and Design Engineer roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e256]:
+      - paragraph [ref=e257]: Links
+      - generic [ref=e258]:
+        - link "Resume" [ref=e259] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e260] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e261] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e262] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - link "Creative Portfolio" [ref=e263] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

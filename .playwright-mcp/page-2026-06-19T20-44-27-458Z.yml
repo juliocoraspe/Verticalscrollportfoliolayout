@@ -1,0 +1,180 @@
+- generic [ref=e2663]:
+  - navigation "Site navigation" [ref=e2664]:
+    - generic [ref=e2665]:
+      - list "On this page" [ref=e2666]:
+        - listitem [ref=e2667]:
+          - link "MY DESIGN CYCLE" [ref=e2668] [cursor=pointer]:
+            - /url: "#design-cycle"
+            - generic [ref=e2669]:
+              - generic [ref=e2670]: "01"
+              - generic [ref=e2671]: –
+              - img [ref=e2672]
+              - generic [ref=e2675]: MY DESIGN CYCLE
+        - listitem [ref=e2676]:
+          - link "CASE STUDIES" [ref=e2677] [cursor=pointer]:
+            - /url: "#case-studies"
+            - generic [ref=e2678]:
+              - generic [ref=e2679]: "02"
+              - generic [ref=e2680]: –
+              - img [ref=e2681]
+              - generic [ref=e2683]: CASE STUDIES
+        - listitem [ref=e2684]:
+          - link "ABOUT / CONTACT" [ref=e2685] [cursor=pointer]:
+            - /url: "#about-me"
+            - generic [ref=e2686]:
+              - generic [ref=e2687]: "03"
+              - generic [ref=e2688]: –
+              - img [ref=e2689]
+              - generic [ref=e2692]: ABOUT / CONTACT
+      - list "Sections" [ref=e2693]:
+        - listitem [ref=e2694]:
+          - button "ACCESSIBILITY" [ref=e2695] [cursor=pointer]:
+            - generic [ref=e2696]:
+              - img [ref=e2697]
+              - generic [ref=e2700]: ACCESSIBILITY
+        - listitem [ref=e2701]:
+          - button "AI PRACTICE" [ref=e2702] [cursor=pointer]:
+            - generic [ref=e2703]:
+              - img [ref=e2704]
+              - generic [ref=e2707]: AI PRACTICE
+  - main [ref=e2708]:
+    - generic [ref=e2710]:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - img:
+                - generic:
+                  - generic:
+                    - generic: "336"
+                    - generic: "336"
+                    - generic: "00"
+                    - generic: "01"
+                    - generic: "02"
+                    - generic: "03"
+                    - generic: "04"
+                    - generic: "05"
+                    - generic: "06"
+                  - generic: "00"
+                  - generic: "11"
+                  - generic: "10"
+                  - generic: "01"
+          - generic:
+            - paragraph: AI Practice · 00
+            - heading "I build the systems that make AI useful." [level=2]
+            - paragraph: I don't treat AI as a trend layer or a generator bolted onto the end. I build with it — local models, custom workflows, and automation that cut cost, protect context, and make the work measurably better.
+            - generic:
+              - generic: WCAG audits automated
+              - generic: Custom Figma plugins
+              - generic: Local AI — no API costs
+              - generic: Full design-to-code cycle
+              - generic: Agentic MCP pipelines
+              - generic: Multimodal vision models
+      - generic:
+        - generic:
+          - generic:
+            - img:
+              - generic:
+                - generic:
+                  - generic: page
+                - generic:
+                  - generic: page__hero
+                - generic:
+                  - generic: page__hero-title
+                - generic:
+                  - generic: page__section--featured
+                - generic:
+                  - generic: page__cards
+                - generic:
+                  - generic: card
+                - generic:
+                  - generic: card__title
+                - generic:
+                  - generic: card__meta
+                - generic:
+                  - generic: nav
+                - generic:
+                  - generic: nav__item
+                - generic:
+                  - generic: nav__item--active
+                - generic:
+                  - generic: footer__cta
+                - generic:
+                  - generic: footer__cta-text
+          - generic:
+            - paragraph: Plugin I built · 01
+            - heading "Figma BEM Layer Name" [level=2]
+            - paragraph: It renames Figma layers with pure BEM so structure stays legible and handoff predictable. A deterministic heuristics engine runs first at zero latency; a local LLM bridge refines ambiguous names with semantic context.
+            - generic:
+              - generic: Figma Plugin API
+              - generic: Ollama (local)
+              - generic: BEM
+              - generic: TypeScript
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: Plugin I built · 02
+            - heading "Figma Accessibility Auditor" [level=2]
+            - paragraph: Six WCAG 2.2 AA checks right on the canvas — contrast, tap targets, focus — with overlay annotations. A local llama3.2-vision model suggests alt text and reviews tab order.
+            - generic:
+              - generic: Ollama
+              - generic: llama3.2-vision
+              - generic: WCAG 2.2 AA
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: Pipeline I built · 03
+            - heading "Automated WCAG Audit Pipeline" [level=2]
+            - paragraph: Claude Code drives a real Chromium via the Playwright MCP, injects axe-core, and runs WCAG across every page — replacing paid auditing tools end-to-end.
+            - generic:
+              - generic: Claude Code
+              - generic: Playwright MCP
+              - generic: axe-core
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: Working with AI · 04
+            - heading "From idea to working artifact, faster." [level=2]
+            - paragraph: AI is the layer between my design and frontend roles — I prototype, explore, and verify ideas in code before they ship. Not "write it for me," but execute what I already have in mind.
+            - generic:
+              - generic: Claude Code
+              - generic: Codex
+              - generic: VS Code
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: My stack · 05
+            - heading "The tools I chose to work with." [level=2]
+            - paragraph: The plugins and pipeline aren't the goal — they're products of a stack I keep curating, grouped by the job each tool does.
+            - generic:
+              - generic: Development AI
+              - generic: Design AI
+              - generic: Infrastructure
+      - generic:
+        - generic:
+          - generic:
+            - paragraph: What I know · 06
+            - heading "What I have learned running it." [level=2]
+            - paragraph: Context windows, token economics, local-first architecture, agentic MCP pipelines — what running this stack myself actually taught me.
+            - generic:
+              - generic: Context windows
+              - generic: MCP
+              - generic: Local-first
+  - generic [ref=e2713]:
+    - generic [ref=e2714]:
+      - heading "Contact" [level=2] [ref=e2716]
+      - paragraph [ref=e2718]: I’m open to UX/UI and Design Engineer roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e2719]:
+      - paragraph [ref=e2720]: Links
+      - generic [ref=e2721]:
+        - link "Resume" [ref=e2722] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e2723] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e2724] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e2725] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - link "Creative Portfolio" [ref=e2726] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

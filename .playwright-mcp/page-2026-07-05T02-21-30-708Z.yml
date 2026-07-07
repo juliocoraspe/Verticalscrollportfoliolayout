@@ -1,0 +1,544 @@
+- generic [ref=e3]:
+  - link "Skip to main content" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - navigation "Site navigation" [ref=e5]:
+    - generic [ref=e6]:
+      - list "On this page" [ref=e7]:
+        - listitem [ref=e8]:
+          - link "MY DESIGN CYCLE" [ref=e9] [cursor=pointer]:
+            - /url: "#design-cycle"
+            - generic [ref=e10]:
+              - generic [ref=e11]: "01"
+              - generic [ref=e12]: –
+              - img [ref=e13]
+              - generic [ref=e16]: MY DESIGN CYCLE
+        - listitem [ref=e17]:
+          - link "CASE STUDIES" [ref=e18] [cursor=pointer]:
+            - /url: "#case-studies"
+            - generic [ref=e19]:
+              - generic [ref=e20]: "02"
+              - generic [ref=e21]: –
+              - img [ref=e22]
+              - generic [ref=e24]: CASE STUDIES
+        - listitem [ref=e25]:
+          - link "ABOUT / CONTACT" [ref=e26] [cursor=pointer]:
+            - /url: "#about-me"
+            - generic [ref=e27]:
+              - generic [ref=e28]: "03"
+              - generic [ref=e29]: –
+              - img [ref=e30]
+              - generic [ref=e33]: ABOUT / CONTACT
+      - list "Sections" [ref=e34]:
+        - listitem [ref=e35]:
+          - button "ACCESSIBILITY" [ref=e36] [cursor=pointer]:
+            - generic [ref=e37]:
+              - img [ref=e38]
+              - generic [ref=e41]: ACCESSIBILITY
+        - listitem [ref=e42]:
+          - button "AI PRACTICE" [ref=e43] [cursor=pointer]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - generic [ref=e48]: AI PRACTICE
+  - generic [ref=e49]:
+    - generic:
+      - generic:
+        - generic:
+          - paragraph: The what
+      - generic:
+        - generic:
+          - paragraph: The how
+      - generic:
+        - generic:
+          - paragraph: The why
+    - generic:
+      - 'generic "Julio Coraspe: UX/UI Designer with Front-end Implementation Skills" [ref=e51]':
+        - generic [ref=e52]: Julio Coraspe
+        - generic [ref=e54]:
+          - generic [ref=e55]: UX/UI Designer
+          - generic [ref=e56]: with Front-end Implementation Skills
+      - generic:
+        - heading "I design with the precision of someone who builds. Form follows function. I make sure of it." [level=1] [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: I
+            - generic [ref=e60]: design
+            - generic [ref=e61]: with
+            - generic [ref=e62]: the
+            - generic [ref=e63]: precision
+            - generic [ref=e64]: of
+            - generic [ref=e65]: someone
+            - generic [ref=e66]: who
+            - generic [ref=e67]: builds.
+          - generic [ref=e68]:
+            - generic [ref=e69]: Form
+            - generic [ref=e70]: follows
+            - generic [ref=e71]: function.
+          - generic [ref=e72]:
+            - generic [ref=e73]: I
+            - generic [ref=e74]: make
+            - generic [ref=e75]: sure
+            - generic [ref=e76]: of
+            - generic [ref=e77]: it.
+        - paragraph [ref=e78]:
+          - text: My practice spans the full arc from strategy and research through visual systems, motion, and front-end collaboration, anchored in accessibility and AI-driven workflows. I care about how it looks. I care more about how it works. I care most about
+          - generic [ref=e79]:
+            - generic [ref=e80]: pouring the concrete before painting it.
+            - generic [ref=e81]: designing the structure before the surface.
+  - generic [ref=e85]:
+    - generic [ref=e86]:
+      - heading "My Design Cycle" [level=2] [ref=e87]
+      - paragraph [ref=e88]: "Three layers: the base that justifies everything above it, the structure that makes it possible, and the surface the user reaches."
+    - generic [ref=e90]:
+      - generic [ref=e91]:
+        - button "03 My Capabilities & Toolkits Strategy · Research · Design · Technical · AI-Augmented" [ref=e92] [cursor=pointer]:
+          - generic [ref=e93]:
+            - generic [ref=e94]: "03"
+            - generic [ref=e95]: My Capabilities & Toolkits
+            - generic [ref=e96]: Strategy · Research · Design · Technical · AI-Augmented
+            - generic [ref=e98]: +
+        - region "03 My Capabilities & Toolkits Strategy · Research · Design · Technical · AI-Augmented":
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - paragraph [ref=e102]: UX Strategy Toolkit
+              - list [ref=e103]:
+                - listitem [ref=e104]:
+                  - generic [ref=e105]: ·
+                  - generic [ref=e106]: SMART goal definition
+                - listitem [ref=e107]:
+                  - generic [ref=e108]: ·
+                  - generic [ref=e109]: Success metrics frameworks
+                - listitem [ref=e110]:
+                  - generic [ref=e111]: ·
+                  - generic [ref=e112]: Constraint mapping
+                - listitem [ref=e113]:
+                  - generic [ref=e114]: ·
+                  - generic [ref=e115]: Stakeholder alignment
+                - listitem [ref=e116]:
+                  - generic [ref=e117]: ·
+                  - generic [ref=e118]: Product vision framing
+                - listitem [ref=e119]:
+                  - generic [ref=e120]: ·
+                  - generic [ref=e121]: Opportunity mapping
+            - generic [ref=e122]:
+              - paragraph [ref=e123]: Research Toolkit
+              - list [ref=e124]:
+                - listitem [ref=e125]:
+                  - generic [ref=e126]: ·
+                  - generic [ref=e127]: User interviews
+                - listitem [ref=e128]:
+                  - generic [ref=e129]: ·
+                  - generic [ref=e130]: Surveys
+                - listitem [ref=e131]:
+                  - generic [ref=e132]: ·
+                  - generic [ref=e133]: Analytics platforms
+                - listitem [ref=e134]:
+                  - generic [ref=e135]: ·
+                  - generic [ref=e136]: Competitor analysis
+                - listitem [ref=e137]:
+                  - generic [ref=e138]: ·
+                  - generic [ref=e139]: Heuristic evaluation
+                - listitem [ref=e140]:
+                  - generic [ref=e141]: ·
+                  - generic [ref=e142]: Heatmaps
+                - listitem [ref=e143]:
+                  - generic [ref=e144]: ·
+                  - generic [ref=e145]: Affinity mapping
+                - listitem [ref=e146]:
+                  - generic [ref=e147]: ·
+                  - generic [ref=e148]: Thematic analysis
+            - generic [ref=e149]:
+              - paragraph [ref=e150]: Design Toolkit
+              - list [ref=e151]:
+                - listitem [ref=e152]:
+                  - generic [ref=e153]: ·
+                  - generic [ref=e154]: Visual hierarchy
+                - listitem [ref=e155]:
+                  - generic [ref=e156]: ·
+                  - generic [ref=e157]: Typography systems
+                - listitem [ref=e158]:
+                  - generic [ref=e159]: ·
+                  - generic [ref=e160]: Color systems
+                - listitem [ref=e161]:
+                  - generic [ref=e162]: ·
+                  - generic [ref=e163]: Layout & spacing
+                - listitem [ref=e164]:
+                  - generic [ref=e165]: ·
+                  - generic [ref=e166]: State transitions
+                - listitem [ref=e167]:
+                  - generic [ref=e168]: ·
+                  - generic [ref=e169]: Interaction feedback
+                - listitem [ref=e170]:
+                  - generic [ref=e171]: ·
+                  - generic [ref=e172]: Attention guidance
+                - listitem [ref=e173]:
+                  - generic [ref=e174]: ·
+                  - generic [ref=e175]: WCAG · Section 508 · ADA
+            - generic [ref=e176]:
+              - paragraph [ref=e177]: Technical Collaboration
+              - list [ref=e178]:
+                - listitem [ref=e179]:
+                  - generic [ref=e180]: ·
+                  - generic [ref=e181]: Git / GitHub
+                - listitem [ref=e182]:
+                  - generic [ref=e183]: ·
+                  - generic [ref=e184]: HTML · CSS · JavaScript
+                - listitem [ref=e185]:
+                  - generic [ref=e186]: ·
+                  - generic [ref=e187]: Component architecture
+                - listitem [ref=e188]:
+                  - generic [ref=e189]: ·
+                  - generic [ref=e190]: Design system implementation
+                - listitem [ref=e191]:
+                  - generic [ref=e192]: ·
+                  - generic [ref=e193]: Interface debugging
+            - generic [ref=e194]:
+              - paragraph [ref=e195]: AI-Augmented Workflow
+              - list [ref=e196]:
+                - listitem [ref=e197]:
+                  - generic [ref=e198]: ·
+                  - generic [ref=e199]: Prompt engineering
+                - listitem [ref=e200]:
+                  - generic [ref=e201]: ·
+                  - generic [ref=e202]: Context engineering
+                - listitem [ref=e203]:
+                  - generic [ref=e204]: ·
+                  - generic [ref=e205]: Automation workflows
+                - listitem [ref=e206]:
+                  - generic [ref=e207]: ·
+                  - generic [ref=e208]: MCP integration
+                - listitem [ref=e209]:
+                  - generic [ref=e210]: ·
+                  - generic [ref=e211]: Figma acceleration
+      - generic [ref=e212]:
+        - button "02 My Design Flow Discovery → Design → Delivery" [ref=e213] [cursor=pointer]:
+          - generic [ref=e214]:
+            - generic [ref=e215]: "02"
+            - generic [ref=e216]: My Design Flow
+            - generic [ref=e217]: Discovery → Design → Delivery
+            - generic [ref=e219]: +
+        - region "02 My Design Flow Discovery → Design → Delivery":
+          - generic [ref=e221]:
+            - generic [ref=e222]:
+              - paragraph [ref=e223]: Discovery
+              - list [ref=e224]:
+                - listitem [ref=e225]:
+                  - generic [ref=e226]: ·
+                  - generic [ref=e227]: Foundational research
+                - listitem [ref=e228]:
+                  - generic [ref=e229]: ·
+                  - generic [ref=e230]: UX strategy definition
+                - listitem [ref=e231]:
+                  - generic [ref=e232]: ·
+                  - generic [ref=e233]: Research planning
+                - listitem [ref=e234]:
+                  - generic [ref=e235]: ·
+                  - generic [ref=e236]: Method selection
+                - listitem [ref=e237]:
+                  - generic [ref=e238]: ·
+                  - generic [ref=e239]: Data collection
+                - listitem [ref=e240]:
+                  - generic [ref=e241]: ·
+                  - generic [ref=e242]: Insight synthesis
+                - listitem [ref=e243]:
+                  - generic [ref=e244]: ·
+                  - generic [ref=e245]: Bias mitigation
+            - img [ref=e247]
+            - generic [ref=e249]:
+              - paragraph [ref=e250]: Design
+              - list [ref=e251]:
+                - listitem [ref=e252]:
+                  - generic [ref=e253]: ·
+                  - generic [ref=e254]: Information architecture
+                - listitem [ref=e255]:
+                  - generic [ref=e256]: ·
+                  - generic [ref=e257]: User flows
+                - listitem [ref=e258]:
+                  - generic [ref=e259]: ·
+                  - generic [ref=e260]: Wireframes
+                - listitem [ref=e261]:
+                  - generic [ref=e262]: ·
+                  - generic [ref=e263]: UI design
+                - listitem [ref=e264]:
+                  - generic [ref=e265]: ·
+                  - generic [ref=e266]: Motion design
+                - listitem [ref=e267]:
+                  - generic [ref=e268]: ·
+                  - generic [ref=e269]: Prototyping
+                - listitem [ref=e270]:
+                  - generic [ref=e271]: ·
+                  - generic [ref=e272]: Usability testing
+            - img [ref=e274]
+            - generic [ref=e276]:
+              - paragraph [ref=e277]: Delivery
+              - list [ref=e278]:
+                - listitem [ref=e279]:
+                  - generic [ref=e280]: ·
+                  - generic [ref=e281]: Developer handoff
+                - listitem [ref=e282]:
+                  - generic [ref=e283]: ·
+                  - generic [ref=e284]: Front-end collaboration
+                - listitem [ref=e285]:
+                  - generic [ref=e286]: ·
+                  - generic [ref=e287]: Implementation support
+                - listitem [ref=e288]:
+                  - generic [ref=e289]: ·
+                  - generic [ref=e290]: Post-launch validation
+                - listitem [ref=e291]:
+                  - generic [ref=e292]: ·
+                  - generic [ref=e293]: Feasibility awareness
+      - generic [ref=e294]:
+        - button "01 My Design Philosophy Three Lenses of Human-Centered Design" [ref=e295] [cursor=pointer]:
+          - generic [ref=e296]:
+            - generic [ref=e297]: "01"
+            - generic [ref=e298]: My Design Philosophy
+            - generic [ref=e299]: Three Lenses of Human-Centered Design
+            - generic [ref=e301]: +
+        - region "01 My Design Philosophy Three Lenses of Human-Centered Design":
+          - generic [ref=e303]:
+            - generic [ref=e304]:
+              - generic [ref=e305]:
+                - paragraph [ref=e306]: "01"
+                - paragraph [ref=e307]: User
+                - paragraph [ref=e308]: Desirability
+              - paragraph [ref=e309]: Understanding human needs and behaviors to ensure products are intuitive, meaningful, and genuinely valuable for the people who use them.
+            - generic [ref=e310]:
+              - generic [ref=e311]:
+                - paragraph [ref=e312]: "02"
+                - paragraph [ref=e313]: Business
+                - paragraph [ref=e314]: Viability
+              - paragraph [ref=e315]: Aligning product decisions with organizational goals so solutions generate measurable value and support long-term sustainability.
+            - generic [ref=e316]:
+              - generic [ref=e317]:
+                - paragraph [ref=e318]: "03"
+                - paragraph [ref=e319]: Technology
+                - paragraph [ref=e320]: Feasibility
+              - paragraph [ref=e321]: Evaluating technical possibilities and constraints to ensure solutions can be realistically built, scaled, and maintained. Supported by hands-on front-end development experience.
+  - generic [ref=e323]:
+    - heading "Case Studies" [level=2] [ref=e326]
+    - generic [ref=e328]:
+      - article [ref=e329]:
+        - generic [ref=e330]:
+          - 'button "STILLEN: AI-Enhanced Furniture E-Commerce STILLEN: AI-Enhanced Furniture E-Commerce A research-driven furniture e-commerce platform combining AI concierge guidance, AR spatial visualization, and transparent delivery systems to reduce purchase uncertainty." [ref=e332] [cursor=pointer]':
+            - generic [ref=e333]:
+              - generic [ref=e334]:
+                - 'heading "STILLEN: AI-Enhanced Furniture E-Commerce" [level=3] [ref=e335]'
+                - img [ref=e336]
+              - 'img "STILLEN: AI-Enhanced Furniture E-Commerce" [ref=e339]'
+              - paragraph [ref=e340]: A research-driven furniture e-commerce platform combining AI concierge guidance, AR spatial visualization, and transparent delivery systems to reduce purchase uncertainty.
+          - generic:
+            - region:
+              - button:
+                - img
+              - generic:
+                - generic: Case Study
+                - generic: "STILLEN: AI-Enhanced Furniture E-Commerce"
+              - complementary:
+                - paragraph: Index
+                - list:
+                  - listitem:
+                    - button:
+                      - generic: "01"
+                      - generic: Problem
+                  - listitem:
+                    - button:
+                      - generic: "02"
+                      - generic: Process
+                  - listitem:
+                    - button:
+                      - generic: "03"
+                      - generic: Research Translation & Validation
+                  - listitem:
+                    - button:
+                      - generic: "04"
+                      - generic: Solution
+                  - listitem:
+                    - button:
+                      - generic: "05"
+                      - generic: Figma Prototype
+              - main:
+                - generic:
+                  - generic: "01"
+                  - heading [level=4]: Problem
+                - generic:
+                  - paragraph: The experience creates friction and mistrust due to unclear delivery and availability information, navigation issues at critical moments, and a lack of tools that help users understand product scale, fit, and suitability in their real spaces.
+      - article [ref=e341]:
+        - generic [ref=e342]:
+          - 'button "Milo: Voice-First AI Companion Milo interface banner Designed a behavior-driven voice AI companion focused on emotional presence. Modeled interaction logic, motion systems, and adaptive states through AI-assisted prototyping workflows." [ref=e344] [cursor=pointer]':
+            - generic [ref=e345]:
+              - generic [ref=e346]:
+                - 'heading "Milo: Voice-First AI Companion" [level=3] [ref=e347]'
+                - img [ref=e348]
+              - img "Milo interface banner" [ref=e351]
+              - paragraph [ref=e352]: Designed a behavior-driven voice AI companion focused on emotional presence. Modeled interaction logic, motion systems, and adaptive states through AI-assisted prototyping workflows.
+          - generic:
+            - region:
+              - button:
+                - img
+              - generic:
+                - generic: Case Study
+                - generic: "Milo: Voice-First AI Companion"
+              - complementary:
+                - paragraph: Index
+                - list:
+                  - listitem:
+                    - button:
+                      - generic: "01"
+                      - generic: Context
+                  - listitem:
+                    - button:
+                      - generic: "02"
+                      - generic: Foundation Research
+                  - listitem:
+                    - button:
+                      - generic: "03"
+                      - generic: Design Hypotheses
+                  - listitem:
+                    - button:
+                      - generic: "04"
+                      - generic: Interaction States
+                  - listitem:
+                    - button:
+                      - generic: "05"
+                      - generic: Ideation & Visual Direction
+                  - listitem:
+                    - button:
+                      - generic: "06"
+                      - generic: Prototyping & Execution
+                  - listitem:
+                    - button:
+                      - generic: "07"
+                      - generic: Outcome
+                  - listitem:
+                    - button:
+                      - generic: "08"
+                      - generic: What Comes Next
+              - main:
+                - generic:
+                  - generic: "01"
+                  - heading [level=4]: Context
+                - generic:
+                  - paragraph: Designed as an interface study for AI companionship rather than task execution. The goal is to explore how a system can feel continuously present—like a conversational partner—through pacing, subtle motion, and state-based feedback.
+      - article [ref=e353]:
+        - generic [ref=e354]:
+          - 'button "Synco: Calendar Native To-Do app Synco: Calendar Native To-Do app Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping." [ref=e356] [cursor=pointer]':
+            - generic [ref=e357]:
+              - generic [ref=e358]:
+                - 'heading "Synco: Calendar Native To-Do app" [level=3] [ref=e359]'
+                - img [ref=e360]
+              - 'img "Synco: Calendar Native To-Do app" [ref=e363]'
+              - paragraph [ref=e364]: Research-driven productivity system integrating direct calendar synchronization and pre-event reminder logic, validated through functional code prototyping.
+          - generic:
+            - region:
+              - button:
+                - img
+              - generic:
+                - generic: Case Study
+                - generic: "Synco: Calendar Native To-Do app"
+              - complementary:
+                - paragraph: Index
+                - list:
+                  - listitem:
+                    - button:
+                      - generic: "01"
+                      - generic: Context
+                  - listitem:
+                    - button:
+                      - generic: "02"
+                      - generic: Problem
+                  - listitem:
+                    - button:
+                      - generic: "03"
+                      - generic: Process
+                  - listitem:
+                    - button:
+                      - generic: "04"
+                      - generic: Solution
+                  - listitem:
+                    - button:
+                      - generic: "05"
+                      - generic: Prototype
+                  - listitem:
+                    - button:
+                      - generic: "06"
+                      - generic: Outcome
+              - main:
+                - generic:
+                  - generic: "01"
+                  - heading [level=4]: Context
+                - generic:
+                  - paragraph: Designed as a compact study in reducing task anxiety for busy students and early-career professionals with mixed levels of tech comfort. The work focused on how people capture tasks quickly, understand priority at a glance, and rely on their phone’s native tools (calendar + notifications) to stay on track across work and personal schedules.
+      - article [ref=e365]:
+        - generic [ref=e366]:
+          - 'button "LUMN: Sound reactive ASMR app LUMN: Sound reactive ASMR app Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments." [ref=e368] [cursor=pointer]':
+            - generic [ref=e369]:
+              - generic [ref=e370]:
+                - 'heading "LUMN: Sound reactive ASMR app" [level=3] [ref=e371]'
+                - img [ref=e372]
+              - 'img "LUMN: Sound reactive ASMR app" [ref=e375]'
+              - paragraph [ref=e376]: Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments.
+          - generic:
+            - region:
+              - button:
+                - img
+              - generic:
+                - generic: Case Study
+                - generic: "LUMN: Sound reactive ASMR app"
+              - complementary:
+                - paragraph: Index
+                - list:
+                  - listitem:
+                    - button:
+                      - generic: "01"
+                      - generic: Context
+                  - listitem:
+                    - button:
+                      - generic: "02"
+                      - generic: Problem
+                  - listitem:
+                    - button:
+                      - generic: "03"
+                      - generic: Process
+                  - listitem:
+                    - button:
+                      - generic: "04"
+                      - generic: Solution
+                  - listitem:
+                    - button:
+                      - generic: "05"
+                      - generic: Prototype
+                  - listitem:
+                    - button:
+                      - generic: "06"
+                      - generic: Outcome
+              - main:
+                - generic:
+                  - generic: "01"
+                  - heading [level=4]: Context
+                - generic:
+                  - paragraph: This project originated from a brand-led exploration focused on calm, emotional neutrality, and sensory balance. Before defining screens or interactions, visual language, imagery, and tone were established to ensure the interface would support relaxation rather than influence mood through visual stimulation. The app was conceived as an adaptive environment—one that responds to sound and user input without imposing visual noise—transforming listening into a focused, multisensory ritual.
+  - region "About Me" [ref=e377]:
+    - generic [ref=e378]:
+      - heading "About Me" [level=2] [ref=e380]
+      - generic [ref=e381]:
+        - img "Julio Coraspe portrait" [ref=e383]
+        - paragraph [ref=e385]: I was born in Venezuela currently live in the Midwest of the United States. I graduated as a lawyer, a background that shaped how I think about systems and structure. Today, I work at the intersection of technology and creative practice, designing and building digital products. I speak Spanish, English, and I plan to start learning French in 2026. I find meaning in contemplation and in what takes time.
+        - paragraph [ref=e387]: "Technology entered my life not as a destination, but as a question. Watching how it reshapes labor, compresses history, and redefines what expertise means, at a pace that leaves little room for reflection, I felt compelled to understand it from the inside. My first serious entry was through a software engineering program where I built a working foundation in frontend development: HTML, CSS, JavaScript, APIs, and version control through GitHub. That experience confirmed that technology was exactly the kind of world I wanted to operate in, and it was there that I encountered design as a discipline. Learning how UX/UI worked, what problems it solved, and what kind of thinking it required made the direction clear. It gave me a framework I had already been practicing intuitively: define a problem, establish a process, move through a cycle, arrive at something purposeful. That alignment is what made the transition feel less like a career choice and more like a clarification."
+        - paragraph [ref=e389]: "My creative profile is strongly visual, spanning photography (digital, mobile, and film, including film development and digitization), videography, professional editing, digital drawing, generative art through code, and motion design. These practices share a common thread: patience, process, and attention to detail. Exploring them has been less about collecting skills and more about developing craft, curiosity, and a lasting commitment to learning and making things with care."
+        - paragraph [ref=e391]: I have a strong fascination with artificial intelligence as a creative and procedural tool. I see it as an extension of thought and making, something that amplifies research, exploration, and execution rather than replacing them. I work with AI through prompt and context engineering, using it generatively for research, coding, and audiovisual experimentation, including local LLM setups, custom tooling such as code editor assistants and Figma plugins, and the design and implementation of MCP servers for extending AI capabilities within real workflows. This approach allows me to work with AI in a more intentional, productive, and secure way.
+  - generic [ref=e394]:
+    - generic [ref=e395]:
+      - heading "Contact" [level=2] [ref=e397]
+      - paragraph [ref=e399]: I’m open to UX/UI and Design Engineer roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e400]:
+      - paragraph [ref=e401]: Links
+      - generic [ref=e402]:
+        - link "Resume" [ref=e403] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e404] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e405] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e406] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - link "Creative Portfolio" [ref=e407] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/

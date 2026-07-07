@@ -1,0 +1,9 @@
+[     126ms] [ERROR] Warning: %s a style property during rerender (%s) when a conflicting property is set (%s) can lead to styling bugs. To avoid this, don't mix shorthand and non-shorthand properties for the same value; instead, replace the shorthand with separate values.%s Removing borderBottom border 
+    at button
+    at li
+    at ul
+    at div
+    at nav
+    at Navbar (http://localhost:5173/src/app/components/Navbar.tsx:147:26)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1781884275803:34:30) @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:520
