@@ -1,0 +1,113 @@
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      48ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      49ms] [ERROR] Error: <circle> attribute r: Expected length, "undefined". @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:6032
+[      67ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:139
+[     105ms] Error: controls.start() should only be called after a component has mounted. Consider calling within a useEffect hook.
+    at invariant (http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:51:13)
+    at Object.start (http://localhost:5173/node_modules/.vite/deps/motion_react.js?v=bc1929d9:4420:7)
+    at http://localhost:5173/src/app/components/sections/HeroSection.tsx?t=1779410663476:159:27
+[  601417ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:809:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  601431ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:809:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  601433ms] [ERROR] The above error occurred in the <JourneyPointer> component:
+
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:712:27)
+    at div
+    at section
+    at AiJourneyView (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:209:15)
+    at main
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:115:3)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1782052591443:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14079
+[  601435ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218696961:809:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19806:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19169:15)
+    at recoverFromConcurrentError (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18932:28)
+[  613097ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:843:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  613114ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:843:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  613115ms] [ERROR] The above error occurred in the <JourneyPointer> component:
+
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:712:27)
+    at div
+    at section
+    at AiJourneyView (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:209:15)
+    at main
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:115:3)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1782052591443:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14079
+[  613116ms] ReferenceError: coordRef is not defined
+    at JourneyPointer (http://localhost:5173/src/app/components/AiExperience.tsx?t=1783218708527:843:14)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19806:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19169:15)
+    at recoverFromConcurrentError (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18786:28)
+    at performConcurrentWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18734:30)

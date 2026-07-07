@@ -1,0 +1,10 @@
+[  143286ms] [WARNING] GSAP target null not found. https://greensock.com @ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js:9
+[  143289ms] [WARNING] Element not found: .is-interactive.wf-section @ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js:9
+[  143983ms] The play() request was interrupted by a call to pause(). https://goo.gl/LdLk22
+[  143983ms] The play() request was interrupted by a call to pause(). https://goo.gl/LdLk22
+[  154026ms] [WARNING] GSAP target null not found. https://greensock.com @ https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js:9
+[  571289ms] Uncaught TypeError: Cannot read properties of undefined (reading 'includes')
+    at window.onbeforeunload (https://cdn.zajno.com/dev/motion/script.v33.min.js:0:25385)
+[  571348ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:21608
+[  571568ms] [WARNING] Please ensure that the container has a non-static position, like 'relative', 'fixed', or 'absolute' to ensure scroll offset is calculated correctly. @ http://localhost:5173/node_modules/.vite/deps/chunk-JA7CUYV3.js?v=5398434d:139
+[  571599ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5173/favicon.ico:0

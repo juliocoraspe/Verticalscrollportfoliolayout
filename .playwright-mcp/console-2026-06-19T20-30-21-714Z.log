@@ -1,0 +1,84 @@
+[  777686ms] ReferenceError: PointerJourney is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901799139:438:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at updateFunctionComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14630:28)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  777687ms] ReferenceError: PointerJourney is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901799139:438:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at updateFunctionComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14630:28)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15972:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  777690ms] [ERROR] The above error occurred in the <AiExperience> component:
+
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901799139:137:3)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1781900340501:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14079
+[  777693ms] ReferenceError: PointerJourney is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901799139:438:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at updateFunctionComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14630:28)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15972:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19806:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19169:15)
+    at recoverFromConcurrentError (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18786:28)
+    at performSyncWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18932:28)
+[  783061ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901804729:0
+[  783062ms] [ERROR] [vite] Failed to reload /src/app/components/AiExperience.tsx. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://localhost:5173/@vite/client:881
+[  788206ms] ReferenceError: AiJourneyView is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901809552:152:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  788206ms] ReferenceError: AiJourneyView is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901809552:152:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at HTMLUnknownElement.callCallback2 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3680:22)
+    at Object.invokeGuardedCallbackDev (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3705:24)
+    at invokeGuardedCallback (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:3739:39)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19818:15)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+[  788208ms] [ERROR] The above error occurred in the <AiExperience> component:
+
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901809552:137:3)
+    at div
+    at App (http://localhost:5173/src/app/App.tsx?t=1781900340501:34:30)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14079
+[  788208ms] ReferenceError: AiJourneyView is not defined
+    at AiExperience (http://localhost:5173/src/app/components/AiExperience.tsx?t=1781901809552:152:32)
+    at renderWithHooks (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:11596:26)
+    at mountIndeterminateComponent (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:14974:21)
+    at beginWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:15962:22)
+    at beginWork$1 (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19806:22)
+    at performUnitOfWork (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19251:20)
+    at workLoopSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19190:13)
+    at renderRootSync (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:19169:15)
+    at recoverFromConcurrentError (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18786:28)
+    at performConcurrentWorkOnRoot (http://localhost:5173/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=5398434d:18734:30)

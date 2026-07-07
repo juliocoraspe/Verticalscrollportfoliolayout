@@ -1,0 +1,599 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e8]:
+          - link [ref=e9] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e10]:
+              - img [ref=e12]
+              - img [ref=e45]
+              - img [ref=e76]
+          - link "motion.ed" [ref=e124] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e126]: motion.ed
+        - generic [ref=e127]:
+          - generic [ref=e129]: The Basics of easing
+          - generic [ref=e131]: Offset and Delay
+          - generic [ref=e133]: Fade in Fade Out
+          - generic [ref=e135]: Transformation/Morph
+          - generic [ref=e137]: Masking
+          - generic [ref=e139]: Scale
+          - generic [ref=e141]: Parallax
+          - generic [ref=e143]: zoom
+      - link "menu close" [ref=e144] [cursor=pointer]:
+        - /url: "#"
+        - generic [ref=e146]:
+          - generic [ref=e147]: menu
+          - generic [ref=e148]: close
+  - generic [ref=e152]:
+    - generic [ref=e153]:
+      - img [ref=e156]
+      - generic [ref=e162]: "8"
+    - img [ref=e166]
+  - generic [ref=e179]:
+    - generic [ref=e181]:
+      - generic [ref=e191]: UI/UX animation emphasizes the details to which users should pay attention, helping them navigate the site.
+      - generic [ref=e193]: Good animation also makes the whole user experience more memorable and exciting.
+    - generic [ref=e195]:
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - generic [ref=e207]: It also
+          - generic [ref=e210]: your
+          - generic [ref=e213]: controls
+          - generic [ref=e216]: attention
+        - img [ref=e218]
+      - generic [ref=e220]:
+        - generic [ref=e224]:
+          - generic [ref=e227]: UI/UX animation captures the mood of a brand or product and conveys it to a target audience
+          - generic [ref=e228]:
+            - generic [ref=e235]: Here, animation gives a pumping vibe to a fitness website.
+            - generic [ref=e242]: It can also take game apps to the next level...
+            - generic [ref=e249]: An architect's studio can convey its brand with a suite of complementary animation techniques.
+        - generic [ref=e254]:
+          - generic [ref=e257]: Animation encourages interaction by enticing users to explore
+          - generic [ref=e258]:
+            - generic [ref=e265]: Animation lets us hint at how to use sliders and other navigation elements.
+            - generic [ref=e272]: Animation guides the eye from one key visual element to the next.
+            - generic [ref=e279]: Animation unpacks all the visual information that the user sees on the screen.
+    - generic [ref=e281]:
+      - heading "Interactive" [level=2] [ref=e283]
+      - generic [ref=e287]:
+        - generic [ref=e289]:
+          - generic [ref=e290]:
+            - text: There are two types of
+            - text: "interactive interfaces:"
+          - generic [ref=e291]:
+            - text: Real-time respond as users interact
+            - text: with them.
+          - generic [ref=e292]: Not real-time respond after the interaction has taken place.
+        - generic [ref=e295]: Real-time
+        - generic [ref=e297]:
+          - generic [ref=e299]: Not real-time
+          - img [ref=e301]
+    - generic [ref=e398]:
+      - generic [ref=e399]:
+        - generic [ref=e401]: Interface
+        - generic [ref=e403]: animation
+        - generic [ref=e405]: techniques
+      - generic [ref=e411]: Every interface animation draws from the same repertoire of techniques to make sites and apps more engaging. Many of these have their roots in the golden age of hand-drawn cartoons – but have been adapted for the digital era.
+    - generic [ref=e412]:
+      - generic [ref=e414]:
+        - generic [ref=e415]:
+          - generic [ref=e416]:
+            - img [ref=e420]
+            - generic [ref=e429]:
+              - generic [ref=e430]:
+                - generic [ref=e431]: "1"
+                - heading "THE BASICS OF EASING" [level=4] [ref=e433]
+              - generic [ref=e435]: "In nature, the speed of movement is never linear: objects gain speed as they begin to move, and slow as they come to a halt. Easing is the technique that allows us to convey this."
+            - generic [ref=e436]:
+              - generic [ref=e438]:
+                - generic [ref=e440]:
+                  - generic [ref=e441]:
+                    - generic [ref=e442]: Linear
+                    - img [ref=e444]
+                    - img [ref=e463]
+                  - generic [ref=e481]:
+                    - generic [ref=e482]: Ease
+                    - img [ref=e484]
+                  - generic [ref=e502]:
+                    - generic [ref=e503]: Ease-in
+                    - img [ref=e505]
+                  - generic [ref=e523]:
+                    - generic [ref=e524]: Ease-out
+                    - img [ref=e526]
+                  - generic [ref=e544]:
+                    - generic [ref=e545]: Cubic
+                    - img [ref=e547]
+                - generic:
+                  - button "Previous slide" [disabled] [ref=e565]:
+                    - img [ref=e566]
+                  - button "Next slide" [ref=e569] [cursor=pointer]:
+                    - img [ref=e570]
+              - generic [ref=e577]: With linear easing, the object travels at a constant speed, without acceleration or deceleration.
+          - generic [ref=e587]: Let's look at an example
+          - generic [ref=e606]:
+            - generic [ref=e609]: Missing easing & delay
+            - generic [ref=e616]: Correct easing
+            - generic [ref=e622]: Correct delay & animation
+          - generic [ref=e628]:
+            - heading "Implementation examples" [level=3] [ref=e630]
+            - generic [ref=e632]:
+              - link "Ease-in/ease-out can also be applied to camera movements and transformation of interface objects. View" [ref=e633] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/19273514-Fly-Dashboard-Design-for-NFT-Creators
+                - generic [ref=e637]:
+                  - generic [ref=e639]: Ease-in/ease-out can also be applied to camera movements and transformation of interface objects.
+                  - generic [ref=e640]:
+                    - generic [ref=e641]: View
+                    - img [ref=e643]
+              - link "Wonder at how smoothly our text content glides into view! View" [ref=e646] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/18163851-Keep-Website
+                - generic [ref=e650]:
+                  - generic [ref=e652]: Wonder at how smoothly our text content glides into view!
+                  - generic [ref=e653]:
+                    - generic [ref=e654]: View
+                    - img [ref=e656]
+              - link "Here we see how the guide controls the appearance of content and the animation of icons and visuals. View" [ref=e659] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/19220690-PalmPalm-Website-Animation
+                - generic [ref=e663]:
+                  - generic [ref=e665]: Here we see how the guide controls the appearance of content and the animation of icons and visuals.
+                  - generic [ref=e666]:
+                    - generic [ref=e667]: View
+                    - img [ref=e669]
+        - generic [ref=e675]:
+          - heading "An example from classic animation" [level=2] [ref=e677]
+          - generic [ref=e684]:
+            - generic [ref=e686]:
+              - generic [ref=e687]: Slow in and slow out
+              - generic [ref=e688]: Think about how a car starts and stops. At first, it moves slowly before gaining momentum and speeding up. When the car brakes, the process reverses.
+            - generic [ref=e694]: In animation, this effect is achieved by adding more frames at the beginning and end of an action sequence. Applying this principle gives your objects more life.
+      - generic [ref=e697]:
+        - generic [ref=e698]:
+          - generic [ref=e699]:
+            - img [ref=e703]
+            - generic [ref=e715]:
+              - generic [ref=e716]:
+                - generic [ref=e717]: "2"
+                - heading "OFFSET AND DELAY" [level=4] [ref=e719]:
+                  - text: OFFSET
+                  - text: AND DELAY
+              - generic [ref=e721]: A slight delay between two or more objects creates a feeling of softness and multi-layered movement. This technique also helps to direct the user's attention, indicating an objects's place within a hierarchy of elements.
+          - generic [ref=e722]:
+            - heading "Implementation examples" [level=3] [ref=e724]
+            - generic [ref=e726]:
+              - link "Here, content elements appear one by one, adding softness to the movement and creating the impression of viscosity. View" [ref=e727] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/15757198-Flower-Delivery-Mobile-App-Animation
+                - generic [ref=e731]:
+                  - generic [ref=e733]: Here, content elements appear one by one, adding softness to the movement and creating the impression of viscosity.
+                  - generic [ref=e734]:
+                    - generic [ref=e735]: View
+                    - img [ref=e737]
+              - link "Having the visual elements arrive one at a time gives each of them a chance to shine and makes the whole effect more engaging. View" [ref=e740] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/12515946-PlayStation-5-Promo-Website
+                - generic [ref=e744]:
+                  - generic [ref=e746]: Having the visual elements arrive one at a time gives each of them a chance to shine and makes the whole effect more engaging.
+                  - generic [ref=e747]:
+                    - generic [ref=e748]: View
+                    - img [ref=e750]
+              - link "Here, once again, one-by-one appearance of content elements draws the viewer in. View" [ref=e753] [cursor=pointer]:
+                - /url: https://dribbble.com/shots/19220690-PalmPalm-Website-Animation
+                - generic [ref=e757]:
+                  - generic [ref=e759]: Here, once again, one-by-one appearance of content elements draws the viewer in.
+                  - generic [ref=e760]:
+                    - generic [ref=e761]: View
+                    - img [ref=e763]
+        - generic [ref=e769]:
+          - heading "An example from classic animation" [level=2] [ref=e771]
+          - generic [ref=e779]:
+            - generic [ref=e780]:
+              - generic [ref=e781]: Follow through and overlapping action
+              - generic [ref=e782]:
+                - text: When objects come to a standstill after being in motion, different parts will stop at different speed. Similarly, not everything on an object will move at the same speed. This forms the essence of the fifth of Disney's principles of animation.
+                - text: If your character is running across the scene, their arms and legs may be moving at a different speed from their head. This is an overlapping action. Likewise, when they stop running, their hair will likely continue to move for a few frames before coming to rest – this is follow-through. These are essential principles to understand if you want your animation to flow realistically.
+            - link "View" [ref=e783] [cursor=pointer]:
+              - /url: https://www.youtube.com/watch?v=4OxphYV8W3E&ab_channel=AlanBeckerTutorials
+              - generic [ref=e784]: View
+              - img [ref=e786]
+      - generic [ref=e792]:
+        - generic [ref=e793]:
+          - img [ref=e797]
+          - generic [ref=e809]:
+            - generic [ref=e810]:
+              - generic [ref=e811]: "3"
+              - heading "FADE-IN FADE-OUT" [level=4] [ref=e813]
+            - generic [ref=e815]: Fade-in, fade-out is the appearance and disappearance of an object via a transition from transparency to opacity. The most widespread and versatile technique for object appearance and disappearance, it works best in conjunction with other techniques, such as animation of position, scale, or (occasionally) form. Where several objects appear on a single screen, it is best also to add some delay.
+        - generic [ref=e816]:
+          - heading "Implementation examples" [level=3] [ref=e818]
+          - generic [ref=e820]:
+            - link "Here we see text appearing under a mask before fading out and disappearing. View" [ref=e821] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19773761-Royal-Caribbean-s-Icon-of-the-Seas-Microsite
+              - generic [ref=e825]:
+                - generic [ref=e827]: Here we see text appearing under a mask before fading out and disappearing.
+                - generic [ref=e828]:
+                  - generic [ref=e829]: View
+                  - img [ref=e831]
+            - link "Here, a fade-in, fade-out animation of both opacity and position brings life to a text box. View" [ref=e834] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19944514-OpenColony-Website
+              - generic [ref=e838]:
+                - generic [ref=e840]: Here, a fade-in, fade-out animation of both opacity and position brings life to a text box.
+                - generic [ref=e841]:
+                  - generic [ref=e842]: View
+                  - img [ref=e844]
+            - link "To help distinguish adjacent elements we can animate one with both opacity and position, and the other solely with opacity. View" [ref=e847] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19946302-Siren-Website-Design-Merge-Development
+              - generic [ref=e851]:
+                - generic [ref=e853]: To help distinguish adjacent elements we can animate one with both opacity and position, and the other solely with opacity.
+                - generic [ref=e854]:
+                  - generic [ref=e855]: View
+                  - img [ref=e857]
+      - generic [ref=e862]:
+        - generic [ref=e863]:
+          - img [ref=e867]
+          - generic [ref=e873]:
+            - generic [ref=e874]:
+              - generic [ref=e875]: "4"
+              - heading "TRANSFORM & MORPH" [level=4] [ref=e877]
+            - generic [ref=e879]: A technique for transforming one object (say, a round icon) into another (for example, a large square picture). This creates continuity and holds the viewer's attention on a key object from one screen to another – particularly effective for storytelling.
+        - generic [ref=e880]:
+          - heading "Implementation examples" [level=3] [ref=e882]
+          - generic [ref=e884]:
+            - link "Here, the photo container smoothly changes its shape. View" [ref=e885] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19220148-Mobile-House-Website-Animation
+              - generic [ref=e889]:
+                - generic [ref=e891]: Here, the photo container smoothly changes its shape.
+                - generic [ref=e892]:
+                  - generic [ref=e893]: View
+                  - img [ref=e895]
+            - link "Here, two combinations of transformation and masking, as the small photo expands into the larger one. View" [ref=e898] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/16780619-3D-Animation-for-the-Online-Museum-of-Old-Games
+              - generic [ref=e902]:
+                - generic [ref=e904]: Here, two combinations of transformation and masking, as the small photo expands into the larger one.
+                - generic [ref=e905]:
+                  - generic [ref=e906]: View
+                  - img [ref=e908]
+            - link "Here, rectangles containing photos morph from irregular forms to regular forms. View" [ref=e911] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/17163476-The-Heritage-Museum-Landing-Page-Animation
+              - generic [ref=e915]:
+                - generic [ref=e917]: Here, rectangles containing photos morph from irregular forms to regular forms.
+                - generic [ref=e918]:
+                  - generic [ref=e919]: View
+                  - img [ref=e921]
+      - generic [ref=e926]:
+        - generic [ref=e927]:
+          - img [ref=e931]
+          - generic [ref=e941]:
+            - generic [ref=e942]:
+              - generic [ref=e943]: "5"
+              - heading "MASKING" [level=4] [ref=e945]
+            - generic [ref=e947]: Similar to morph, masking lets us use the morphic object as a mask for photography. The photo in the mask can scale, move, or spin – creating a feeling of softness and spaciousness in movement.
+        - generic [ref=e948]:
+          - heading "Implementation examples" [level=3] [ref=e950]
+          - generic [ref=e952]:
+            - link "Here, masking causes the photo to slightly shift within its container. The technique works well in tandem with transformation. View" [ref=e953] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/16788118-Design-Conference-Promo-Animation
+              - generic [ref=e957]:
+                - generic [ref=e959]: Here, masking causes the photo to slightly shift within its container. The technique works well in tandem with transformation.
+                - generic [ref=e960]:
+                  - generic [ref=e961]: View
+                  - img [ref=e963]
+            - link "Here, once again, a photo gently shifts within its container. View" [ref=e966] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/17535054-Homepage-Animation-for-Melbourne-Wooden-Showroom
+              - generic [ref=e970]:
+                - generic [ref=e972]: Here, once again, a photo gently shifts within its container.
+                - generic [ref=e973]:
+                  - generic [ref=e974]: View
+                  - img [ref=e976]
+            - link "Here the photos subtle scroll within their container. View" [ref=e979] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/18076648-Website-animation
+              - generic [ref=e983]:
+                - generic [ref=e985]: Here the photos subtle scroll within their container.
+                - generic [ref=e986]:
+                  - generic [ref=e987]: View
+                  - img [ref=e989]
+      - generic [ref=e994]:
+        - generic [ref=e1001]:
+          - generic [ref=e1002]:
+            - generic [ref=e1003]: "6"
+            - heading "DIMENSION" [level=4] [ref=e1005]
+          - generic [ref=e1007]: Of the various ways we can convey volume, the most popular is Floating Dimensionality. This technique makes interaction with objects intuitive and narrative, enriching the experience of using the site or application.
+        - generic [ref=e1008]:
+          - heading "Implementation examples" [level=3] [ref=e1010]
+          - generic [ref=e1012]:
+            - link "Here, an animation of a ship sailing away into the distance creates an illusion of space. Reinforcing this, the text follows in the ship's wake. View" [ref=e1013] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19773761-Royal-Caribbean-s-Icon-of-the-Seas-Microsite
+              - generic [ref=e1017]:
+                - generic [ref=e1019]: Here, an animation of a ship sailing away into the distance creates an illusion of space. Reinforcing this, the text follows in the ship's wake.
+                - generic [ref=e1020]:
+                  - generic [ref=e1021]: View
+                  - img [ref=e1023]
+            - link "Here, the ability to leaf through a box of records is used to create a feeling of depth. View" [ref=e1026] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/15276396--Crappy-Explanation-80s-Vinyl-Records-Store
+              - generic [ref=e1030]:
+                - generic [ref=e1032]: Here, the ability to leaf through a box of records is used to create a feeling of depth.
+                - generic [ref=e1033]:
+                  - generic [ref=e1034]: View
+                  - img [ref=e1036]
+            - link "Here it's the ability to scroll left and right through your cards that creates a feeling of depth. View" [ref=e1039] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/4850185-Social-Network-Feed-App-Experiment-Animation
+              - generic [ref=e1043]:
+                - generic [ref=e1045]: Here it's the ability to scroll left and right through your cards that creates a feeling of depth.
+                - generic [ref=e1046]:
+                  - generic [ref=e1047]: View
+                  - img [ref=e1049]
+      - generic [ref=e1054]:
+        - generic [ref=e1055]:
+          - img [ref=e1059]
+          - generic [ref=e1080]:
+            - generic [ref=e1081]:
+              - generic [ref=e1082]: "7"
+              - heading "PARALLAX" [level=4] [ref=e1084]
+            - generic [ref=e1086]: "Arranged in layers, several objects pass simultaneously through x and y axes: the farther the object, the less it passes. The result is a feeling of space."
+        - generic [ref=e1087]:
+          - heading "Implementation examples" [level=3] [ref=e1089]
+          - generic [ref=e1091]:
+            - link "As the matte translucent object with the chart and other information moves upwards, the cards underneath it subtly shift position. This 'parallax effect' supports the main 3D visualization. View" [ref=e1092] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19663094-Milkinside-wallet-iOS-app
+              - generic [ref=e1096]:
+                - generic [ref=e1098]: As the matte translucent object with the chart and other information moves upwards, the cards underneath it subtly shift position. This 'parallax effect' supports the main 3D visualization.
+                - generic [ref=e1099]:
+                  - generic [ref=e1100]: View
+                  - img [ref=e1102]
+            - link "A classic use of parallax sees an in-focus foreground move in relation to the out-of-focus scenery beyond – just like the view the runner sees. View" [ref=e1105] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/13961411-Breathtaking
+              - generic [ref=e1109]:
+                - generic [ref=e1111]: A classic use of parallax sees an in-focus foreground move in relation to the out-of-focus scenery beyond – just like the view the runner sees.
+                - generic [ref=e1112]:
+                  - generic [ref=e1113]: View
+                  - img [ref=e1115]
+            - link "In interactive parallax, movements of the mouse trigger slight displacement of objects on screen – a stylish finishing touch for a minimalistic design. View" [ref=e1118] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19956284-The-Ways-We-Work
+              - generic [ref=e1122]:
+                - generic [ref=e1124]: In interactive parallax, movements of the mouse trigger slight displacement of objects on screen – a stylish finishing touch for a minimalistic design.
+                - generic [ref=e1125]:
+                  - generic [ref=e1126]: View
+                  - img [ref=e1128]
+      - generic [ref=e1133]:
+        - generic [ref=e1134]:
+          - img [ref=e1138]
+          - generic [ref=e1161]:
+            - generic [ref=e1162]:
+              - generic [ref=e1163]: "8"
+              - heading "ZOOM" [level=4] [ref=e1165]
+            - generic [ref=e1167]: This technique brings continuity to narrative and lets us achieve a smooth transition between interface, objects, and destinations. Zoom also adds depth and informs users about additional content that is out of sight.
+        - generic [ref=e1168]:
+          - heading "Implementation examples" [level=3] [ref=e1170]
+          - generic [ref=e1172]:
+            - link "Zoom lets us communicate depth, lends continuity to narrative, and helps immerse the viewer in the site. View" [ref=e1173] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/14412832-Landing-page-concept-with-zoom-in-transition
+              - generic [ref=e1177]:
+                - generic [ref=e1179]: Zoom lets us communicate depth, lends continuity to narrative, and helps immerse the viewer in the site.
+                - generic [ref=e1180]:
+                  - generic [ref=e1181]: View
+                  - img [ref=e1183]
+            - link "Here we get the feeling not of moving page to page, but of a smooth, continuous experience. View" [ref=e1186] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/19787226-Animation-for-the-Music-Podcasts-Website
+              - generic [ref=e1190]:
+                - generic [ref=e1192]: Here we get the feeling not of moving page to page, but of a smooth, continuous experience.
+                - generic [ref=e1193]:
+                  - generic [ref=e1194]: View
+                  - img [ref=e1196]
+            - link "Here, we apply a camera span animation to show off a product from a variety of angles. View" [ref=e1199] [cursor=pointer]:
+              - /url: https://dribbble.com/shots/15641934-Bike-Shop-Interaction
+              - generic [ref=e1203]:
+                - generic [ref=e1205]: Here, we apply a camera span animation to show off a product from a variety of angles.
+                - generic [ref=e1206]:
+                  - generic [ref=e1207]: View
+                  - img [ref=e1209]
+    - generic [ref=e1218]:
+      - generic [ref=e1220]:
+        - generic [ref=e1221]:
+          - generic [ref=e1222]: Useful
+          - img [ref=e1225]
+        - generic [ref=e1227]:
+          - generic [ref=e1228]: courses
+          - img [ref=e1231]
+        - generic [ref=e1233]:
+          - generic [ref=e1234]: "&Sources"
+          - img [ref=e1237]
+      - generic [ref=e1240]: You are always a student, never a master
+      - generic [ref=e1242]:
+        - generic [ref=e1243]:
+          - generic [ref=e1244]:
+            - list:
+              - listitem [ref=e1245]
+              - listitem [ref=e1246]
+              - listitem [ref=e1247]
+              - listitem [ref=e1248]
+              - listitem [ref=e1249]
+              - listitem [ref=e1250]
+              - listitem [ref=e1251]
+              - listitem [ref=e1252]
+              - listitem [ref=e1253]
+              - listitem [ref=e1254]
+          - generic [ref=e1255]:
+            - list:
+              - listitem [ref=e1256]
+              - listitem [ref=e1257]
+              - listitem [ref=e1258]
+              - listitem [ref=e1259]
+        - generic [ref=e1260]:
+          - generic [ref=e1261]:
+            - generic [ref=e1262]:
+              - heading "courses" [level=5] [ref=e1264]
+              - generic [ref=e1266]: "10"
+            - generic [ref=e1267]:
+              - heading "Sources" [level=5] [ref=e1269]
+              - generic [ref=e1271]: "4"
+          - generic [ref=e1272]:
+            - list [ref=e1274]:
+              - listitem [ref=e1275]:
+                - link "UX in Motion. Courses focused on UI animation in After Effect. View" [ref=e1276] [cursor=pointer]:
+                  - /url: https://www.uxinmotion.com/
+                  - generic [ref=e1280]: UX in Motion. Courses focused on UI animation in After Effect.
+                  - generic [ref=e1281]:
+                    - generic [ref=e1282]: View
+                    - img [ref=e1284]
+              - listitem [ref=e1287]:
+                - link "UI / UX animation. The course from the Ukrainian online instit View" [ref=e1288] [cursor=pointer]:
+                  - /url: https://prjctr.com/course/ui-ux-animation-online
+                  - generic [ref=e1292]: UI / UX animation. The course from the Ukrainian online instit
+                  - generic [ref=e1293]:
+                    - generic [ref=e1294]: View
+                    - img [ref=e1296]
+              - listitem [ref=e1299]:
+                - link "UI Animation. A Complete Guide For Beginners, a short guide to View" [ref=e1300] [cursor=pointer]:
+                  - /url: https://careerfoundry.com/en/blog/ui-design/ui-animation-beginners-guide/
+                  - generic [ref=e1304]: UI Animation. A Complete Guide For Beginners, a short guide to
+                  - generic [ref=e1305]:
+                    - generic [ref=e1306]: View
+                    - img [ref=e1308]
+              - listitem [ref=e1311]:
+                - link "Motion design school. Courses dedicated to different types of View" [ref=e1312] [cursor=pointer]:
+                  - /url: https://motiondesign.school/
+                  - generic [ref=e1316]: Motion design school. Courses dedicated to different types of
+                  - generic [ref=e1317]:
+                    - generic [ref=e1318]: View
+                    - img [ref=e1320]
+              - listitem [ref=e1323]:
+                - link "UI Animations and Interactions with After Effects. An inexpens View" [ref=e1324] [cursor=pointer]:
+                  - /url: https://www.udemy.com/course/ui-animations-and-interactions-with-after-effects/
+                  - generic [ref=e1328]: UI Animations and Interactions with After Effects. An inexpens
+                  - generic [ref=e1329]:
+                    - generic [ref=e1330]: View
+                    - img [ref=e1332]
+              - listitem [ref=e1335]:
+                - link "Complete guide to Prototyping & UI Animations in Principle. Pr View" [ref=e1336] [cursor=pointer]:
+                  - /url: https://www.awwwards.com/academy/course/complete-guide-to-prototyping-ui-animations-in-principle
+                  - generic [ref=e1340]: Complete guide to Prototyping & UI Animations in Principle. Pr
+                  - generic [ref=e1341]:
+                    - generic [ref=e1342]: View
+                    - img [ref=e1344]
+              - listitem [ref=e1347]:
+                - link "Millionframes. Courses on both creating interfaces and prototy View" [ref=e1348] [cursor=pointer]:
+                  - /url: https://www.millionframes.com/ui-animation-masterclass
+                  - generic [ref=e1352]: Millionframes. Courses on both creating interfaces and prototy
+                  - generic [ref=e1353]:
+                    - generic [ref=e1354]: View
+                    - img [ref=e1356]
+              - listitem [ref=e1359]:
+                - link "Domestika. This platform has a large number of courses on 2D a View" [ref=e1360] [cursor=pointer]:
+                  - /url: https://www.domestika.org/
+                  - generic [ref=e1364]: Domestika. This platform has a large number of courses on 2D a
+                  - generic [ref=e1365]:
+                    - generic [ref=e1366]: View
+                    - img [ref=e1368]
+              - listitem [ref=e1371]:
+                - link "Ben Marriot. Course on animation in After Effects from the pop View" [ref=e1372] [cursor=pointer]:
+                  - /url: https://www.benmarriott.com/
+                  - generic [ref=e1376]: Ben Marriot. Course on animation in After Effects from the pop
+                  - generic [ref=e1377]:
+                    - generic [ref=e1378]: View
+                    - img [ref=e1380]
+              - listitem [ref=e1383]:
+                - link "School of Motion. A platform with a large number of courses on View" [ref=e1384] [cursor=pointer]:
+                  - /url: https://www.schoolofmotion.com/
+                  - generic [ref=e1388]: School of Motion. A platform with a large number of courses on
+                  - generic [ref=e1389]:
+                    - generic [ref=e1390]: View
+                    - img [ref=e1392]
+            - list [ref=e1396]:
+              - listitem [ref=e1397]:
+                - 'link "Animation in UI: How to Create Motion Design. Guide to motion View" [ref=e1398] [cursor=pointer]':
+                  - /url: https://aelaschool.com/en/interactiondesign/ui-animation-create-motion-design/
+                  - generic [ref=e1402]: "Animation in UI: How to Create Motion Design. Guide to motion"
+                  - generic [ref=e1403]:
+                    - generic [ref=e1404]: View
+                    - img [ref=e1406]
+              - listitem [ref=e1409]:
+                - link "How Motion Design Applies to UI Design. A short guide on how m View" [ref=e1410] [cursor=pointer]:
+                  - /url: https://infinum.com/blog/motion-design-ui-design/
+                  - generic [ref=e1414]: How Motion Design Applies to UI Design. A short guide on how m
+                  - generic [ref=e1415]:
+                    - generic [ref=e1416]: View
+                    - img [ref=e1418]
+              - listitem [ref=e1421]:
+                - link "Understand Disney's 12 principles of animation. Classic animat View" [ref=e1422] [cursor=pointer]:
+                  - /url: https://www.creativebloq.com/advice/understand-the-12-principles-of-animation
+                  - generic [ref=e1426]: Understand Disney's 12 principles of animation. Classic animat
+                  - generic [ref=e1427]:
+                    - generic [ref=e1428]: View
+                    - img [ref=e1430]
+              - listitem [ref=e1433]:
+                - 'link "Creating Usability with Motion: The UX in Motion Manifesto. Ma View" [ref=e1434] [cursor=pointer]':
+                  - /url: https://medium.com/ux-in-motion/creating-usability-with-motion-the-ux-in-motion-manifesto-a87a4584ddc
+                  - generic [ref=e1438]: "Creating Usability with Motion: The UX in Motion Manifesto. Ma"
+                  - generic [ref=e1439]:
+                    - generic [ref=e1440]: View
+                    - img [ref=e1442]
+    - generic [ref=e1451]:
+      - generic [ref=e1452]:
+        - heading "Motion design principles" [level=5] [ref=e1454]:
+          - text: Motion
+          - text: design
+          - text: principles
+        - generic [ref=e1455]:
+          - generic [ref=e1457]:
+            - generic [ref=e1458]: N.
+            - generic [ref=e1459]:
+              - link "Introduction" [ref=e1460] [cursor=pointer]:
+                - /url: "#hero"
+                - generic [ref=e1461]: Introduction
+              - link "Easing" [ref=e1462] [cursor=pointer]:
+                - /url: "#easing"
+                - generic [ref=e1463]: Easing
+              - link "Delay" [ref=e1464] [cursor=pointer]:
+                - /url: "#delay"
+                - generic [ref=e1465]: Delay
+              - link "Fade in Fade Out." [ref=e1466] [cursor=pointer]:
+                - /url: "#fade"
+                - generic [ref=e1467]: Fade in Fade Out.
+              - link "Transform & Morph" [ref=e1468] [cursor=pointer]:
+                - /url: "#morph"
+                - generic [ref=e1469]: Transform & Morph
+              - link "Masking" [ref=e1470] [cursor=pointer]:
+                - /url: "#masking"
+                - generic [ref=e1471]: Masking
+              - link "Dimension" [ref=e1472] [cursor=pointer]:
+                - /url: "#dimension"
+                - generic [ref=e1473]: Dimension
+              - link "Parallax" [ref=e1474] [cursor=pointer]:
+                - /url: "#parallax"
+                - generic [ref=e1475]: Parallax
+              - link "Zoom" [ref=e1476] [cursor=pointer]:
+                - /url: "#zoom"
+                - generic [ref=e1477]: Zoom
+              - link "Resources & Courses" [ref=e1478] [cursor=pointer]:
+                - /url: "#resources"
+                - generic [ref=e1479]: Resources & Courses
+          - generic [ref=e1481]:
+            - generic [ref=e1482]: S.
+            - generic [ref=e1483]:
+              - link "Dribbble" [ref=e1484] [cursor=pointer]:
+                - /url: https://dribbble.com/zajno
+                - generic [ref=e1485]: Dribbble
+              - link "Instagram" [ref=e1486] [cursor=pointer]:
+                - /url: https://www.instagram.com/zajno/?hl=en
+                - generic [ref=e1487]: Instagram
+              - link "Twitter" [ref=e1488] [cursor=pointer]:
+                - /url: https://twitter.com/zajnocrew?lang=en
+                - generic [ref=e1489]: Twitter
+              - link "linkedin" [ref=e1490] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/zajno
+                - generic [ref=e1491]: linkedin
+              - link "Clutch" [ref=e1492] [cursor=pointer]:
+                - /url: https://clutch.co/profile/zajno
+                - generic [ref=e1493]: Clutch
+      - generic [ref=e1495]:
+        - generic [ref=e1496]:
+          - text: Made by
+          - link "Zajno" [ref=e1497] [cursor=pointer]:
+            - /url: https://zajno.com/
+        - generic [ref=e1498]: © 2024. All rights reserved.
+  - generic [ref=e1500]:
+    - generic:
+      - generic:
+        - generic:
+          - img
+        - generic:
+          - img

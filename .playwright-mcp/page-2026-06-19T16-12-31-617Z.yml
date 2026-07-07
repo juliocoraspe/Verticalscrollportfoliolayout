@@ -1,0 +1,714 @@
+- generic [ref=e3]:
+  - navigation "Site navigation" [ref=e4]:
+    - generic [ref=e5]:
+      - list "On this page" [ref=e6]:
+        - listitem [ref=e7]:
+          - link "MY DESIGN CYCLE" [ref=e8] [cursor=pointer]:
+            - /url: "#design-cycle"
+            - generic [ref=e9]:
+              - generic [ref=e10]: "01"
+              - generic [ref=e11]: –
+              - img [ref=e12]
+              - generic [ref=e15]: MY DESIGN CYCLE
+        - listitem [ref=e16]:
+          - link "CASE STUDIES" [ref=e17] [cursor=pointer]:
+            - /url: "#case-studies"
+            - generic [ref=e18]:
+              - generic [ref=e19]: "02"
+              - generic [ref=e20]: –
+              - img [ref=e21]
+              - generic [ref=e23]: CASE STUDIES
+        - listitem [ref=e24]:
+          - link "ABOUT / CONTACT" [ref=e25] [cursor=pointer]:
+            - /url: "#about-me"
+            - generic [ref=e26]:
+              - generic [ref=e27]: "03"
+              - generic [ref=e28]: –
+              - img [ref=e29]
+              - generic [ref=e32]: ABOUT / CONTACT
+      - list "Sections" [ref=e33]:
+        - listitem [ref=e34]:
+          - button "ACCESSIBILITY" [ref=e35] [cursor=pointer]:
+            - generic [ref=e36]:
+              - img [ref=e37]
+              - generic [ref=e40]: ACCESSIBILITY
+        - listitem [ref=e41]:
+          - button "AI PRACTICE" [ref=e42] [cursor=pointer]:
+            - generic [ref=e43]:
+              - img [ref=e44]
+              - generic [ref=e47]: AI PRACTICE
+  - main [ref=e1330]:
+    - region "Accessibility workflow" [ref=e1331]:
+      - generic [ref=e1333]:
+        - heading "Auditing accessibility, end to end." [level=2] [ref=e1335]
+        - generic [ref=e1336]:
+          - generic [ref=e1337]:
+            - paragraph [ref=e1338]: Accessibility Systems
+            - paragraph [ref=e1339]: I approach accessibility auditing at two points in the product lifecycle. A15 runs locally in Figma to review design files before development. My web audit workflow combines several tools to scan and remediate accessibility issues in live sites. Together, they form one continuous practice guided by the same WCAG standards.
+          - generic [ref=e1341]:
+            - generic [ref=e1342]:
+              - paragraph [ref=e1343]: Standard
+              - paragraph [ref=e1344]:
+                - text: WCAG 2.2
+                - text: Level AA
+            - generic [ref=e1345]:
+              - paragraph [ref=e1346]: Modes
+              - paragraph [ref=e1347]: "02"
+            - generic [ref=e1348]:
+              - paragraph [ref=e1349]: Year
+              - paragraph [ref=e1350]: "2026"
+      - region "A15 Figma accessibility plugin workflow" [ref=e1351]:
+        - generic [ref=e1354]:
+          - generic [ref=e1355]:
+            - paragraph [ref=e1356]: First method · design-time accessibility
+            - heading "First, the design is checked inside Figma." [level=3] [ref=e1357]
+          - paragraph [ref=e1359]: A15 is a local Figma plugin I built to check accessibility before handoff. It uses a local AI vision model to read the selected frame, generate alt text, review visual structure, and surface risks like contrast, readability, and tab navigation. Private design work stays on my machine, avoiding unnecessary API cost or disclosure.
+        - generic [ref=e1361]:
+          - generic:
+            - generic:
+              - generic: A15 · Figma
+              - generic: 01 — Design File
+              - generic: 07 / Acts
+            - generic:
+              - generic: DESIGN FILE
+              - generic: LOCAL · PRIVATE · ITERATIVE
+              - generic: HANDOFF
+          - generic [ref=e1362]:
+            - generic [ref=e1363]:
+              - generic [ref=e1364]:
+                - generic [ref=e1366]:
+                  - generic [ref=e1367]:
+                    - generic [ref=e1368]:
+                      - paragraph [ref=e1369]: Local audit for the design
+                      - heading "A15 Plugin" [level=4] [ref=e1370]
+                    - generic [ref=e1371]: A15
+                  - generic [ref=e1372]:
+                    - generic [ref=e1373]:
+                      - generic [ref=e1374]: Mode
+                      - generic [ref=e1375]: Design-time
+                    - generic [ref=e1376]:
+                      - generic [ref=e1377]: Scope
+                      - generic [ref=e1378]: Selected design frame
+                    - generic [ref=e1379]:
+                      - generic [ref=e1380]: Standard
+                      - generic [ref=e1381]: WCAG 2.2 AA
+                  - generic [ref=e1382]: Scan this design
+                - generic [ref=e1386]: design scan bridge
+                - paragraph [ref=e1390]: Design canvas · Checkout mobile
+              - paragraph [ref=e1402]: The check starts with the design, before engineering inherits the product interface.
+            - generic [ref=e1403]:
+              - generic [ref=e1404]:
+                - generic [ref=e1405]:
+                  - generic [ref=e1406]:
+                    - generic [ref=e1407]:
+                      - paragraph [ref=e1408]: Figma layer tree
+                      - heading "Design Scan" [level=4] [ref=e1409]
+                    - generic [ref=e1410]: A15
+                  - generic [ref=e1411]:
+                    - generic [ref=e1413]: Design frame / Checkout mobile
+                    - generic [ref=e1416]: Design header / Title
+                    - generic [ref=e1419]: Design card / Total
+                    - generic [ref=e1422]: Design CTA / Pay now
+                    - generic [ref=e1425]: Design icon / Lock
+                    - generic [ref=e1428]: Design input / Email
+                - generic [ref=e1430]:
+                  - paragraph [ref=e1431]: Accessibility structure from the design
+                  - generic [ref=e1435]: main
+                  - generic [ref=e1439]: heading · level 1
+                  - generic [ref=e1443]: form
+                  - generic [ref=e1447]: design button · checkout
+                  - generic [ref=e1451]: image · decorative
+              - paragraph [ref=e1452]: The design layers become the structure assistive technology will eventually need.
+            - generic [ref=e1453]:
+              - generic [ref=e1454]:
+                - generic [ref=e1455]:
+                  - paragraph [ref=e1457]: Design canvas · scanned frame
+                  - generic [ref=e1462]:
+                    - generic [ref=e1471]: 1.4.3
+                    - generic [ref=e1473]: 2.4.7
+                    - generic [ref=e1475]: 4.1.2
+                - generic [ref=e1476]:
+                  - generic [ref=e1477]:
+                    - generic [ref=e1478]:
+                      - paragraph [ref=e1479]: Grouped by standard
+                      - heading "Design Findings" [level=4] [ref=e1480]
+                    - generic [ref=e1481]: A15
+                  - generic [ref=e1482]:
+                    - generic [ref=e1483]:
+                      - paragraph [ref=e1484]: 1.4.3
+                      - paragraph [ref=e1485]: Design text contrast below AA
+                    - generic [ref=e1486]:
+                      - paragraph [ref=e1487]: 2.4.7
+                      - paragraph [ref=e1488]: Design focus state missing
+                    - generic [ref=e1489]:
+                      - paragraph [ref=e1490]: 4.1.2
+                      - paragraph [ref=e1491]: Design control name is ambiguous
+              - paragraph [ref=e1492]: The plugin marks the design without leaving the canvas.
+            - generic [ref=e1493]:
+              - generic [ref=e1494]:
+                - generic [ref=e1495]:
+                  - generic [ref=e1496]:
+                    - generic [ref=e1497]:
+                      - paragraph [ref=e1498]: Human-readable repair
+                      - heading "Design Repair" [level=4] [ref=e1499]
+                    - generic [ref=e1500]: A15
+                  - generic [ref=e1501]:
+                    - paragraph [ref=e1502]: WCAG 1.4.3 · Contrast
+                    - heading "The design button label does not survive the background." [level=4] [ref=e1503]
+                    - generic [ref=e1504]:
+                      - generic [ref=e1505]:
+                        - paragraph [ref=e1506]: Current
+                        - paragraph [ref=e1507]: "2.7 : 1"
+                      - generic [ref=e1508]:
+                        - paragraph [ref=e1509]: Target
+                        - paragraph [ref=e1510]: "4.5 : 1"
+                    - generic [ref=e1511]: Apply accessible token
+                - generic [ref=e1515]: Confirm order
+              - paragraph [ref=e1517]: Each finding is attached to a standard and a practical next move.
+            - generic [ref=e1518]:
+              - generic [ref=e1519]:
+                - paragraph [ref=e1522]: Design canvas · image frame
+                - generic [ref=e1531]:
+                  - text: local model
+                  - text: no cloud roundtrip
+                - generic [ref=e1532]:
+                  - generic [ref=e1533]:
+                    - generic [ref=e1534]:
+                      - paragraph [ref=e1535]: Assistive draft
+                      - heading "Suggested Design Alt Text" [level=4] [ref=e1536]
+                    - generic [ref=e1537]: A15
+                  - paragraph [ref=e1539]: "|"
+                  - paragraph [ref=e1540]: The output is a draft for the design review, not an automatic replacement for judgment.
+              - paragraph [ref=e1541]: AI is used as a local assistant, with the designer still responsible for the decision.
+            - generic [ref=e1542]:
+              - generic [ref=e1543]:
+                - generic [ref=e1544]:
+                  - paragraph [ref=e1546]: Design canvas · focus path
+                  - generic [ref=e1551]:
+                    - img
+                    - generic [ref=e1561]: "1"
+                    - generic [ref=e1563]: "2"
+                    - generic [ref=e1565]: "3"
+                    - generic [ref=e1567]: "4"
+                    - generic [ref=e1571]: skip
+                - generic [ref=e1574]:
+                  - text: local model
+                  - text: no cloud roundtrip
+                - generic [ref=e1575]:
+                  - generic [ref=e1576]:
+                    - generic [ref=e1577]:
+                      - paragraph [ref=e1578]: Local model · keyboard path
+                      - heading "Tab Order Plan" [level=4] [ref=e1579]
+                    - generic [ref=e1580]: A15
+                  - generic [ref=e1581]:
+                    - generic [ref=e1582]:
+                      - generic [ref=e1583]: "1"
+                      - generic [ref=e1584]: Email field
+                    - generic [ref=e1585]:
+                      - generic [ref=e1586]: "2"
+                      - generic [ref=e1587]: Card field
+                    - generic [ref=e1588]:
+                      - generic [ref=e1589]: "3"
+                      - generic [ref=e1590]: Secure note
+                    - generic [ref=e1591]:
+                      - generic [ref=e1592]: "4"
+                      - generic [ref=e1593]: Pay now
+                  - generic [ref=e1594]:
+                    - paragraph [ref=e1595]: Decorative icon skipped
+                    - paragraph [ref=e1596]: Logical order matches the visual order — no override needed.
+              - paragraph [ref=e1597]: The same local model proposes a keyboard path, the designer confirms the intent.
+            - generic [ref=e1599]:
+              - generic [ref=e1600]:
+                - paragraph [ref=e1601]: Design file covered
+                - heading "The design audit lives where the design happens." [level=3] [ref=e1602]
+                - paragraph [ref=e1603]: Before launch, the file leaves with accessibility decisions documented, not hidden inside scattered comments.
+              - generic [ref=e1604]:
+                - generic [ref=e1605]:
+                  - paragraph [ref=e1606]: A15 · Audit Session
+                  - heading "Design frame / Checkout mobile" [level=4] [ref=e1607]
+                - generic [ref=e1608]:
+                  - generic [ref=e1609]:
+                    - paragraph [ref=e1610]: Total
+                    - paragraph [ref=e1611]: "0"
+                  - generic [ref=e1612]:
+                    - paragraph [ref=e1613]: Resolved
+                    - paragraph [ref=e1614]: "0"
+                  - generic [ref=e1615]:
+                    - paragraph [ref=e1616]: Reviewed
+                    - paragraph [ref=e1617]: "0"
+                - generic [ref=e1619]:
+                  - generic [ref=e1620]: Resolution Progress
+                  - generic [ref=e1621]: Ready for handoff
+                - generic [ref=e1623]:
+                  - generic [ref=e1624]:
+                    - paragraph [ref=e1625]: 1.4.3
+                    - paragraph [ref=e1626]: Button contrast adjusted
+                  - generic [ref=e1627]:
+                    - paragraph [ref=e1628]: 2.4.7
+                    - paragraph [ref=e1629]: Focus state documented
+                  - generic [ref=e1630]:
+                    - paragraph [ref=e1631]: 4.1.2
+                    - paragraph [ref=e1632]: Control name clarified
+                  - generic [ref=e1633]:
+                    - paragraph [ref=e1634]: 1.1.1
+                    - paragraph [ref=e1635]: Alt text drafted locally
+          - generic:
+            - generic:
+              - generic:
+                - generic: DWG · 02
+                - generic: A15-FIGMA-AUDIT
+              - generic:
+                - generic: MODE
+                - generic: PRE-LAUNCH
+              - generic:
+                - generic: PROGRESS
+                - generic: 000%
+      - generic [ref=e1637]:
+        - generic [ref=e1638]:
+          - heading "Standards I work toward." [level=2] [ref=e1640]
+          - generic [ref=e1641]:
+            - paragraph [ref=e1642]: Shared center
+            - paragraph [ref=e1643]: "The two workflows serve different roles, but they are part of the same practice: accessibility as a design responsibility and as an implementation responsibility. These are the standards both workflows answer to."
+        - generic [ref=e1645]:
+          - generic [ref=e1646]: Idx
+          - generic [ref=e1647]: Criterion
+          - generic [ref=e1648]: Implementation
+          - generic [ref=e1649]: Detail
+        - generic [ref=e1650]:
+          - generic [ref=e1652]:
+            - generic [ref=e1653]: "01"
+            - generic [ref=e1654]:
+              - paragraph [ref=e1655]: Keyboard Navigation
+              - paragraph [ref=e1656]: 2.1.1 · 2.4.7
+            - paragraph [ref=e1657]: All interactive elements—buttons, links, toggles, and embedded prototypes—are fully reachable and operable by keyboard alone. Tab order follows the natural reading sequence. A skip-to-main-content link is available at the top of the page for keyboard and assistive technology users.
+            - paragraph [ref=e1658]: Tab · Shift+Tab · Enter · Space
+          - generic [ref=e1660]:
+            - generic [ref=e1661]: "02"
+            - generic [ref=e1662]:
+              - paragraph [ref=e1663]: Motion
+              - paragraph [ref=e1664]: 2.3.3
+            - paragraph [ref=e1665]: All animations and transitions respect the prefers-reduced-motion system setting. When reduced motion is enabled, scroll animations, slide transitions, and decorative motion are fully disabled without any loss of content or functionality.
+            - paragraph [ref=e1666]: prefers-reduced-motion respected
+          - generic [ref=e1668]:
+            - generic [ref=e1669]: "03"
+            - generic [ref=e1670]:
+              - paragraph [ref=e1671]: Screen Readers
+              - paragraph [ref=e1672]: 4.1.2
+            - paragraph [ref=e1673]: Semantic HTML elements and ARIA landmark regions provide structure for assistive technologies. Interactive components use explicit ARIA labels and aria-expanded / aria-controls attributes to communicate state. Images include descriptive alt text.
+            - paragraph [ref=e1674]: Semantic HTML · ARIA roles
+          - generic [ref=e1676]:
+            - generic [ref=e1677]: "04"
+            - generic [ref=e1678]:
+              - paragraph [ref=e1679]: Color & Contrast
+              - paragraph [ref=e1680]: 1.4.3
+            - paragraph [ref=e1681]: Text and interactive elements meet WCAG AA contrast ratios against their backgrounds. Color is never used as the sole means of conveying information—state changes and distinctions are also communicated through text, shape, or position.
+            - paragraph [ref=e1682]: 4.5:1 normal · 3:1 large
+          - generic [ref=e1684]:
+            - generic [ref=e1685]: "05"
+            - generic [ref=e1686]:
+              - paragraph [ref=e1687]: Focus Indicators
+              - paragraph [ref=e1688]: 2.4.7
+            - paragraph [ref=e1689]: Visible focus rings are preserved on all interactive elements. Default browser outlines are not suppressed unless replaced with a clearly visible custom indicator that meets or exceeds the original contrast.
+            - paragraph [ref=e1690]: Outline preserved
+        - generic [ref=e1692]:
+          - generic [ref=e1693]:
+            - paragraph [ref=e1694]: Second method · after launch
+            - heading "When the product already exists, the method changes." [level=3] [ref=e1695]
+          - paragraph [ref=e1696]: At that point I shift from design prevention to implementation repair. The same WCAG baseline is checked through Claude Code, Playwright, axe-core, browser automation, and human review so an existing site can be diagnosed, fixed, and explained clearly from my own machine.
+      - generic [ref=e1698]:
+        - generic:
+          - generic:
+            - generic: WCAG Audit
+            - generic: 01 — Setup & Bridge
+            - generic: 06 / Acts
+          - generic:
+            - generic: "00.000"
+            - generic: "0.000"
+            - generic: "01.000"
+        - generic [ref=e1699]:
+          - generic [ref=e1700]:
+            - generic:
+              - generic: Act 01 / Setup
+              - heading "The toolbox assembles." [level=3]
+              - paragraph: Five tools click into place around Claude Code. Each one has a single, clear job in the audit pipeline.
+            - generic:
+              - generic:
+                - generic: A · CHAIN
+              - generic: Brain → Bridge → Hands → Inspector
+              - generic: four roles, one pipeline
+            - generic:
+              - generic:
+                - generic: B · FOUNDATION
+              - generic: Node.js + npm
+              - generic: runtime the stack runs on
+            - generic [ref=e1701]:
+              - img
+              - generic [ref=e1703]:
+                - generic [ref=e1704]:
+                  - generic [ref=e1705]: "01"
+                  - generic [ref=e1706]: the brain
+                - generic [ref=e1707]:
+                  - generic [ref=e1708]: Claude Code
+                  - generic [ref=e1709]: cli · anthropic
+              - generic [ref=e1711]:
+                - generic [ref=e1712]:
+                  - generic [ref=e1713]: "02"
+                  - generic [ref=e1714]: the bridge
+                - generic [ref=e1715]:
+                  - generic [ref=e1716]: MCP
+                  - generic [ref=e1717]: model context protocol
+              - generic [ref=e1719]:
+                - generic [ref=e1720]:
+                  - generic [ref=e1721]: "03"
+                  - generic [ref=e1722]: the hands
+                - generic [ref=e1723]:
+                  - generic [ref=e1724]: Playwright + Chromium
+                  - generic [ref=e1725]: browser automation
+              - generic [ref=e1727]:
+                - generic [ref=e1728]:
+                  - generic [ref=e1729]: "04"
+                  - generic [ref=e1730]: the inspector
+                - generic [ref=e1731]:
+                  - generic [ref=e1732]: axe-core
+                  - generic [ref=e1733]: wcag rule engine
+              - generic [ref=e1735]:
+                - generic [ref=e1736]: A
+                - generic [ref=e1737]: Node.jsruntime · v20
+              - generic [ref=e1739]:
+                - generic [ref=e1740]: B
+                - generic [ref=e1741]: npmpkg manager
+            - generic:
+              - generic: Claude orchestrates · MCP carries instructions · the browser performs the audit.
+          - generic [ref=e1742]:
+            - generic:
+              - generic: Act 02 / Scan
+              - heading "The page is read." [level=3]
+              - paragraph: axe-core sweeps every element on the page, checking it against more than 90 WCAG rules and surfacing the failures.
+            - generic:
+              - generic:
+                - generic: A · SCAN
+              - generic: 90+ rules · WCAG 2.2
+              - generic: injected at runtime
+            - generic:
+              - generic:
+                - generic: B · OUTPUT
+              - generic: Findings grouped
+              - generic: by severity & criterion
+            - generic [ref=e1744]:
+              - generic [ref=e1745]:
+                - generic [ref=e1746]: TARGET · 01
+                - generic [ref=e1747]: 360 × 400 px
+              - generic [ref=e1752]: client-project.example
+              - generic [ref=e1753]:
+                - generic [ref=e1767]: axe.run( )
+                - generic:
+                  - generic:
+                    - generic: 1.1.1
+                - generic:
+                  - generic:
+                    - generic: 1.4.3
+                - generic:
+                  - generic:
+                    - generic: 1.3.1
+                - generic:
+                  - generic:
+                    - generic: 4.1.2
+                - generic:
+                  - generic:
+                    - generic: 2.4.4
+                - generic:
+                  - generic:
+                    - generic: 2.4.7
+            - generic:
+              - generic: "Automated coverage: 30–40% of all issues."
+          - generic [ref=e1768]:
+            - generic:
+              - generic: Act 03 / Coverage
+              - heading "One page becomes eleven." [level=3]
+              - paragraph: The same scan runs across every route reachable from the navbar and footer, building a site-wide picture of what to fix.
+            - generic:
+              - generic:
+                - generic: A · METHOD
+              - generic: Crawl from navbar + footer
+              - generic: every internal route
+            - generic:
+              - generic:
+                - generic: B · CONSOLIDATION
+              - generic: Grouped by criterion
+              - generic: not by page
+            - generic [ref=e1769]:
+              - generic [ref=e1770]:
+                - generic [ref=e1771]: PLATE INDEX · 01–11
+                - generic [ref=e1772]: SITE-WIDE CRAWL
+              - generic [ref=e1773]:
+                - generic [ref=e1776]: P/01
+                - generic [ref=e1787]: P/02
+                - generic [ref=e1799]: P/03
+                - generic [ref=e1812]: P/04
+                - generic [ref=e1823]: P/05
+                - generic [ref=e1835]: P/06
+                - generic [ref=e1848]: P/07
+                - generic [ref=e1859]: P/08
+                - generic [ref=e1871]: P/09
+                - generic [ref=e1884]: P/10
+                - generic [ref=e1895]: P/11
+            - generic:
+              - generic: Issues consolidated by criterion, not by page.
+          - generic [ref=e1905]:
+            - generic:
+              - generic: Act 04 / Manual
+              - heading "What machines can't see." [level=3]
+              - paragraph: "Three checks no automated scan catches: tabbing through with a keyboard, listening with a screen reader, and verifying contrast by eye."
+            - generic:
+              - generic:
+                - generic: A · STAGE 5
+              - generic: Manual verification
+              - generic: 2.1.1 · 2.4.7 · 1.4.3
+            - generic:
+              - generic:
+                - generic: B · CRITERIA
+              - generic: Beyond automation
+              - generic: screen readers · contrast
+            - generic [ref=e1906]:
+              - generic [ref=e1908]:
+                - generic [ref=e1909]:
+                  - generic [ref=e1910]: INSTR · A
+                  - text: KEYBOARD
+                - generic [ref=e1912]:
+                  - generic [ref=e1913]: ⇥ Tab
+                  - generic [ref=e1914]:
+                    - generic [ref=e1915]: Skip to content
+                    - generic [ref=e1916]: Home
+                    - generic [ref=e1917]: About
+                    - generic [ref=e1918]: Contact
+              - generic [ref=e1920]:
+                - generic [ref=e1921]:
+                  - generic [ref=e1922]: INSTR · B
+                  - text: SCREEN READER
+                - img [ref=e1926]
+              - generic [ref=e1932]:
+                - generic [ref=e1933]:
+                  - generic [ref=e1934]: INSTR · C
+                  - text: CONTRAST
+                - generic [ref=e1936]:
+                  - generic [ref=e1938]: Aa
+                  - generic [ref=e1939]:
+                    - generic [ref=e1940]: RATIO
+                    - generic [ref=e1941]: 2.5:1
+                    - generic [ref=e1942]: FAIL
+            - generic:
+              - generic: Three checks no scanner can replicate.
+          - generic [ref=e1943]:
+            - generic:
+              - generic: Act 05 / Repair
+              - heading "Findings become fixes." [level=3]
+              - paragraph: Each issue is patched at the source—alt attributes, heading levels, contrast tokens—then the audit runs again to confirm the fix. Same approach in any stack.
+            - generic:
+              - generic:
+                - generic: A · STAGE 6
+              - generic: Source-level edits
+              - generic: markup · styles · tokens
+            - generic:
+              - generic:
+                - generic: B · LOOP
+              - generic: Re-audit with axe
+              - generic: confirm every patch
+            - generic [ref=e1944]:
+              - generic [ref=e1945]:
+                - generic [ref=e1946]:
+                  - generic [ref=e1947]: Issue Ledger
+                  - generic [ref=e1948]: 06 ITEMS
+                - generic [ref=e1949]:
+                  - generic [ref=e1950]:
+                    - generic [ref=e1952]: Missing alt text
+                    - generic [ref=e1953]: 1.1.1
+                    - generic [ref=e1954]: ✓
+                  - generic [ref=e1955]:
+                    - generic [ref=e1957]: Form input no label
+                    - generic [ref=e1958]: 4.1.2
+                    - generic [ref=e1959]: ✓
+                  - generic [ref=e1960]:
+                    - generic [ref=e1962]: Contrast fails 4.5:1
+                    - generic [ref=e1963]: 1.4.3
+                    - generic [ref=e1964]: ✓
+                  - generic [ref=e1965]:
+                    - generic [ref=e1967]: Heading skip h1→h3
+                    - generic [ref=e1968]: 1.3.1
+                    - generic [ref=e1969]: ✓
+                  - generic [ref=e1970]:
+                    - generic [ref=e1972]: Focus invisible
+                    - generic [ref=e1973]: 2.4.7
+                    - generic [ref=e1974]: ✓
+                  - generic [ref=e1975]:
+                    - generic [ref=e1977]: Empty link text
+                    - generic [ref=e1978]: 2.4.4
+                    - generic [ref=e1979]: ✓
+              - generic [ref=e1980]:
+                - generic [ref=e1981]:
+                  - generic [ref=e1982]: Source · Diff
+                  - generic [ref=e1983]: PATCH · 01
+                - generic [ref=e1984]:
+                  - generic [ref=e1985]:
+                    - generic [ref=e1986]: 1.1.1 · Image alt text
+                    - generic [ref=e1987]:
+                      - text: <img src="hero.jpg"
+                      - generic [ref=e1988]:
+                        - text: alt="
+                        - text: "\""
+                      - text: />
+                  - generic [ref=e1989]:
+                    - generic [ref=e1990]: 1.3.1 · Heading level
+                    - generic [ref=e1991]:
+                      - generic [ref=e1992]: <h3>
+                      - generic [ref=e1993]: →
+                      - generic [ref=e1994]: <h2>
+                      - generic [ref=e1995]: order fixed
+                  - generic [ref=e1996]:
+                    - generic [ref=e1997]: 1.4.3 · Text color token
+                    - generic [ref=e1998]:
+                      - generic [ref=e2000]: "color:"
+                      - generic [ref=e2001]: "#111111"
+                      - generic [ref=e2002]: ✓ 12.6:1 PASS
+                - generic [ref=e2003]:
+                  - generic [ref=e2004]: DIFF · 03 EDITS
+                  - generic [ref=e2005]: COMMIT
+            - generic:
+              - generic: Patched in the source · re-audited with the same prompt.
+          - generic [ref=e2006]:
+            - generic:
+              - generic:
+                - generic: A · FORMAT
+              - generic: Self-hosted HTML
+              - generic: no external dependencies
+            - generic:
+              - generic:
+                - generic: B · TRACKING
+              - generic: Persisted progress
+              - generic: filterable · re-auditable
+            - generic:
+              - generic: Act 06 / Deliverable
+              - heading "A report the client can use." [level=3]
+              - paragraph: Every finding is bundled into a single self-hosted HTML page—filterable, trackable, and easy to share.
+            - generic [ref=e2007]:
+              - generic [ref=e2008]:
+                - generic [ref=e2009]: DELIVERABLE · HTML
+                - generic [ref=e2010]: CLIENT-RPT-2026.04
+              - generic [ref=e2012]:
+                - generic [ref=e2013]:
+                  - generic [ref=e2014]: Consolidated Accessibility Report
+                  - generic [ref=e2015]: Client Project · WCAG Audit
+                  - generic [ref=e2016]: WCAG 2.2 LEVEL AA · APR 2026
+                - generic [ref=e2017]:
+                  - generic [ref=e2018]: RPT
+                  - generic [ref=e2019]: "02"
+              - generic [ref=e2020]:
+                - generic [ref=e2021]:
+                  - generic [ref=e2023]: Total
+                  - generic [ref=e2024]: "0"
+                - generic [ref=e2025]:
+                  - generic [ref=e2027]: Found
+                  - generic [ref=e2028]: "0"
+                - generic [ref=e2029]:
+                  - generic [ref=e2031]: Reviewed
+                  - generic [ref=e2032]: "0"
+                - generic [ref=e2033]:
+                  - generic [ref=e2035]: Queued
+                  - generic [ref=e2036]: "0"
+                - generic [ref=e2037]:
+                  - generic [ref=e2039]: Resolved
+                  - generic [ref=e2040]: "0"
+              - generic [ref=e2042]:
+                - generic [ref=e2043]: Remediation Progress
+                - generic [ref=e2044]: 0%
+              - generic [ref=e2046]:
+                - generic [ref=e2048]:
+                  - generic [ref=e2052]:
+                    - generic [ref=e2053]: Footer CTA contrast
+                    - generic [ref=e2054]:
+                      - generic [ref=e2055]: ISSUE
+                      - generic [ref=e2056]: 1.4.3
+                  - generic [ref=e2058]: ✓
+                - generic [ref=e2060]:
+                  - generic [ref=e2064]:
+                    - generic [ref=e2065]: Missing alt on hero
+                    - generic [ref=e2066]:
+                      - generic [ref=e2067]: ISSUE
+                      - generic [ref=e2068]: 1.1.1
+                  - generic [ref=e2070]: ✓
+                - generic [ref=e2072]:
+                  - generic [ref=e2076]:
+                    - generic [ref=e2077]: Heading skip in About
+                    - generic [ref=e2078]:
+                      - generic [ref=e2079]: ISSUE
+                      - generic [ref=e2080]: 1.3.1
+                  - generic [ref=e2082]: ✓
+                - generic [ref=e2084]:
+                  - generic [ref=e2088]:
+                    - generic [ref=e2089]: Form label missing
+                    - generic [ref=e2090]:
+                      - generic [ref=e2091]: ISSUE
+                      - generic [ref=e2092]: 4.1.2
+                  - generic [ref=e2094]: ✓
+                - generic [ref=e2096]:
+                  - generic [ref=e2100]:
+                    - generic [ref=e2101]: Focus indicator hidden
+                    - generic [ref=e2102]:
+                      - generic [ref=e2103]: ISSUE
+                      - generic [ref=e2104]: 2.4.7
+                  - generic [ref=e2106]: ✓
+                - generic [ref=e2108]:
+                  - generic [ref=e2112]:
+                    - generic [ref=e2113]: Link text "click here"
+                    - generic [ref=e2114]:
+                      - generic [ref=e2115]: ISSUE
+                      - generic [ref=e2116]: 2.4.4
+                  - generic [ref=e2118]: ✓
+              - generic [ref=e2119]:
+                - generic [ref=e2120]: 06 / 06 ISSUES SHOWN
+                - generic [ref=e2121]: FILTERABLE · TRACKABLE
+            - generic:
+              - generic: Filterable. Trackable. Self-documenting.
+        - generic:
+          - generic:
+            - generic:
+              - generic: DWG · 01
+              - generic: WCAG-AUDIT-FLOW
+            - generic:
+              - generic: SCALE
+              - generic: "1 : 1"
+            - generic:
+              - generic:
+                - img
+                - generic: "0"
+              - generic: PROG
+      - generic [ref=e2123]:
+        - paragraph [ref=e2125]: Outcome
+        - heading "A site that passes, and a client that understands why." [level=2] [ref=e2127]
+        - generic [ref=e2128]:
+          - generic [ref=e2129]:
+            - paragraph [ref=e2130]: Stack
+            - paragraph [ref=e2131]: Claude Code · Playwright MCP · axe-core · WebAIM
+          - generic [ref=e2132]:
+            - paragraph [ref=e2133]: Standard
+            - paragraph [ref=e2134]: WCAG 2.2 AA
+          - generic [ref=e2135]:
+            - paragraph [ref=e2136]: Deliverable
+            - paragraph [ref=e2137]: Interactive HTML report with progress tracking
+  - generic [ref=e1232]:
+    - generic [ref=e1233]:
+      - heading "Contact" [level=2] [ref=e1235]
+      - paragraph [ref=e1237]: I’m open to UX/UI and Design Engineer roles, collaborations, and focused design work. If you’re exploring new ideas, complex systems, or thoughtful interfaces, I’d love to connect.
+    - generic [ref=e1238]:
+      - paragraph [ref=e1239]: Links
+      - generic [ref=e1240]:
+        - link "Resume" [ref=e1241] [cursor=pointer]:
+          - /url: https://drive.google.com/file/d/12puJAQkZQZbieo1gwrZG_XnbMZNlv23h/view?usp=drivesdk
+        - link "LinkedIn" [ref=e1242] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/juliocoraspe
+        - link "GitHub" [ref=e1243] [cursor=pointer]:
+          - /url: https://github.com/juliocoraspe
+        - link "Email julio coraspe at juliocoraspe@gmail.com" [ref=e1244] [cursor=pointer]:
+          - /url: mailto:juliocoraspe@gmail.com
+          - text: Email
+        - link "Creative Portfolio" [ref=e1245] [cursor=pointer]:
+          - /url: https://juliocoraspe.github.io/photography-portfolio/
