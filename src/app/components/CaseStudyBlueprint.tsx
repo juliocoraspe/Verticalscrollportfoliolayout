@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useId, useState } from 'react';
+import { ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 
 export type BlueprintSection = {
@@ -83,6 +83,7 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
   const reactId = useId();
   const shouldReduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
+  const displayBodyRef = useRef<HTMLDivElement>(null);
   const active = sections.find((s) => s.id === activeId) ?? sections[0];
 
   // Reset to first section when card closes (so reopening starts fresh)
@@ -91,6 +92,12 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
       setActiveId(sections[0].id);
     }
   }, [isOpen, sections]);
+
+  // Every section should open at its own beginning. This also prevents embedded
+  // documents from inheriting or changing the scroll position of the panel.
+  useEffect(() => {
+    if (displayBodyRef.current) displayBodyRef.current.scrollTop = 0;
+  }, [activeId]);
 
   if (!active) return null;
 
@@ -165,6 +172,7 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
           </div>
         ) : null}
         <motion.div
+          ref={displayBodyRef}
           key={active.id}
           className="cs-bp-display-body"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 6 }}

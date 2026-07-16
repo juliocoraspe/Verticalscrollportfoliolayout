@@ -23,10 +23,14 @@ export default function App() {
   const [isStillenOpen, setIsStillenOpen] = useState(false);
   const [isTodoOpen, setIsTodoOpen] = useState(false);
   const [isAsmrOpen, setIsAsmrOpen] = useState(false);
+  const [isRealLifeOpen, setIsRealLifeOpen] = useState(false);
+  const [isDirectPassOpen, setIsDirectPassOpen] = useState(false);
   const caseStudyStillenRef = useRef<HTMLElement | null>(null);
   const caseStudyMiloRef = useRef<HTMLElement | null>(null);
   const caseStudyTodoRef = useRef<HTMLElement | null>(null);
   const caseStudyAsmrRef = useRef<HTMLElement | null>(null);
+  const caseStudyRealLifeRef = useRef<HTMLElement | null>(null);
+  const caseStudyDirectPassRef = useRef<HTMLElement | null>(null);
   const pendingCollapseScrollRef = useRef<HTMLElement | null>(null);
   const scrollPositionRef = useRef(0);
   const scrollToCaseStudy = useCallback(
@@ -45,7 +49,7 @@ export default function App() {
     const target = pendingCollapseScrollRef.current;
     pendingCollapseScrollRef.current = null;
     scrollToCaseStudy(target);
-  }, [isMiloOpen, isStillenOpen, isTodoOpen, isAsmrOpen, scrollToCaseStudy]);
+  }, [isMiloOpen, isStillenOpen, isTodoOpen, isAsmrOpen, isRealLifeOpen, isDirectPassOpen, scrollToCaseStudy]);
 
   const handleStillenToggle = () => {
     setIsStillenOpen((prev) => {
@@ -87,10 +91,32 @@ export default function App() {
     });
   };
 
+  const handleRealLifeToggle = () => {
+    setIsRealLifeOpen((prev) => {
+      const nextOpen = !prev;
+      if (!nextOpen) {
+        pendingCollapseScrollRef.current = caseStudyRealLifeRef.current;
+      }
+      return nextOpen;
+    });
+  };
+
+  const handleDirectPassToggle = () => {
+    setIsDirectPassOpen((prev) => {
+      const nextOpen = !prev;
+      if (!nextOpen) {
+        pendingCollapseScrollRef.current = caseStudyDirectPassRef.current;
+      }
+      return nextOpen;
+    });
+  };
+
   const handleStillenCollapse = () => setIsStillenOpen(false);
   const handleMiloCollapse = () => setIsMiloOpen(false);
   const handleTodoCollapse = () => setIsTodoOpen(false);
   const handleAsmrCollapse = () => setIsAsmrOpen(false);
+  const handleRealLifeCollapse = () => setIsRealLifeOpen(false);
+  const handleDirectPassCollapse = () => setIsDirectPassOpen(false);
 
   const caseStudy = CASE_STUDY;
   const todoProject = PROJECTS.find((project) => project.id === 'todo-app')!;
@@ -362,18 +388,26 @@ export default function App() {
         isMiloOpen={isMiloOpen}
         isTodoOpen={isTodoOpen}
         isAsmrOpen={isAsmrOpen}
+        isRealLifeOpen={isRealLifeOpen}
+        isDirectPassOpen={isDirectPassOpen}
         caseStudyStillenRef={caseStudyStillenRef}
         caseStudyMiloRef={caseStudyMiloRef}
         caseStudyTodoRef={caseStudyTodoRef}
         caseStudyAsmrRef={caseStudyAsmrRef}
+        caseStudyRealLifeRef={caseStudyRealLifeRef}
+        caseStudyDirectPassRef={caseStudyDirectPassRef}
         handleStillenToggle={handleStillenToggle}
         handleMiloToggle={handleMiloToggle}
         handleTodoToggle={handleTodoToggle}
         handleAsmrToggle={handleAsmrToggle}
+        handleRealLifeToggle={handleRealLifeToggle}
+        handleDirectPassToggle={handleDirectPassToggle}
         handleStillenCollapse={handleStillenCollapse}
         handleMiloCollapse={handleMiloCollapse}
         handleTodoCollapse={handleTodoCollapse}
         handleAsmrCollapse={handleAsmrCollapse}
+        handleRealLifeCollapse={handleRealLifeCollapse}
+        handleDirectPassCollapse={handleDirectPassCollapse}
         todoProject={todoProject}
         asmrProject={asmrProject}
         isMobile={isMobile}

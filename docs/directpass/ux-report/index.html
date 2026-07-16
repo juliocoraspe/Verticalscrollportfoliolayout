@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Competitive UX Evaluation: College & University Websites</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" id="stickyNav">
+  <div class="nav-inner">
+    <span class="nav-brand">DUXB 38</span>
+    <ul class="nav-links">
+      <li><a href="#cover">Cover</a></li>
+      <li><a href="#executive-summary">Summary</a></li>
+      <li><a href="#institutions">Institutions</a></li>
+      <li><a href="#methodology">Method</a></li>
+      <li><a href="#framework">Framework</a></li>
+      <li><a href="#analysis">Analysis</a></li>
+      <li><a href="#matrix">Matrix</a></li>
+      <li><a href="#flows">Flows</a></li>
+      <li><a href="#heuristics">Heuristics</a></li>
+      <li><a href="#findings">Findings</a></li>
+      <li><a href="#opportunities">Opportunities</a></li>
+      <li><a href="#recommendations">Recommendations</a></li>
+      <li><a href="#appendix">Appendix</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">☰</button>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- 00. COVER -->
+<!-- ============================================================ -->
+<section class="cover" id="cover">
+  <div class="cover-grid">
+    <div class="cover-label">DUXB 38 · DirectPass · 2026</div>
+    <h1 class="cover-title">Competitive<br/>Evaluation</h1>
+    <p class="cover-subtitle">4 College &amp; University Websites<br/>From the perspective of prospective international students</p>
+    <div class="cover-tags">
+      <span class="tag">Desktop + Mobile</span>
+      <span class="tag">UX Flows</span>
+      <span class="tag">Heuristic Analysis</span>
+      <span class="tag">Competitive Matrix</span>
+    </div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><span class="meta-label">Prepared by</span><span class="meta-value">DirectPass Team</span></div>
+      <div class="cover-meta-item"><span class="meta-label">Date</span><span class="meta-value">June 2026</span></div>
+      <div class="cover-meta-item"><span class="meta-label">Project</span><span class="meta-value">DirectPass</span></div>
+    </div>
+    <div class="cover-institutions">
+      <span>NYU</span><span class="divider">·</span>
+      <span>UBC</span><span class="divider">·</span>
+      <span>Northeastern</span><span class="divider">·</span>
+      <span>Conestoga</span>
+    </div>
+    <div class="cover-scroll-cue">
+      <span>Scroll to explore</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+  <div class="cover-grid-lines"></div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 01. EXECUTIVE SUMMARY -->
+<!-- ============================================================ -->
+<section class="section" id="executive-summary">
+  <div class="section-inner">
+    <div class="section-label">01</div>
+    <h2 class="section-title">Executive Summary</h2>
+    <div class="section-body">
+      <div class="summary-intro">
+        <p>This report evaluates four major college and university websites, New York University (NYU), University of British Columbia (UBC), Northeastern University, and Conestoga College, through the lens of prospective international students navigating the discovery and application process.</p>
+        <p>The evaluation documents how each institution currently presents admissions information, where it creates friction, where data is fragmented across domains, and what the status tracking phase looks like from the outside. These are the gaps DirectPass is designed to address: this report maps their current shape and depth across four institutions.</p>
+      </div>
+      <div class="summary-metrics">
+        <div class="metric-card reveal">
+          <div class="metric-number">4</div>
+          <div class="metric-label">Institutions analyzed</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-number">5</div>
+          <div class="metric-label">Key evaluation areas</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-number">2</div>
+          <div class="metric-label">Platforms reviewed</div>
+        </div>
+        <div class="metric-card reveal">
+          <div class="metric-number">1</div>
+          <div class="metric-label">Student perspective</div>
+        </div>
+      </div>
+      <div class="summary-method">
+        <h3>What was analyzed</h3>
+        <ul class="summary-list">
+          <li>Homepage clarity and first impression for international visitors</li>
+          <li>Application workflows and guidance on how to apply</li>
+          <li>International student resources: visa, tuition, scholarships, housing</li>
+          <li>Navigation architecture and information hierarchy</li>
+          <li>Mobile experience across all key flows</li>
+        </ul>
+      </div>
+      <div class="summary-output">
+        <h3>Main output</h3>
+        <p>A competitive matrix, screen flow comparison, heuristic analysis, key findings, UX opportunities, and direct recommendations for the DirectPass platform.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 02. INSTITUTIONS ANALYZED -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="institutions">
+  <div class="section-inner">
+    <div class="section-label">02</div>
+    <h2 class="section-title">Institutions Analyzed</h2>
+    <div class="institutions-grid">
+
+      <!-- NYU -->
+      <div class="institution-card reveal">
+        <div class="institution-screenshot">
+          <img src="assets/screenshots/nyu/desktop-home.jpg" alt="NYU Homepage" loading="lazy" />
+        </div>
+        <div class="institution-info">
+          <div class="institution-badge">Previous UI analysis available</div>
+          <h3>New York University</h3>
+          <div class="institution-meta">
+            <span>🇺🇸 United States</span>
+            <span>Research University</span>
+          </div>
+          <a class="institution-url" href="https://www.nyu.edu" target="_blank" rel="noopener">nyu.edu</a>
+          <p>One of the world's foremost research universities with over 60,000 students. A major destination for international students seeking a global urban education.</p>
+          <div class="institution-note">Previous PDF analysis of the UI available and considered for this report.</div>
+        </div>
+      </div>
+
+      <!-- UBC -->
+      <div class="institution-card reveal">
+        <div class="institution-screenshot">
+          <img src="assets/screenshots/ubc/desktop-home.jpg" alt="UBC Homepage" loading="lazy" />
+        </div>
+        <div class="institution-info">
+          <div class="institution-badge">Previous UI analysis available</div>
+          <h3>University of British Columbia</h3>
+          <div class="institution-meta">
+            <span>🇨🇦 Canada</span>
+            <span>Research University</span>
+          </div>
+          <a class="institution-url" href="https://www.ubc.ca" target="_blank" rel="noopener">ubc.ca</a>
+          <p>Consistently ranked among the top 40 universities globally. Vancouver campus is a major gateway for international students, particularly from Asia and the Pacific.</p>
+          <div class="institution-note">Previous PDF analysis of the UI available and considered for this report.</div>
+        </div>
+      </div>
+
+      <!-- Northeastern -->
+      <div class="institution-card reveal">
+        <div class="institution-screenshot">
+          <img src="assets/screenshots/northeastern/desktop-home.jpg" alt="Northeastern Homepage" loading="lazy" />
+        </div>
+        <div class="institution-info">
+          <div class="institution-badge new">New competitive UX review</div>
+          <h3>Northeastern University</h3>
+          <div class="institution-meta">
+            <span>🇺🇸 United States</span>
+            <span>Research University</span>
+          </div>
+          <a class="institution-url" href="https://www.northeastern.edu" target="_blank" rel="noopener">northeastern.edu</a>
+          <p>Known for its cooperative education model and global network of 13 campuses. Strong international student presence with programs connected to industry that appeal to globally mobile students.</p>
+          <div class="institution-note">New competitive UX review conducted for this report.</div>
+        </div>
+      </div>
+
+      <!-- Conestoga -->
+      <div class="institution-card reveal">
+        <div class="institution-screenshot">
+          <img src="assets/screenshots/conestoga/desktop-home.jpg" alt="Conestoga Homepage" loading="lazy" />
+        </div>
+        <div class="institution-info">
+          <div class="institution-badge new">New competitive UX review</div>
+          <h3>Conestoga College</h3>
+          <div class="institution-meta">
+            <span>🇨🇦 Canada</span>
+            <span>Polytechnic College</span>
+          </div>
+          <a class="institution-url" href="https://www.conestogac.on.ca" target="_blank" rel="noopener">conestogac.on.ca</a>
+          <p>Ontario's fastest growing college and Canada's top polytechnic. One of the largest destinations for international students seeking postsecondary education focused on careers in Canada.</p>
+          <div class="institution-note">New competitive UX review conducted for this report.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 03. METHODOLOGY -->
+<!-- ============================================================ -->
+<section class="section" id="methodology">
+  <div class="section-inner">
+    <div class="section-label">03</div>
+    <h2 class="section-title">Methodology</h2>
+    <p class="section-intro">This evaluation was produced using a research pipeline with multiple stages and AI support. Foundational research was gathered via Perplexity, followed by automated live site walkthroughs using Playwright MCP + Chromium. Prior UI analyses for NYU and UBC, along with all supporting data, are documented in the <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">DirectPass UX Research Spreadsheet ↗</a>. All content was manually confirmed before inclusion. Report authored with Claude Code Opus 4.7; analysis text processed by GPT 5.5.</p>
+    <div class="methodology-grid">
+      <div class="method-block reveal">
+        <h3>Platforms Reviewed</h3>
+        <ul>
+          <li>Desktop: 1440×900 viewport</li>
+          <li>Mobile: 390×844 viewport (comparable to an iPhone)</li>
+        </ul>
+      </div>
+      <div class="method-block reveal">
+        <h3>Methods Used</h3>
+        <ul>
+          <li>Competitive analysis</li>
+          <li>Screen flow review</li>
+          <li>Feature comparison matrix</li>
+          <li>Lightweight heuristic analysis</li>
+          <li>UI pattern review</li>
+          <li>Screenshot documentation</li>
+        </ul>
+      </div>
+      <div class="method-block reveal">
+        <h3>Tools &amp; AI Pipeline</h3>
+        <ul>
+          <li><strong>Playwright MCP + Chromium</strong>: automated live browsing, viewport resizing (1440×900 desktop / 390×844 mobile), and screenshot capture across all four sites</li>
+          <li><strong>Navigation fidelity</strong>: every page reached via actual navbars, expanded menus, section navigation panels, and footer links; no direct URL shortcuts</li>
+          <li><strong>Perplexity</strong>: foundational research layer; used to gather institutional background, enrolment data, and international student statistics prior to live site walkthroughs</li>
+          <li><strong>Manual confirmation</strong>: each screenshot and navigation path was verified by a human reviewer before being included in the report</li>
+          <li><strong>Claude Code Opus 4.7</strong>: HTML report file authored and structured from beginning to end via Claude Code CLI</li>
+          <li><strong>GPT 5.5</strong>: data processing, text analysis, and written content generation for institution profiles and evaluation commentary</li>
+          <li><strong>Prior UI analyses (NYU &amp; UBC)</strong>: supporting PDF documents reviewed alongside other sources; source data also available in the <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">DirectPass UX Research Spreadsheet ↗</a></li>
+        </ul>
+      </div>
+      <div class="method-block reveal">
+        <h3>Areas Reviewed</h3>
+        <ul>
+          <li>Homepage &amp; first impression</li>
+          <li>Application process &amp; workflow</li>
+          <li>International student resources</li>
+          <li>Key university information</li>
+          <li>Contact &amp; update pathways</li>
+          <li>Mobile usability</li>
+          <li>Navigation &amp; information architecture</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 04. EVALUATION FRAMEWORK -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="framework">
+  <div class="section-inner">
+    <div class="section-label">04</div>
+    <h2 class="section-title">Evaluation Framework</h2>
+
+    <div class="framework-cols">
+      <div class="framework-col reveal">
+        <h3>04.1 Criteria Based on Tasks</h3>
+        <div class="criteria-list">
+          <div class="criteria-item"><span class="criteria-num">C01</span><span class="criteria-text">Homepage clarity</span></div>
+          <div class="criteria-item"><span class="criteria-num">C02</span><span class="criteria-text">Application workflow</span></div>
+          <div class="criteria-item"><span class="criteria-num">C03</span><span class="criteria-text">International student resources</span></div>
+          <div class="criteria-item"><span class="criteria-num">C04</span><span class="criteria-text">Key university information</span></div>
+          <div class="criteria-item"><span class="criteria-num">C05</span><span class="criteria-text">Contact and update pathways</span></div>
+          <div class="criteria-item"><span class="criteria-num">C06</span><span class="criteria-text">Mobile usability</span></div>
+          <div class="criteria-item"><span class="criteria-num">C07</span><span class="criteria-text">Navigation and information architecture</span></div>
+          <div class="criteria-item"><span class="criteria-num">C08</span><span class="criteria-text">Trust and credibility</span></div>
+          <div class="criteria-item"><span class="criteria-num">C09</span><span class="criteria-text">Support and documentation</span></div>
+          <div class="criteria-item"><span class="criteria-num">C10</span><span class="criteria-text">Feature usefulness</span></div>
+        </div>
+      </div>
+
+      <div class="framework-col reveal">
+        <h3>04.2 Heuristic Criteria</h3>
+        <div class="heuristic-cards">
+          <div class="heuristic-card">
+            <div class="h-code">H1</div>
+            <div class="h-content">
+              <strong>Visibility of Status</strong>
+              <p>Does the site make the user's location, next steps, and process status clear?</p>
+            </div>
+          </div>
+          <div class="heuristic-card">
+            <div class="h-code">H2</div>
+            <div class="h-content">
+              <strong>Match with User Expectations</strong>
+              <p>Does the language and structure match what international students are looking for?</p>
+            </div>
+          </div>
+          <div class="heuristic-card">
+            <div class="h-code">H3</div>
+            <div class="h-content">
+              <strong>Recognition Over Recall</strong>
+              <p>Can users find requirements, deadlines, costs, and next steps without memorizing information?</p>
+            </div>
+          </div>
+          <div class="heuristic-card">
+            <div class="h-code">H4</div>
+            <div class="h-content">
+              <strong>Consistency and Standards</strong>
+              <p>Are labels, CTAs, navigation patterns, and page structures predictable?</p>
+            </div>
+          </div>
+          <div class="heuristic-card">
+            <div class="h-code">H5</div>
+            <div class="h-content">
+              <strong>Help and Documentation</strong>
+              <p>Are support resources, FAQs, visa guidance, and contact options easy to access?</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 05. INSTITUTION ANALYSIS -->
+<!-- ============================================================ -->
+<section class="section" id="analysis">
+  <div class="section-inner">
+    <div class="section-label">05</div>
+    <h2 class="section-title">Institution Analysis</h2>
+
+    <!-- TAB NAV -->
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="nyu">NYU</button>
+      <button class="tab-btn" data-tab="ubc">UBC</button>
+      <button class="tab-btn" data-tab="northeastern">Northeastern</button>
+      <button class="tab-btn" data-tab="conestoga">Conestoga</button>
+    </div>
+
+    <!-- ---- NYU ---- -->
+    <div class="tab-panel active" id="tab-nyu">
+      <div class="institution-analysis">
+        <div class="ia-header">
+          <div class="ia-num">05.1</div>
+          <div>
+            <h3>New York University</h3>
+            <p class="ia-meta">United States · Research University · <a href="https://www.nyu.edu" target="_blank" rel="noopener">nyu.edu</a></p>
+          </div>
+          <div class="ia-prev-badge">PDF UI analysis used as source</div>
+        </div>
+
+        <div class="ia-screenshots">
+          <div class="screenshot-scroll">
+
+            <figure
+              data-url="https://www.nyu.edu"
+              data-context="NYU's homepage leads with editorial photography and institutional brand. There is no visible 'International Students' CTA above the fold: a prospective international student must already know where to look. This supports Finding 01: international information exists but is not surfaced. The left sidebar navigation pattern is distinctive but adds complexity for new visitors who are unfamiliar with the layout.">
+              <img src="assets/screenshots/nyu/desktop-home.jpg" alt="NYU Desktop Homepage" />
+              <figcaption>Homepage: No International CTA visible</figcaption>
+              <span class="fig-label">No intl. entry point above fold</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.nyu.edu"
+              data-context="On mobile, NYU's homepage collapses the sidebar into a hamburger. The navigation becomes deeply nested: a prospective student must drill several levels before reaching admissions or international content. This directly evidences Finding 03: mobile navigation is a significant early research barrier, particularly for international students whose first interaction with the site is often from their home country on a phone.">
+              <img src="assets/screenshots/nyu/mobile-home.jpg" alt="NYU Mobile Homepage" />
+              <figcaption>Mobile: Deeply nested navigation</figcaption>
+              <span class="fig-label">Deep nesting on mobile</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.nyu.edu/admissions.html"
+              data-context="The Admissions landing page presents 10 equally weighted options with no recommended starting point, no filter by student type, and no visual hierarchy separating international from domestic content. This is direct evidence for Finding 02 (sequential flows reduce friction) and Finding 05 (language centered on students vs. institutional categories). An international student visiting for the first time has no clear signal for where to begin.">
+              <img src="assets/screenshots/nyu/desktop-admissions.jpg" alt="NYU Admissions Page" />
+              <figcaption>Admissions: 10 options with equal weight, no starting path</figcaption>
+              <span class="fig-label">10 options, no hierarchy</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.nyu.edu/admissions/undergraduate-admissions.html"
+              data-context="The Undergraduate Admissions page uses a structure based on institutional categories rather than labels based on tasks. Information about requirements, deadlines, and international specifics is distributed across multiple supporting pages. This requires a student to construct their own path from a flat list. This provides evidence for Finding 02 and Finding 04 (trust increases when key information is visible early). Deadlines and costs require several more clicks to reach.">
+              <img src="assets/screenshots/nyu/desktop-undergrad-admissions.jpg" alt="NYU Undergrad Admissions" />
+              <figcaption>Undergrad Admissions: requirements buried in supporting pages</figcaption>
+              <span class="fig-label">Requirements take several clicks to discover</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.nyu.edu/admissions/undergraduate-admissions/international-students.html"
+              data-context="The International Students resource page exists, but it requires deliberate searching to find. It is not linked from the homepage or the admissions landing page as a primary CTA. Finding it requires navigating through Admissions → Undergraduate Admissions → and then locating the international supporting section. This fragmented path is the core evidence for Finding 01: international student information exists but is hidden.">
+              <img src="assets/screenshots/nyu/desktop-international.jpg" alt="NYU International Students Page" />
+              <figcaption>International Students: exists but requires 3+ clicks to reach</figcaption>
+              <span class="fig-label">Exists, but buried 3+ clicks deep</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.nyu.edu/admissions.html"
+              data-context="The Admissions page on mobile retains the same flat structure with 10 options as desktop, but with no visual hierarchy to guide scanning. On a small screen, the dense link list forces users to scroll and read everything equally. Combined with the absence of a 'Start here for international students' prompt, this was among the mobile experiences with the greatest friction across all four sites. Supports Findings 01, 02, and 03.">
+              <img src="assets/screenshots/nyu/mobile-admissions.jpg" alt="NYU Mobile Admissions" />
+              <figcaption>Mobile Admissions: dense list, no starting guidance</figcaption>
+              <span class="fig-label">Dense list, no guidance on mobile</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ia-grid">
+          <div class="ia-block">
+            <h4>Homepage Analysis</h4>
+            <ul>
+              <li><strong>First impression:</strong> Strong visual identity with NYU's signature violet. Hero is editorial and focused on brand expression, but international student pathways are not immediately visible.</li>
+              <li><strong>Navigation:</strong> Left sidebar pattern is distinctive and functional. Horizontal tabs, flyouts, and dropdowns create a multilayered system that experienced users navigate well but newcomers may find dense.</li>
+              <li><strong>CTAs:</strong> "Apply" and admissions CTAs are present but require scanning to locate. No prominent "International Students" primary CTA on the homepage.</li>
+              <li><strong>Information hierarchy:</strong> Institutional brand and news are prioritized over pathways based on student needs. Content is rich but visually flattened: everything carries equal weight.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Application Workflow</h4>
+            <ul>
+              <li>Admissions entry point is reachable via main navbar. Page presents 10 equally weighted options with no recommended starting point.</li>
+              <li>International vs. domestic distinction is not surfaced early: users must identify themselves and locate the correct pathway.</li>
+              <li>Requirements, deadlines, and sequential guidance exist but are distributed across multiple supporting pages requiring several clicks.</li>
+              <li><strong>Friction level: High.</strong> No sequential flow is presented. Users must construct their own path from a flat list of links.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>International Student Resources</h4>
+            <ul>
+              <li>NYU hosts a large international population and does provide dedicated resources, but they require deliberate searching to find.</li>
+              <li>Visa guidance, English proficiency requirements, and tuition info for international students exist in supporting sections.</li>
+              <li>No consolidated "Start here as an international student" landing experience on the main site.</li>
+              <li>Research page presents AI and engineering content equally weighted with no filter based on student needs.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Mobile Experience</h4>
+            <ul>
+              <li>Mobile layout collapses the sidebar into a hamburger menu. Navigation becomes deeply nested on mobile.</li>
+              <li>Key CTAs are accessible but require scrolling or menu drilling to reach admissions content.</li>
+              <li>Text density remains high on mobile: dense paragraphs are not reformatted for small screens.</li>
+              <li>Overall: functional but not optimized. A prospective student researching on mobile faces more friction than on desktop.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ia-heuristic">
+          <h4>Heuristic Analysis</h4>
+          <table class="heuristic-table">
+            <thead>
+              <tr><th>Heuristic</th><th>Score</th><th>Observation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>H1: Visibility of Status</td><td><span class="score s3">3</span></td><td>Breadcrumbs present. Application step tracking minimal outside the portal.</td></tr>
+              <tr><td>H2: Match with Expectations</td><td><span class="score s2">2</span></td><td>International student pathway not prominently labeled. Language is institutional.</td></tr>
+              <tr><td>H3: Recognition Over Recall</td><td><span class="score s2">2</span></td><td>Deadlines and requirements require multiple clicks to surface.</td></tr>
+              <tr><td>H4: Consistency and Standards</td><td><span class="score s4">4</span></td><td>Navigation patterns are consistent throughout. Standard UI components used well.</td></tr>
+              <tr><td>H5: Help and Documentation</td><td><span class="score s3">3</span></td><td>FAQs and contact exist but are not surfaced early in the discovery flow.</td></tr>
+            </tbody>
+          </table>
+          <div class="heuristic-summary">
+            <div><strong>Overall score:</strong> 2.8 / 5</div>
+            <div><strong>Main strength:</strong> Consistent UI patterns and navigation system</div>
+            <div><strong>Main weakness:</strong> No international student pathway surfaced early</div>
+          </div>
+        </div>
+
+        <div class="ia-swot">
+          <div class="ia-strengths">
+            <h4>Strengths</h4>
+            <ul>
+              <li>Clear left sidebar navigation with consistent IA principles</li>
+              <li>Strong visual brand identity: instantly recognizable</li>
+              <li>Logical content zone structure (header, sidebar, main, footer)</li>
+              <li>Breadcrumb navigation supports orientation</li>
+              <li>Large institutional credibility: global name recognition</li>
+            </ul>
+          </div>
+          <div class="ia-weaknesses">
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>Admissions page presents 10 equally weighted options with no recommended starting path</li>
+              <li>No prominent international student CTA on homepage</li>
+              <li>Research page lacks filtering or categorization</li>
+              <li>Mobile navigation becomes deeply nested</li>
+              <li>Information overload without visual hierarchy to guide new students</li>
+            </ul>
+          </div>
+          <div class="ia-opportunities">
+            <h4>DirectPass Signals</h4>
+            <ul>
+              <li>NYU's flat admissions page with 10 options is the entry point observed with the greatest friction: DirectPass's flow specific to NYU should compensate with a clear first action and status visibility</li>
+              <li>International requirements are buried 3+ clicks deep on nyu.edu: DirectPass must source and surface them independently, not rely on linking students back to the institutional site</li>
+              <li>Deadlines and costs require deliberate searching: these should be primary fields in any DirectPass view for NYU applications</li>
+              <li>Mobile experience is deeply nested: students who first encounter NYU on mobile bring frustration that DirectPass's own mobile experience must visibly resolve</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- UBC ---- -->
+    <div class="tab-panel" id="tab-ubc">
+      <div class="institution-analysis">
+        <div class="ia-header">
+          <div class="ia-num">05.2</div>
+          <div>
+            <h3>University of British Columbia</h3>
+            <p class="ia-meta">Canada · Research University · <a href="https://www.ubc.ca" target="_blank" rel="noopener">ubc.ca</a></p>
+          </div>
+          <div class="ia-prev-badge">PDF UI analysis used as source</div>
+        </div>
+
+        <div class="ia-screenshots">
+          <div class="screenshot-scroll">
+
+            <figure
+              data-url="https://www.ubc.ca"
+              data-context="UBC's homepage leads with editorial photography and a spotlight section: clean and minimal. There is no dedicated 'International Students' CTA above the fold. The top navbar has an Admissions link but no direct entry point for international users. For a student arriving from abroad, this homepage does not signal where to begin. This supports Finding 01 (fragmented international info) and Finding 04 (trust builds when key info is visible early).">
+              <img src="assets/screenshots/ubc/desktop-home.jpg" alt="UBC Desktop Homepage" />
+              <figcaption>Homepage: No international CTA on main domain</figcaption>
+              <span class="fig-label">No intl. CTA on main homepage</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.ubc.ca"
+              data-context="UBC's mobile homepage collapses cleanly but lacks a sticky navigation header. When a user scrolls past the top of the page, the nav disappears entirely: meaning international students on mobile lose their primary wayfinding anchor partway through the page. This is a key evidence point for Finding 03 (mobile navigation as a research barrier) and specifically UBC's H1 heuristic score: Visibility of Status is compromised when the nav scrolls away.">
+              <img src="assets/screenshots/ubc/mobile-home.jpg" alt="UBC Mobile Homepage" />
+              <figcaption>Mobile: Nav disappears on scroll (no sticky header)</figcaption>
+              <span class="fig-label">Nav lost on scroll: orientation risk</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.ubc.ca/admissions/"
+              data-context="The UBC admissions page on the main ubc.ca domain mixes undergraduate, graduate, tuition, scholarships, and readiness links at equal visual weight. There is no filter by student type or 'Start here for international students' guidance. This is the last page on ubc.ca before users are redirected to you.ubc.ca: a separate subdomain. The domain split itself is a friction point: students lose context continuity. Evidences Findings 01 and 05.">
+              <img src="assets/screenshots/ubc/desktop-admissions.jpg" alt="UBC Admissions on ubc.ca" />
+              <figcaption>Admissions (ubc.ca): Mixed content, leads to subdomain redirect</figcaption>
+              <span class="fig-label">Mixed content + subdomain redirect</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://you.ubc.ca/applying-ubc/"
+              data-context="Once redirected to you.ubc.ca, the Applying to UBC page provides richer admissions guidance including deadlines and program links. However, the visual language diverges from ubc.ca: different typography, font sizes, and background colours. The context shift created by moving from one domain to another is a UX weakness: users may not trust they are still on an official UBC channel. This directly supports the H4 heuristic (Consistency) weakness and Finding 01.">
+              <img src="assets/screenshots/ubc/desktop-apply.jpg" alt="UBC Apply on you.ubc.ca" />
+              <figcaption>Apply Flow (you.ubc.ca): Visual language diverges from main site</figcaption>
+              <span class="fig-label">Domain shift: visual inconsistency</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://you.ubc.ca/applying-ubc/study-permit/"
+              data-context="The Study Permit (international) guidance page on you.ubc.ca contains clear, useful content: timing for permit applications, process steps, and links to official immigration sources. This is UBC's strongest page for international students. However, it requires navigating through the admissions hub to find. It is not linked directly from either homepage or the main admissions page. This evidences the gap between content quality and content discoverability (Findings 01 and 04).">
+              <img src="assets/screenshots/ubc/desktop-international.jpg" alt="UBC Study Permit Page" />
+              <figcaption>Study Permit: Strong content, but hard to find</figcaption>
+              <span class="fig-label">Strong info buried behind navigation</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.ubc.ca/contact/"
+              data-context="UBC's contact page is accessible from the footer and provides email and phone options. One of the more organized contact pages across the four sites reviewed. However, it is located in the footer rather than being surfaced as a persistent CTA within the admissions flow. For an international student who gets confused during the journey, finding help requires returning to the homepage and scrolling to the footer. Supports Finding 04 (trust and visibility) and UX Opportunity 04 (persistent contact actions).">
+              <img src="assets/screenshots/ubc/desktop-contact.jpg" alt="UBC Contact Page" />
+              <figcaption>Contact: Accessible but not persistent within the admissions flow</figcaption>
+              <span class="fig-label">Contact only in footer, not in flow</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.ubc.ca/admissions/"
+              data-context="The UBC admissions page on mobile retains its dense text content without significant reformatting for small screens. Long paragraphs require full reading rather than scanning. Without a sticky nav, users who scroll down the admissions page on mobile have no quick way to jump to a different section. This reinforces the mobile research barrier finding and UBC's heuristic weakness around Visibility of Status and Recognition Over Recall on mobile.">
+              <img src="assets/screenshots/ubc/mobile-admissions.jpg" alt="UBC Mobile Admissions" />
+              <figcaption>Mobile Admissions: Dense text, no sticky nav, hard to scan</figcaption>
+              <span class="fig-label">Dense text, no anchor on mobile</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ia-grid">
+          <div class="ia-block">
+            <h4>Homepage Analysis</h4>
+            <ul>
+              <li><strong>First impression:</strong> Clean, minimal header. UBC's brand is understated: the homepage leads with editorial photography and a spotlight section rather than clear student CTAs.</li>
+              <li><strong>Navigation:</strong> Top navbar with 9 main links is clean. An "Admissions" item links directly. A secondary audience navigation bar adds another layer.</li>
+              <li><strong>Footer:</strong> Exceptionally well organized: divided into clear sections (About UBC, UBC Campuses) with legal links. One of the clearest footer structures observed.</li>
+              <li><strong>International visibility:</strong> No dedicated "International Students" CTA on the homepage. Navigation to international content requires 2 to 3 clicks minimum.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Application Workflow</h4>
+            <ul>
+              <li>The admissions page on ubc.ca links to you.ubc.ca: a separate subdomain. This creates a context shift and potential disorientation.</li>
+              <li>The you.ubc.ca admissions hub is rich in content and includes study permit links, orientation deadlines, and program info.</li>
+              <li>International students can find study permit guidance, but it is mixed with domestic content: no separated pathway.</li>
+              <li>Admissions page mixes undergraduate programs, graduate admissions, tuition, scholarships, and readiness links all at equal weight.</li>
+              <li><strong>Friction level: Moderate to high.</strong> Information exists but is spread across two domains and many equally weighted sections.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>International Student Resources</h4>
+            <ul>
+              <li>Study permit guidance is available on you.ubc.ca with clear instructions on timing and process.</li>
+              <li>Tuition and financial planning tools exist within the admissions hub.</li>
+              <li>No dedicated "International Students" primary section on the main ubc.ca site.</li>
+              <li>Typography inconsistency across pages: underlined headings, varying font sizes, light blue background boxes competing with white content areas reduce visual coherence.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Mobile Experience</h4>
+            <ul>
+              <li>Main navbar collapses cleanly. UBC's mobile navigation is one of the more functional of the four sites tested.</li>
+              <li>The top navbar disappears on scroll: no sticky navigation. Users on long pages lose their primary wayfinding anchor.</li>
+              <li>Admissions content is readable on mobile, but dense text blocks on the UBC admissions page require full reading rather than scanning.</li>
+              <li>Footer contact information remains accessible on mobile.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ia-heuristic">
+          <h4>Heuristic Analysis</h4>
+          <table class="heuristic-table">
+            <thead>
+              <tr><th>Heuristic</th><th>Score</th><th>Observation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>H1: Visibility of Status</td><td><span class="score s3">3</span></td><td>Breadcrumbs on you.ubc.ca. No sticky nav: orientation lost partway through the page.</td></tr>
+              <tr><td>H2: Match with Expectations</td><td><span class="score s3">3</span></td><td>Clear Admissions link. International pathway requires deeper navigation.</td></tr>
+              <tr><td>H3: Recognition Over Recall</td><td><span class="score s3">3</span></td><td>Key information available but distributed across two domains.</td></tr>
+              <tr><td>H4: Consistency and Standards</td><td><span class="score s3">3</span></td><td>Main site consistent. you.ubc.ca diverges in visual language.</td></tr>
+              <tr><td>H5: Help and Documentation</td><td><span class="score s4">4</span></td><td>Compliant with WCAG. ARIA roles present. Contact in footer. Study permit docs clear.</td></tr>
+            </tbody>
+          </table>
+          <div class="heuristic-summary">
+            <div><strong>Overall score:</strong> 3.2 / 5</div>
+            <div><strong>Main strength:</strong> Accessibility implementation and footer organization</div>
+            <div><strong>Main weakness:</strong> Split across two domains; no sticky nav; inconsistent typography</div>
+          </div>
+        </div>
+
+        <div class="ia-swot">
+          <div class="ia-strengths">
+            <h4>Strengths</h4>
+            <ul>
+              <li>Well organized footer structure: minimal clutter, clear grouping</li>
+              <li>Accessibility integrated (ARIA roles, alt text, WCAG color contrast)</li>
+              <li>Study permit documentation is clear and timely on you.ubc.ca</li>
+              <li>Clean top navigation with direct Admissions link</li>
+              <li>Campus and location info presented well in footer</li>
+            </ul>
+          </div>
+          <div class="ia-weaknesses">
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>Content split across ubc.ca and you.ubc.ca creates context discontinuity</li>
+              <li>Top navbar not sticky: disappears on scroll</li>
+              <li>Admissions page mixes domestic and international content without hierarchy</li>
+              <li>Inconsistent typography system across pages</li>
+              <li>No dedicated international student landing page on main domain</li>
+            </ul>
+          </div>
+          <div class="ia-opportunities">
+            <h4>DirectPass Signals</h4>
+            <ul>
+              <li>UBC's content split across ubc.ca and you.ubc.ca means DirectPass must source data from both domains: the study permit page (you.ubc.ca/applying-ubc/study-permit/) is the most complete international resource and should be a direct data input</li>
+              <li>UBC's visual inconsistency between domains may cause students to distrust whether they are looking at current information: DirectPass's aggregated view should include a data freshness signal for content specific to UBC</li>
+              <li>No sticky nav means orientation is lost on mobile: a known pain point for students during research that DirectPass's persistent context removes</li>
+              <li>Domestic and international tuition are presented together without clear separation: DirectPass must default to international figures for UBC, not domestic</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- NORTHEASTERN ---- -->
+    <div class="tab-panel" id="tab-northeastern">
+      <div class="institution-analysis">
+        <div class="ia-header">
+          <div class="ia-num">05.3</div>
+          <div>
+            <h3>Northeastern University</h3>
+            <p class="ia-meta">United States · Research University · <a href="https://www.northeastern.edu" target="_blank" rel="noopener">northeastern.edu</a></p>
+          </div>
+          <div class="ia-prev-badge new-review">New competitive UX review</div>
+        </div>
+
+        <div class="ia-screenshots">
+          <div class="screenshot-scroll">
+
+            <figure
+              data-url="https://www.northeastern.edu"
+              data-context="Northeastern's homepage immediately presents an entry point organized by degree type: Undergraduate, Graduate, and Doctoral. This allows students to identify themselves before entering the admissions flow. It is the clearest example observed of information architecture centered on students across all four sites. It directly contradicts the problem in Finding 05: language organized around student questions outperforms institutional categories. The bottom persistent action bar (Apply, Request Info, Visit) is a standout UX pattern.">
+              <img src="assets/screenshots/northeastern/desktop-home.jpg" alt="Northeastern Desktop Homepage" />
+              <figcaption>Homepage: Leading: split by degree type + persistent CTA bar</figcaption>
+              <span class="fig-label">Degree type split + persistent CTA bar</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.northeastern.edu"
+              data-context="Northeastern's mobile homepage maintains its clean structure with a flyout navigation that opens with one tap. The segmentation by degree type (Undergraduate / Graduate / Doctoral) is preserved on mobile, making identification immediate. The persistent 'Apply / Request Info / Visit' action bar remains visible at the bottom: one of the only sites where key CTAs remain accessible on mobile without scrolling. This is the benchmark mobile experience across the four sites reviewed.">
+              <img src="assets/screenshots/northeastern/mobile-home.jpg" alt="Northeastern Mobile Homepage" />
+              <figcaption>Mobile: CTA bar accessible, clean layout maintained</figcaption>
+              <span class="fig-label">CTA bar stays accessible on mobile</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.northeastern.edu"
+              data-context="The 'Explore Northeastern' flyout nav uses a structure with two panels: main categories on the left (Admissions, Academics, Global, Research) with contextual supporting links on the right. The 'Admissions' item opens this panel rather than navigating directly: an unconventional pattern that may confuse users expecting a standard nav link. Despite this, the flyout is organized well and includes quick links (Events, Visit, Alumni) not available in the main body. Evidence for both strength (organized nav) and weakness (unconventional href='#' behaviour).">
+              <img src="assets/screenshots/northeastern/desktop-nav-open.jpg" alt="Northeastern Nav Flyout Open" />
+              <figcaption>Nav Flyout: Two panel structure, but Admissions uses href='#'</figcaption>
+              <span class="fig-label">Two panel nav, unconventional Admissions link</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://admissions.northeastern.edu"
+              data-context="The admissions.northeastern.edu hub is the most organized admissions page across all four sites. It features navigation centered on students (About, Apply, Academics, Cost & Financial Aid, Student Life, Visit & Connect), prominent application deadline callouts, and a clearly visible 'How to Apply' section. This directly supports Finding 02: sequential workflows reduce friction. The dedicated subdomain creates a focused context separate from the broader institutional website.">
+              <img src="assets/screenshots/northeastern/desktop-admissions.jpg" alt="Northeastern Admissions Hub" />
+              <figcaption>Admissions Hub: Best structure: deadlines prominent, navigation based on tasks</figcaption>
+              <span class="fig-label">Leading admissions structure</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://admissions.northeastern.edu/apply/"
+              data-context="The Apply section on the admissions hub organizes the application process into sequential steps with clear labels. This is the strongest example of Finding 02 in practice: application steps are presented as a numbered, scannable flow rather than a flat list of links. The Cost & Financial Aid primary nav item is also visible here: an example of Finding 04 in action: surfacing critical financial information within two clicks rather than hiding it.">
+              <img src="assets/screenshots/northeastern/desktop-apply-menu.jpg" alt="Northeastern Apply Section" />
+              <figcaption>Apply Flow: Sequential steps, financial aid surfaced in top nav</figcaption>
+              <span class="fig-label">Sequential apply steps: benchmark pattern</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://admissions.northeastern.edu/international-applicants/"
+              data-context="Northeastern's dedicated International Applicants page provides specific documentation requirements, language test thresholds, and deadlines for international students. It is findable via the admissions site navbar, though not linked directly from the main northeastern.edu homepage. While the content is strong, the page requires navigating to the admissions subdomain first: evidencing that even the strongest performing site in this evaluation still has room to improve international pathway discoverability (Finding 01).">
+              <img src="assets/screenshots/northeastern/desktop-international.jpg" alt="Northeastern International Applicants Page" />
+              <figcaption>International Applicants: Strong content, reachable via admissions subdomain</figcaption>
+              <span class="fig-label">Strong content, but not from main homepage</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://admissions.northeastern.edu/contact/"
+              data-context="The Northeastern contact page provides multiple contact methods and office information. More importantly, the 'Request Info' and 'Contact Us' CTAs persist in the admissions subdomain header: meaning users never need to navigate to the contact page to get help. This persistent CTA pattern is the key UX differentiator for Northeastern and the model referenced in UX Opportunity 04: making contact actions persistent rather than burying them in footers.">
+              <img src="assets/screenshots/northeastern/desktop-contact.jpg" alt="Northeastern Contact Page" />
+              <figcaption>Contact: Available, but more importantly persistent in nav throughout</figcaption>
+              <span class="fig-label">Persistent CTAs: the benchmark for other sites</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://admissions.northeastern.edu"
+              data-context="The Northeastern admissions subdomain on mobile maintains the top nav and keeps key actions accessible. 'Request Info' and 'Contact Us' remain reachable without scrolling. The admissions step content is readable with strong contrast. This is the clearest evidence supporting UX Opportunity 05 (research flows designed for mobile first): Northeastern is the only site where a prospective international student on mobile can navigate the full application research flow without significant friction.">
+              <img src="assets/screenshots/northeastern/mobile-admissions.jpg" alt="Northeastern Mobile Admissions Hub" />
+              <figcaption>Mobile Admissions: Nav + CTAs preserved, minimal friction</figcaption>
+              <span class="fig-label">Best mobile admissions experience observed</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ia-grid">
+          <div class="ia-block">
+            <h4>Homepage Analysis</h4>
+            <ul>
+              <li><strong>First impression:</strong> Dynamic, visually rich homepage with a hero carousel and prominent "Undergraduate / Graduate / Doctoral" pathway split. Clear segmentation by degree type helps users identify themselves immediately.</li>
+              <li><strong>Navigation:</strong> Hamburger menu "Explore Northeastern" flyout with a structure composed of two panels. Main categories (Admissions, Academics, Global) plus quick links (Events, Visit, Alumni). Clean and well organized.</li>
+              <li><strong>Global network:</strong> Interactive campus map is a standout feature: immediately communicates global reach to international students.</li>
+              <li><strong>CTAs:</strong> "Apply," "Request information," and "Visit" are prominently placed as a bottom action bar. Very high visibility.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Application Workflow</h4>
+            <ul>
+              <li>Dedicated admissions site (admissions.northeastern.edu) with structured navbar: About, Apply, Academics, Cost &amp; Financial Aid, Student Life, Visit &amp; Connect.</li>
+              <li>"How to Apply" section on the admissions homepage with sequential breakdown: one of the clearest application flows observed.</li>
+              <li>International applicants page exists and is findable. Includes specific requirements, deadlines, and documentation guidance.</li>
+              <li>Application deadlines section is prominent and scannable.</li>
+              <li><strong>Friction level: Low to moderate.</strong> The dedicated admissions subdomain creates a clear, focused experience.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>International Student Resources</h4>
+            <ul>
+              <li>Dedicated "International Applicants" page on admissions.northeastern.edu with specific requirements for international students.</li>
+              <li>Cooperative education program and global campus network are prominently featured: strong differentiators for internationally mobile students.</li>
+              <li>Financial aid and cost information is available under its own primary nav item.</li>
+              <li>Request information CTA is persistent across the admissions site: low friction path to getting personalized guidance.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Mobile Experience</h4>
+            <ul>
+              <li>Mobile homepage is clean with the flyout nav accessible via a single tap. Navigation closes properly and does not trap users.</li>
+              <li>The admissions site on mobile maintains the top nav with key actions. "Request Info" and "Contact Us" are accessible without excessive scrolling.</li>
+              <li>Hero content is appropriately simplified for mobile. Text contrast is strong.</li>
+              <li>One of the better mobile experiences across the four sites tested.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ia-heuristic">
+          <h4>Heuristic Analysis</h4>
+          <table class="heuristic-table">
+            <thead>
+              <tr><th>Heuristic</th><th>Score</th><th>Observation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>H1: Visibility of Status</td><td><span class="score s4">4</span></td><td>Application deadlines prominent. Steps visible on admissions homepage.</td></tr>
+              <tr><td>H2: Match with Expectations</td><td><span class="score s4">4</span></td><td>Degree type split (UG/Grad/PhD) matches how students think. International page exists.</td></tr>
+              <tr><td>H3: Recognition Over Recall</td><td><span class="score s4">4</span></td><td>Requirements and deadlines surfaced early. Costs have own nav section.</td></tr>
+              <tr><td>H4: Consistency and Standards</td><td><span class="score s4">4</span></td><td>Admissions subdomain has consistent, focused IA. Main site and subdomain share visual language.</td></tr>
+              <tr><td>H5: Help and Documentation</td><td><span class="score s5">5</span></td><td>Request Info, Contact, and Visit are persistent CTAs. FAQ linked prominently.</td></tr>
+            </tbody>
+          </table>
+          <div class="heuristic-summary">
+            <div><strong>Overall score:</strong> 4.2 / 5</div>
+            <div><strong>Main strength:</strong> Persistent CTAs and dedicated admissions hub with clear flows</div>
+            <div><strong>Main weakness:</strong> International content not surfaced from the main homepage</div>
+          </div>
+        </div>
+
+        <div class="ia-swot">
+          <div class="ia-strengths">
+            <h4>Strengths</h4>
+            <ul>
+              <li>Dedicated admissions subdomain with focused, information architecture centered on students</li>
+              <li>Persistent "Request Info / Contact / Visit" CTA bar across admissions site</li>
+              <li>Interactive global campus map: strong signal for international students</li>
+              <li>Degree type entry point (UG / Grad / PhD) reduces early friction</li>
+              <li>Clear "How to Apply" with sequential steps</li>
+            </ul>
+          </div>
+          <div class="ia-weaknesses">
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>Main nav "Admissions" uses href="#": opens panel rather than navigating directly</li>
+              <li>International applicant page not prominently linked from the homepage</li>
+              <li>Cooperative education information is compelling but not immediately connected to international student needs</li>
+              <li>Some sections still require several clicks for discovery</li>
+            </ul>
+          </div>
+          <div class="ia-opportunities">
+            <h4>DirectPass Signals</h4>
+            <ul>
+              <li>Northeastern's admissions subdomain (admissions.northeastern.edu) is the most complete and consistently structured institutional source observed: its data is more reliable and consistently organized than the other three sites</li>
+              <li>The cooperative education and global campus network are significant differentiators for internationally mobile students: DirectPass should surface cooperative education availability as a filterable attribute for Northeastern programs</li>
+              <li>Cost &amp; Financial Aid is already a primary nav item on the admissions site: this signals that financial data is actively maintained and accessible, making Northeastern one of the more reliable sources for cost data</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- CONESTOGA ---- -->
+    <div class="tab-panel" id="tab-conestoga">
+      <div class="institution-analysis">
+        <div class="ia-header">
+          <div class="ia-num">05.4</div>
+          <div>
+            <h3>Conestoga College</h3>
+            <p class="ia-meta">Canada · Polytechnic College · <a href="https://www.conestogac.on.ca" target="_blank" rel="noopener">conestogac.on.ca</a></p>
+          </div>
+          <div class="ia-prev-badge new-review">New competitive UX review</div>
+        </div>
+
+        <div class="ia-screenshots">
+          <div class="screenshot-scroll">
+
+            <figure
+              data-url="https://www.conestogac.on.ca"
+              data-context="Conestoga's homepage uses a clean top navigation with four items (Programs & Courses, Admissions, Campus Life, About) with minimal visual clutter. This is one of the lowest entry points with low cognitive load across the four sites. However, there is no 'International Students' CTA on the homepage despite Conestoga having one of the largest international student populations in Ontario. The site's visual tone is functional and transactional: it doesn't communicate aspirational recruitment messaging. This supports Finding 04 and UX Opportunity 01.">
+              <img src="assets/screenshots/conestoga/desktop-home.jpg" alt="Conestoga Desktop Homepage" />
+              <figcaption>Homepage: Clean nav, but no international entry point despite large intl. population</figcaption>
+              <span class="fig-label">Low clutter, but no intl. CTA</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.conestogac.on.ca"
+              data-context="Conestoga's mobile homepage collapses to a hamburger that opens an expanded menu drawer with many nested items. For an international student visiting for the first time on mobile, this off canvas menu is one of the more overwhelming navigation patterns encountered. The density of nested items makes scanning difficult and increases the risk of users giving up before finding the path they need. This is key evidence for Finding 03 (mobile as a research barrier) and the H4 heuristic (consistency: the expanded menu breaks the main layout pattern).">
+              <img src="assets/screenshots/conestoga/mobile-home.jpg" alt="Conestoga Mobile Homepage" />
+              <figcaption>Mobile: Dense expanded menu on open, overwhelming for first visit</figcaption>
+              <span class="fig-label">Expanded menu overwhelming on mobile</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.conestogac.on.ca/admissions/"
+              data-context="Conestoga's Admissions section features a clean section navigation (Home, Applying to Conestoga, Paying Fees, Registrar's Office, Contact), one of the clearest admissions section nav patterns observed. The section navigation provides immediate orientation within the section. However, international students are not mentioned in this section navigation: the international pathway lives in a completely separate 'International' section. This is the core structural weakness, two parallel tracks (Admissions and International) create the fragmentation described in Finding 01.">
+              <img src="assets/screenshots/conestoga/desktop-admissions.jpg" alt="Conestoga Admissions Section" />
+              <figcaption>Admissions: Clean section navigation, but International students sent to a separate track</figcaption>
+              <span class="fig-label">Good structure, but intl. is siloed</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.conestogac.on.ca/admissions/applying-to-conestoga/"
+              data-context="The 'Applying to Conestoga' page outlines the application process with steps, links to academic dates, financial aid, and credit transfer. This is a reasonable starting point for domestic students. However, for international students, this page provides no contextual guidance: there is no note saying 'if you are an international student, start here instead.' The absence of this branching instruction means international students either miss their specific pathway or waste time reading content only for domestic students. This supports Findings 01 and 02.">
+              <img src="assets/screenshots/conestoga/desktop-apply.jpg" alt="Conestoga Applying Page" />
+              <figcaption>Apply Steps: No branch for international students despite separate pathway existing</figcaption>
+              <span class="fig-label">No international branch instruction here</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.conestogac.on.ca/international/"
+              data-context="Conestoga's dedicated International Students section is the strongest international content hub across all four sites. It consolidates study in Canada information, program options, tuition, admission requirements, visa/study permit guidance, and student services in one place. This is Conestoga's key UX strength and the model for UX Opportunity 01 in the report. The weakness is discoverability: this section must be found separately from the main admissions flow, requiring users to know it exists.">
+              <img src="assets/screenshots/conestoga/desktop-international.jpg" alt="Conestoga International Students Section" />
+              <figcaption>International Section: Best consolidated hub, but siloed from admissions flow</figcaption>
+              <span class="fig-label">Best intl. hub, but siloed from admissions</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure
+              data-url="https://www.conestogac.on.ca/admissions/contact-us/"
+              data-context="Conestoga's contact page provides clear phone, email, and office location options with a Registrar's office section. Multiple contact methods reduce friction for students who get stuck. However, like all four sites except Northeastern, the contact options are in a dedicated page rather than persisted throughout the admissions flow. An international student who gets lost on mobile has no immediate access to help without navigating away. This supports UX Opportunity 04: persistent contact actions across the admissions journey.">
+              <img src="assets/screenshots/conestoga/desktop-contact.jpg" alt="Conestoga Contact Page" />
+              <figcaption>Contact: Clear options, but requires separate navigation to reach</figcaption>
+              <span class="fig-label">Good options, but not persistent in flow</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+            <figure class="mobile-shot"
+              data-url="https://www.conestogac.on.ca/international/"
+              data-context="The International Students section on Conestoga's mobile site is one of the more readable mobile pages across this evaluation. Content density is manageable, and the page structure, with clear headings for study permits, tuition, and admission requirements, allows for reasonable scanning. This demonstrates that when Conestoga does surface international content, the experience is functional. The problem remains discoverability: getting to this page requires navigating through the expanded menu to find the International section, not through the admissions flow.">
+              <img src="assets/screenshots/conestoga/mobile-international.jpg" alt="Conestoga Mobile International Section" />
+              <figcaption>Mobile International: Readable once found, but hard to discover</figcaption>
+              <span class="fig-label">Readable, but hard to discover from admissions flow</span>
+              <span class="fig-hint">⤢</span>
+            </figure>
+
+          </div>
+        </div>
+
+        <div class="ia-grid">
+          <div class="ia-block">
+            <h4>Homepage Analysis</h4>
+            <ul>
+              <li><strong>First impression:</strong> Functional, homepage focused on programs. Navigation is clean: 4 primary items (Programs &amp; courses, Admissions, Campus life, About). Minimal visual clutter.</li>
+              <li><strong>International prominence:</strong> Conestoga has a significant international population and notably has a dedicated "International" section findable through the site. However it is not a primary homepage CTA.</li>
+              <li><strong>Structure:</strong> The site uses an expanded menu drawer pattern (off canvas dialog) which contains extensive nested navigation. Can feel overwhelming when opened.</li>
+              <li><strong>Tone:</strong> More functional/transactional than focused on brand expression. Feels like a college portal rather than an aspirational recruitment tool.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Application Workflow</h4>
+            <ul>
+              <li>Admissions section has a section navigation: Home, Applying to Conestoga, Paying Fees, Registrar's Office, Contact. Clear and scannable.</li>
+              <li>"Applying to Conestoga" page outlines steps and links to academic dates, financial aid, and credit transfer: good foundational structure.</li>
+              <li>International student application pathway is in a separate "International" section, creating a split between the main admissions flow and guidance specific to international students.</li>
+              <li><strong>Friction level: Moderate.</strong> Admissions section is organized well but the international student path requires knowing to look under a separate section.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>International Student Resources</h4>
+            <ul>
+              <li>Dedicated conestogac.on.ca/international section: one of the clearest dedicated international student experiences observed.</li>
+              <li>The international page covers: study in Canada, programs, tuition, admission requirements, visa/study permit, and student services.</li>
+              <li>This is a significant strength: international content is consolidated rather than fragmented.</li>
+              <li>However, discoverability from the homepage remains a weakness: users must know to navigate to the International section vs. standard Admissions.</li>
+            </ul>
+          </div>
+
+          <div class="ia-block">
+            <h4>Mobile Experience</h4>
+            <ul>
+              <li>Mobile homepage collapses to a hamburger menu. The expanded menu drawer on mobile contains many nested items and can feel overwhelming.</li>
+              <li>International students page on mobile is accessible and readable. Content density is manageable.</li>
+              <li>Contact page on mobile is functional with clear phone/email options.</li>
+              <li>Overall mobile experience is adequate but not refined: the off canvas menu is particularly complex on small screens.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ia-heuristic">
+          <h4>Heuristic Analysis</h4>
+          <table class="heuristic-table">
+            <thead>
+              <tr><th>Heuristic</th><th>Score</th><th>Observation</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>H1: Visibility of Status</td><td><span class="score s3">3</span></td><td>Section navigation on admissions pages provides clear location. No application step tracker visible.</td></tr>
+              <tr><td>H2: Match with Expectations</td><td><span class="score s4">4</span></td><td>Dedicated International section matches the mental model of a student who knows they're international.</td></tr>
+              <tr><td>H3: Recognition Over Recall</td><td><span class="score s3">3</span></td><td>International section consolidates info well. Requires knowing to navigate there separately from Admissions.</td></tr>
+              <tr><td>H4: Consistency and Standards</td><td><span class="score s3">3</span></td><td>Main site is consistent. Expanded menu dialog adds complexity and breaks the main layout pattern.</td></tr>
+              <tr><td>H5: Help and Documentation</td><td><span class="score s4">4</span></td><td>Contact page is clear. Registrar's office section is accessible. Admission FAQ is available.</td></tr>
+            </tbody>
+          </table>
+          <div class="heuristic-summary">
+            <div><strong>Overall score:</strong> 3.4 / 5</div>
+            <div><strong>Main strength:</strong> Dedicated, consolidated international student section</div>
+            <div><strong>Main weakness:</strong> International pathway is siloed from main admissions flow</div>
+          </div>
+        </div>
+
+        <div class="ia-swot">
+          <div class="ia-strengths">
+            <h4>Strengths</h4>
+            <ul>
+              <li>Dedicated and consolidated international student section: best of the four sites for this</li>
+              <li>Clean top navigation with four items: low cognitive load on entry</li>
+              <li>Admissions section navigation is clear and scoped appropriately</li>
+              <li>Contact page is straightforward with multiple contact methods</li>
+              <li>Admission FAQ is surfaced within the admissions section</li>
+            </ul>
+          </div>
+          <div class="ia-weaknesses">
+            <h4>Weaknesses</h4>
+            <ul>
+              <li>International section is siloed from the main admissions flow: two separate discovery paths</li>
+              <li>Expanded menu drawer is complex and overwhelming on both desktop and mobile</li>
+              <li>Homepage is functional but lacks aspirational design for recruitment purposes</li>
+              <li>No persistent CTA bar for prospective students</li>
+              <li>Mobile expanded menu is particularly dense and hard to scan</li>
+            </ul>
+          </div>
+          <div class="ia-opportunities">
+            <h4>DirectPass Signals</h4>
+            <ul>
+              <li>Conestoga's international section (conestogac.on.ca/international/) is the most consolidated international source page observed: it should be the primary data source for Conestoga international requirements in DirectPass, not the main admissions section</li>
+              <li>The siloing between Admissions and International means students applying to Conestoga via DirectPass must be clearly routed to specific to international students requirements: linking to the general admissions flow would send them to the wrong track</li>
+              <li>Conestoga is Ontario's fastest growing college for international students: demand is high but the website friction is significant, making DirectPass's aggregated view particularly valuable for this institution specifically</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 06. COMPETITIVE MATRIX -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="matrix">
+  <div class="section-inner">
+    <div class="section-label">06</div>
+    <h2 class="section-title">Competitive Matrix</h2>
+    <p class="section-desc">Scores 1 to 5 &nbsp;·&nbsp; <strong>5</strong> = Strong &nbsp;·&nbsp; <strong>3</strong> = Moderate &nbsp;·&nbsp; <strong>1</strong> = Weak</p>
+
+    <div class="matrix-wrapper">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>NYU</th>
+            <th>UBC</th>
+            <th>Northeastern</th>
+            <th>Conestoga</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Homepage clarity</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>Application workflow</td>
+            <td><span class="score s2">2</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>International student resources</td>
+            <td><span class="score s2">2</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s5">5</span></td>
+          </tr>
+          <tr>
+            <td>Key university information</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>Contact / updates</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s4">4</span></td>
+          </tr>
+          <tr>
+            <td>Mobile usability</td>
+            <td><span class="score s2">2</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>Navigation architecture</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>Trust and credibility</td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr>
+            <td>Support and documentation</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s4">4</span></td>
+          </tr>
+          <tr>
+            <td>Feature usefulness</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s3">3</span></td>
+          </tr>
+          <tr class="matrix-total">
+            <td><strong>Overall score</strong></td>
+            <td><strong>2.9</strong></td>
+            <td><strong>3.4</strong></td>
+            <td><strong>4.3</strong></td>
+            <td><strong>3.4</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="matrix-legend">
+      <div class="legend-item"><span class="score s5">5</span> Strong: leading for this criterion</div>
+      <div class="legend-item"><span class="score s4">4</span> Good: above average with minor gaps</div>
+      <div class="legend-item"><span class="score s3">3</span> Moderate: functional but improvable</div>
+      <div class="legend-item"><span class="score s2">2</span> Weak: significant friction or missing content</div>
+      <div class="legend-item"><span class="score s1">1</span> Poor: critical gap</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 07. SCREEN FLOW COMPARISON -->
+<!-- ============================================================ -->
+<section class="section" id="flows">
+  <div class="section-inner">
+    <div class="section-label">07</div>
+    <h2 class="section-title">Screen Flow Comparison</h2>
+
+    <!-- Flow 01 -->
+    <div class="flow-block reveal">
+      <div class="flow-header">
+        <span class="flow-num">Flow 01</span>
+        <h3>Find international student admissions information</h3>
+        <p class="flow-path">Homepage → Admissions → International Students → Requirements</p>
+      </div>
+      <div class="matrix-wrapper">
+        <table class="flow-table">
+          <thead>
+            <tr><th>Institution</th><th>Entry Point</th><th>Steps</th><th>Friction</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NYU</strong></td>
+              <td>Top nav → Admissions</td>
+              <td>3 to 4</td>
+              <td><span class="friction high">High</span></td>
+              <td>No dedicated international landing. Must navigate supporting sections manually.</td>
+            </tr>
+            <tr>
+              <td><strong>UBC</strong></td>
+              <td>Top nav → Admissions → you.ubc.ca</td>
+              <td>3 to 4</td>
+              <td><span class="friction med">Moderate</span></td>
+              <td>Domain shift to you.ubc.ca. Study permit page reachable but not prominently signposted.</td>
+            </tr>
+            <tr>
+              <td><strong>Northeastern</strong></td>
+              <td>Nav flyout → Admissions → admissions.northeastern.edu → International Applicants</td>
+              <td>3</td>
+              <td><span class="friction low">Low</span></td>
+              <td>Dedicated international page. Requirements and deadlines clearly listed.</td>
+            </tr>
+            <tr>
+              <td><strong>Conestoga</strong></td>
+              <td>Top nav → International (separate from Admissions)</td>
+              <td>2</td>
+              <td><span class="friction low">Low</span></td>
+              <td>Best dedicated international hub. But requires knowing to look under "International" not "Admissions."</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Flow 02 -->
+    <div class="flow-block reveal">
+      <div class="flow-header">
+        <span class="flow-num">Flow 02</span>
+        <h3>Understand how to apply</h3>
+        <p class="flow-path">Homepage → Apply → Student Type → Requirements → Submit</p>
+      </div>
+      <div class="matrix-wrapper">
+        <table class="flow-table">
+          <thead>
+            <tr><th>Institution</th><th>Entry Point</th><th>Steps</th><th>Friction</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NYU</strong></td>
+              <td>Admissions page → 10 options with no recommended start</td>
+              <td>4 to 5+</td>
+              <td><span class="friction high">High</span></td>
+              <td>No sequential steps. User must navigate independently a flat list. Deadlines buried.</td>
+            </tr>
+            <tr>
+              <td><strong>UBC</strong></td>
+              <td>Admissions page → Undergraduate Admissions → you.ubc.ca</td>
+              <td>3 to 4</td>
+              <td><span class="friction med">Moderate</span></td>
+              <td>Steps exist on you.ubc.ca. Domain shift creates mild disorientation.</td>
+            </tr>
+            <tr>
+              <td><strong>Northeastern</strong></td>
+              <td>admissions.northeastern.edu → How to Apply section</td>
+              <td>2 to 3</td>
+              <td><span class="friction low">Low</span></td>
+              <td>Clear sequential steps. Application deadlines prominently displayed. Best flow of the four.</td>
+            </tr>
+            <tr>
+              <td><strong>Conestoga</strong></td>
+              <td>Admissions → Applying to Conestoga → Steps outlined</td>
+              <td>2 to 3</td>
+              <td><span class="friction low-med">Low to moderate</span></td>
+              <td>Clear steps on the applying page. Specific to international students steps in separate section.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Flow 03 -->
+    <div class="flow-block reveal">
+      <div class="flow-header">
+        <span class="flow-num">Flow 03</span>
+        <h3>Get help or request information</h3>
+        <p class="flow-path">Homepage → Contact / Request Info → Form / Advisor / Email</p>
+      </div>
+      <div class="matrix-wrapper">
+        <table class="flow-table">
+          <thead>
+            <tr><th>Institution</th><th>Contact Method</th><th>Visibility</th><th>Mobile Access</th><th>Friction</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>NYU</strong></td>
+              <td>Footer contact links, departmental emails</td>
+              <td>Low: footer only</td>
+              <td>Accessible on mobile</td>
+              <td><span class="friction med">Moderate</span></td>
+            </tr>
+            <tr>
+              <td><strong>UBC</strong></td>
+              <td>Footer → Contact Vancouver/Okanagan campus</td>
+              <td>Moderate: footer</td>
+              <td>Accessible on mobile</td>
+              <td><span class="friction med">Moderate</span></td>
+            </tr>
+            <tr>
+              <td><strong>Northeastern</strong></td>
+              <td>Persistent CTA bar: Request Info / Contact Us / Visit</td>
+              <td><strong>High</strong>: persistent bar</td>
+              <td>Excellent mobile access</td>
+              <td><span class="friction low">Low</span></td>
+            </tr>
+            <tr>
+              <td><strong>Conestoga</strong></td>
+              <td>Admissions → Contact supporting page, footer links</td>
+              <td>Moderate: section navigation</td>
+              <td>Accessible on mobile</td>
+              <td><span class="friction low-med">Low to moderate</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 08. HEURISTIC SUMMARY -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="heuristics">
+  <div class="section-inner">
+    <div class="section-label">08</div>
+    <h2 class="section-title">Heuristic Analysis Summary</h2>
+
+    <p class="section-intro">This evaluation applies <strong>5 of Nielsen Norman Group's 10 Usability Heuristics</strong>, the subset most relevant to informational and navigational websites evaluated from a prospective student's perspective. The five omitted heuristics (H6 User Control &amp; Freedom, H7 Error Prevention, H8 Flexibility &amp; Efficiency of Use, H9 Aesthetic &amp; Minimalist Design, H10 Error Recognition &amp; Recovery) apply primarily to transactional interfaces, forms, portals, and systems where users take actions that can fail or be undone. Since this evaluation focuses on the research before application and navigation experience rather than the application portals themselves, those heuristics were intentionally excluded from scope.</p>
+
+    <div class="matrix-wrapper">
+      <table class="matrix-table">
+        <thead>
+          <tr>
+            <th>Heuristic</th>
+            <th>NYU</th>
+            <th>UBC</th>
+            <th>Northeastern</th>
+            <th>Conestoga</th>
+            <th>Pattern</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>H1: Visibility of Status</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+            <td>Breadcrumbs common; application progress rarely shown</td>
+          </tr>
+          <tr>
+            <td>H2: Match with Expectations</td>
+            <td><span class="score s2">2</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s4">4</span></td>
+            <td>Better when student type is clearly segmented upfront</td>
+          </tr>
+          <tr>
+            <td>H3: Recognition Over Recall</td>
+            <td><span class="score s2">2</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+            <td>Deadlines and costs rarely surfaced early enough</td>
+          </tr>
+          <tr>
+            <td>H4: Consistency and Standards</td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s3">3</span></td>
+            <td>Most sites consistent on main site; supporting domains introduce inconsistency</td>
+          </tr>
+          <tr>
+            <td>H5: Help and Documentation</td>
+            <td><span class="score s3">3</span></td>
+            <td><span class="score s4">4</span></td>
+            <td><span class="score s5">5</span></td>
+            <td><span class="score s4">4</span></td>
+            <td>Contact and FAQ exist on all; Northeastern leads with persistent CTA</td>
+          </tr>
+          <tr class="matrix-total">
+            <td><strong>Average</strong></td>
+            <td><strong>2.8</strong></td>
+            <td><strong>3.2</strong></td>
+            <td><strong>4.2</strong></td>
+            <td><strong>3.4</strong></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="heuristic-interpretation reveal">
+      <h3>Interpretation</h3>
+      <p>Across all four sites, <strong>H3 (Recognition Over Recall)</strong> is the weakest pattern: deadlines, costs, and international requirements are rarely surfaced early. Students must navigate deep into supporting sections to find what they need to make a decision.</p>
+      <p><strong>H5 (Help and Documentation)</strong> is the strongest pattern: all four sites provide contact and FAQ pages; Northeastern leads with its persistent action bar. This suggests institutions understand the importance of contact pathways but have not yet applied the same thinking to proactively surfacing key decision information.</p>
+      <p>The gap between Northeastern (4.2) and NYU (2.8) illustrates how much a focused admissions subdomain created for this purpose can improve the heuristic quality of the experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 09. KEY FINDINGS -->
+<!-- ============================================================ -->
+<section class="section" id="findings">
+  <div class="section-inner">
+    <div class="section-label">09</div>
+    <h2 class="section-title">Key Findings</h2>
+
+    <div class="findings-grid">
+
+      <div class="finding-card reveal">
+        <div class="finding-header">
+          <div class="finding-num">01</div>
+          <h3>International student information exists but is fragmented</h3>
+          <span class="finding-toggle">+</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-section">
+            <span class="finding-label">Observation</span>
+            <p>All four sites provide international student resources: visa guidance, tuition, requirements. However, the information is scattered across supporting sections, subdomains, and separate "International" sections that require deliberate discovery.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">Evidence</span>
+            <p>NYU: no dedicated international homepage CTA. UBC: split between ubc.ca and you.ubc.ca. Northeastern: international page 3 levels deep. Conestoga: international section siloed from main admissions.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">UX Implication</span>
+            <p>For DirectPass, this fragmentation is the structural problem the platform directly addresses: students arrive having already encountered these scattered pathways, and the platform's value depends on consolidating what institutions have not.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card reveal">
+        <div class="finding-header">
+          <div class="finding-num">02</div>
+          <h3>Application workflows are strongest when sequential and organized into steps</h3>
+          <span class="finding-toggle">+</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-section">
+            <span class="finding-label">Observation</span>
+            <p>Sites that present the application as a sequential, numbered process significantly reduce user friction compared to sites that present a flat list of options.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">Evidence</span>
+            <p>Northeastern's "How to Apply" with sequential steps is the clearest. Conestoga is second. NYU's admissions page with 10 options with equal weight has the highest perceived friction.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">UX Implication</span>
+            <p>For DirectPass, the sequential model is the established baseline: the question is how to normalize it across institutions that present their process differently. Northeastern sets the benchmark; NYU demonstrates the cost of not having one.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card reveal">
+        <div class="finding-header">
+          <div class="finding-num">03</div>
+          <h3>Mobile navigation is a significant early research barrier</h3>
+          <span class="finding-toggle">+</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-section">
+            <span class="finding-label">Observation</span>
+            <p>International students often begin research on mobile: from their home country, across time zones, on different devices. Mobile navigation quality directly affects first impressions.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">Evidence</span>
+            <p>NYU: deeply nested mobile nav. UBC: no sticky nav, orientation loss on scroll. Conestoga: complex expanded menu. Northeastern: clearest mobile experience with accessible CTAs.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">UX Implication</span>
+            <p>Students who arrive at DirectPass after a frustrating mobile experience on institutional sites bring that anxiety with them. The mobile experience of DirectPass is where that friction must be visibly resolved: the contrast is the value signal.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card reveal">
+        <div class="finding-header">
+          <div class="finding-num">04</div>
+          <h3>Trust increases when key information is visible early</h3>
+          <span class="finding-toggle">+</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-section">
+            <span class="finding-label">Observation</span>
+            <p>Sites that surface deadlines, costs, requirements, and support contacts within the first 2 clicks build faster trust. Hiding this information signals institutional complexity over student readiness.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">Evidence</span>
+            <p>Northeastern surfaces application deadlines on the admissions homepage. Conestoga surfaces tuition in the International section. NYU and UBC require deeper navigation for the same information.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">UX Implication</span>
+            <p>For DirectPass, surfacing international tuition, deadlines, and eligibility criteria as immediate, default data, rather than buried in supporting pages, is the direct answer to what all four sites fail to provide. This is not a feature to add; it is the baseline expectation students bring having already been failed by institutional sites.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-card reveal">
+        <div class="finding-header">
+          <div class="finding-num">05</div>
+          <h3>Student centered language reduces uncertainty and increases confidence</h3>
+          <span class="finding-toggle">+</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-section">
+            <span class="finding-label">Observation</span>
+            <p>Sites using language organized around student questions ("How do I apply?", "What will it cost?") outperform sites organized around institutional departments and categories.</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">Evidence</span>
+            <p>Northeastern uses oriented around tasks labels: "Apply", "Cost &amp; Financial Aid", "Student Life." UBC uses institutional labels: "Academics", "Research", "Strategic Directions."</p>
+          </div>
+          <div class="finding-section">
+            <span class="finding-label">UX Implication</span>
+            <p>The contrast between Northeastern's oriented around tasks labels and UBC's institutional categories confirms that language organized around student intent outperforms departmental structure. DirectPass should validate its own navigation labels against this benchmark: not against how institutions have named their own sections.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 10. UX OPPORTUNITIES -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="opportunities">
+  <div class="section-inner">
+    <div class="section-label">10</div>
+    <h2 class="section-title">UX Opportunities for DirectPass</h2>
+
+    <div class="opportunities-list">
+
+      <div class="opportunity-card reveal">
+        <div class="opp-num">01</div>
+        <div class="opp-content">
+          <h3>The fragmentation gap is DirectPass's core value proposition</h3>
+          <div class="opp-row">
+            <span class="opp-label">Gap observed</span>
+            <p>Every site in this evaluation buries international student information across supporting sections, subdomains, and separate flows. None provides a consolidated view of the tasks an international student actually needs to complete.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">DirectPass implication</span>
+            <p>This is not a gap to recommend universities fix: it is the gap DirectPass exists to close. The evaluation confirms that the problem is structural and consistent across institutions, which means students will reliably arrive at DirectPass with unresolved information needs.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">Design consideration</span>
+            <p>The information architecture of DirectPass must be organized around student decision milestones: not around how each institution has chosen to structure its own site. The contrast between what universities surface and what students need should be invisible to the user.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="opportunity-card reveal">
+        <div class="opp-num">02</div>
+        <div class="opp-content">
+          <h3>Application status tracking fills the most critical missing layer</h3>
+          <div class="opp-row">
+            <span class="opp-label">Gap observed</span>
+            <p>No university site in this evaluation provides any application status visibility beyond a link to an external portal. Once a student submits, the institutional website has no further role: they are handed off to separate systems (CommonApp, OUAC, institutional portals) with no continuity.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">DirectPass implication</span>
+            <p>The phase after submission, where students wait for decisions, track document requirements, and manage multiple applications simultaneously, is entirely unserved by the websites evaluated. This is where DirectPass's tracking layer has no direct competition from any of the four institutions reviewed.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">Design consideration</span>
+            <p>Status tracking should map directly to the specific steps each institution actually uses: not generic stages. The data gathered in this evaluation (what NYU, UBC, Northeastern, and Conestoga each require at each step) is directly usable as the schema for tracking flows for each institution.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="opportunity-card reveal">
+        <div class="opp-num">03</div>
+        <div class="opp-content">
+          <h3>Sequential step design is the proven low friction pattern</h3>
+          <div class="opp-row">
+            <span class="opp-label">Gap observed</span>
+            <p>The clearest finding from this evaluation is that Northeastern's sequential "How to Apply" layout outperforms NYU's flat list of 10 options on every measured dimension. The pattern is consistent: when the process is presented as ordered steps, students understand what to do next.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">DirectPass implication</span>
+            <p>Any view inside DirectPass that represents an application process, whether for a single school or across multiple, should follow a step model, not a link list. The benchmark is already established by Northeastern; the question for DirectPass is how to apply it across institutions with different process structures.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">Design consideration</span>
+            <p>Each institution's process has a different number of steps and different naming conventions. DirectPass needs a normalization layer that maps processes specific to each institution into a consistent sequential UI: while preserving the specific details that matter to students applying to each school.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="opportunity-card reveal">
+        <div class="opp-num">04</div>
+        <div class="opp-content">
+          <h3>Domain fragmentation in institutional sites reveals data sourcing risk</h3>
+          <div class="opp-row">
+            <span class="opp-label">Gap observed</span>
+            <p>UBC splits its admissions content across ubc.ca and you.ubc.ca, with visual inconsistency and no clear ownership signal. Northeastern uses admissions.northeastern.edu as a distinct subdomain. NYU and Conestoga both have information distributed across multiple levels. No institution maintains a single, canonical source for all the data a student needs.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">DirectPass implication</span>
+            <p>DirectPass cannot rely on scraping a single page per institution to populate its data. Relevant information, deadlines, requirements, visa guidance, costs, lives at different URLs and may be inconsistently maintained. This evaluation maps exactly where that data lives for each of the four institutions reviewed.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">Design consideration</span>
+            <p>Data sourcing, freshness, and conflict resolution between multiple institution URLs is a product infrastructure concern that should be addressed early: not as a feature, but as a reliability requirement. Students trust DirectPass to have accurate information; that trust depends on understanding where each institution actually publishes authoritative data.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="opportunity-card reveal">
+        <div class="opp-num">05</div>
+        <div class="opp-content">
+          <h3>Deadlines and costs are the most consequential scannable data points</h3>
+          <div class="opp-row">
+            <span class="opp-label">Gap observed</span>
+            <p>Across all four sites, application deadlines and cost information require multiple clicks to surface. Northeastern is the exception: its Cost &amp; Financial Aid is a primary nav item. All four institutions treat financial and deadline data as secondary discovery, not primary decision support.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">DirectPass implication</span>
+            <p>Deadlines and costs are likely the two most data points checked most often students return to DirectPass to check. They should be present on every view for each school in the platform, without requiring the user to navigate anywhere. This evaluation confirms what is missing from every institutional website: and that absence is what makes these data points especially valuable for DirectPass to own.</p>
+          </div>
+          <div class="opp-row">
+            <span class="opp-label">Design consideration</span>
+            <p>Deadline display should account for timezone (students applying from outside North America face real deadline confusion). Cost display should clearly separate domestic vs. international tuition, since most institutional sites present domestic figures by default: a silent failure mode this evaluation observed in all four cases.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 11. RECOMMENDATIONS FOR DIRECTPASS -->
+<!-- ============================================================ -->
+<section class="section" id="recommendations">
+  <div class="section-inner">
+    <div class="section-label">11</div>
+    <h2 class="section-title">Recommendations for DirectPass</h2>
+    <p class="section-desc">Specific decisions this evaluation should inform in the DirectPass product: grounded in what was directly observed across these four institutions.</p>
+
+    <div class="recs-grid">
+      <div class="rec-card reveal">
+        <div class="rec-num">01</div>
+        <h3>Model data for each institution around actual URL structure, not assumed structure</h3>
+        <p>This evaluation confirmed that each institution distributes key information across multiple subdomains and sections. For NYU, UBC, Northeastern, and Conestoga, the actual source URLs for deadlines, costs, visa requirements, and program details are documented in this report and the linked research spreadsheet. Data models for these institutions should reflect the real source structure, not a generic template.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">02</div>
+        <h3>Use Northeastern's step model as the process normalization benchmark</h3>
+        <p>Of the four institutions evaluated, Northeastern's "How to Apply" is the clearest sequential representation of an application process. When designing DirectPass's application flow view for each institution, Northeastern's structure is the most legible reference: not because it should be copied, but because it already maps closely to how students think about the process.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">03</div>
+        <h3>Treat UBC's domain split as a specific edge case in data sourcing</h3>
+        <p>UBC is the only institution in this evaluation where critical admissions content (study permit guidance, application steps) lives on a different registered domain from the main site (you.ubc.ca vs. ubc.ca). DirectPass needs to handle this explicitly: not just as a data fetch, but as a trust and attribution signal for users who will notice the URL difference.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">04</div>
+        <h3>Deadline and cost display must default to international figures</h3>
+        <p>All four institutions present domestic tuition and deadline information by default. International figures require a separate page or section. DirectPass, serving only international students, must ensure that every deadline and cost displayed is unambiguously the international figure: not the domestic one with a footnote.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">05</div>
+        <h3>The phase after submission has no institutional equivalent: own it clearly</h3>
+        <p>None of the four websites provides any tracking, status, or guidance after a student clicks "Apply." That entire phase, document verification, decision timelines, offer response, is handed off to external portals. This is the phase where DirectPass's tracking functionality operates with no direct competition from institutional sites, and it should be the sharpest part of the product experience.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">06</div>
+        <h3>Conestoga's international section is the content model for what to consolidate</h3>
+        <p>Despite its discoverability problem, Conestoga's international section is the most complete single page consolidation of what a student needs: study permit, tuition, admission requirements, student services. The content structure, not the navigation, is worth mapping directly as an input to what DirectPass should aggregate per institution.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">07</div>
+        <h3>Deadline display that accounts for time zones is an unmet need across all four sites</h3>
+        <p>No site in this evaluation accounts for the timezone of the student reading it. A student in India reading "deadline: November 1" has no way to know whether that means EST, the institution's local time, or midnight UTC. For DirectPass serving users across time zones, deadline display should be explicit about the reference timezone: this is a gap none of these institutions have addressed.</p>
+      </div>
+      <div class="rec-card reveal">
+        <div class="rec-num">08</div>
+        <h3>NYU's flat admissions structure reveals what anxiety looks like for tracked applications</h3>
+        <p>NYU presents 10 equally weighted options with no recommended path. This was the pattern observed with the greatest friction. For students who have applied to NYU, DirectPass's status view for that application should compensate directly: clear current stage, specific next action, and document checklist. The anxiety this evaluation observed in NYU's navigation is the exact anxiety that DirectPass's tracking layer must eliminate for active applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- 12. APPENDIX -->
+<!-- ============================================================ -->
+<section class="section section-alt" id="appendix">
+  <div class="section-inner">
+    <div class="section-label">12</div>
+    <h2 class="section-title">Appendix</h2>
+
+    <h3>Screenshot Archive</h3>
+
+    <div class="appendix-group">
+      <h4>New York University</h4>
+      <div class="screenshot-scroll">
+        <figure data-url="https://www.nyu.edu" data-context="NYU homepage: editorial led by the brand design. No dedicated international student CTA visible above the fold. Left sidebar nav pattern is distinctive but adds navigational complexity for people visiting for the first time. Evidence for Finding 01 and Finding 05."><img src="assets/screenshots/nyu/desktop-home.jpg" alt="NYU Desktop Homepage" /><figcaption>Desktop: Homepage (no intl. CTA above fold)</figcaption><span class="fig-label">No intl. CTA visible</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.nyu.edu" data-context="NYU mobile homepage. Sidebar collapses to hamburger. Navigation becomes deeply nested on mobile: reaching admissions or international content requires several taps. Key evidence for Finding 03: mobile navigation as a research barrier."><img src="assets/screenshots/nyu/mobile-home.jpg" alt="NYU Mobile Homepage" /><figcaption>Mobile: Deep nested nav</figcaption><span class="fig-label">Deep nesting on mobile</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.nyu.edu/admissions.html" data-context="NYU admissions page: 10 equally weighted options with no recommended starting point. No distinction between domestic and international student paths is surfaced. This flat link list is the admissions page with the greatest friction across all four sites. Evidence for Findings 01, 02, and 05."><img src="assets/screenshots/nyu/desktop-admissions.jpg" alt="NYU Admissions Page" /><figcaption>Desktop: Admissions (10 options with equal weight)</figcaption><span class="fig-label">10 options, no hierarchy</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.nyu.edu/admissions/undergraduate-admissions.html" data-context="NYU Undergraduate Admissions: structure based on institutional categories distributes requirements, deadlines, and international specifics across supporting pages. A student must construct their own path. Costs and deadlines require several more clicks. Evidence for Findings 02 and 04."><img src="assets/screenshots/nyu/desktop-undergrad-admissions.jpg" alt="NYU Undergrad Admissions" /><figcaption>Desktop: Undergrad Admissions (requirements in supporting pages)</figcaption><span class="fig-label">Requirements buried in supporting pages</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.nyu.edu/admissions/undergraduate-admissions/international-students.html" data-context="The International Students page exists and contains relevant content, but requires navigating through Admissions → Undergraduate Admissions → supporting section to find. Not linked from homepage or the main admissions page as a primary CTA. Core evidence for Finding 01."><img src="assets/screenshots/nyu/desktop-international.jpg" alt="NYU International Students Page" /><figcaption>Desktop: International Students (3+ clicks to reach)</figcaption><span class="fig-label">Exists, but 3+ clicks deep</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.nyu.edu/admissions.html" data-context="NYU admissions on mobile: same flat structure with 10 options as desktop with no hierarchy for small screens. No 'Start here for international students' signal. One of the mobile admissions experiences observed with the greatest friction. Supports Findings 01, 02, and 03."><img src="assets/screenshots/nyu/mobile-admissions.jpg" alt="NYU Mobile Admissions" /><figcaption>Mobile: Admissions (dense list, no guidance)</figcaption><span class="fig-label">Dense list, no guidance on mobile</span><span class="fig-hint">⤢</span></figure>
+      </div>
+    </div>
+
+    <div class="appendix-group">
+      <h4>University of British Columbia</h4>
+      <div class="screenshot-scroll">
+        <figure data-url="https://www.ubc.ca" data-context="UBC homepage, clean, minimal, editorial. No international student CTA. Top navbar has Admissions link but no direct international pathway. Admissions link eventually redirects to you.ubc.ca, a separate subdomain. Evidence for Findings 01 and 04."><img src="assets/screenshots/ubc/desktop-home.jpg" alt="UBC Desktop Homepage" /><figcaption>Desktop: Homepage (no intl. CTA, subdomain redirect ahead)</figcaption><span class="fig-label">No intl. CTA, leads to subdomain</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.ubc.ca" data-context="UBC mobile homepage. Clean collapse, but no sticky nav: the header disappears on scroll. On long pages, users lose their primary wayfinding anchor. Evidence for Finding 03 and UBC's H1 heuristic weakness."><img src="assets/screenshots/ubc/mobile-home.jpg" alt="UBC Mobile Homepage" /><figcaption>Mobile: Nav disappears on scroll</figcaption><span class="fig-label">Nav lost on scroll</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.ubc.ca/admissions/" data-context="UBC admissions on ubc.ca: mixes undergraduate, graduate, tuition, and scholarships at equal visual weight. Last page on main domain before redirecting to you.ubc.ca. The domain split is itself a friction point. Evidence for Findings 01 and 05."><img src="assets/screenshots/ubc/desktop-admissions.jpg" alt="UBC Admissions Page" /><figcaption>Desktop: Admissions (mixed content, leads to subdomain)</figcaption><span class="fig-label">Mixed content + domain redirect</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://you.ubc.ca/applying-ubc/" data-context="you.ubc.ca Apply page: richer content with deadlines and program links, but visual language diverges from ubc.ca. Different typography and layout may break trust for users who don't realize they're still on an official UBC channel. Evidence for H4 heuristic weakness and Finding 01."><img src="assets/screenshots/ubc/desktop-apply.jpg" alt="UBC Apply on you.ubc.ca" /><figcaption>Desktop: Apply (you.ubc.ca, diverges visually)</figcaption><span class="fig-label">Visual inconsistency across domains</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://you.ubc.ca/applying-ubc/study-permit/" data-context="UBC Study Permit page: strong, clear content covering visa timing and process steps. UBC's best page for international students. However, it requires several clicks through the admissions hub to find. Evidence for the gap between content quality and discoverability (Findings 01 and 04)."><img src="assets/screenshots/ubc/desktop-international.jpg" alt="UBC Study Permit Page" /><figcaption>Desktop: Study Permit (strong content, hard to find)</figcaption><span class="fig-label">Strong content buried in nav</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.ubc.ca/contact/" data-context="UBC contact page: organized, accessible from footer. Provides email and phone options. However, contact is not persistent within the admissions flow. A lost user must return to the homepage and scroll to the footer to find it. Evidence for UX Opportunity 04."><img src="assets/screenshots/ubc/desktop-contact.jpg" alt="UBC Contact Page" /><figcaption>Desktop: Contact (footer only, not in admissions flow)</figcaption><span class="fig-label">Contact only in footer</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.ubc.ca/admissions/" data-context="UBC admissions on mobile: dense text blocks without reformatting for small screens. No sticky nav means users on long pages lose orientation. Without anchor navigation, the page requires full reading rather than scanning. Evidence for Finding 03 and UBC's mobile usability weaknesses."><img src="assets/screenshots/ubc/mobile-admissions.jpg" alt="UBC Mobile Admissions" /><figcaption>Mobile: Admissions (dense text, no anchor)</figcaption><span class="fig-label">Dense text, no anchor on mobile</span><span class="fig-hint">⤢</span></figure>
+      </div>
+    </div>
+
+    <div class="appendix-group">
+      <h4>Northeastern University</h4>
+      <div class="screenshot-scroll">
+        <figure data-url="https://www.northeastern.edu" data-context="Northeastern homepage: entry point organized by degree type (UG / Grad / PhD) lets students identify themselves immediately. Bottom CTA bar (Apply, Request Info, Visit) is persistent. This is the strongest example of information architecture centered on students across the four sites and the benchmark for Finding 05 and UX Opportunity 01."><img src="assets/screenshots/northeastern/desktop-home.jpg" alt="Northeastern Desktop Homepage" /><figcaption>Desktop: Homepage (split by degree type + persistent CTA bar)</figcaption><span class="fig-label">Degree split + persistent CTA: benchmark</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.northeastern.edu" data-context="Northeastern mobile homepage: segmentation by degree type preserved, CTAs accessible without scrolling. Best mobile homepage experience across the four sites. Evidence for UX Opportunity 05 and the mobile benchmark referenced in Finding 03."><img src="assets/screenshots/northeastern/mobile-home.jpg" alt="Northeastern Mobile Homepage" /><figcaption>Mobile: CTA bar accessible, clean layout</figcaption><span class="fig-label">Best mobile homepage observed</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.northeastern.edu" data-context="Northeastern nav flyout: structure with two panels with main categories and contextual supporting links. Well organized. However, the Admissions item uses href='#' rather than direct navigation, which is an unconventional pattern that may confuse users. Evidence for both strength (organized nav) and weakness (unconventional behaviour)."><img src="assets/screenshots/northeastern/desktop-nav-open.jpg" alt="Northeastern Nav Flyout" /><figcaption>Desktop: Nav Flyout (two panel, unconventional Admissions link)</figcaption><span class="fig-label">Good structure, unconventional Admissions</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://admissions.northeastern.edu" data-context="Northeastern admissions hub (admissions.northeastern.edu): navigation centered on students, prominent deadlines, and 'How to Apply' section. Most organized admissions page across all four sites. Direct evidence for Finding 02: sequential flows organized into steps reduce friction. The dedicated subdomain maintains a context focused on recruitment."><img src="assets/screenshots/northeastern/desktop-admissions.jpg" alt="Northeastern Admissions Hub" /><figcaption>Desktop: Admissions Hub (leading structure)</figcaption><span class="fig-label">Best admissions structure observed</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://admissions.northeastern.edu/apply/" data-context="Northeastern Apply section: sequential numbered steps with clear labels. Cost & Financial Aid is a primary nav item, surfacing critical information within two clicks. This is the strongest example of Findings 02 and 04 in practice: both sequenced process design and early cost transparency."><img src="assets/screenshots/northeastern/desktop-apply-menu.jpg" alt="Northeastern Apply Section" /><figcaption>Desktop: Apply Flow (sequential steps, costs in top nav)</figcaption><span class="fig-label">Sequential steps: benchmark pattern</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://admissions.northeastern.edu/international-applicants/" data-context="Northeastern International Applicants page, specific requirements, language test thresholds, and deadlines for international students. Strong content, reachable via admissions subdomain navbar. Still requires navigating to the admissions subdomain first, even the best site has room to improve international discoverability from the main domain."><img src="assets/screenshots/northeastern/desktop-international.jpg" alt="Northeastern International Applicants" /><figcaption>Desktop: International Applicants (strong, via subdomain)</figcaption><span class="fig-label">Strong content via subdomain nav</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://admissions.northeastern.edu/contact/" data-context="Northeastern contact page: multiple options available. More importantly, 'Request Info' and 'Contact Us' CTAs persist in the admissions subdomain header throughout, so users rarely need to navigate here. This persistent CTA pattern is the model for UX Opportunity 04 across all four sites."><img src="assets/screenshots/northeastern/desktop-contact.jpg" alt="Northeastern Contact Page" /><figcaption>Desktop: Contact (persistent in nav, rarely needed as a page)</figcaption><span class="fig-label">Persistent CTAs make this page redundant</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://admissions.northeastern.edu" data-context="Northeastern admissions on mobile: top nav + CTAs preserved, readable content, strong contrast. The only site where a prospective international student on mobile can research the full admissions flow without significant friction. Benchmark for UX Opportunity 05."><img src="assets/screenshots/northeastern/mobile-admissions.jpg" alt="Northeastern Mobile Admissions" /><figcaption>Mobile: Admissions (nav + CTAs preserved)</figcaption><span class="fig-label">Best mobile admissions observed</span><span class="fig-hint">⤢</span></figure>
+      </div>
+    </div>
+
+    <div class="appendix-group">
+      <h4>Conestoga College</h4>
+      <div class="screenshot-scroll">
+        <figure data-url="https://www.conestogac.on.ca" data-context="Conestoga homepage: clean top navigation with four items, low cognitive load. No 'International Students' CTA despite being one of Ontario's largest international student destinations. Functional but lacks aspirational recruitment tone. Evidence for Finding 04 and UX Opportunity 01."><img src="assets/screenshots/conestoga/desktop-home.jpg" alt="Conestoga Desktop Homepage" /><figcaption>Desktop: Homepage (clean nav, no intl. CTA)</figcaption><span class="fig-label">Clean nav, no intl. CTA</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.conestogac.on.ca" data-context="Conestoga mobile homepage: hamburger opens an off canvas expanded menu with many nested items. Most overwhelming mobile navigation pattern across the four sites. For international student visiting for the first times on mobile, this is a significant early barrier. Evidence for Finding 03 and H4 heuristic weakness."><img src="assets/screenshots/conestoga/mobile-home.jpg" alt="Conestoga Mobile Homepage" /><figcaption>Mobile: Expanded menu, overwhelming on first visit</figcaption><span class="fig-label">Expanded menu overwhelm on mobile</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.conestogac.on.ca/admissions/" data-context="Conestoga Admissions section, clear section navigation (Home, Applying to Conestoga, Paying Fees, Registrar, Contact). One of the cleaner admissions section nav patterns observed. However, international students are not mentioned here, they must find the completely separate International section. Core structural evidence for Finding 01."><img src="assets/screenshots/conestoga/desktop-admissions.jpg" alt="Conestoga Admissions Section" /><figcaption>Desktop: Admissions (clear section navigation, intl. siloed elsewhere)</figcaption><span class="fig-label">Good structure, intl. is siloed</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.conestogac.on.ca/admissions/applying-to-conestoga/" data-context="Conestoga 'Applying to Conestoga' page: lists steps, links to academic dates, financial aid, credit transfer. Reasonable for domestic students, but provides no branching instruction for international students despite a completely separate international pathway existing. Evidence for Findings 01 and 02."><img src="assets/screenshots/conestoga/desktop-apply.jpg" alt="Conestoga Apply Page" /><figcaption>Desktop: Apply Steps (no branch for intl. students)</figcaption><span class="fig-label">No international branch instruction</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.conestogac.on.ca/international/" data-context="Conestoga International Students section: the most consolidated international content hub across all four sites. Covers study in Canada, programs, tuition, visa/study permit, and student services in one place. This is Conestoga's key UX strength and the model for UX Opportunity 01. Weakness: it must be discovered separately from main admissions."><img src="assets/screenshots/conestoga/desktop-international.jpg" alt="Conestoga International Students Section" /><figcaption>Desktop: International Hub (best consolidated, but siloed)</figcaption><span class="fig-label">Best intl. hub, but siloed from admissions</span><span class="fig-hint">⤢</span></figure>
+        <figure data-url="https://www.conestogac.on.ca/admissions/contact-us/" data-context="Conestoga contact page, clear phone, email, and Registrar options. Multiple contact methods reduce friction. However, contact is only available here or in the footer, not persistent throughout the admissions flow. Evidence for UX Opportunity 04."><img src="assets/screenshots/conestoga/desktop-contact.jpg" alt="Conestoga Contact Page" /><figcaption>Desktop: Contact (clear options, footer only)</figcaption><span class="fig-label">Good options, not persistent in flow</span><span class="fig-hint">⤢</span></figure>
+        <figure class="mobile-shot" data-url="https://www.conestogac.on.ca/international/" data-context="Conestoga International section on mobile: one of the more readable mobile pages in this evaluation. Content is manageable with clear headings for study permits and tuition. However, reaching this page requires navigating the complex expanded menu to find the International section separately from admissions. Good content, poor discoverability."><img src="assets/screenshots/conestoga/mobile-international.jpg" alt="Conestoga Mobile International" /><figcaption>Mobile: International (readable once found)</figcaption><span class="fig-label">Readable: hard to discover</span><span class="fig-hint">⤢</span></figure>
+      </div>
+    </div>
+
+    <div class="appendix-sources">
+
+      <h3>Research Pipeline</h3>
+      <div class="pipeline-grid">
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">01</div>
+          <h4>Foundational Research</h4>
+          <p>Perplexity was used to gather background on each institution, enrolment figures, international student proportions, tuition ranges, and known UX pain points, before any live site interaction.</p>
+        </div>
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">02</div>
+          <h4>Prior UI Analyses</h4>
+          <p>Existing PDF UI evaluations for NYU and UBC were reviewed and incorporated. All source data, notes, and evaluation matrices are available in the <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">DirectPass UX Research Spreadsheet ↗</a>.</p>
+        </div>
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">03</div>
+          <h4>Live Site Walkthroughs</h4>
+          <p><strong>Playwright MCP + Chromium</strong> automated browser sessions at 1440×900 (desktop) and 390×844 (mobile). All navigation was performed via actual site elements: main navbars, expanded menus, section navigation panels, and footer links. No direct URL shortcuts were used.</p>
+        </div>
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">04</div>
+          <h4>Manual Confirmation</h4>
+          <p>Each screenshot and navigation path was reviewed and verified manually before inclusion. Broken pages, redirect chains, and flows without a path forward were documented rather than skipped.</p>
+        </div>
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">05</div>
+          <h4>Content &amp; Analysis</h4>
+          <p><strong>GPT 5.5</strong> handled data processing, text synthesis, and written commentary for institution profiles, heuristic evaluations, and comparative analysis sections.</p>
+        </div>
+        <div class="pipeline-step reveal">
+          <div class="pipeline-num">06</div>
+          <h4>Report Authoring</h4>
+          <p>The full HTML report, structure, layout, interactions, and design system, was built from beginning to end using <strong>Claude Code Opus 4.7</strong> via the Claude Code CLI.</p>
+        </div>
+      </div>
+
+      <h3>Site Navigation Paths</h3>
+      <ul>
+        <li><strong>NYU:</strong> nyu.edu → main navbar → Admissions → Undergraduate Admissions → International Students section &amp; footer links. Prior UI analysis PDF reviewed alongside other sources; see also <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">UX Research Spreadsheet ↗</a>.</li>
+        <li><strong>UBC:</strong> ubc.ca → main navbar → Admissions → you.ubc.ca admissions hub → International Applicants → footer contact links. Prior UI analysis PDF reviewed alongside other sources; see also <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">UX Research Spreadsheet ↗</a>.</li>
+        <li><strong>Northeastern:</strong> northeastern.edu → nav flyout panel → admissions.northeastern.edu → International Applicants page → contact page.</li>
+        <li><strong>Conestoga:</strong> conestogac.on.ca → main navbar → Admissions section navigation → International Students section → contact page → footer links.</li>
+      </ul>
+
+      <h3>Standards &amp; Frameworks Referenced</h3>
+      <ul>
+        <li>Nielsen, J. (1994). 10 Usability Heuristics for User Interface Design. Nielsen Norman Group.</li>
+        <li>WCAG 2.1 Guidelines: accessibility reference for UBC evaluation.</li>
+        <li>DirectPass UX Research: <a href="https://docs.google.com/spreadsheets/d/1iRSL1GRKYWxq8mbaqfuWgrVJo2BBz8F9/edit?usp=drivesdk&amp;ouid=101988302166320619115&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener">source data &amp; prior analyses ↗</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" aria-label="Back to top">↑</button>
+
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer">
+  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&lsaquo;</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-img-wrap">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    </div>
+    <div class="lightbox-panel">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
+      <p class="lightbox-panel-title">Screenshot</p>
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+      <a class="lightbox-url" id="lightboxUrl" href="#" target="_blank" rel="noopener"></a>
+      <p class="lightbox-context" id="lightboxContext"></p>
+      <p class="lightbox-counter" id="lightboxCounter"></p>
+    </div>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&rsaquo;</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
