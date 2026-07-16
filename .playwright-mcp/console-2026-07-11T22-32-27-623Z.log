@@ -1,0 +1,18 @@
+[   10609ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://juliocoraspe.github.io/favicon.ico:0
+[ 1393159ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 1393519ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5174/favicon.ico:0
+[ 1441260ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[ 1802071ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 1810895ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 1886081ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[ 2852522ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 2992882ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[ 3270806ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <button.case-study-toggle#case-study-reallife-toggle>
+Ancestor with aria-hidden: <div.cs-bp-cover-layer> @ http://localhost:5174/:0
+[ 3368891ms] [WARNING] Blocked aria-hidden on an element because its descendant retained focus. The focus must not be hidden from assistive technology users. Avoid using aria-hidden on a focused element or its ancestor. Consider using the inert attribute instead, which will also prevent focus. For more details, see the aria-hidden section of the WAI-ARIA specification at https://w3c.github.io/aria/#aria-hidden.
+Element with focus: <button.cs-bp-close>
+Ancestor with aria-hidden: <div.cs-bp-blueprint-layer> @ http://localhost:5174/:0
+[ 3949553ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 3955473ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[ 3971048ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270

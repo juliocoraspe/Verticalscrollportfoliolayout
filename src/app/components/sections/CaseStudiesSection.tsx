@@ -11,6 +11,18 @@ import {
   getMiloBlueprintSections,
 } from '../AiCompanionCaseStudy';
 import { getSyncoBlueprintSections, getLumnBlueprintSections } from '../ProjectDetailContent';
+import {
+  REAL_LIFE_BANNER,
+  REAL_LIFE_SUMMARY,
+  REAL_LIFE_TITLE,
+  getRealLifeBlueprintSections,
+} from '../RealLifeCaseStudy';
+import {
+  DIRECTPASS_BANNER,
+  DIRECTPASS_SUMMARY,
+  DIRECTPASS_TITLE,
+  getDirectPassBlueprintSections,
+} from '../DirectPassCaseStudy';
 import type { Project } from '../../data/projects';
 
 type CaseStudy = {
@@ -34,18 +46,26 @@ type CaseStudiesSectionProps = {
   isMiloOpen: boolean;
   isTodoOpen: boolean;
   isAsmrOpen: boolean;
+  isRealLifeOpen: boolean;
+  isDirectPassOpen: boolean;
   caseStudyStillenRef: RefObject<HTMLElement | null>;
   caseStudyMiloRef: RefObject<HTMLElement | null>;
   caseStudyTodoRef: RefObject<HTMLElement | null>;
   caseStudyAsmrRef: RefObject<HTMLElement | null>;
+  caseStudyRealLifeRef: RefObject<HTMLElement | null>;
+  caseStudyDirectPassRef: RefObject<HTMLElement | null>;
   handleStillenToggle: () => void;
   handleMiloToggle: () => void;
   handleTodoToggle: () => void;
   handleAsmrToggle: () => void;
+  handleRealLifeToggle: () => void;
+  handleDirectPassToggle: () => void;
   handleStillenCollapse: () => void;
   handleMiloCollapse: () => void;
   handleTodoCollapse: () => void;
   handleAsmrCollapse: () => void;
+  handleRealLifeCollapse: () => void;
+  handleDirectPassCollapse: () => void;
   isMobile: boolean;
 };
 
@@ -57,18 +77,26 @@ export function CaseStudiesSection({
   isMiloOpen,
   isTodoOpen,
   isAsmrOpen,
+  isRealLifeOpen,
+  isDirectPassOpen,
   caseStudyStillenRef,
   caseStudyMiloRef,
   caseStudyTodoRef,
   caseStudyAsmrRef,
+  caseStudyRealLifeRef,
+  caseStudyDirectPassRef,
   handleStillenToggle,
   handleMiloToggle,
   handleTodoToggle,
   handleAsmrToggle,
+  handleRealLifeToggle,
+  handleDirectPassToggle,
   handleStillenCollapse,
   handleMiloCollapse,
   handleTodoCollapse,
   handleAsmrCollapse,
+  handleRealLifeCollapse,
+  handleDirectPassCollapse,
   isMobile,
 }: CaseStudiesSectionProps) {
   return (
@@ -80,7 +108,107 @@ export function CaseStudiesSection({
       </div>
       <div className="max-w-6xl mx-auto pt-10 pb-14 sm:pt-20 sm:pb-32 relative z-20">
         <div className="space-y-20">
-          <article id="case-study-stillen" ref={caseStudyStillenRef} className="case-study-card">
+          <article id="case-study-reallife" ref={caseStudyRealLifeRef} className="case-study-card">
+            <CaseStudyBlueprint
+              isMobile={isMobile}
+              isOpen={isRealLifeOpen}
+              onClose={handleRealLifeCollapse}
+              ariaTitle={REAL_LIFE_TITLE}
+              sections={getRealLifeBlueprintSections()}
+              cover={
+                <button
+                  type="button"
+                  id="case-study-reallife-toggle"
+                  className="case-study-toggle"
+                  aria-expanded={isRealLifeOpen}
+                  aria-controls="case-study-reallife-content"
+                  onClick={handleRealLifeToggle}
+                >
+                  <div className="space-y-6">
+                    <div className="case-study-title-row">
+                      <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{REAL_LIFE_TITLE}</h3>
+                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path
+                          d="M3 10H16M11 5L16 10L11 15"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <img
+                        src={REAL_LIFE_BANNER.src}
+                        alt={REAL_LIFE_BANNER.alt}
+                        className={REAL_LIFE_BANNER.className}
+                        style={REAL_LIFE_BANNER.style}
+                      />
+                    </div>
+                    <p className="type-subhead text-dark">{REAL_LIFE_SUMMARY}</p>
+                  </div>
+                </button>
+              }
+              classicMobileContent={null}
+            />
+          </article>
+
+          <article
+            id="case-study-directpass"
+            ref={caseStudyDirectPassRef}
+            className="case-study-card border-t border-pale pt-10"
+            style={{ borderTopColor: 'rgba(229, 225, 220, 0.5)' }}
+          >
+            <CaseStudyBlueprint
+              isMobile={isMobile}
+              isOpen={isDirectPassOpen}
+              onClose={handleDirectPassCollapse}
+              ariaTitle={DIRECTPASS_TITLE}
+              sections={getDirectPassBlueprintSections()}
+              cover={
+                <button
+                  type="button"
+                  id="case-study-directpass-toggle"
+                  className="case-study-toggle"
+                  aria-expanded={isDirectPassOpen}
+                  aria-controls="case-study-directpass-content"
+                  onClick={handleDirectPassToggle}
+                >
+                  <div className="space-y-6">
+                    <div className="case-study-title-row">
+                      <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{DIRECTPASS_TITLE}</h3>
+                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                        <path
+                          d="M3 10H16M11 5L16 10L11 15"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <img
+                        src={DIRECTPASS_BANNER.src}
+                        alt={DIRECTPASS_BANNER.alt}
+                        className={DIRECTPASS_BANNER.className}
+                        style={DIRECTPASS_BANNER.style}
+                      />
+                    </div>
+                    <p className="type-subhead text-dark">{DIRECTPASS_SUMMARY}</p>
+                  </div>
+                </button>
+              }
+              classicMobileContent={null}
+            />
+          </article>
+
+          <article
+            id="case-study-stillen"
+            ref={caseStudyStillenRef}
+            className="case-study-card border-t border-pale pt-10"
+            style={{ borderTopColor: 'rgba(229, 225, 220, 0.5)' }}
+          >
             <CaseStudyBlueprint
               isMobile={isMobile}
               isOpen={isStillenOpen}
@@ -400,6 +528,7 @@ export function CaseStudiesSection({
               }
             />
           </article>
+
         </div>
       </div>
     </section>

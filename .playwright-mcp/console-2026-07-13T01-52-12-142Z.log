@@ -1,0 +1,24 @@
+[  259552ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:21608
+[  259719ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:5174/favicon.ico:0
+[  264577ms] [WARNING] Allow attribute will take precedence over 'allowfullscreen'. @ http://localhost:5174/node_modules/.vite/deps/chunk-YQ5BCTVV.js?v=008470e5:1270
+[  265504ms] [LOG] Running frontend commit 80e3e267afb8f6eaf5cd1ffaaad287406e0e27f6 @ https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fdesign%2F3vo65c8zOxwDz2dsNoGcdn%2FDirectPass-Team-2%3Fembed-host%3Dshare%26kind%3Dfile%26node-id%3D810-2917%26page-selector%3D1%26theme%3Dlight%26version%3D2%26viewer%3D1&theme=light&version=2:491
+[  266774ms] [LOG] Reloading the embed... reason: refreshOnReadyForEmbed @ https://www.figma.com/webpack-artifacts/assets/embed_interstitial-e350f87ba9fb78ee.min.js.br:108
+[  267578ms] [LOG] Running frontend commit 80e3e267afb8f6eaf5cd1ffaaad287406e0e27f6 @ https://www.figma.com/design/3vo65c8zOxwDz2dsNoGcdn/DirectPass-Team-2?embed-host=share&kind=file&node-id=810-2917&page-selector=1&theme=light&version=2&viewer=1:491
+[  268379ms] [WARNING] Statsig is not ready to log exposures, will retry in 1 seconds @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268624ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/statsig/v1_ruleset:0
+[  268625ms] [ERROR] Failed to fetch v1 ruleset: H: XHR for "/api/statsig/v1_ruleset" failed with status 401
+    at J (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2886:17290)
+    at async Object.Q [as get] (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2886:17691)
+    at async https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2835:191847
+    at async k.validate (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2866:1135)
+    at async F (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2864:145104)
+    at async N (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2864:144308)
+    at async Object.write (https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:2864:143927) @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268705ms] [INFO] [Fullscreen] Booting... (emscripten version 4.0.21) @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268769ms] [INFO] [GPU] graphicsAPI:"WebGL 2", vendor:"Google Inc. (Apple)", renderer:"ANGLE (Apple, ANGLE Metal Renderer: Apple M3 Max, Unspecified Version)" version:"OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))" @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268773ms] [LOG] [Fullscreen] Mobile File Viewer Ready in 252.2ms @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268815ms] [INFO] [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/3vo65c8zOxwDz2dsNoGcdn?role=viewerWithCpp&tracking_session_id=4rUHl19sYHf6NPnQ&version=180&recentReload=0&file-load-streaming-compression&scenegraph-queries-initial-nodes=810:2917&client_release=80e3e267afb8f6eaf5cd1ffaaad287406e0e27f6 @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  268817ms] [LOG] Finished initializing mobile cpp viewer design @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  269230ms] [INFO] [MultiplayerSession] Joining file version 106 (initial load) @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  269689ms] [INFO] afterJoinEnd PageSyncing: Loaded incrementally {loaded_pages: 810:2916} @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:4574
+[  433720ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://www.figma.com/webpack-artifacts/assets/embed_viewer-8208f55ab800fa5d.min.js.br:1510
