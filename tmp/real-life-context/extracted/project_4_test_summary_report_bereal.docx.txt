@@ -1,0 +1,129 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 4/test_summary_report_bereal.docx
+
+[Heading 1] Test Summary Report
+Real-Life Challenges — BeReal Feature Concept
+Researcher: Julio Coraspe
+[Heading 2] 1. Introduction
+Real-Life Challenges is a proposed feature for BeReal that allows two people to commit to a shared daily action over a chosen period of time. Unlike fitness or wellness apps, the feature treats the challenge itself as a structured pretext for mutual presence — the goal is not tracking habits but creating a sustained connection between two specific people through small, daily acts of accountability.
+The feature introduces five challenge families — Movement, Mood, Care, Connection, and Outside — each with a distinct visual identity. Users choose an action, set a duration between 1 and 365 days, select how they want to prove it (dual camera, video, voice note, or check-in), and invite one friend via iMessage. After completing their daily moment, they unlock their friend's moment. A shared Memory Vault archives the entire challenge when it ends.
+The focus group tested a 12-screen interactive HTML prototype that walks through the full flow: from an empty state, through challenge setup and iMessage invitation, to daily capture, social unlock, lock screen notifications, and the final vault celebration.
+[Heading 3] Goals
+The session aimed to answer five questions:
+1. Does this feel like a BeReal feature, or does it read as a fitness or mental health app?
+2. Does the iMessage invitation work as a standalone pitch — would someone download BeReal because of it?
+3. Does the anti-streak framing ("no streaks, no scores") land, and does it create trust?
+4. Do the five challenge families cover the range of real use cases, or are there gaps?
+5. What friction points exist in the prototype flow?
+[Heading 2] 2. Methodology
+[Heading 3] Participant profiles
+[Heading 3] Session structure
+[Heading 2] 3. Key Findings
+[Heading 3] 3.1 Interest — Immediate personal relevance
+All five participants named a specific person they would start a challenge with within seconds of being asked — without prompting or time to think. This was the strongest signal in the session: the concept maps instantly to real relationships.
+"If my friend in Lagos sent me that, I'd say yes before finishing the message." — Miriam Okonkwo
+The invite pitch was tested directly with the two non-users. Both confirmed that the framing reads as "do this with me" rather than "see my photos," which validates the core hypothesis behind the empty-room strategy. However, Miriam noted in the survey that the invitation text might not be fully explanatory on its own, suggesting the copy still needs refinement for users with no prior BeReal context.
+No single challenge family dominated preferences. Participants chose Care (Valentina — sun with her mom), Mood (Sebastián — voice note with friend in Spain), Connection (Tomás — sky with his sister, Aisha — sky with Keisha in Toronto), and the Care water challenge (Miriam — with Chidinma in Germany). This spread suggests the five families are doing real work and the system is not over-indexed on one category.
+[Heading 3] 3.2 Usability — Clear flow with specific friction points
+Survey results on ease of understanding averaged 4.0 out of 5 across all participants. Two participants (Aisha and Miriam) gave a 3, while the other three gave 4 or 5. The lower scores reflect two different issues:
+Aisha's ease score of 3 is notable because she is the most active BeReal user in the group and the most enthusiastic about the concept. Her lower score may reflect higher expectations from a power user rather than actual confusion — her survey otherwise shows maximum scores on connection (Yes) and likelihood to open BeReal more (5). Her invite score of 2 is the lowest in the group, which may indicate that as a daily user she already has her circle inside BeReal and sees less need to bring outsiders in.
+Miriam's ease score of 3 correlates with her session behavior: she explored the prototype more slowly, asked whether she could re-open it during the survey, and specifically flagged the dark UI and small text as barriers for people her age.
+The most significant usability gap is the absence of a "missed day" state. Two participants (Tomás and Sebastián) raised this independently as the single most important missing screen in the prototype.
+"If it feels like Duolingo when you lose the streak, I never open the app again. I have trauma with that." — Tomás Herrera (survey)
+[Heading 3] 3.3 Value and Impact — Emotional connection confirmed, with nuance
+Four of five participants answered "Yes" to "Would this feature make you feel more connected to the people close to you?" Miriam answered "Maybe" — her hesitation tied specifically to whether her friend would accept the invitation, not to the concept itself.
+The term "soft accountability" emerged organically from the participants themselves to describe what the feature does. This is a strong signal: when users coin their own language for a concept, the concept has landed at an intuitive level.
+Tomás raised a nuanced point about pressure: while the copy says "no streaks, no scores," the social pressure of a friend actually waiting for your daily moment is real and no copy can remove it. He drew a distinction between Day 2 ("easy, still new") and Day 20 ("that's when you know if this is kind or not"). This is not a bug — it is an inherent characteristic of social accountability — but it means the missed-day experience becomes the critical trust-building moment.
+The anti-streak messaging ("no streaks, no scores") was identified by Tomás as the single biggest reason he would try the feature, confirming that it functions not as a tagline but as a core trust mechanism.
+[Heading 2] 4. Supporting Evidence
+[Heading 3] 4.1 Session quotes
+"No streaks, no score. Okay. That... that changes everything for me. Because I lost a 200-day streak in Duolingo and I never opened the app again." — Tomás Herrera
+"The app is not the protagonist. The friend is the protagonist. The app is only the place where it happens." — Sebastián Morales
+"Can I do more than one at the same time? Like water with Keisha and the sky one with my sister?" — Aisha Mensah
+"This is not a fitness app. This is like... a pact." — Valentina Ríos
+"Some people my age would struggle a bit with the small text on the dark screen." — Miriam Okonkwo
+[Heading 3] 4.2 Survey open responses — "What would this feature need for you to actually use it?"
+[Heading 3] 4.3 Connection question
+"Would this feature make you feel more connected to the people close to you?" — 4 out of 5 answered Yes. 1 answered Maybe (Miriam, conditional on friend acceptance).
+[Heading 3] 4.4 Challenge family choices
+[Heading 2] 5. Recommendations
+Overall recommendation: Refine — The core concept is validated. Participants understood the feature, connected with it emotionally, and mapped it to real relationships in their lives immediately. However, specific gaps in the prototype need to be addressed before a broader test. The issues are fixable without changing the concept.
+[Heading 2] 6. Conclusion
+Real-Life Challenges validated its core hypothesis: participants immediately understood the feature as a tool for connection between two specific people, not as a fitness tracker or mental health app. The anti-streak framing created trust, the challenge families covered a real range of use cases without one category dominating, and the iMessage invitation was read as a relational pitch rather than a promotional download request.
+The most significant finding was the speed at which every participant named a specific person to challenge — this signals that the concept maps to existing emotional needs without requiring explanation. The term "soft accountability," coined by participants themselves, captures the feature's value proposition more accurately than any design brief could.
+The main design gaps are addressable: the missed-day state needs to be designed and prototyped (this is the most urgent item), the invitation copy needs refinement for users outside the BeReal ecosystem, and the visual system should be tested for accessibility across age groups.
+The recommendation is to refine: address the identified gaps, then run a broader usability test with a larger sample before proceeding to development.
+[Heading 3] Next steps
+1. Design the missed-day screen with Valentina's recovery message mechanic as a starting hypothesis.
+2. Rewrite invitation copy with two variants — one for BeReal users, one for non-users — and A/B test.
+3. Prototype the negotiation step (receiver proposes changes to duration or action).
+4. Run a second test with 8–10 participants, including more non-users and participants over 35.
+
+TABLE 1
+Element | Detail
+Format | Remote moderated focus group (Zoom, cameras on)
+Duration | 37 minutes total, structured in 6 acts
+Participants | 5 — ages 24 to 38, across 5 countries
+Prototype | 12-screen interactive HTML file, shared via link
+Transcript | Zoom AI Companion notes (auto-generated transcript from session)
+Post-session survey | 7-question Google Form (Likert scales + open-ended)
+Analysis | Claude AI used to analyze transcript data, generate affinity map, and extract key findings for this report
+
+TABLE 2
+Name | Age | Location | BeReal status | Role in session
+Valentina Ríos | 28 | Bogotá | Former user (deleted) | Tests invite pitch for lapsed users
+Sebastián Morales | 24 | Mexico City | Irregular user | Analyzes psychological mechanics
+Aisha Mensah | 31 | Atlanta | Daily user | Core user perspective, emotional voice
+Tomás Herrera | 26 | Buenos Aires | Daily user | Tests anti-streak, habit abandonment
+Miriam Okonkwo | 38 | London | Never used BeReal | External perspective, age expansion
+
+TABLE 3
+Act | Time | Activity
+1 — Welcome | 5 min | Introduction, ground rules, no feature name revealed
+2 — Warm-up | 5 min | Social media habits, open conversation
+3 — Exploration | 10 min | Free prototype navigation, think-aloud, facilitator observes
+4 — Discussion | 15 min | Guided questions across 4 blocks: comprehension, families, invitation, tone
+5 — Survey | 10 min | Individual Google Form, no discussion between participants
+6 — Close | 2 min | Thank-you, contact info shared
+
+TABLE 4
+Participant | Ease (1–5) | Likely to invite (1–5) | Asking too much (1–5) | Open BeReal more (1–5)
+Valentina Ríos | 4 | 4 | 1 | 3
+Sebastián Morales | 5 | 4 | 1 | 4
+Aisha Mensah | 3 | 2 | 1 | 5
+Tomás Herrera | 5 | 4 | 2 | 3
+Miriam Okonkwo | 3 | 4 | 1 | 3
+Average | 4.0 | 3.6 | 1.2 | 3.6
+
+TABLE 5
+Participant | Response
+Valentina | A creative category. Small drawings, photo of one color, something like that. The water is fine but is not for everyone. Also the invite message can be more direct, like saying "just you and me". If my close friend invites me, I use it.
+Sebastián | I want to see what happens when you miss a day. If the app makes the fail a drama, people leave. If the fail passes soft, I use it long time. Also let the person who receives propose changes, like five days instead of ten. Now one person decides everything.
+Aisha | Let me run more than one challenge at the same time. I'm not picking between my friends lol. That's really it, everything else I'm already sold on.
+Tomás | The missing day screen. What happens when I fail one day. If it feels like Duolingo when you lose the streak, I never open the app again, I have trauma with that. If the fail is kind, I stay. That is the whole thing for me.
+Miriam | The text inside the invitation screen might not be fully explanatory.
+
+TABLE 6
+Participant | Family | With whom
+Valentina | Care (sun) | Mom in Cali
+Sebastián | Mood (journal / voice note) | Best friend in Spain
+Aisha | Connection (sky) | Keisha in Toronto
+Tomás | Connection (sky / walking) | Sister in Córdoba
+Miriam | Care (water) | Chidinma in Germany
+
+TABLE 7
+REFINE | Design the "missed day" state Raised independently by 2 of 5 participants as the most important missing screen. The anti-streak promise ("no streaks, no scores") needs a visible design to be trusted long-term. Valentina proposed a recovery mechanic where the friend can send a message like "tomorrow we continue" — worth prototyping.
+
+TABLE 8
+REFINE | Revise invitation copy for clarity Miriam (the participant with zero BeReal context) flagged the invitation text as not fully explanatory. Valentina suggested making it more direct — "just you and me." The iMessage screen exists and works structurally, but the copy needs to carry more weight for people who have never heard of BeReal.
+
+TABLE 9
+REFINE | Review notification copy and duration picker The "you up?" notification has an unintended double meaning flagged by two participants. The 1-year duration option on the slider creates anxiety even when not selected. Both are low-cost copy and UX fixes.
+
+TABLE 10
+REFINE | Test a higher-contrast or lighter visual mode Only Miriam flagged this, but it maps directly onto the feature's own growth strategy: if the goal is to solve the empty-room problem for users over 30, the dark UI with small text may quietly exclude the very audience the feature is trying to reach.
+
+TABLE 11
+PROCEED | Validate multi-challenge support in next round Aisha was the only participant to request running multiple challenges simultaneously, but her framing was strong: "I'm not picking between my friends." Worth testing with a larger sample to confirm whether this is a power-user desire or a broader expectation.
+
+TABLE 12
+PROCEED | Explore a negotiation step in the invitation flow Sebastián noted that the sender currently defines all terms (action, duration) and the receiver can only accept or decline. A light counter-proposal step — "five days instead of ten" — could turn the setup into a two-way agreement, reinforcing the pact framing.

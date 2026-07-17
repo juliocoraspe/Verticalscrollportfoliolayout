@@ -1,0 +1,248 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/Real-Life Challenges — BeReal Feature Proposal.pdf
+PAGES: 1
+
+--- PAGE 1 ---
+A SMALL CHALLENGE, NOT A TRACKER.
+Real-Life
+Challenges.Small real-life challenges you make with people close to you. One
+little thing, done together, captured the way BeReal already captures
+life — honestly, and only once.
+§ 01Feature context
+BeReal captures one spontaneous moment a day. It does that beautifully. What it
+doesn't quite do yet is help two people show up for something together beyond
+watching each other post.
+Real-Life Challenges lets you make a tiny challenge with someone close — drink
+water today, take a walk, send a voice note, touch grass — and uses BeReal's
+existing capture moment as the proof. The challenge becomes the reason to open
+the app, and the reason to invite someone in.
+The bigger idea: instead of "download BeReal to see my posts," the invitation
+becomes "do this with me." A much stronger reason to install — especially for
+users who don't yet have friends on the app and feel the empty-room problem.
+TONE CALIBRATION
+Simple Human
+Real Light
+Playful Close-friend
+NOT
+A Strava A Duolingo
+A fitness app A dashboard
+A leaderboard A therapy tool
+§ 02Core action  ·  Loop closure
+§ 03MVP flow  ·  6 screens
+Screen 01 / 06 EMPTY · FIRST-TIME
+Intro / Empty state
+SEES Clean empty card with one clear CTA.
+No pre-loaded examples or pressure.
+DOES Taps Start a challenge.
+SYSTEM Pushes to challenge family selection
+(Screen 02).
+COPY "No challenge yet. Start something small
+with someone close."
+Screen 02 / 06 NORMAL
+Choose challenge family
+SEES Five challenge families with a one-line
+example each. Selected family glows
+yellow.
+DOES Taps a family — the card outlines in
+BeReal yellow.
+SYSTEM Loads that family's specific challenges
+into setup (Screen 03).
+COPY "Pick something real. Keep it small."
+Screen 03 / 06 LOADING → SUCCESS
+Challenge setup  ·  Invite
+SEES The chosen family, the specific action
+picker, the friend, rhythm chips, and
+proof type.
+DOES Confirms the action, taps Send invite.
+SYSTEM Loading flash, then "Challenge sent.
+Now let's start today."
+INVITE " Julio invited you to a Real-Life
+Challenge. Accept and start Day 1." Off-
+app friends get a download link.
+Screen 04 / 06 FIRST-DAY ONBOARDING
+Challenge start
+SEES A chatty card that literally walks them
+through what's about to happen — no
+jargon, no tutorial wall.
+DOES Reads three lines, taps Start Day 1.
+SYSTEM Soft transition straight into the camera /
+capture (Screen 05).
+COPY "You're in. Maya too 
+ Tap Start Day 1
+— the camera pops open. Drink, capture,
+done."
+Screen 05 / 06 SUCCESS · DAY 1 DONE
+Capture  ·  Shared result
+SEES Their dual-camera posted moment, a
+yellow success banner, Maya's reveal
+ready.
+DOES Posts proof (photo, dual-cam, voice
+note, or check-in), then taps to reveal.
+SYSTEM Saves to recap. Unlocks Maya's moment
+if posted.
+IF FIRST "You posted first. Maya can still join
+today."
+Screen 06 / 06 REPEAT · LOCKSCREEN
+Lightweight update  ·  Day 2+
+SEES BeReal-yellow widget with a red status
+pulse, plus a chatty BeReal push
+notification.
+DOES Taps the widget — lands directly inside
+today's active challenge.
+SYSTEM Skips onboarding. Jumps straight to
+Screen 05 capture for Day 2.
+COPY "Maya drank her water 
+ You up?"  · 
+"
+ psst — Maya just posted Day 2.
+Sneak yours in?"
+§ 04UI states
+EMPTY
+No challenge yet
+Screen 01 · Real-Life Challenges entry
+"No challenge yet. Start something small with
+someone close."
+Invite the first action without pressure or examples that read
+like ads.
+LOADING
+Sending the challenge
+Screen 03 · After tap on Send invite
+"Setting up your challenge…"
+Reassure the user that something real is happening.
+Resolves in < 1.5s.
+FIRST-DAY ONBOARDING
+You're in.
+Screen 04 · After challenge created or accepted
+"You're in. Do the small thing, show the real
+moment, and start Day 1 now."
+Bridge — not tutorial. One card, three lines, straight into
+capture.
+SUCCESS
+Day 1 done
+Screen 05 · After posting proof
+"Nice. Day 1 is done. Saved to your recap."
+A small light-up, not a confetti blast. The moment slides into
+the recap.
+ERROR
+Didn't go through
+Anywhere posting / invite fails
+"That didn't go through. Want to try again?"
+Two soft actions: Retry · Not now. No blame, no jargon.
+REPEAT
+Day 2+
+Screen 06 · Lockscreen widget & in-app return
+"Maya drank her water 
+ You up?"
+No onboarding. Tapping drops the user straight back into
+capture.
+§ 05State variations
+VARIATION A
+First-time vs Repeat
+ENTRY First-time: opens via tab → sees empty card.
+Repeat: opens via widget tap → drops in mid-flow.
+ONBOARDING First-time: shows Screen 04 bridge card.
+Repeat: skipped entirely.
+COPY First-time: "No challenge yet. Start something small."
+Repeat: "Maya drank her water 
+ You up?"
+RECAP First-time: empty, with one prompt card.
+Repeat: previous days visible as small saved moments.
+VARIATION B
+Success vs Error
+TRIGGER Success: post completes, friend's reveal unlocks.
+Error: invite, post, or update fails to send/load.
+UI Success: yellow banner + saved-to-recap motion.
+Error: inline card with two buttons. No modal blocker.
+COPY Success: "Nice. Day 1 is done. Saved to your recap."
+Error: "That didn't go through. Want to try again?"
+ACTIONS Success: Recap · See Maya's.
+Error: Retry · Not now.
+BEREAL · REAL-LIFE CHALLENGES JULIO CORASPE · 2026
+01 Challenge
+Make a small challenge.
+Pick a family. Pick the action. Pick
+someone close. Pick a rhythm.
+02 Show up
+Do the thing.
+Capture proof BeReal-style: photo, dual-
+cam, voice note, or check-in.
+03 See them
+See how they showed up.
+Their moment unlocks when yours
+posts. No score, no streak shame.
+04 Recap
+Save the small thing.
+The moment goes into a quiet recap. Not
+a feed. Not a flex.
+9:41
+Real-Life Challenges ✕
++
+No challenge yet.
+Start something small with someone
+close. You'll capture proof the
+BeReal way.
+Start a challenge
+9:41
+Pick something real ←
+Pick something real. Keep it small.
+Body / Movement
+Walk, stretch, sunlight, stand-up break.
+Mind / Mood
+Mood word, one-sentence journal, name the feeling.
+Care / Daily Life
+Water, real meal, clean one corner, wind-down.
+Connection / Relationship
+Same-sky photo, voice note, honest question.
+World / Outside
+Touch grass, sit outside, park or cafe moment.
+Continue with Care
+9:41
+New challenge ←
+ CARE / DAILY LIFE
+PICK THE ACTION
+Drink water today ✓
+Real meal
+Clean one corner
+Sleep wind-down
+WHO
+Maya
+Close friend
+RHYTHM
+Today 3 days 7 days
+PROOF TYPE
+Photo Voice note Check-in
+Send invite
+9:41
+You're in. ✕
+Yo u ' re  i n . M a y a  t o o  
+The second you post, Maya's water moment unlocks.
+That's the whole challenge — no streaks, no scores, just
+two people showing up.
+Start Day 1
+Quick rundown so you know what happens next
+— promise it's tiny.
+Tap Start Day 1 right below. The camera pops
+open.
+1
+Drink your water. Or just grab the glass, the
+bottle, the moment — whatever's easiest.
+2
+Hit capture. That's your Day 1 done.3
+9:41
+Show your water moment ✕
+✓ Nice. Day 1 is done.
+Now see how Maya showed up →
+Recap See Maya's
+Saved to your recap.
+9:41
+2:14
+Tuesday, June 16
+Maya drank her water 
+ Y ou up?
+BEREAL. REAL-LIFE CHALLENGES
+Day 2 of 3 · Water challenge
+BR.
+BeReal.
+ psst — Maya just posted Day 2. Sneak yours
+in?
+2m ago
+posted · 2s ago

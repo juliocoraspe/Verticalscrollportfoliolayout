@@ -1113,7 +1113,7 @@ export function WireframeMesh({
   return (
     <div
       ref={outerRef}
-      className="absolute right-[10%] top-0 bottom-0 pointer-events-none overflow-hidden"
+      className="absolute right-[7%] top-0 bottom-0 pointer-events-none overflow-hidden"
       style={{ width: '90%' }}
     >
       <motion.div

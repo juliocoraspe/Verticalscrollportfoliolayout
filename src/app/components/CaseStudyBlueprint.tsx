@@ -22,7 +22,7 @@ const SLIDE_DURATION = 0.42;
 const SLIDE_EASE: [number, number, number, number] = [0.4, 0, 0.2, 1];
 
 export function CaseStudyBlueprint({
-  isMobile: _isMobile,
+  isMobile,
   isOpen,
   cover,
   classicMobileContent: _classicMobileContent,
@@ -66,6 +66,7 @@ export function CaseStudyBlueprint({
           onClose={onClose}
           ariaTitle={ariaTitle}
           isOpen={isOpen}
+          isMobile={isMobile}
         />
       </motion.div>
     </div>
@@ -77,13 +78,16 @@ type BlueprintShellProps = {
   onClose: () => void;
   ariaTitle: string;
   isOpen: boolean;
+  isMobile: boolean;
 };
 
-function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShellProps) {
+function BlueprintShell({ sections, onClose, ariaTitle, isOpen, isMobile }: BlueprintShellProps) {
   const reactId = useId();
   const shouldReduceMotion = useReducedMotion();
   const [activeId, setActiveId] = useState(sections[0]?.id ?? '');
+  const [glossaryScroll, setGlossaryScroll] = useState({ progress: 0, thumb: 1 });
   const displayBodyRef = useRef<HTMLDivElement>(null);
+  const glossaryListRef = useRef<HTMLUListElement>(null);
   const active = sections.find((s) => s.id === activeId) ?? sections[0];
 
   // Reset to first section when card closes (so reopening starts fresh)
@@ -98,6 +102,40 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
   useEffect(() => {
     if (displayBodyRef.current) displayBodyRef.current.scrollTop = 0;
   }, [activeId]);
+
+  // Match the always-visible mobile rail indicator used in My Design Cycle.
+  // The native horizontal scrollbar is intentionally hidden; this compact
+  // track communicates both overflow and the current position without adding
+  // a second, detached line beneath the index.
+  useEffect(() => {
+    if (!isMobile) return undefined;
+    const rail = glossaryListRef.current;
+    if (!rail) return undefined;
+
+    const updateGlossaryScroll = () => {
+      const maxScroll = rail.scrollWidth - rail.clientWidth;
+      const progress = maxScroll > 0 ? rail.scrollLeft / maxScroll : 0;
+      const thumb = rail.scrollWidth > 0
+        ? Math.min(1, Math.max(0.16, rail.clientWidth / rail.scrollWidth))
+        : 1;
+      setGlossaryScroll({ progress, thumb });
+    };
+
+    updateGlossaryScroll();
+    const resizeObserver = new ResizeObserver(updateGlossaryScroll);
+    resizeObserver.observe(rail);
+    rail.addEventListener('scroll', updateGlossaryScroll, { passive: true });
+    window.addEventListener('resize', updateGlossaryScroll);
+
+    return () => {
+      resizeObserver.disconnect();
+      rail.removeEventListener('scroll', updateGlossaryScroll);
+      window.removeEventListener('resize', updateGlossaryScroll);
+    };
+  }, [isMobile, isOpen, sections.length]);
+
+  const glossaryThumbWidth = glossaryScroll.thumb * 100;
+  const glossaryThumbLeft = glossaryScroll.progress * (100 - glossaryThumbWidth);
 
   if (!active) return null;
 
@@ -129,7 +167,7 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
 
       <aside className="cs-bp-glossary" aria-label="Section index">
         <p className="cs-bp-glossary-heading">Index</p>
-        <ul className="cs-bp-glossary-list">
+        <ul ref={glossaryListRef} className="cs-bp-glossary-list">
           {sections.map((section) => {
             const isActive = section.id === activeId;
             return (
@@ -155,6 +193,16 @@ function BlueprintShell({ sections, onClose, ariaTitle, isOpen }: BlueprintShell
             );
           })}
         </ul>
+        <div className="cs-bp-glossary-scroll-indicator" aria-hidden="true">
+          <span className="cs-bp-glossary-scroll-track" />
+          <span
+            className="cs-bp-glossary-scroll-thumb"
+            style={{
+              left: `${glossaryThumbLeft}%`,
+              width: `${glossaryThumbWidth}%`,
+            }}
+          />
+        </div>
       </aside>
 
       <main

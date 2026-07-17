@@ -1,0 +1,20 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/RLChallenges_PRD_Lite.docx
+
+[Heading 1] Real-Life Challenges
+[Heading 2] Problem
+[Normal] BeReal captures one daily moment, but users need more reasons to open the app and share small real-life actions with close friends. Without a lightweight way to create shared wellness rituals, users turn to external apps for fitness, habit tracking, or accountability—fragmenting their social connection.
+[Heading 2] Target User
+[Normal] Gen Z and young millennial BeReal users who value authenticity, close-friend connection, and wellness without performance pressure. They want simple daily routines and accountability, not a fitness app or leaderboard.
+[Heading 2] MAU Success Metrics
+[Normal] Primary: % of monthly active users who start and complete at least one Real-Life Challenge (15–25% target). Secondary: weekly active participation rate, average challenge completion rate per user, and weekly return frequency.
+[Heading 2] Assumptions & Non-Goals
+[Normal] Assumptions: Users want more reasons to return monthly. Close-friend accountability makes small actions more fun and meaningful. Lightweight proof (photos, voice notes, check-ins) feels native to BeReal. Feature must feel playful, not optimised.  Non-Goals: Not a fitness or productivity app. No public leaderboards. No sensitive health data by default. No beauty filters or curated feeds. Not a mental health treatment tool.
+[Heading 2] User Stories & Acceptance Criteria
+
+TABLE 1
+User Story | Acceptance Criteria
+Create a challenge with a close friend or small group. | • Can initiate with one friend or group • Can choose action & rhythm before invite • Challenge starts when invite accepted
+Choose a personal challenge type (not fitness-only). | • Types: movement, mood, care, connection, outside • Clear language explanations included • No fitness/health data required to join
+Receive playful personal reminders. | • Includes context or friend’s name • Casual, human tone (not formal) • Can skip/ignore without public penalty
+See lightweight updates from close friends. | • Quick access without full feed navigation • Shows progress, not public rankings • Can complete challenge or react simply
+View challenge recap after completion. | • Access short recap when challenge ends • Shows shared progress & posted moments • Minimal, emotional tone (not dashboard)

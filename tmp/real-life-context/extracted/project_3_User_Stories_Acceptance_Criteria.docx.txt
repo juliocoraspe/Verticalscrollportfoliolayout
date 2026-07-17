@@ -1,0 +1,56 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/User_Stories_Acceptance_Criteria.docx
+
+[Normal] User Stories & Acceptance Criteria
+[Normal] Feature: Real-Life Challenges
+[Normal] Real-Life Challenges helps BeReal users create small real-life pacts with close friends, partners, or small groups. The goal is to make everyday actions feel more playful, human, and shared without turning BeReal into a fitness app or a performance-based social platform.
+[Heading 1] User Stories
+[Heading 1] Acceptance Criteria
+[Heading 2] User Story 1
+[Normal] As a BeReal user, I want to create a small real-life challenge with a close friend, so that we can stay connected through simple everyday actions.
+[Normal] Acceptance Criteria:
+[Normal] • User can start a Real-Life Challenge with one close friend or a small group.
+[Normal] • User can choose the challenge action and rhythm before sending the invite.
+[Normal] • The challenge starts only when at least one invited person accepts.
+[Heading 2] User Story 2
+[Normal] As a BeReal user, I want to choose a challenge that fits my real life, so that the experience feels personal and not only fitness-based.
+[Normal] Acceptance Criteria:
+[Normal] • User can choose from challenge types such as movement, mood, care, connection, or outside moments.
+[Normal] • Each challenge is explained in simple language before the user starts it.
+[Normal] • User can join a challenge without connecting fitness or health data.
+[Heading 2] User Story 3
+[Normal] As a BeReal user, I want to receive playful and personal challenge reminders, so that participating feels more human and less like a generic app notification.
+[Normal] Acceptance Criteria:
+[Normal] • User receives a reminder that includes the challenge context or the friend’s name.
+[Normal] • Reminder copy feels casual and human, not formal or pressure-based.
+[Normal] • User can complete, skip, or ignore the reminder without being publicly penalized.
+[Heading 2] User Story 4
+[Normal] As a BeReal user, I want to see small challenge updates from my close friend in a lightweight way, so that our shared pact feels present even when I am not fully inside the app.
+[Normal] Acceptance Criteria:
+[Normal] • User can see a lightweight challenge update from a close friend without needing to navigate through the full feed first.
+[Normal] • The update shows simple progress or a recent challenge moment, not a public ranking.
+[Normal] • User can open the update to complete their own challenge or respond with a simple reaction.
+[Heading 2] User Story 5
+[Normal] As a BeReal user, I want completed challenges to be saved in a simple recap, so that I can look back at the shared moments in a meaningful but minimal way.
+[Normal] Acceptance Criteria:
+[Normal] • User can access a short recap after a challenge ends.
+[Normal] • Recap shows simple shared progress, such as completed days and posted moments.
+[Normal] • Recap feels minimal and emotional, not like a performance dashboard.
+[Heading 1] MVP Focus
+[Heading 1] Product Boundary
+[Normal] Real-Life Challenges should not become a full fitness app, a public competition system, a mental health treatment tool, or a productivity tracker. The feature should stay focused on small real-life actions, close-friend connection, playful reminders, and authentic shared moments.
+
+TABLE 1
+# | User Story | Why This Story Matters
+1 | As a BeReal user, I want to create a small real-life challenge with a close friend, so that we can stay connected through simple everyday actions. | This is the core of the feature. It turns BeReal from one daily post into a shared real-life ritual.
+2 | As a BeReal user, I want to choose a challenge that fits my real life, so that the experience feels personal and not only fitness-based. | This keeps the feature human and flexible. It can include movement, mood, care, connection, or outside moments.
+3 | As a BeReal user, I want to receive playful and personal challenge reminders, so that participating feels more human and less like a generic app notification. | This makes the feature feel fun without adding visual complexity. The tone of the reminder can make the challenge feel more like a shared pact than a task.
+4 | As a BeReal user, I want to see small challenge updates from my close friend in a lightweight way, so that our shared pact feels present even when I am not fully inside the app. | This extends the connection beyond the main posting flow. It keeps the challenge visible, simple, and close-friend focused without turning it into a feed.
+5 | As a BeReal user, I want completed challenges to be saved in a simple recap, so that I can look back at the shared moments in a meaningful but minimal way. | This gives the feature emotional value over time. The recap should feel light and BeReal-native, not like a heavy dashboard or performance report.
+
+TABLE 2
+Priority | User Story | Reason
+P1 | Create a challenge with a close friend | Defines the core feature behavior
+P1 | Choose a real-life challenge type | Keeps the feature personal and BeReal-aligned
+P1 | Playful personal reminders | Gives the feature a more human tone
+P2 | Lightweight close-friend updates | Extends the connection beyond the main app flow
+P2 | Simple recap | Adds emotional meaning after the challenge ends

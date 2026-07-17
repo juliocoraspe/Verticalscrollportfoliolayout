@@ -789,7 +789,7 @@ export function PracticeSection({ enterMotionGarden: _enterMotionGarden }: Pract
                   onHoverEnd={() => dispatchLevel(null)}
                   levelRef={levelRefs[3]}
                   connectorEndMargin={170}
-                  connectorTopOffset={52}
+                  connectorTopOffset={12}
                 >
                   <PhilosophyBody isMobile={isMobile} />
                 </BpLevel>

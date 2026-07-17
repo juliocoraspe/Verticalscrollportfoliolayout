@@ -1,0 +1,159 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 1/BeReal — Research Analysis.pdf
+PAGES: 1
+
+--- PAGE 1 ---
+bereal. RESEARCH ANALYSIS
+FOUNDED 2019 / PARIS
+ACQUIRED 2024 / €500M
+COMPILED
+bereal company research
+PRIMARY SOURCES
+SENSORTOWER.COM · BUSINESSOFAPPS.COM
+SIFTED.EU · CRUNCHBASE.COM · VOODOO.IO
+UI & Design Realization by Claude Code  Visual Inspiration: Federica Fragapane
+01THE ARC
+founding
+Ribbon width = active users.
+The peak is unmistakable.
+FOUNDERS
+Alexis BarreyatKévin Perreau
+EX-GOPRO · PARIS
+2019
+LAUNCH
+JUN 2021
+$30MSERIES A
+AUG 2022
+73.5MPEAK MAU
+JUN 2024
+€500MACQUIRED · VOODOO
+2026
+~40M
+SOURCES   wikipedia.org/wiki/BeReal  ·  research.contrary.com/bereal
+02CAPITAL RAISED
+funding
+Petal radius = USD raised.
+The exit dwarfs all prior rounds by 6×.
+SERIES B · MAY 2022
+$60M
+SERIES A
+$30MJUN 2021
+SEED · 2020
+UNDISCLOSED
+ACQUISITION · JUN 2024
+$538MVOODOOLEADS · A16Z · ACCEL · DST
+SOURCES   sifted.eu  ·  tracxn.com
+03THREE PHASES
+revenue
+Bulb size = revenue volume.
+Four years of zero before ﬁrst growth.
+2020 — 2024
+$0NO REVENUE
+JUL 2024
+ADSPILOT LAUNCH
+2025
+$30M+REALBRANDS · US
+BUSINESS MODEL
+" Authenticity ﬁrst" → forced exit → monetize
+SOURCE   bereal.com/bereal-launches-us-advertising
+04SCALE COMPARISON · MAU
+competition
+Circle area = monthly active users.
+BeReal is barely visible at this scale.
+40M MAU
+bereal.
+ snapchat
+956M
+ tiktok
+1.1B
+ instagram
+1.4B
+CIRCLE AREA = MONTHLY ACTIVE USERS
+BEREAL.
+40M
+MAU
+LOYALTY  54%
+MKT VAL/USER  $10.92
+INSTAGRAM
+1.4B
+MAU
+DAILY OPENS  39%
+MKT VAL/USER  HIGH
+TIKTOK
+1.1B
+MAU
+DAILY OPENS  29%
+MKT VAL/USER  HIGH
+SNAPCHAT
+956M
+MAU
+LOYALTY  52%
+MKT VAL/USER  $38.58
+SOURCE   sensortower.com · MMM Jun 2024
+05DIRECTIONAL SIGNALS
+exploration
+Growth as product direction, not volume.
+Solid = launched. Dashed = reported or emerging.
+DIRECTIONAL MAP · NOT A FORECAST
+2024 2025 2026+
+COMMERCIAL LAYER
+CORE RITUAL
+JAN 2024
+official accountsREALPEOPLE / REALBRANDS
+JUN 2024
+Voodoo resetPRODUCT + GROWTH ENGINE
+APR 2025
+US adsIN-FEED / TAKEOVERS
+MAR 2026
+ad study
+CREATORS
+creator layer
+REPORTED / EVALUATED
+video + RealChat
+SOURCES   bereal.com · RealPeople/RealBrands  ·  bereal.com · Voodoo  · 
+bereal.com · U.S. Ads  ·  europapress.es · 2026 relaunch
+06PER BEREAL
+audience
+Official internal data.
+The 28+ segment is a footnote.
+85% GEN Z · 14—27
+US AUDIENCE · 5M+ MAU
+71%18 — 27
+21%13 — 17 8%28 +
+SOURCE · BEREAL INTERNAL MATERIALS
+07MONTHLY ACTIVE USERS · JUL 2021 — MAR 2025
+user growth
+Veriﬁed third-party data.
+Rise, peak, and the long descent.
+0M
+20M
+40M
+60M
+80M
+JUL 2021
+ JUL 2022
+ JUL 2023
+ JUL 2024
+ MAR 2025
+DATA CONFLICT*
+VOODOO ERA
+0.92M
+21.6M
+73.5M
+PEAK · AUG 2022
+47.8M
+33.3M
+40M
+16M
+* Jun 2024 Voodoo self-reports 40M MAU; Mar 2025 independent estimate (Online Optimism) reports 16M. Methodology differs.
+MAU
+ANNUAL DOWNLOADS · WORLDWIDE
+2022
+93.5M
+2023
+31.5M
+2024
+12.7M
+2025 EST.
+~6M
+SOURCES   businessofapps.com/data/bereal-statistics  ·  sensortower.com/blog/bereal-data-snapshot  ·  apptopia.com
+·

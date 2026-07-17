@@ -33,6 +33,7 @@ export default function App() {
   const caseStudyDirectPassRef = useRef<HTMLElement | null>(null);
   const pendingCollapseScrollRef = useRef<HTMLElement | null>(null);
   const scrollPositionRef = useRef(0);
+  const mobileLandingHandledRef = useRef(false);
   const scrollToCaseStudy = useCallback(
     (element: HTMLElement | null) => {
       if (!element) return;
@@ -167,6 +168,48 @@ export default function App() {
       });
     });
   }, [shouldReduceMotion]);
+
+  // Mobile starts at the hero even when the browser tries to restore a
+  // previous in-page anchor or scroll position after a reload. Dedicated
+  // full-screen views keep their hashes so their direct links still work.
+  useEffect(() => {
+    if (!isMobile || mobileLandingHandledRef.current) return;
+    mobileLandingHandledRef.current = true;
+
+    const hash = window.location.hash.toLowerCase();
+    const mainPageHashes = new Set([
+      '',
+      '#main-content',
+      '#design-cycle',
+      '#case-studies',
+      '#about-me',
+      '#contact',
+    ]);
+
+    if (!mainPageHashes.has(hash)) return;
+
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+
+    if (hash) {
+      window.history.replaceState(
+        null,
+        '',
+        `${window.location.pathname}${window.location.search}`,
+      );
+    }
+
+    const landOnHero = () => window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    landOnHero();
+    const animationFrame = window.requestAnimationFrame(landOnHero);
+    const restorationGuard = window.setTimeout(landOnHero, 80);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.clearTimeout(restorationGuard);
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, [isMobile]);
 
   useEffect(() => {
     const handleHashChange = () => {

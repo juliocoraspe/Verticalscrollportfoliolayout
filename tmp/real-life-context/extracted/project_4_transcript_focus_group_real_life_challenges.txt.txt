@@ -1,0 +1,833 @@
+10:00:14 --> 10:00:16
+Julio Coraspe: Hello, hello. Hi everyone.
+
+10:00:18 --> 10:00:19
+Aisha M.: Hey!
+
+10:00:20 --> 10:00:22
+tomas herrera: Hello, hello. How is everyone?
+
+10:00:23 --> 10:00:26
+Julio Coraspe: Good, good. We are waiting for, uh, two more people I think.
+
+10:00:27 --> 10:00:29
+Sebastian Morales: Hi Julio, can you hear me okay?
+
+10:00:29 --> 10:00:31
+Julio Coraspe: Yes, yes, loud and clear.
+
+10:00:32 --> 10:00:34
+Sebastian Morales: Perfect, perfect.
+
+10:00:41 --> 10:00:43
+Julio Coraspe: Valentina, I see you joined. Hello?
+
+10:00:47 --> 10:00:49
+Julio Coraspe: Valentina? We can't hear you.
+
+10:00:53 --> 10:00:55
+Julio Coraspe: You are on mute, I think.
+
+10:00:57 --> 10:01:00
+Valen Ríos: Hello? Sorry, sorry. The classic, no? Always the mute.
+
+10:01:00 --> 10:01:03
+Julio Coraspe: Yes, it happens in every single meeting. Don't worry.
+
+10:01:03 --> 10:01:05
+Aisha M.: Every single one.
+
+10:01:06 --> 10:01:08
+Valen Ríos: Okay, now yes. Hi everyone.
+
+10:01:14 --> 10:01:16
+tomas herrera: So where is everybody joining from?
+
+10:01:17 --> 10:01:19
+Aisha M.: I'm in Atlanta. It's raining like crazy here.
+
+10:01:20 --> 10:01:23
+tomas herrera: Buenos Aires here. Also raining, so we match.
+
+10:01:23 --> 10:01:25
+Aisha M.: Oh nice, twins.
+
+10:01:26 --> 10:01:28
+Sebastian Morales: Mexico City. No rain, sorry.
+
+10:01:29 --> 10:01:30
+tomas herrera: Lucky you.
+
+10:01:36 --> 10:01:38
+Julio Coraspe: Okay, I think we are only missing Miriam.
+
+10:01:47 --> 10:01:49
+Julio Coraspe: There she is. Hi Miriam, welcome.
+
+10:01:50 --> 10:01:55
+Miriam Okonkwo: Hello, hi. Sorry I'm a bit late, I was putting my son in front of the telly so he leaves me alone for an hour.
+
+10:01:55 --> 10:01:57
+Aisha M.: Ha, respect. That's the move.
+
+10:01:58 --> 10:02:00
+Miriam Okonkwo: It's the only move, trust me.
+
+10:02:01 --> 10:02:10
+Julio Coraspe: Perfect, perfect. Okay, so now that we are all here, uh, let me start. First of all, thank you so much everyone for taking the time for being here today.
+
+10:02:10 --> 10:02:31
+Julio Coraspe: Um, so quickly, my name is Julio, I am a UX designer, and today we are going to look together at a prototype of a possible new feature for a social app. I am not going to tell you yet which feature or, or what it does, because part of what we want to see is how you discover it by yourself.
+
+10:02:31 --> 10:02:33
+Sebastian Morales: Ooh, mystery.
+
+10:02:33 --> 10:02:35
+Julio Coraspe: Ha, yes, exactly, a little mystery.
+
+10:02:35 --> 10:02:56
+Julio Coraspe: Uh, some important things before we start. There is no right or wrong answers here, okay? If something confuse you, that is very useful information for us, it is not a mistake from your side. So please be honest, even if you think something is bad or you don't like it, that is exactly what we need to hear.
+
+10:02:56 --> 10:03:04
+Julio Coraspe: Also, one question. Are you all okay if I record this session? It's only for taking notes after, nothing else.
+
+10:03:04 --> 10:03:05
+Aisha M.: Yeah, fine by me.
+
+10:03:05 --> 10:03:06
+tomas herrera: Yes, no problem.
+
+10:03:06 --> 10:03:07
+Valen Ríos: Yes, of course.
+
+10:03:07 --> 10:03:08
+Sebastian Morales: Sure.
+
+10:03:08 --> 10:03:09
+Miriam Okonkwo: Yes, that's fine.
+
+10:03:10 --> 10:03:22
+Julio Coraspe: Thank you. Okay. So, uh, before we jump in, very quick, let's do a fast round of introductions. Just your name, where you are, and, um, what you do. Twenty seconds, nothing formal.
+
+10:03:22 --> 10:03:24
+Julio Coraspe: Uh, Aisha, you want to start?
+
+10:03:24 --> 10:03:35
+Aisha M.: Sure. I'm Aisha, I'm 31, I live in Atlanta, I work in HR. And yeah, I'm a big BeReal person actually, I use it pretty much every day.
+
+10:03:35 --> 10:03:37
+Julio Coraspe: Nice, thank you. Tomás?
+
+10:03:37 --> 10:03:48
+tomas herrera: Yes, hello, I'm Tomás, from Buenos Aires, 26. I work as community manager in a startup. And I also use BeReal every day, I'm the guy that post in the first two minutes.
+
+10:03:48 --> 10:03:50
+Aisha M.: Oh you're one of those.
+
+10:03:50 --> 10:03:52
+tomas herrera: Ha, yes, sorry, I am one of those.
+
+10:03:53 --> 10:03:55
+Julio Coraspe: Perfect. Uh, Sebastián?
+
+10:03:55 --> 10:04:08
+Sebastian Morales: Hi, I'm Sebastián, 24, I'm doing a master in psychology in Mexico City. I have BeReal but honestly I open it, like, when the notification catch me in a good moment. So not every day.
+
+10:04:08 --> 10:04:10
+Julio Coraspe: Okay, thank you. Valentina?
+
+10:04:10 --> 10:04:23
+Valen Ríos: Hi, I'm Valentina, I'm 28, I'm graphic designer, freelance, in Bogotá. And full honesty, I don't use BeReal. I had it like one year ago and I deleted it after two weeks maybe.
+
+10:04:23 --> 10:04:25
+Julio Coraspe: That's perfect, that's exactly why you are here.
+
+10:04:25 --> 10:04:27
+Valen Ríos: Ha, okay, good.
+
+10:04:27 --> 10:04:29
+Julio Coraspe: And Miriam.
+
+10:04:29 --> 10:04:42
+Miriam Okonkwo: Hi everyone, I'm Miriam, I'm 38, I live in London, I'm a nurse. And I have to confess I'd never heard of BeReal before this session. I use WhatsApp and a bit of TikTok before bed and that's about it.
+
+10:04:42 --> 10:04:46
+Julio Coraspe: Perfect. Thank you all. So we have a very nice mix here, which is exactly the idea.
+
+10:04:46 --> 10:05:03
+Julio Coraspe: Okay, so, uh, before showing you the prototype, I want to ask a couple of quick questions about your relationship with social apps in general. Just conversation, nothing deep. Uh, first question. For the ones that use BeReal, how often do you...
+
+10:05:03 --> 10:05:12
+Julio Coraspe: Sorry, let me say it better. What makes you actually open the app on a normal day? Like, what is the trigger?
+
+10:05:12 --> 10:05:19
+tomas herrera: For me is the notification, one hundred percent. The two minutes thing. If I don't post fast I feel that I lost the game.
+
+10:05:19 --> 10:05:26
+Aisha M.: Yeah, same, the notification. But also honestly I like seeing where my coworkers are. It's kind of nosy but in a nice way.
+
+10:05:24 --> 10:05:26
+tomas herrera: Ha, yes, exactly, exactly.
+
+10:05:27 --> 10:05:37
+Sebastian Morales: For me it depends. If the notification comes when I'm doing something boring, I ignore it. If I'm doing something, like, minimum interesting, I post. So the app decides for me, in a way.
+
+10:05:38 --> 10:05:43
+Julio Coraspe: Interesting. And Valentina, Miriam, for you, what is the last social app you opened today and why?
+
+10:05:44 --> 10:05:53
+Valen Ríos: Instagram, for sure. But is work, no? Like I post my design work there, I look references. Is not really... social for me anymore, if that make sense.
+
+10:05:53 --> 10:05:55
+Julio Coraspe: Yeah, yeah, total sense.
+
+10:05:55 --> 10:06:04
+Miriam Okonkwo: WhatsApp for me. My family group chat never sleeps. And my best friend is in Nigeria so we voice note each other almost every day.
+
+10:06:04 --> 10:06:06
+Julio Coraspe: Nice, nice.
+
+10:06:06 --> 10:06:20
+Julio Coraspe: Second question and then we go to the prototype. Is there one app that feels like it actually fits your life? Like, not just another thing asking for your attention. Anyone.
+
+10:06:23 --> 10:06:25
+Julio Coraspe: Don't be shy, ha.
+
+10:06:25 --> 10:06:33
+Miriam Okonkwo: I'd say WhatsApp again, honestly. It doesn't ask anything from me. It's just... where my people are.
+
+10:06:33 --> 10:06:35
+Aisha M.: That's a good way to put it.
+
+10:06:35 --> 10:06:44
+Sebastian Morales: I would say Spotify, but is not social. From the social ones... maybe none? They all want something from you, like, constantly.
+
+10:06:44 --> 10:06:47
+Valen Ríos: Yes, I agree with that. They all want something.
+
+10:06:47 --> 10:06:53
+tomas herrera: BeReal is the closest one for me. Because is only one time in the day and then is finished. But even that one, sometimes...
+
+10:06:53 --> 10:06:55
+tomas herrera: I don't know, sometimes it feels like homework.
+
+10:06:56 --> 10:06:58
+Julio Coraspe: Homework. Okay, I'm writing that down.
+
+10:06:58 --> 10:07:00
+tomas herrera: Ha, sorry BeReal.
+
+10:07:00 --> 10:07:18
+Julio Coraspe: Okay, perfect. This was great. So now, yes, the prototype. I'm going to share a link in the chat. Uh, the instruction is very simple. Explore it like you opened it by yourself. You can click anything you want, there is no way to break it.
+
+10:07:18 --> 10:07:33
+Julio Coraspe: And very important, try to talk out loud while you do it. Tell us what you see, what catch your attention, what confuse you. I am not going to explain anything, I am just going to listen. Okay? You will have like ten minutes.
+
+10:07:33 --> 10:07:35
+Sebastian Morales: Okay, sounds good.
+
+10:07:35 --> 10:07:37
+Aisha M.: Where's the link?
+
+10:07:39 --> 10:07:43
+Julio Coraspe: The link is in the... oh. Sorry, I didn't paste it. One second.
+
+10:07:43 --> 10:07:45
+Aisha M.: Ha, no worries.
+
+10:07:48 --> 10:07:50
+Julio Coraspe: Okay, now yes. Check the chat.
+
+10:07:52 --> 10:07:53
+tomas herrera: Got it.
+
+10:07:54 --> 10:07:55
+Valen Ríos: Opening.
+
+10:08:02 --> 10:08:07
+tomas herrera: Okay, "Real Life Challenges." Okay okay. Let me press start.
+
+10:08:09 --> 10:08:14
+Aisha M.: Oh this looks like BeReal for real. The black screen, the yellow. Okay.
+
+10:08:15 --> 10:08:20
+Sebastian Morales: "No real-life challenge yet. Start or accept something small with someone close." Hmm.
+
+10:08:21 --> 10:08:26
+Sebastian Morales: Interesting wording. "Something small with someone close." Okay, I press the plus.
+
+10:08:28 --> 10:08:34
+Miriam Okonkwo: Right, I'm in. It's quite dark, isn't it? Give me a moment, I'm just reading.
+
+10:08:36 --> 10:08:44
+tomas herrera: Okay so there is categories. Movement, Mood, Care... Connection, Outside. Like types of challenges I guess.
+
+10:08:44 --> 10:08:52
+Aisha M.: "Walk, stretch, sunlight"... "one thing I survived today"... okay that one's kind of funny actually. One thing I survived today.
+
+10:08:52 --> 10:08:54
+Valen Ríos: Yes, I saw that one too. I like it.
+
+10:08:57 --> 10:09:06
+Sebastian Morales: So these are like, hmm, life areas. Is not sport, is not gym. Is more like... small things. Drink water, touch grass. Okay.
+
+10:09:08 --> 10:09:15
+Miriam Okonkwo: I've picked the water one. It says three days. Can I change... oh, there's a slider. One day up to one year? A whole year?
+
+10:09:15 --> 10:09:17
+Julio Coraspe: What do you see there?
+
+10:09:17 --> 10:09:26
+Miriam Okonkwo: There's a slider for how many days the challenge lasts. It goes from one day to a year, which seems... a lot. But I suppose you'd just do a week or so.
+
+10:09:29 --> 10:09:37
+tomas herrera: I'm in the setup screen. Action, the friend, duration, proof type. Is a lot of options but is fast, I did it in like twenty seconds.
+
+10:09:37 --> 10:09:44
+Aisha M.: Yeah it's quick. Oh and look at the button, "rope a friend in." That's cute.
+
+10:09:47 --> 10:09:56
+Valen Ríos: Okay wait, now it opened like a... iMessage? Like the messages of the phone. So the invitation goes by message, not inside the app.
+
+10:09:59 --> 10:10:07
+Valen Ríos: "I started a Real-Life Challenge with you. Drink water today. Small challenge, no score." Hmm. Okay. I'm reading it again.
+
+10:10:11 --> 10:10:13
+Valen Ríos: "No score." Okay. Interesting.
+
+10:10:16 --> 10:10:24
+Sebastian Morales: The no score part is doing a lot of work there. Like they know what you are thinking and they answer before you ask. Smart.
+
+10:10:26 --> 10:10:32
+tomas herrera: I'm already in the camera. Day one. Is the double camera like normal BeReal. Okay, I capture.
+
+10:10:34 --> 10:10:40
+Aisha M.: Same. Oh, and after you post it shows you what Maya posted. So you only see hers after you do yours.
+
+10:10:40 --> 10:10:42
+Aisha M.: Okay, that's actually smart.
+
+10:10:44 --> 10:10:51
+Sebastian Morales: Ah, that is the same BeReal logic, no? You post first, then you see. But here is one to one. Between two people only.
+
+10:10:53 --> 10:10:59
+Miriam Okonkwo: Sorry, I'm a bit behind. I'm on the screen with the three steps. "You're in. Maya too." Who is Maya?
+
+10:10:59 --> 10:11:02
+Aisha M.: She's like the example friend. The fake friend.
+
+10:11:02 --> 10:11:05
+Miriam Okonkwo: Ah, right, okay. The pretend friend. Got it.
+
+10:11:09 --> 10:11:17
+tomas herrera: Ohh, there is a lock screen now. "Maya drank her water. you up?" With the eyes emoji. Ha. Okay that is very... that is a friend message, not app message.
+
+10:11:17 --> 10:11:19
+Sebastian Morales: Where are you? I'm not there yet.
+
+10:11:19 --> 10:11:22
+tomas herrera: Keep going after the day one photo. Is like day two.
+
+10:11:26 --> 10:11:31
+Valen Ríos: I see it too. The message sounds like the friend wrote it, not the app. That is nice.
+
+10:11:34 --> 10:11:40
+Aisha M.: Okay I'm at day three, "last one." No selfie camera this time, just the water. Okay. Capturing.
+
+10:11:44 --> 10:11:46
+Aisha M.: Oh! Confetti. We made it.
+
+10:11:47 --> 10:11:49
+tomas herrera: Yes! The confetti. I like the confetti.
+
+10:11:52 --> 10:11:58
+Aisha M.: And now... oh okay. It's like a little album. Both of us, day by day. Noah's photos and Maya's photos.
+
+10:12:02 --> 10:12:04
+Aisha M.: Okay I lowkey love this part.
+
+10:12:05 --> 10:12:07
+Julio Coraspe: What part, Aisha? Say more.
+
+10:12:07 --> 10:12:19
+Aisha M.: The album at the end. The vault thing. It's like... it's not a trophy, you know? It's more like a photo album of a thing you did with your person. Me and my best friend would look at this for like an hour.
+
+10:12:19 --> 10:12:21
+Valen Ríos: Yes, is like a memory box.
+
+10:12:23 --> 10:12:31
+Sebastian Morales: I arrived to the vault too. Hmm. Is private, no? Like nobody else see this. I think that is important. If this was public it changes everything.
+
+10:12:34 --> 10:12:40
+Miriam Okonkwo: I'm still on the camera bit, sorry. I'll catch up. My phone brain is slower than you lot.
+
+10:12:40 --> 10:12:42
+Aisha M.: You're fine, take your time.
+
+10:12:46 --> 10:12:50
+tomas herrera: Can I start again from the beginning? I want to see the categories another time.
+
+10:12:50 --> 10:12:53
+Julio Coraspe: Yes, yes, there is a restart button on the top right.
+
+10:12:53 --> 10:12:54
+tomas herrera: Ah yes, I see it.
+
+10:13:12 --> 10:13:20
+Sebastian Morales: I'm looking the categories again also. The Connection one. "One thing I survived today, same-sky video." The same sky thing is... hmm.
+
+10:13:20 --> 10:13:22
+Julio Coraspe: What do you see there?
+
+10:13:22 --> 10:13:34
+Sebastian Morales: Is like you and other person take a photo of your sky, each one in their city. My best friend from the university lives in Spain now and honestly the relation became very... surface? Superficial. This kind of thing is exactly what is missing.
+
+10:13:34 --> 10:13:36
+Julio Coraspe: Okay. Thank you for sharing that.
+
+10:13:40 --> 10:13:48
+Miriam Okonkwo: Right, I've got the confetti now. And the album. Oh, that is rather sweet actually. I see what Aisha meant.
+
+10:13:52 --> 10:13:59
+Valen Ríos: One thing, the screen where you choose everything, the setup one. For one second I thought, ah, this is going to be like a fitness app.
+
+10:13:59 --> 10:14:07
+Valen Ríos: But then no, because the options are like "drink water," "touch grass." No kilometers, no calories. So the feeling goes away fast. But it was there one second.
+
+10:14:07 --> 10:14:09
+Julio Coraspe: Okay, noted. That is very useful.
+
+10:14:13 --> 10:14:21
+tomas herrera: The only thing for me, the duration. One year option is scary, ha. Like, imagine failing a one year challenge with your friend. No no no.
+
+10:14:21 --> 10:14:23
+Aisha M.: Ha, don't pick a year then!
+
+10:14:23 --> 10:14:26
+tomas herrera: Yes but the option is looking at me!
+
+10:14:26 --> 10:14:28
+Sebastian Morales: Ha, the option is judging you.
+
+10:14:28 --> 10:14:29
+tomas herrera: Exactly!
+
+10:14:32 --> 10:14:44
+Julio Coraspe: Okay, ha, we will talk about that in one minute. Uh, take one more minute to finish exploring, whatever screen you are, and then we move to the conversation part. No rush.
+
+10:15:22 --> 10:15:24
+Miriam Okonkwo: Okay, I think I've seen everything now.
+
+10:15:26 --> 10:15:27
+Valen Ríos: Me too, I'm done.
+
+10:15:29 --> 10:15:30
+Sebastian Morales: Ready.
+
+10:15:34 --> 10:15:47
+Julio Coraspe: Perfect. Okay. Thank you everyone, that was great, and thank you for talking out loud, I know it feels weird. So now, the conversation. I have some questions, uh, and again, honest answers, even if is hard feedback.
+
+10:15:47 --> 10:15:56
+Julio Coraspe: First question, very simple. In your own words, what does this feature do? Uh... Miriam, can I start with you?
+
+10:15:56 --> 10:15:58
+Miriam Okonkwo: Oh, putting me on the spot, okay.
+
+10:15:58 --> 10:16:14
+Miriam Okonkwo: So, as I understood it... you and a friend agree to do a small thing, like drinking water or going outside, for a few days. And each day you show each other a photo as proof. And at the end you have a little album of it together.
+
+10:16:14 --> 10:16:17
+Julio Coraspe: Okay. And that was clear from the prototype alone?
+
+10:16:17 --> 10:16:24
+Miriam Okonkwo: Mostly, yes. The three steps screen helped. The only bit I didn't get at first was who Maya was, but that's because it's a demo, isn't it.
+
+10:16:24 --> 10:16:26
+Julio Coraspe: Yes, exactly. Okay. Valentina, same question.
+
+10:16:27 --> 10:16:38
+Valen Ríos: For me is like... a pact. Like a small pact between two people. Is not about the photo, the photo is only the proof. The real thing is that the other person knows you did it.
+
+10:16:38 --> 10:16:40
+Sebastian Morales: Yes. Accountability, but soft.
+
+10:16:40 --> 10:16:42
+Valen Ríos: Yes, soft, exactly.
+
+10:16:42 --> 10:16:44
+Julio Coraspe: Soft accountability. Okay, I like that. I'm stealing it.
+
+10:16:44 --> 10:16:46
+Sebastian Morales: Ha, is yours.
+
+10:16:46 --> 10:17:00
+Julio Coraspe: Okay, second thing. The five categories. Movement, Mood, Care, Connection, Outside. Uh, did any of them feel like you? And did you feel something is missing? Anyone can start.
+
+10:17:02 --> 10:17:11
+tomas herrera: Connection for me. The same sky one, direct. I have friends in Madrid, in Barcelona, we have a group but we only send memes now. This is better than memes.
+
+10:17:11 --> 10:17:13
+Aisha M.: Better than memes is a high bar.
+
+10:17:13 --> 10:17:14
+tomas herrera: Is a very high bar!
+
+10:17:15 --> 10:17:24
+Aisha M.: For me it's Care honestly. The water, the real meal, the sleep one. It's the stuff I know I should do and don't do. Doing it with my friend in Toronto would actually make it happen.
+
+10:17:26 --> 10:17:36
+Sebastian Morales: I like Mood. "Name the feeling," the one sentence journal. As psychology person, that is, like, actual good practice. But packaged as a game with a friend. Not as therapy.
+
+10:17:36 --> 10:17:38
+Julio Coraspe: Not as therapy. Okay.
+
+10:17:38 --> 10:17:46
+Sebastian Morales: Yes, and that is important, because the moment it smells like therapy app, half of the people leave. This doesn't smell like that. For now.
+
+10:17:47 --> 10:17:49
+Julio Coraspe: For now, ha. Okay. Missing something? Anyone?
+
+10:17:52 --> 10:17:59
+Valen Ríos: Maybe something creative? Like, draw something small every day, or take a photo of one color. For me that would be more me than the water.
+
+10:17:59 --> 10:18:01
+Julio Coraspe: A creative family. Okay, writing it.
+
+10:18:01 --> 10:18:08
+Miriam Okonkwo: I'd add something like... reading? Ten pages a day with a friend, something of that sort. But maybe that fits in Mind, I don't know.
+
+10:18:08 --> 10:18:10
+Julio Coraspe: Okay, both very good. Thank you.
+
+10:18:10 --> 10:18:27
+Julio Coraspe: Now the next question is the important one for me, so I want everyone to answer. Imagine this. A friend, a real friend of you, sends you a message. "I started a Real-Life Challenge with you. Drink water today. Small challenge, no score." Do you accept? Yes or no, and why.
+
+10:18:27 --> 10:18:29
+Julio Coraspe: And, uh, Valentina first this time.
+
+10:18:29 --> 10:18:31
+Valen Ríos: Ha, okay, okay.
+
+10:18:31 --> 10:18:45
+Valen Ríos: Honestly... it depends who sends it. If is my close friend, yes. If is someone random, no. But if is my close friend, then yes, and is not even about the app. Is because she asked me to do something with her.
+
+10:18:45 --> 10:18:49
+Julio Coraspe: Okay. And you don't have BeReal installed. Does that change the answer?
+
+10:18:52 --> 10:19:05
+Valen Ríos: Mmm. That is the real question, no? I think... if the message says clear that is a thing for two, I download it. Because is different. Is not "download the app to see my photos." Is "download the app because we are doing something together."
+
+10:19:05 --> 10:19:08
+Julio Coraspe: Okay. That is exactly the difference we want to test.
+
+10:19:08 --> 10:19:15
+Valen Ríos: Yes, and the message almost says that. Almost. The "with you" part is good. Maybe it can be even more direct.
+
+10:19:15 --> 10:19:17
+Julio Coraspe: More direct how? No, sorry, keep going.
+
+10:19:17 --> 10:19:24
+Valen Ríos: Like... something that says this is only us two. "Just you and me," something like that. I don't know, I'm not copywriter, ha.
+
+10:19:24 --> 10:19:26
+Julio Coraspe: No, no, that's good. Okay. Miriam?
+
+10:19:26 --> 10:19:40
+Miriam Okonkwo: If my friend in Lagos sent me that, I'd say yes before finishing the message. Especially the sky one. We're always saying we should do more together and then life happens. This gives it a... a shape, I suppose.
+
+10:19:40 --> 10:19:42
+Julio Coraspe: A shape. Okay.
+
+10:19:42 --> 10:19:50
+Miriam Okonkwo: And I'd download the app for that, yes. I wouldn't download it just to look at people's photos, if I'm honest. At my age that ship has sailed.
+
+10:19:50 --> 10:19:52
+Aisha M.: Ha, it hasn't sailed!
+
+10:19:52 --> 10:19:54
+Miriam Okonkwo: It has sailed, Aisha, and I waved at it.
+
+10:19:56 --> 10:19:58
+Julio Coraspe: Ha, okay, okay. Tomás?
+
+10:19:58 --> 10:20:09
+tomas herrera: Yes, I accept. But I confess one thing. When I read "no score" my brain said, ah good, because with Duolingo I had a streak of 200 days and when I lost it I never opened the app again. Never.
+
+10:20:09 --> 10:20:11
+Sebastian Morales: The streak trauma is real.
+
+10:20:11 --> 10:20:21
+tomas herrera: Is real trauma! So the no score thing, for me is not a small detail. Is the reason I would try it. If this had streaks I say no directly.
+
+10:20:21 --> 10:20:23
+Julio Coraspe: Okay. Very clear. Sebastián?
+
+10:20:23 --> 10:20:35
+Sebastian Morales: Yes. And I was thinking, the invite is smart because the app is not the protagonist. The friend is the protagonist. The app is only the... the place where it happens. That is very different from normal invites.
+
+10:20:35 --> 10:20:36
+Julio Coraspe: Okay. Aisha?
+
+10:20:36 --> 10:20:44
+Aisha M.: Oh I'm accepting, that's easy. My question is different, can I send five of these at the same time to five different people? Because I will.
+
+10:20:44 --> 10:20:46
+tomas herrera: Ha, the challenge collector.
+
+10:20:46 --> 10:20:48
+Aisha M.: Listen, I have a lot of friends to fix.
+
+10:20:48 --> 10:20:52
+Julio Coraspe: Ha, okay, that is actually a very good product question. Writing it down.
+
+10:20:52 --> 10:21:09
+Julio Coraspe: Okay, next topic. The notification. You saw it in the lock screen. "Maya drank her water. You up?" How did that feel for you? Motivated, pressured, indifferent? And here I want honesty please, because this is the part that can go very wrong.
+
+10:21:11 --> 10:21:18
+Aisha M.: I loved it. It reads like a text from her, not from an app. Like she's teasing me. That would 100% make me open my phone.
+
+10:21:18 --> 10:21:27
+tomas herrera: I agree but... okay, I agree at day two. My question is at day twenty, if I am tired and the notification comes, do I feel it fun or do I feel guilty?
+
+10:21:27 --> 10:21:29
+Aisha M.: Hmm. That's fair.
+
+10:21:29 --> 10:21:41
+tomas herrera: Because the words are nice. But the pressure, if it exists, is not from the words, is from the friend waiting. And that pressure no notification can remove. You know what I mean?
+
+10:21:41 --> 10:21:43
+Julio Coraspe: Yes, yes. Say more about that.
+
+10:21:43 --> 10:21:55
+tomas herrera: Like... okay, with Duolingo, when I fail, I fail against a owl. Who cares. Here if I fail, I fail against my friend. That is more heavy. Is better, because I care more, but is also more heavy.
+
+10:21:55 --> 10:21:57
+Sebastian Morales: Can I enter here?
+
+10:21:57 --> 10:21:58
+Julio Coraspe: Yes, go.
+
+10:21:58 --> 10:22:14
+Sebastian Morales: What Tomás says is real but I think is also the point. The pressure of the owl is fake so it works with shame. The pressure of the friend is real so it works with... care, no? The important thing is what happens when you fail. If the app makes the failing a drama, is bad. If the app lets it pass, is fine.
+
+10:22:14 --> 10:22:21
+tomas herrera: Yes, exactly. What happens if I miss a day? I didn't saw that in the prototype. That screen for me is the most important screen and is not there.
+
+10:22:21 --> 10:22:26
+Julio Coraspe: That is... yes. That is fair. That screen doesn't exist yet. Okay. Very good point.
+
+10:22:26 --> 10:22:33
+Valen Ríos: I think if you miss a day, the other person should be able to send something nice. Like, "tomorrow we continue." Something human.
+
+10:22:33 --> 10:22:35
+Aisha M.: Aw, yeah. That's it.
+
+10:22:35 --> 10:22:37
+Miriam Okonkwo: That's rather lovely, yes.
+
+10:22:37 --> 10:22:40
+Julio Coraspe: Okay. That is a very good idea. Miriam, the notification, for you?
+
+10:22:40 --> 10:22:48
+Miriam Okonkwo: It made me smile. Although the "you up?" bit, isn't that... doesn't that phrase mean something a bit different usually?
+
+10:22:48 --> 10:22:50
+Aisha M.: Ha! She's right, it does.
+
+10:22:50 --> 10:22:52
+tomas herrera: Wait, what does it mean?
+
+10:22:52 --> 10:22:54
+Aisha M.: I'll tell you after, Tomás.
+
+10:22:54 --> 10:22:55
+tomas herrera: Okay...?
+
+10:22:55 --> 10:23:00
+Miriam Okonkwo: But honestly it's fine, it's cheeky. As long as it's my friend's name on it and not the app's name, it works.
+
+10:23:00 --> 10:23:04
+Julio Coraspe: Ha, okay, noted, we check the "you up" with the copy team. Okay.
+
+10:23:04 --> 10:23:18
+Julio Coraspe: Two more questions and we go to the survey. Uh, this one is quick. Does this feel like a BeReal feature? Or it feels like it belongs to another app? Fast answers.
+
+10:23:18 --> 10:23:19
+Aisha M.: BeReal. Completely.
+
+10:23:19 --> 10:23:21
+tomas herrera: BeReal, yes. Same camera, same spirit.
+
+10:23:21 --> 10:23:29
+Sebastian Morales: BeReal, but is the version of BeReal that grew up. Like, the original is "look my moment." This is "live a moment with me." Is an evolution, not a copy.
+
+10:23:29 --> 10:23:31
+Julio Coraspe: Okay, nice. Valentina?
+
+10:23:31 --> 10:23:38
+Valen Ríos: I can't compare because I don't use it, but it doesn't feel like a fitness app and it doesn't feel like Instagram. It feels like a thing by itself. For me that is good.
+
+10:23:38 --> 10:23:39
+Miriam Okonkwo: Same as Valentina.
+
+10:23:39 --> 10:23:41
+Julio Coraspe: Okay, perfect.
+
+10:23:41 --> 10:23:55
+Julio Coraspe: Last one. Think in one specific person of your life. Do you have someone you would start a challenge with? And which challenge? Uh, and after this we go to the survey, we are doing good with the time.
+
+10:23:57 --> 10:24:04
+Aisha M.: My best friend Keisha in Toronto. The water one first, and then honestly the same sky one because I miss her.
+
+10:24:04 --> 10:24:05
+Julio Coraspe: Okay.
+
+10:24:05 --> 10:24:11
+tomas herrera: My sister. She is in Córdoba, we talk less than before. Maybe the walking one, she is always saying she wants to walk more.
+
+10:24:11 --> 10:24:18
+Sebastian Morales: My friend in Spain, the one I mentioned. The "one thing I survived today" one. Voice note. That one is made for us.
+
+10:24:18 --> 10:24:26
+Valen Ríos: My mom, actually. She is in Cali. Something simple, the water or the sun one. She never takes sun, she is always inside.
+
+10:24:26 --> 10:24:28
+Julio Coraspe: Okay. And Miriam?
+
+10:24:28 --> 10:24:36
+Miriam Okonkwo: My friend Chidinma in Lagos. The sky one, no question. Two skies, one album. I'd actually cry a bit at the end, I know myself.
+
+10:24:36 --> 10:24:38
+Aisha M.: Okay now I'm emotional too.
+
+10:24:38 --> 10:24:40
+Miriam Okonkwo: Sorry everyone, ha.
+
+10:24:40 --> 10:24:56
+Julio Coraspe: No, this is... honestly this is the best possible answer for us, that everyone has a name so fast. Okay. Uh, before the survey, one last fast round. If you can change only one thing of this feature, only one, what is it? Twenty seconds each. Tomás.
+
+10:24:56 --> 10:25:03
+tomas herrera: The missing day screen. What happens when you fail one day. Make it kind. That is my one thing.
+
+10:25:03 --> 10:25:05
+Julio Coraspe: Okay. Sebastián.
+
+10:25:05 --> 10:25:12
+Sebastian Morales: Let the person who receives negotiate a little. Like, propose five days instead of ten, or other action. Right now the sender decides everything alone.
+
+10:25:12 --> 10:25:14
+Julio Coraspe: Okay. Aisha.
+
+10:25:14 --> 10:25:19
+Aisha M.: Let me run more than one challenge at a time. That's it. I need my five friends.
+
+10:25:19 --> 10:25:21
+Julio Coraspe: Ha, okay. Valentina.
+
+10:25:21 --> 10:25:27
+Valen Ríos: A creative category. Small drawings, photos of colors, something like that. For the people that the water is not enough.
+
+10:25:27 --> 10:25:29
+Julio Coraspe: Okay. And Miriam.
+
+10:25:29 --> 10:25:37
+Miriam Okonkwo: Bigger text, or a light version of the screen. My eyes are fine but the dark screen with small letters, some people my age would struggle a bit.
+
+10:25:37 --> 10:25:40
+Julio Coraspe: Okay. Very good, all of them. Thank you.
+
+10:25:40 --> 10:26:02
+Julio Coraspe: Okay. So, last part, the easiest one. I am going to share a link in the chat, is a short survey, seven questions. You will have ten minutes to complete it. Please do it individually, don't discuss between you while you answer, okay? Is very fast, most questions are just one to five. When you finish just, uh, stay in the call.
+
+10:26:02 --> 10:26:04
+Sebastian Morales: Okay, perfect.
+
+10:26:06 --> 10:26:08
+Julio Coraspe: Link is in the chat. Now yes, ha.
+
+10:26:08 --> 10:26:10
+Aisha M.: Ha, got it this time.
+
+10:26:14 --> 10:26:15
+tomas herrera: Opening.
+
+10:26:20 --> 10:26:23
+Miriam Okonkwo: Sorry, quick one, can we open the prototype again while answering?
+
+10:26:23 --> 10:26:27
+Julio Coraspe: Yes, yes, of course. The link still works. Good question.
+
+10:26:27 --> 10:26:28
+Miriam Okonkwo: Lovely, thanks.
+
+10:28:41 --> 10:28:43
+Valen Ríos: Sorry, question five is long answer, no? Is okay if I write short?
+
+10:28:43 --> 10:28:47
+Julio Coraspe: Yes, whatever comes natural. Two lines is enough, don't worry.
+
+10:28:47 --> 10:28:48
+Valen Ríos: Okay, perfect.
+
+10:31:15 --> 10:31:16
+Sebastian Morales: Done.
+
+10:31:17 --> 10:31:19
+Julio Coraspe: Perfect, thank you Sebastián.
+
+10:32:30 --> 10:32:31
+tomas herrera: Finished.
+
+10:32:48 --> 10:32:49
+Aisha M.: Same, done.
+
+10:34:26 --> 10:34:27
+Valen Ríos: Ready, sent.
+
+10:35:58 --> 10:36:02
+Miriam Okonkwo: And... submitted. Sorry, I was going back to the prototype for question four.
+
+10:36:02 --> 10:36:05
+Julio Coraspe: No, perfect, that is exactly why the link stays open.
+
+10:36:05 --> 10:36:22
+Julio Coraspe: Okay. So that's everything. Uh, before you go, I want to say thank you, really. This session gave us exactly what we needed. Uh, you gave hard feedback and nice feedback and both are gold for us.
+
+10:36:22 --> 10:36:39
+Julio Coraspe: I am not going to tell you today which ideas we take, because we have more sessions coming and I don't want to, uh, contaminate. But I promise your feedback goes direct to the design. Uh, thank you Aisha, thank you Tomás, Sebastián, Valentina, Miriam.
+
+10:36:39 --> 10:36:41
+Aisha M.: Thank you! This was fun.
+
+10:36:41 --> 10:36:48
+Julio Coraspe: One last thing, I put my email in the chat right now. If any idea comes to you tomorrow in the shower, send it to me. Serious.
+
+10:36:48 --> 10:36:50
+tomas herrera: Ha, shower ideas are the best ideas.
+
+10:36:50 --> 10:36:52
+Julio Coraspe: The best ones, yes.
+
+10:36:52 --> 10:36:54
+Sebastian Morales: Thank you Julio, good luck with it.
+
+10:36:54 --> 10:36:56
+Valen Ríos: Thank you, bye everyone!
+
+10:36:56 --> 10:36:58
+Miriam Okonkwo: Thanks all, this was lovely. Bye bye.
+
+10:36:58 --> 10:37:00
+Aisha M.: Bye y'all!
+
+10:37:00 --> 10:37:02
+tomas herrera: Bye bye, take care.
+
+10:37:02 --> 10:37:05
+Julio Coraspe: Bye, thank you so much. Bye. Have a nice day everyone.
+
+10:37:09 --> 10:37:10
+Julio Coraspe: Okay.
+
+10:37:12 --> 10:37:13
+Julio Coraspe: Hmm.

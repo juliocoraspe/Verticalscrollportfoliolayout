@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 type NavbarProps = {
   enterMotionGarden: () => void;
@@ -106,6 +106,7 @@ const sectionIds = anchorItems.map(item => item.href.slice(1));
 
 export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, onSelectDesignCycle, currentView }: NavbarProps) {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const navigationIntentRef = useRef<{ id: string; expiresAt: number } | null>(null);
 
   useEffect(() => {
     if (currentView === 'motion-garden') {
@@ -124,6 +125,19 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, on
     const updateActive = () => {
       const navHeight = 48;
       const scrollY = window.scrollY + navHeight + 1;
+      const navigationIntent = navigationIntentRef.current;
+
+      // Keep the selected destination active while its controlled smooth
+      // scroll is in progress. Without this short-lived intent, the first
+      // scroll frames still sit inside the hero and momentarily reactivate
+      // Home even though My Design Cycle was the control just selected.
+      if (navigationIntent) {
+        if (performance.now() < navigationIntent.expiresAt) {
+          setActiveSection(navigationIntent.id);
+          return;
+        }
+        navigationIntentRef.current = null;
+      }
 
       // If the user has scrolled to the bottom, activate the last section (Contact)
       const atBottom =
@@ -192,7 +206,7 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, on
             padding: 0,
           }}
         >
-          <li className="hidden sm:flex" style={{ marginRight: 'clamp(24px, 4vw, 72px)' }}>
+          <li className="site-nav-home-item flex">
             <a
               href="#main-content"
               onClick={
@@ -208,10 +222,9 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, on
               }
               aria-label="Home"
               aria-current={isHeroActive ? 'page' : undefined}
-              className="text-ink flex items-center justify-center"
+              className="site-nav-home-link text-ink flex items-center justify-center"
               style={{
                 textDecoration: 'none',
-                width: 48,
                 color: 'var(--color-ink)',
                 ...(isHeroActive ? activeUnderline : {}),
               }}
@@ -231,6 +244,11 @@ export function Navbar({ enterAccessibility, enterAiExperience, onSelectHero, on
                     if (e.defaultPrevented) return;
                     if (e.button !== 0) return;
                     if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+                    navigationIntentRef.current = {
+                      id,
+                      expiresAt: performance.now() + 1600,
+                    };
+                    setActiveSection(id);
                     e.preventDefault();
                     onSelectDesignCycle();
                   }

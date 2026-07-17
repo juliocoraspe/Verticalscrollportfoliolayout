@@ -1,0 +1,108 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/Challenges_Brainstorm.docx
+
+[Normal] BeReal Real-Life Challenges
+[Normal] Brainstorming Notes and Product Concept
+[Heading 1] 1. Concept Summary
+[Normal] Real-Life Challenges are not fitness challenges in the traditional sense. They are small real-life pacts between close friends, partners, or small groups.
+[Normal] The goal is to make BeReal more playful and human by turning small actions into shared rituals. The feature should feel like presence, not performance.
+[Normal] This direction connects wellness, movement, mood, daily care, and human connection without turning BeReal into Strava, Apple Fitness, or a mental health treatment app.
+[Heading 1] 2. Main Product Insight
+[Normal] For BeReal, the opportunity is not to track performance. The opportunity is to help people share proof of real life with the people who matter.
+[Heading 1] 3. Pitch Language
+[Heading 1] 4. What This Should Feel Like
+[Heading 1] 5. Core Mechanics
+[Heading 1] 6. Five Families of Challenges
+[Heading 1] 7. Data That Could Be Shared
+[Normal] Design note: The moment should stay more important than the number. “I went outside today” is more BeReal than “I walked 1,247 steps.”
+[Heading 1] 8. Suggested User Flow
+[List Number] Pick a Pact: choose something real to do together.
+[List Number] Choose the person or small group.
+[List Number] Choose the proof type: photo, dual-camera, short video, voice note, mood word, or simple check-in.
+[List Number] Set the rhythm: today, 3 days, 7 days, weekend, or weekly.
+[List Number] Receive a light notification when it is time to show up.
+[List Number] Post proof. The other person sees it after they complete theirs, keeping reciprocity.
+[List Number] React or reply.
+[List Number] See a small recap at the end of the challenge.
+[Heading 1] 9. Competitive Layer Without Becoming Toxic
+[Normal] Care Mode is important because a user who is struggling should not feel punished by the product. Language should be gentle: “Want to restart today?” instead of “You failed.”
+[Heading 1] 10. Connection With the Widget
+[Normal] The widget can become the soft presence layer for the challenge system. Instead of only showing a photo, it can show the relationship ritual in progress.
+[Heading 1] 11. Risks and Limitations
+[Heading 1] 12. MVP Recommendation
+[Heading 1] 13. Strategic Positioning
+[Normal] This feature is stronger than a simple BeReal widget because it creates its own reason to exist. The widget can support it later, but the deeper idea is the ritual itself.
+[Normal] It is also more original than a pure UI clarity layer. Clarity Layer may score higher in RICE, but it could conflict with deliberate design decisions already made by BeReal. Real-Life Challenges offers a new canvas while staying close to the platform’s values.
+[Normal] The final direction should be playful and human: not fun because of extra emojis or motion, but fun because people enjoy showing up, competing lightly, and sharing the journey with someone they care about.
+[Heading 1] 14. External Evidence Notes
+[Normal] BeReal audience and positioning: BeReal reports over 40 million monthly active users and says 85% are Gen Z. BeReal also describes itself around authentic, unfiltered sharing with friends. BeReal News, “BeReal Launches U.S. Advertising,” 2025. https://bereal.com/news/bereal-launches-u.s.-advertising
+[Normal] Wellness trend: McKinsey describes wellness for Gen Z and millennials as a daily, personalized practice rather than an occasional purchase or activity. McKinsey, “The $2 trillion global wellness market gets a millennial and Gen Z glow-up,” 2025. https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/future-of-wellness-trends
+[Normal] Alcohol and health orientation: Gallup reports that young adults are drinking less than prior decades, supporting the idea of a broader health-conscious shift. Gallup, “Young Adults in U.S. Drinking Less Than in Prior Decades,” 2023. https://news.gallup.com/poll/509690/young-adults-drinking-less-prior-decades.aspx
+[Normal] BeReal authenticity research: Research on BeReal found that spontaneous sharing, reciprocal posting, and curated audiences can reduce self-presentation pressure, while also noting that the format can feel limited or unappealing. Kim et al., “Sharing, Not Showing Off,” arXiv, 2024. https://arxiv.org/abs/2408.02883
+[Normal] Teen privacy and trust: Research on teen social media privacy highlights guided disclosure, audience segmentation, and trust-centered norms as useful design directions. Kim et al., “Trust-Enabled Privacy,” arXiv, 2025. https://arxiv.org/abs/2502.19082
+
+TABLE 1
+Core idea A social ritual engine for real life: small challenges that help close friends show up for themselves and each other through photos, video, voice notes, simple check-ins, and optional light activity data.
+
+TABLE 2
+Insight Gen Z and younger millennials are wellness-aware, but wellness is not only fitness. It is sleep, mood, movement, food, sunlight, routine, connection, and small daily actions that make people feel more grounded.
+
+TABLE 3
+Short pitch | Longer pitch
+Real-Life Challenges turn small healthy actions into shared BeReal moments. | Real-Life Challenges help close friends create playful, human rituals around movement, mood, care, and connection. The feature gives users more reasons to open BeReal without changing the app into a performance-based social network.
+
+TABLE 4
+Avoid | Aim for
+Track your habits. | Show me one real thing you did today.
+Beat your friends. | Let us both show up today.
+Complete your workout. | Send proof you went outside.
+Optimize your life. | Make one small real-life promise.
+Win the leaderboard. | Enjoy the journey together.
+
+TABLE 5
+Element | Description
+Person | Choose a best friend, partner, sibling, or small group.
+Action | Select one real-life action to complete.
+Rhythm | Daily, weekly, three times a week, weekend-only, or one-time.
+Proof | Photo, dual-camera photo, short video, voice note, mood word, check-in, or optional light activity data.
+Response | RealMoji, short reply, voice reply, or “I did mine too.”
+Memory | A small recap showing how both people showed up over time.
+
+TABLE 6
+Family | Purpose | Example prompts
+Body / Movement | Movement without performance pressure. | 10-minute walk; stretch once today; sunlight walk; post-workout Real; dance to one song; stand-up break.
+Mind / Mood | Small emotional check-ins without becoming clinical. | Mood compass; one thing I survived today; before/after walk mood; name the feeling; quiet five minutes; one-sentence journal.
+Care / Daily Life | Small actions that make the day more stable. | Drink water; real meal; clean one corner; make your bed; sleep wind-down; medication or vitamin check, if private.
+Connection / Relationship | Relationship-based rituals that feel native to BeReal. | Same sky photo; send a real voice note; best friend proof-of-life; coffee together or apart; one honest question; partner check-in.
+World / Outside | Prompts that move users out of isolated scrolling. | Touch grass; sit outside; notice one beautiful thing; park moment; library or cafe moment; plant, pet, or sky check.
+
+TABLE 7
+Data type | Examples | Risk | Recommendation
+Expressive data | Photo, video, caption, RealMoji, voice note | Low to medium | Core of the feature.
+Light wellness data | Steps, active minutes, standing hours, hydration check, sleep wind-down check | Medium | Optional and rounded by default.
+Sensitive data | Mood logs, medication, sleep quality, heart rate, precise location | High | Opt-in only, private, minimal, and never required.
+
+TABLE 8
+Mode | Best for | Tone
+Together Mode | Best friends, couples, siblings | We show up together.
+Friendly Race | Small groups | Let us see who completes more, but keep it light.
+Care Mode | Mood, support, mental wellness | No shame. No losing. Just checking in.
+
+TABLE 9
+Widget message | Purpose
+Ana is waiting for your proof. | Encourages reciprocity without feeling like a generic reminder.
+You both showed up 3/5 days. | Creates shared progress.
+Send your Real Check. | Reduces friction and brings the ritual to the home screen.
+Same sky challenge is open. | Keeps the prompt simple and visual.
+
+TABLE 10
+Risk | Why it matters | Mitigation
+It becomes Strava | Too much focus on steps, rankings, and performance could break BeReal’s tone. | Make visual proof and relationship rituals the center.
+It becomes fake therapy | Mental health language can create false expectations. | Frame as social wellbeing, not treatment.
+Users feel shame when they miss a day | Streaks and challenges can create guilt. | Use mercy days, gentle reset, and private progress.
+Privacy concerns | Health, mood, and location data can be sensitive. | Use opt-in controls, rounded data, and small audiences.
+Too many prompts | A large library can feel noisy. | Start with curated families and a small MVP set.
+Performative wellness | Users may stage wellness moments for social approval. | Keep groups small and use mutual reveal.
+Safety and context | Outside or movement prompts may not be safe for everyone. | Offer indoor alternatives and customization.
+
+TABLE 11
+MVP Launch with 12 curated challenges across four categories: Move, Mood, Care, and Connect. Use only three proof types at first: photo/dual-camera, voice note, and simple check-in. Add health data, widget integration, custom pacts, and recaps in later versions.
