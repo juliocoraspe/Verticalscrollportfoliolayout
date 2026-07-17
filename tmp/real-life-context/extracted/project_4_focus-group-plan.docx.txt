@@ -1,0 +1,109 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 4/focus-group-plan.docx
+
+[Normal] Focus Group Plan
+[Normal] BeReal · Real-Life Challenges Feature
+[Normal] Prepared by Julio Coraspe · 2026
+[Heading 1] 1. Feature Overview
+[Normal] Real-Life Challenges is a proposed new feature for BeReal. The idea is simple: two people decide to do a small real-life action together, and they use BeReal's existing capture moment as the proof.
+[Normal] Instead of posting once a day and watching what other people share, this feature adds a layer of shared intention. You and a close friend make a small commitment, do the thing, and show it to each other. No scores, no public leaderboard, no streak shame.
+[Normal] Examples of challenges: drink water today, take a 10-minute walk, send a voice note to someone you miss, notice one beautiful thing outside. The challenge families are:
+[List Paragraph] Body / Movement: walk, stretch, sunlight, stand-up break.
+[List Paragraph] Mind / Mood: mood word, one-sentence journal, name the feeling.
+[List Paragraph] Care / Daily Life: water, real meal, clean one corner, sleep wind-down.
+[List Paragraph] Connection / Relationship: same-sky photo, voice note, one honest question.
+[List Paragraph] World / Outside: touch grass, sit outside, park or cafe moment.
+[Normal] The feature is designed to feel simple, human, and playful. It should not feel like a fitness tracker, a productivity app, or a therapy tool. The goal is presence, not performance.
+[Heading 1] 2. Focus Group Objective
+[Normal] The goal of this focus group is to find out if Real-Life Challenges feels authentic to BeReal's spirit, or if it starts to feel like a fitness or productivity app. We also want to learn if the invite model, asking someone to 'do this with me' instead of 'download BeReal,' is strong enough to make a person join just to accept a challenge. Finally, we want to understand where users feel friction or pressure in the flow.
+[Normal] The three main questions we want to answer:
+[List Paragraph] Does this feature feel like it belongs in BeReal, or does it feel out of place?
+[List Paragraph] Is the setup screen easy to use without any explanation from us?
+[List Paragraph] Does the invite message work on its own, even if the person does not know BeReal?
+[Heading 1] 3. Participants
+[Normal] We will invite 7 participants. The mix is intentional: we need both people who know BeReal well and people who have never used it, because the feature depends on bringing new users in through the invite.
+[Normal] Age range: ideally 20 to 28 years old. If possible, include at least one person in a long-distance relationship and one person in a couple, because those are the two most natural contexts for the Connection and Care challenge families.
+[Heading 1] 4. Logistics
+[List Paragraph] Format: Virtual, using Zoom or Google Meet.
+[List Paragraph] Duration: 40 minutes total.
+[List Paragraph] Prototype: The HTML prototype will be shared as a link or by screen share.
+[List Paragraph] Recording: Zoom recording or Otter.ai for transcription.
+[List Paragraph] Notes: One person moderates, one person takes notes if possible.
+[List Paragraph] Survey: Google Form shared in the chat at the end of the session.
+[List Paragraph] Group size: 5 people.
+[Heading 1] 5. Session Flow
+[Normal] Total duration: 40 minutes.
+[Heading 2] Phase 1 — Introduction (5 minutes)
+[Normal] Say something like this at the start:
+[Normal] "We are going to look at a prototype of a possible new feature for BeReal. There are no right or wrong answers. What we want to know is what you feel and think while you explore it. If something confuses you, that is actually very useful information for us, it is not a mistake from your side."
+[Normal] Do not explain what the feature does before participants see it. Let them discover it on their own.
+[Heading 2] Phase 2 — BeReal Warm-Up (5 minutes)
+[Normal] A few casual questions to start the conversation:
+[List Paragraph] When was the last time you opened BeReal? What did you do?
+[List Paragraph] Is there something about BeReal you like, and something you feel is missing?
+[List Paragraph] When do you feel lazy about posting? Why?
+[Heading 2] Phase 3 — Prototype Demo (10 minutes)
+[Normal] Share the prototype link and say:
+[Normal] "Explore it like you opened it by yourself. You can click on anything you want. Try to talk out loud while you do it, tell us what you see and what catches your attention."
+[Normal] Do not guide them. Do not explain anything. Just observe. If someone is completely stopped for more than 30 seconds, you can say: 'What do you see there?' Nothing more.
+[Normal] Pay attention to these things during the demo:
+[List Paragraph] Do they understand what a 'challenge family' is without explanation?
+[List Paragraph] Does the setup screen (Screen 03) slow them down or do they move through it easily?
+[List Paragraph] Do they read the onboarding card (Screen 04) or do they skip it?
+[List Paragraph] How do they react to the lockscreen notification copy?
+[Heading 2] Phase 4 — Discussion (15 minutes)
+[Normal] These are the 7 discussion questions. Do not ask all of them if time is short. Prioritize the ones marked with a star.
+[List Paragraph] ★  In your own words, what does this feature do?
+[Normal] Tests if the concept arrived clearly or if there is fundamental confusion.
+[List Paragraph] ★  When you saw the challenge families — Movement, Mood, Care, Connection, Outside — did you identify with any of them? Did you feel something was missing?
+[Normal] Validates if the 5 families cover what users actually want to do.
+[List Paragraph] ★  If a friend sent you this invite — 'I invited you to a Real-Life Challenge, accept it and start Day 1' — would you accept it? Why or why not?
+[Normal] The most important question for the acquisition model. Do not give context before they answer.
+[List Paragraph] Was there any moment in the flow where you felt it was too much — too many steps, too much information, too much pressure?
+[Normal] Detects friction points or the feeling that this is another fitness app.
+[List Paragraph] When you saw the notification 'Maya drank her water, you up?' — how did it make you feel? Motivated, pressured, or indifferent?
+[Normal] Tests the tone of the most visible MAU hook in the design.
+[List Paragraph] Is there a specific person in your life you would do a challenge with? What challenge would you choose?
+[Normal] If the user can name a person and an action, the feature worked. If they cannot, there is a relevance problem.
+[List Paragraph] ★  Does this feel like a BeReal feature, or does it feel like it belongs in a different app?
+[Normal] Validates platform fit — whether the feature feels native and not forced into BeReal.
+[Heading 2] Phase 5 — Quick Survey (5 minutes)
+[Normal] Send the Google Form link in the chat. 5 questions, should take less than 3 minutes.
+[Heading 1] 6. Common Pitfalls to Avoid
+[List Paragraph] Do not explain the feature before the demo. If you explain it first, you contaminate the reaction.
+[List Paragraph] Do not defend design decisions during the discussion. If someone says 'this is confusing,' the answer is 'tell me more about that,' not 'actually what we meant was...'
+[List Paragraph] For question 3 about the invite, do not say it is from BeReal before they respond. The test is whether the invite works on its own.
+[List Paragraph] Give them silence during the demo. The natural instinct is to fill the silence. Do not do it.
+[List Paragraph] Do not ask leading questions like 'do you like this?' Ask 'what do you think about this?' instead.
+[Heading 1] 7. What We Are Testing
+[Normal] These are the core hypotheses we want to validate or challenge with this session.
+
+TABLE 1
+Profile | Count | Why
+Active BeReal user (posts 4+ days/week) | 2 | They know the app well. Good to detect if the feature breaks BeReal's authenticity.
+Occasional BeReal user (posts sometimes) | 2 | They represent the most common behavior. The feature needs to re-engage them.
+Instagram/Snapchat user who does not use BeReal | 2 | Fresh perspective. Tests if the invite message works without any app context.
+Social app user who feels overwhelmed by social media | 1 | Detects if the feature feels like pressure or something light and human.
+
+TABLE 2
+Phase | Duration | Name | Purpose
+1 | 5 min | Introduction | Welcome participants. Explain that there are no right or wrong answers.
+2 | 5 min | BeReal Warm-Up | Get participants talking about their current BeReal habits and frustrations.
+3 | 10 min | Prototype Demo | Participants explore the prototype freely. Moderator only observes.
+4 | 15 min | Discussion | Open-ended questions about usability, emotional feel, and perceived value.
+5 | 5 min | Quick Survey | Short Google Form to collect structured quantitative feedback.
+
+TABLE 3
+Question | Type
+How easy was it to understand how this feature works? (1 = very confusing, 5 = very clear) | Scale 1–5
+How likely are you to use this with someone close to you? (1 = not likely, 5 = very likely) | Scale 1–5
+Does this feature feel like it belongs in BeReal? (1 = not at all, 5 = completely) | Scale 1–5
+Do you think this feature could create pressure or anxiety? (1 = not at all, 5 = a lot) | Scale 1–5
+Was there any moment in the flow that confused you? Please describe. | Open answer
+
+TABLE 4
+Hypothesis | Sign it works | Sign it does not work
+The invite feels personal, not like an ad | They say they would accept it without context | They ask 'what is this app?'
+Setup does not feel like a fitness app | They navigate Screen 03 in under 60 seconds | They ask 'does this track my steps?'
+The notification tone is fun, not guilty | They laugh or say they want to reply | They say it feels like pressure
+The 5 families cover what users want to do | They find an action quickly without hesitation | They say 'nothing here feels like me'
+The feature feels native to BeReal | They say it fits the spirit of the app | They say 'this feels like Duolingo'

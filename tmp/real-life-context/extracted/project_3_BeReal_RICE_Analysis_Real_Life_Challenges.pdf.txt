@@ -1,0 +1,122 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/BeReal_RICE_Analysis_Real_Life_Challenges.pdf
+PAGES: 2
+
+--- PAGE 1 ---
+BeReal Feature Prioritization - RICE Analysis
+Chosen feature: Real-Life Challenges
+A lightweight system of small real-life pacts between close friends, partners, or small groups. The goal is not to turn BeReal into a
+fitness app, but to make everyday actions feel more playful, social, and human.
+Ran
+k
+Feature
+Reach
+Impac
+t
+Confidenc
+e
+Effort
+RICE
+Score
+Reasoning
+1
+Clarity Layer
+75
+2
+0.85
+1.5
+85.0
+Strongest score because it could help
+many users understand the app
+mechanics with low build effort.
+However, it may conflict with
+deliberate UI decisions already made
+by BeReal.
+2
+BeReal Widget
+60
+2
+0.80
+2
+48.0
+Strong friction-reduction idea with
+clear home-screen value. Still, it risks
+feeling too close to an existing app
+strategy rather than a deeply
+BeReal-native idea.
+3
+Real-Life Challenges
+50
+2
+0.75
+2.5
+30.0
+Chosen feature. It combines wellness,
+mood, movement, and close-friend
+connection through small shared
+rituals. It fits BeReal values while
+creating a new reason to return.
+4
+Shared Moments
+45
+1.5
+0.75
+2
+25.3
+Emotionally aligned with close friends,
+but narrower in reach because it
+depends on scheduled participation
+between specific people.
+5
+Streak Proof
+50
+1.5
+0.70
+2.5
+21.0
+Useful for trust and retention,
+especially around streak confusion.
+More corrective than expansive as a
+growth feature.
+6
+Life Timeline
+30
+1.5
+0.65
+3.5
+8.4
+Emotionally compelling, but more
+useful for long-term retention and
+artifact creation than frequent MAU
+growth.
+7
+Attestation
+25
+1
+0.50
+3
+4.2
+Interesting for an AI-authenticity
+future, but the need is less urgent and
+the feature may add extra friction.
+Selection rationale
+Why not the top-scoring idea? Clarity Layer has the highest RICE score, but changing onboarding and UI explanations may challenge choices
+that BeReal has likely made deliberately. It is useful, but it may be more of a UX refinement than a strong product direction.
+Why not the widget? The widget is still a strong idea, but by itself it can feel like adapting another app pattern. It reduces friction, but it needs a
+deeper BeReal-native purpose to feel original.
+Why Real-Life Challenges? Real-Life Challenges creates a new space for BeReal without leaving its philosophy. It turns small actions like
+walking, checking in, touching grass, sending a voice note, or sharing a mood into playful rituals with people who matter.
+Strategic fit. This feature can appeal to Gen Z wellness behaviors while also giving millennials a clearer and more personal reason to use
+BeReal. It supports engagement, close-friend connection, and authentic sharing without becoming a performance-based fitness network.
+Evidence considered
+
+--- PAGE 2 ---
+- BeReal says it has over 40 million monthly active users and an audience that is 85% Gen Z, which makes Gen Z behavior important for
+prioritization.
+- McKinsey reports that Gen Z and millennials increasingly treat wellness as a daily, personalized practice, supporting the idea of lightweight
+wellness rituals.
+- Gallup reports that young adults have become less likely to drink alcohol than young adults in prior decades, which supports a broader shift
+toward more intentional health behavior.
+- Research on BeReal suggests that spontaneity, reciprocity, and curated audiences can reduce some self-presentation pressure, but the app can
+also feel limited. Real-Life Challenges aims to expand expression without adding a performative feed.
+Sources: BeReal U.S. Advertising announcement, McKinsey Future of Wellness 2025, Gallup young adults drinking trends, and
+ACM/ArXiv research on BeReal and authentic self-presentation.

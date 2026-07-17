@@ -1,0 +1,21 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/BeReal_Feature_Ideas_Table.docx
+
+[Heading 1] BeReal Feature Ideas — Growth Roadmap
+Top 7 Strategic Features to Increase Monthly Active Users (MAUs)
+While maintaining authenticity, spontaneity, and simplicity
+[Heading 1] Implementation Timeline
+Phase 1 (Weeks 1-6): Clarity Layer
+Phase 2 (Weeks 7-14): Widget + Streak Proof
+Phase 3 (Weeks 15-20): Challenges + Shared Moments
+Phase 4 (Weeks 21-28): Life Timeline + Attestation
+Total Potential Impact: 30-55% increase in MAUs over 6-7 months
+
+TABLE 1
+# | Problem | Idea | MAU Hypothesis
+1 | Millennials don't understand BeReal's mechanics (streaks, double camera, posting window) | Clarity Layer — Redesigned onboarding + UI explanations + tooltip system + interest-based discovery | Reduces onboarding churn by 15-25% and increases retention through mechanic transparency
+2 | No incentive to open beyond daily posting; no health/fitness integration | BeReal Challenges — Health/fitness challenges with hardware integration (Apple Health, Fitbit) + leaderboards | Increases daily active users 10-30% through peer accountability and new engagement loops
+3 | App requires opening to see updates; high friction compared to widgets | BeReal Widget — Home screen widget for quick photo/video snaps with designated person | Increases daily opens 20-40% through constant visibility and friction reduction
+4 | Users lose streaks, don't understand why, lose trust in the app mechanics | Streak Proof — Cryptographically-signed daily proof system with transparent timeline + mercy restore | Improves retention 10-15% by building trust and removing mechanic confusion for millennials
+5 | Posting feels lonely; no way to create intimate moments with close friends | Shared Moments — Two friends schedule a private moment to post together at same time | Increases engagement and retention 5-10% through relationship deepening and weekly rituals
+6 | Moments feel ephemeral; no long-term artifact or reason to maintain consistency | Life Timeline — Auto-generated yearly printable yearbook (30-50 pages) organized by people and moments | Increases annual retention 10-20% through artifact creation and monetization ($30-50 per book)
+7 | No trust infrastructure for authenticity in an AI-generated world | Attestation — Friends verify moments as 'authentic' with 1-minute tap; verified posts get badge | Increases engagement 5-15% and positions BeReal as trust-first app for anti-deepfake future

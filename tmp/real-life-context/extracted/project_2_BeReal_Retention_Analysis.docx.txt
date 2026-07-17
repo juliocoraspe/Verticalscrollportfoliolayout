@@ -1,0 +1,15 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 2/BeReal_Retention_Analysis.docx
+
+[Heading 1] BeReal Retention and Engagement Analysis
+This analysis look at how BeReal use daily moments to make users keep coming back and stay engaged.
+[Heading 1] Key Features
+[Heading 1] Analysis Questions
+[Heading 1] Which feature do you think has the biggest hidden impact on growth?
+I think the Memories feature is the most important for growth. At first, it look like just a simple place to store your photos. But it is much more powerful than this. Memories make your daily posts become something that last forever. When you can see all your moments together in a calendar, you see your life in a different way. The statistics show you your habit and make you want to keep the streak going. This make people stay in the app for a long, long time.
+The calendar view is special because it show you when you post and help you see patterns. You can look back and remember what you do. The streak counter make you want to keep posting every day. All of this together make you feel like the app is your personal history. The more you use it, the more you want to keep using it because you have so much there.
+
+TABLE 1
+Product Feature | Description | How It Drives Retention and Engagement
+Memories | You can keep all your old photos in one place. There is a calendar that show you when you post. You can see your photos from any day, any month, or any year you want to look at. | You feel like the app is part of your life because you see all your moments collected. The calendar help you remember your behavior and when things happen. You want to keep posting because you see your history grow and grow.
+Daily Notification | Every day you receive a message that tell you to post. But you never know exactly when it will come. All the users get the message at the same time. | You come back every day to try to catch the notification. This make a habit in your life. You feel connected with others because everyone is posting at the same moment as you.
+Two Minute Posting Window | When you get the notification, you must post within two minutes. You cannot plan your photo or edit it. You must post very quick. | Your photos look real because you do not have time to make them perfect. The time pressure make you want to come back and participate. The app stay authentic because you post what you see right now, not what you plan.

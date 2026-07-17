@@ -7,6 +7,7 @@ import realLifeValidationRecruitment from '../../assets/images/RealLife_validati
 import realLifeValidationCommunications from '../../assets/images/RealLife_validation-communications-redacted.png';
 import realLifeValidationAiPlanning from '../../assets/images/RealLife_validation-ai-planning-redacted.png';
 import realLifeResearchAnalysisPreview from '../../assets/images/RealLife_research-analysis-redacted.jpg';
+import realLifeMissedDayRecovery from '../../assets/images/RealLife_missed-day-recovery.png';
 import realLifeResearchAnalysis from '../../assets/documents/RealLife_research-analysis-redacted.pdf';
 
 const PROTOTYPE_EMBED_URL = `${import.meta.env.BASE_URL}real-life-prototype/index.html?embed=1`;
@@ -371,7 +372,7 @@ const FOCUS_GROUP_FINDINGS: {
     number: '06',
     label: 'Primary risk',
     title: 'A missed day decides whether accountability stays soft',
-    detail: 'Three participants raised the failure state directly; the other two affirmed a kinder “tomorrow we continue” response.',
+    detail: 'Three participants raised the failure state directly; the other two reinforced the need for a kinder recovery response.',
     metric: '3 direct · 2 affirmed',
     direct: ['T', 'S', 'V'],
     affirmed: ['A', 'M'],
@@ -455,7 +456,7 @@ const SURVEY_ROWS: {
   { label: 'Belongs on the platform', value: '5/5', valueDetail: 'positive', units: ['yes', 'yes', 'yes', 'yes', 'yes'] },
   { label: 'Would accept the invite', value: '5/5', valueDetail: 'positive', units: ['yes', 'yes', 'yes', 'yes', 'yes'] },
   { label: 'Would feel closer to their people', value: '4/5', valueDetail: 'positive', units: ['yes', 'yes', 'yes', 'yes', 'maybe'] },
-  { label: 'Ease of understanding', value: '4.0', valueDetail: 'average / 5', units: ['yes', 'yes', 'yes', 'low', 'low'] },
+  { label: 'Ease of understanding', value: '4.0', valueDetail: 'average / 5', units: ['yes', 'yes', 'yes', 'yes', 'low'] },
 ];
 
 const SURVEY_RESPONSE_CODES = ['R1', 'R2', 'R3', 'R4', 'R5'] as const;
@@ -781,10 +782,10 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
 
             <p>
               RICE was then applied to the complete list to make assumptions about reach, impact,
-              confidence, and effort explicit. It served as a decision aid, not an automatic winner: the
-              Clarity Layer scored 85 and the home screen widget scored 48, while Real-Life Challenges
-              scored 30. The concepts with higher scores improved comprehension or visibility, but neither
-              directly changed the invitation loop identified in the research.
+              confidence, and effort explicit. The final scoring placed Real-Life Challenges first with 85,
+              ahead of the Clarity Layer at 48 and the Home Screen Widget at 30. This result aligned the
+              strongest RICE outcome with the behavioral opportunity identified in the research: changing
+              the invitation and participation loop rather than only improving comprehension or visibility.
             </p>
             <p>
               The initial Challenges proposal included integration with fitness hardware and leaderboards. A
@@ -1033,21 +1034,70 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
       id: '08',
       label: 'Next Step: Test Retention & MAU',
       body: (
-        <>
-          <p>
-            Design the experience for a missed day (&ldquo;tomorrow we continue&rdquo;), run an A/B test of the invitation
-            copy for current users versus people who do not use the product, add a negotiation step so the receiver can propose changes,
-            and run a second, larger focus group before an instrumented beta lasting four weeks. The beta should
-            compare exposed and unexposed cohorts and track invitation acceptance, completion, repeat
-            participation, reactivation, and retention after 30 days before interpreting any MAU contribution.
-          </p>
-          <p>
-            What I learned: the strongest early signal was not a business metric. It was watching every
-            participant name a real person within seconds of understanding the concept. That showed the
-            invitation had social specificity; only longitudinal behavior can show whether that intent
-            becomes a durable reason to return.
-          </p>
-        </>
+        <div className="rl-next-step">
+          <section className="rl-next-step__remediations" aria-labelledby="rl-remediations-title">
+            <div className="rl-next-step__copy">
+              <span className="rl-next-step__eyebrow">Refinements after validation</span>
+              <h5 id="rl-remediations-title">From focus group findings to a revised flow</h5>
+              <p>
+                The focus group identified three immediate trust gaps: notification copy could feel too
+                pushy, invitees had no way to discuss the terms, and the flow offered no clear response
+                when someone missed a day. Those findings were translated into focused revisions before
+                the next behavioral test.
+              </p>
+
+              <ul className="rl-remediation-list">
+                <li>
+                  <strong>Softer microcopy</strong>
+                  <span>Reminders now encourage a return without using the friend as pressure.</span>
+                </li>
+                <li>
+                  <strong>Terms to discuss</strong>
+                  <span>The invitee can raise changes to the action, duration, or proof before accepting.</span>
+                </li>
+                <li>
+                  <strong>Recovery after a missed day</strong>
+                  <span>
+                    A new state asks for a short 10 second apology; without it, that day remains empty in
+                    the shared vault.
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <figure className="rl-remediation-media">
+              <div className="rl-remediation-media__frame">
+                <div className="rl-remediation-media__image">
+                  <img
+                    src={realLifeMissedDayRecovery}
+                    alt="Revised recovery screen asking the participant to record a ten second apology after missing a challenge day"
+                    loading="lazy"
+                  />
+                  <span className="rl-remediation-media__company-mask" aria-hidden="true" />
+                </div>
+              </div>
+              <figcaption>Recovery state added after the focus group validation.</figcaption>
+            </figure>
+          </section>
+
+          <section className="rl-next-step__experiment" aria-labelledby="rl-next-experiment-title">
+            <span className="rl-next-step__eyebrow">Next experiment</span>
+            <h5 id="rl-next-experiment-title">Test whether the refined loop changes behavior</h5>
+            <p>
+              Next, run an A/B test of the invitation copy for current users and people who do not use the
+              product, then validate the revised flow with a second, larger focus group. An instrumented
+              beta over four weeks should compare exposed and unexposed cohorts and track invitation
+              acceptance, completion, repeat participation, reactivation, and retention after 30 days
+              before interpreting any contribution to MAU.
+            </p>
+            <p className="rl-next-step__learning">
+              What I learned: the strongest early signal was not a business metric. Every participant
+              named a real person within seconds of understanding the concept. That gave the invitation
+              social specificity; only longitudinal behavior can show whether that intent becomes a
+              durable reason to return.
+            </p>
+          </section>
+        </div>
       ),
     },
   ];

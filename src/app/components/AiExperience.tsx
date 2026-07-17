@@ -409,6 +409,99 @@ const N = SCENES.length;
 const W = 1 / N;
 const REST_POINT = { cx: 78, cy: 20 }; // where the die settles at the end
 
+// ─── Mobile (≤639px) restaging ────────────────────────────────────────────
+// The desktop scenes place head and items at hand-tuned viewport
+// coordinates; at phone widths the head wraps taller, so each scene is
+// recomposed as ONE stacked column — head on top, items directly below,
+// the WHOLE scene visible inside a single viewport at once. Mobile also
+// drops the decorative separators and tightens type and spacing so the
+// full composition fits without any within-scene scrolling.
+//
+// The die keeps its FULL persona in every scene. The text column gives up
+// a right-edge LANE (the die's runway), so the character never crosses a
+// single word: BEM's gravity drops, the auditor's firing post and
+// projectiles, the pipeline's giant tumbling down its staircase, the
+// Tarzan cord slamming the leverage parts in, the multiply swarm and the
+// finale's rise-and-drop all play inside that lane or across the void —
+// beside the text, never over it.
+const NARROW_MQ = '(max-width: 639px)';
+
+function useNarrow() {
+  const [narrow, setNarrow] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia(NARROW_MQ).matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia(NARROW_MQ);
+    const onChange = (e: MediaQueryListEvent) => setNarrow(e.matches);
+    setNarrow(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, []);
+  return narrow;
+}
+
+// The lane: die centers, measured from the RIGHT edge of the viewport.
+const LANE_CENTER = 27; // normal die — spans vw-40 … vw-14
+const LANE_GIANT = 34; // grown pipeline die — spans vw-66 … vw-2 at 2.4×
+
+// The pipeline giant, phone-sized: big enough to read as a character that
+// broke free, small enough that its tumble stays inside the lane. The
+// descent starts once the head has printed (head and rows share the
+// screen now — no slot swap), one tread per row reveal.
+const MOBILE_STAIRS = { scale: 2.4, descentStart: 0.34, stepDur: 0.1, rowLead: 0.05 } as const;
+
+// Mobile Tarzan beats (leverage): the scan strikes the die off its perch
+// almost immediately, the head is slammed in early so it gets a real
+// reading window, and the three rows take the remaining swings. The whole
+// rig hangs on the LEFT: the cord anchors at the top-left corner, the
+// content column shifts right, and the pendulum works the left rail —
+// wind-ups swing out of frame and slam back in, the cord never crossing
+// a single line of text.
+const MOBILE_TARZAN = {
+  // the die parks at the lane, right where the scan begins its sweep —
+  // the edge reaches its face almost immediately
+  hitLp: 0.02,
+  knockDur: 0.045,
+  swingStart: 0.13,
+  hitTimes: [0.2, 0.42, 0.56, 0.7] as readonly number[], // head, row 1..3
+  pivotX: 0.055, // cord anchor, fraction of vw — the left rail
+  contactInset: 7, // die center this far right of the block's rect edge
+} as const;
+// Left rail reserved by the leverage content (slot offset; content keeps
+// its own px-6 gutter on top of this, so glyphs start ~54px in).
+const MOBILE_LEV_RAIL = 30;
+
+// Single-column slots — ONE composition per scene: the head sits at the
+// top and the items block directly below it, both visible together in a
+// single viewport (the per-scene `top` clears the measured head height).
+// Content keeps its own px-6 gutter; `right` reserves the die's lane so
+// the type never runs under it (leverage mirrors this: its rail is on
+// the LEFT for the swinging cord).
+function mobileHeadPos(scene: Scene): CSSProperties {
+  if (scene.die === 'rest') return { left: 0, right: 0, top: '9%' };
+  if (scene.die === 'multiply') return { left: 0, right: 0, top: '8.5%' };
+  if (scene.die === 'stairs') return { left: 0, right: 44, top: '8.5%' };
+  if (scene.id === 'leverage') return { left: MOBILE_LEV_RAIL, right: 0, top: '8.5%' };
+  return { left: 0, right: 28, top: '8.5%' };
+}
+
+function mobileItemsPos(scene: Scene): CSSProperties {
+  if (scene.die === 'rest') return { left: 0, right: 0, top: '45%' };
+  if (scene.die === 'multiply') return { left: 0, right: 0, top: '30%' };
+  if (scene.die === 'stairs') return { left: 0, right: 46, top: '39%' };
+  if (scene.id === 'leverage') return { left: MOBILE_LEV_RAIL, right: 0, top: '50%' };
+  if (scene.id === 'auditor') return { left: 0, right: 28, top: '38%' };
+  // bem — its head carries two body paragraphs
+  return { left: 0, right: 28, top: '45%' };
+}
+
+// Mobile leverage rows print exactly on the cord's row impacts.
+const MOBILE_LEV_ROW0 = MOBILE_TARZAN.hitTimes[1];
+const MOBILE_LEV_ROW_GAP = MOBILE_TARZAN.hitTimes[2] - MOBILE_TARZAN.hitTimes[1];
+// How far the finale conveyor keeps travelling (in vh) after the mass has
+// seated, so the tail cards scroll into view on a phone screen.
+const MOBILE_FINALE_CONVEYOR_VH = 45;
+
 // ─── Shared beat timings (local scene progress 0..1) ─────────────────────
 // door opens 0→0.14 · die lands 0.16 (head is shoved in) · rides the head
 // margin 0.16→0.42 · leaps 0.42→0.5 · stamps rows 0.5→0.78 · walks to the
@@ -599,6 +692,7 @@ function JourneyStage() {
 
 function SceneRoom({ p, i, scene }: { p: MotionValue<number>; i: number; scene: Scene }) {
   const s = i * W;
+  const narrow = useNarrow();
   const isRoom = scene.theme === 'light';
   const entry = scene.door;
   const exit = i + 1 < N ? SCENES[i + 1].door : REST_POINT;
@@ -637,7 +731,7 @@ function SceneRoom({ p, i, scene }: { p: MotionValue<number>; i: number; scene: 
   // the knowledge room's shutter has fully opened over it.
   const visibleEnd =
     scene.id === 'hero'
-      ? HERO_TOUCH_ABS + HERO_LEAP_DUR + 0.01
+      ? manifestoRig(narrow).leap3 + 0.01
       : scene.id === 'tools'
         ? s + W * 1.17
         : s + W + 0.005;
@@ -646,8 +740,16 @@ function SceneRoom({ p, i, scene }: { p: MotionValue<number>; i: number; scene: 
   // The finale's content doesn't fade in — it RISES as one mass from below
   // the frame (decelerating into place), shoving the waiting die up ahead
   // of it. RollingDie mirrors this exact ease to ride the mass's top edge.
-  const riseT = useTransform(p, [s + W * FINALE.riseS, s + W * FINALE.riseE], [0, 1], { clamp: true });
-  const riseY = useTransform(riseT, (t) => `${(1 - t) ** 3 * 100}vh`);
+  // On mobile the mass is taller than the screen, so after seating it keeps
+  // conveying upward slowly, walking the tail cards into view.
+  const riseY = useTransform(p, (v) => {
+    const t = Math.min(1, Math.max(0, (v - (s + W * FINALE.riseS)) / (W * (FINALE.riseE - FINALE.riseS))));
+    const base = (1 - t) ** 3 * 100;
+    if (!narrow) return `${base}vh`;
+    const c = Math.min(1, Math.max(0, (v - (s + W * FINALE.holdEnd)) / (W * (0.985 - FINALE.holdEnd))));
+    const eased = c * c * (3 - 2 * c);
+    return `${base - eased * MOBILE_FINALE_CONVEYOR_VH}vh`;
+  });
 
   const inner = (
     <>
@@ -742,9 +844,21 @@ function AuditorToPipelineWave({ p, i }: { p: MotionValue<number>; i: number }) 
       if (!head) return;
       const rect = head.getBoundingClientRect();
       if (rect.width < 10) return;
-      const rideH = Math.min(rect.height, window.innerHeight * 0.5) - 20;
-      const x = rect.left - 18;
-      const y = rect.top + 10 + rideH;
+      // The wave is born from the straining die itself. Desktop: parked at
+      // the head's left margin. Mobile: parked at its lane firing post,
+      // just above the rows it was shooting.
+      let x: number;
+      let y: number;
+      if (window.innerWidth < 640) {
+        const itemsEl = document.querySelector(`[data-sc="${i}"][data-role="items"]`);
+        const ir = itemsEl?.getBoundingClientRect();
+        x = window.innerWidth - LANE_CENTER;
+        y = (ir && ir.width > 10 ? ir.top : rect.bottom + 40) - 24;
+      } else {
+        const rideH = Math.min(rect.height, window.innerHeight * 0.5) - 20;
+        x = rect.left - 18;
+        y = rect.top + 10 + rideH;
+      }
       setOrigin({
         x: (x / window.innerWidth) * 100,
         y: (y / window.innerHeight) * 100,
@@ -887,6 +1001,7 @@ function CannonFlash({ p }: { p: MotionValue<number> }) {
 // static, until the incoming manifesto line touches it — then both the line
 // and the die get shoved up-left together, hard, and vanish mid-shove.
 function HeroGround({ p }: { p: MotionValue<number> }) {
+  const rig = manifestoRig(useNarrow());
   // The tip leads the die through the roll and HOLDS at 74% — it only moves
   // again when the incoming text's leading edge physically reaches it. From
   // there the tip stays glued to the edge (linear keyframes matching the
@@ -894,22 +1009,22 @@ function HeroGround({ p }: { p: MotionValue<number> }) {
   // with the whole line as die+line ride out ahead of the text.
   const x2 = useTransform(
     p,
-    [0, W * 0.48, heroEdgeAt(74), HERO_TOUCH_ABS, HERO_LEAP_1, HERO_LEAP_2, HERO_LEAP_3],
+    [0, W * 0.48, rig.edgeAt(74), rig.touch, rig.leap1, rig.leap2, rig.leap3],
     [
       '16%',
       '74%',
       '74%',
       `${HERO_DIE_REST_X + 1}%`,
-      `${heroEdgeX(HERO_LEAP_1) - 1}%`,
-      `${heroEdgeX(HERO_LEAP_2) - 1}%`,
-      `${heroEdgeX(HERO_LEAP_3) - 1}%`,
+      `${rig.edgeX(rig.leap1) - 1}%`,
+      `${rig.edgeX(rig.leap2) - 1}%`,
+      `${rig.edgeX(rig.leap3) - 1}%`,
     ],
     { clamp: true },
   );
-  const opacity = useTransform(p, [0, 0.01, HERO_LEAP_2, HERO_LEAP_3], [0, 1, 1, 0]);
+  const opacity = useTransform(p, [0, 0.01, rig.leap2, rig.leap3], [0, 1, 1, 0]);
   // Rises with the die while being consumed — the remaining span is always
   // left of the sweeping edge, so the glyphs can never sit on top of it.
-  const pushY = useTransform(p, [HERO_TOUCH_ABS, HERO_LEAP_3], ['0vh', '-20.6vh']);
+  const pushY = useTransform(p, [rig.touch, rig.leap3], ['0vh', '-20.6vh']);
   return (
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
       <motion.line
@@ -968,6 +1083,7 @@ function HeadPart({
   style?: CSSProperties;
 }) {
   const s = i * W;
+  const narrow = useNarrow();
   const isHero = i === 0;
   const isLeverage = scene.id === 'leverage';
   const isStairs = scene.die === 'stairs';
@@ -978,8 +1094,12 @@ function HeadPart({
   // whole content mass (see SceneRoom) is their entrance, not a fade
   const isFinale = scene.die === 'rest';
   const landAt = isHero ? 0.2 : BEAT.land;
+  // leverage: the head enters when the swinging die SLAMS its left edge —
+  // on mobile that first impact comes earlier so the head gets a real
+  // reading window before it hands the slot to the rows.
+  const levHit0 = narrow ? MOBILE_TARZAN.hitTimes[0] : TARZAN.rightHit0;
   const start = isLeverage
-    ? s + W * (TARZAN.rightHit0 + order * 0.014)
+    ? s + W * (levHit0 + order * 0.014)
     : isMultiply
       ? s + W * (MULT.head0 + order * 0.03)
       : isFinale
@@ -988,6 +1108,8 @@ function HeadPart({
           ? s + W * (STAIRS.headStart + order * STAIRS.headStagger)
           : s + W * (landAt + order * 0.045);
   const mid = start + W * (isLeverage ? 0.02 : isFinale ? 0.03 : isStairs ? STAIRS.headSettleDur : 0.08);
+  // The head STAYS while the rows print below it — the whole scene reads
+  // as one composition on every stage; it only leaves with the scene.
   const exit = exitBeat(scene);
   const opacity = useTransform(p, [start, mid, s + W * exit.s, s + W * exit.e], [0, 1, 1, 0]);
   const y = useTransform(p, [start, mid, s + W * exit.s, s + W * exit.e], [isLeverage || isFinale ? 0 : isStairs ? 14 : 26, 0, 0, exit.y]);
@@ -1014,16 +1136,21 @@ function HeadPart({
 }
 
 function HeadBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene: Scene }) {
+  const narrow = useNarrow();
   const dark = scene.theme === 'dark';
   const inkStrong = dark ? 'rgba(252,251,250,0.94)' : 'var(--color-ink)';
   const inkSoft = dark ? 'rgba(252,251,250,0.62)' : 'rgba(17,17,17,0.7)';
   const inkFaint = dark ? 'rgba(252,251,250,0.5)' : 'rgba(17,17,17,0.52)';
   const isHero = scene.id === 'hero';
+  // Mobile: every non-hero head prints into the same column slot, whose
+  // right margin reserves the die's lane (the hero hangs from its rolling
+  // ground line, which already fits).
+  const headPos = narrow && !isHero ? mobileHeadPos(scene) : scene.headPos;
 
   return (
-    <div data-sc={i} data-role="head" className="absolute px-6 md:px-0" style={scene.headPos}>
+    <div data-sc={i} data-role="head" className="absolute px-6 md:px-0" style={headPos}>
       <HeadPart p={p} i={i} scene={scene} order={0}>
-        <p className="type-micro uppercase mb-4" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
+        <p className="type-micro uppercase mb-2 md:mb-4" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
           {scene.kicker}
         </p>
       </HeadPart>
@@ -1032,7 +1159,7 @@ function HeadBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene: 
           className="type-display-l"
           style={{
             color: inkStrong,
-            fontSize: isHero ? 'clamp(32px, 5vw, 72px)' : 'clamp(26px, 3.6vw, 52px)',
+            fontSize: isHero ? 'clamp(32px, 5vw, 72px)' : 'clamp(24px, 3.6vw, 52px)',
             lineHeight: 1.08,
           }}
         >
@@ -1041,19 +1168,38 @@ function HeadBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene: 
       </HeadPart>
       {scene.body && (
         <HeadPart p={p} i={i} scene={scene} order={2}>
-          <p className="type-body mt-5" style={{ color: inkSoft, maxWidth: 620 }}>
+          <p
+            className="type-body mt-3 md:mt-5"
+            style={{
+              color: inkSoft,
+              maxWidth: 620,
+              // phone: denser body so head + rows share one viewport
+              ...(narrow && !isHero ? { fontSize: 14, lineHeight: 1.5 } : null),
+            }}
+          >
             {scene.body}
           </p>
         </HeadPart>
       )}
       {scene.body2 && (
         <HeadPart p={p} i={i} scene={scene} order={3}>
-          <p className="type-body mt-3" style={{ color: inkFaint, maxWidth: 620 }}>
+          <p
+            className="type-body mt-2 md:mt-3"
+            style={{
+              color: inkFaint,
+              maxWidth: 620,
+              ...(narrow && !isHero ? { fontSize: 14, lineHeight: 1.5 } : null),
+            }}
+          >
             {scene.body2}
           </p>
         </HeadPart>
       )}
-      {scene.tags && (
+      {/* The tech-tag strip is desktop furniture: on a phone it wraps into
+          3–4 ruled lines that push the scene's rows below the fold and
+          crowd the die's stage. The hero keeps its tags — they ARE its
+          content — everywhere else mobile drops them. */}
+      {scene.tags && (!narrow || isHero) && (
         <HeadPart p={p} i={i} scene={scene} order={4} className="mt-6 flex flex-wrap gap-x-5 gap-y-3">
           {scene.tags.map((tag) => (
             <span
@@ -1101,13 +1247,16 @@ function StampedRow({
   className?: string;
 }) {
   const s = i * W;
+  const narrow = useNarrow();
   const span = BEAT.stampEnd - BEAT.stampStart;
   const at = s + W * (BEAT.stampStart + (hopIndex / hopCount) * span);
   const settle = at + W * 0.05;
   const exit = exitBeat(scene);
   // stairs scenes: row k is stair step k — it appears exactly when the
-  // giant die's k-th landing hits, offset +stepX per row so the whole
-  // block reads as a staircase descending to the right
+  // giant die's k-th landing hits. On desktop each row also shifts +stepX
+  // so the block reads as a staircase descending to the right; on mobile
+  // the staircase is VERTICAL (the die tumbles down the right-edge lane),
+  // so rows keep their column position and only the timing staircases.
   const isStairs = scene.die === 'stairs';
   const isLeverage = scene.id === 'leverage';
   // multiply scenes: the content prints WHILE the swarm still tiles the
@@ -1117,13 +1266,18 @@ function StampedRow({
   // finale: rows are visible almost immediately — the whole-mass RISE (see
   // SceneRoom) is their entrance, not a per-row fade
   const isFinale = scene.die === 'rest';
-  const stairTouchdown = s + W * (STAIRS.descentStart + (hopIndex + STAIRS.moveFrac) * STAIRS.stepDur);
+  const stDescentStart = narrow ? MOBILE_STAIRS.descentStart : STAIRS.descentStart;
+  const stStepDur = narrow ? MOBILE_STAIRS.stepDur : STAIRS.stepDur;
+  const stRowLead = narrow ? MOBILE_STAIRS.rowLead : STAIRS.rowLead;
+  const stairTouchdown = s + W * (stDescentStart + (hopIndex + STAIRS.moveFrac) * stStepDur);
   const rowStart = isStairs
     ? // the tread must already exist before impact; otherwise the giant die
       // reads as colliding with text that is still fading in.
-      stairTouchdown - W * STAIRS.rowLead
+      stairTouchdown - W * stRowLead
     : isLeverage
-      ? s + W * (TARZAN.rightHit0 + (hopIndex + 1) * TARZAN.rightHitGap)
+      ? narrow
+        ? s + W * (MOBILE_LEV_ROW0 + hopIndex * MOBILE_LEV_ROW_GAP)
+        : s + W * (TARZAN.rightHit0 + (hopIndex + 1) * TARZAN.rightHitGap)
       : isMultiply
         ? s + W * (MULT.rows0 + hopIndex * MULT.rowGap)
         : isFinale
@@ -1140,8 +1294,8 @@ function StampedRow({
   // scaled down with the same factor RollingDie uses for the die's own
   // landing spots, so the rows' offsets and the die's touchdowns stay locked
   const vw = useViewportWidth();
-  const finalX = isStairs ? stairsOffsetX + hopIndex * STAIRS.stepX * stairsK(vw) : 0;
-  const finalY = isStairs ? stairsOffsetY : 0;
+  const finalX = isStairs && !narrow ? stairsOffsetX + hopIndex * STAIRS.stepX * stairsK(vw) : 0;
+  const finalY = isStairs && !narrow ? stairsOffsetY : 0;
   const opacity = useTransform(p, [rowStart, rowSettle, s + W * exit.s, s + W * exit.e], [0, 1, 1, 0]);
   const y = useTransform(
     p,
@@ -1197,9 +1351,20 @@ function ShotMarker({ p, i, hopIndex, hopCount }: { p: MotionValue<number>; i: n
       if (hr.width < 10 || cr.width < 1) return;
       // The big die's firing post — identical formula to RollingDie's
       // shoot case, so the projectile's origin IS the die's center.
-      const rideH = Math.min(hr.height, window.innerHeight * 0.5) - 20;
-      const dieCX = hr.left - 18;
-      const dieCY = hr.top + 10 + rideH;
+      // Desktop: parked at the head's left margin. Mobile: parked at the
+      // top of the right-edge lane, above the rows it fires into.
+      let dieCX: number;
+      let dieCY: number;
+      if (window.innerWidth < 640) {
+        const itemsEl = cell.closest('[data-role="items"]');
+        const ir = itemsEl?.getBoundingClientRect();
+        dieCX = window.innerWidth - LANE_CENTER;
+        dieCY = (ir ? ir.top : hr.bottom + 40) - 24;
+      } else {
+        const rideH = Math.min(hr.height, window.innerHeight * 0.5) - 20;
+        dieCX = hr.left - 18;
+        dieCY = hr.top + 10 + rideH;
+      }
       dx.set(dieCX - (cr.left + 5.5));
       dy.set(dieCY - (cr.top + 5.5));
     };
@@ -1249,6 +1414,7 @@ function ShotRow({
   children: ReactNode;
 }) {
   const s = i * W;
+  const narrow = useNarrow();
   const { land } = shotBeats(i, hopIndex, hopCount);
   const exit = exitBeat(scene);
   // The frame (empty target board) goes up when the die finishes parking at
@@ -1263,8 +1429,8 @@ function ShotRow({
   const textY = useTransform(p, [land, land + W * 0.04, s + W * exit.s, s + W * exit.e], [10, 0, 0, exit.y]);
   return (
     <motion.div
-      className="grid gap-3 py-3 sm:grid-cols-[32px_1fr]"
-      style={{ borderTop: `1px solid ${rule}`, opacity: frameOpacity }}
+      className="grid gap-2 py-2 grid-cols-[22px_1fr] sm:gap-3 sm:py-3 sm:grid-cols-[32px_1fr]"
+      style={{ borderTop: narrow ? 'none' : `1px solid ${rule}`, opacity: frameOpacity }}
     >
       <div style={{ paddingTop: 3 }}>
         <ShotMarker p={p} i={i} hopIndex={hopIndex} hopCount={hopCount} />
@@ -1275,6 +1441,7 @@ function ShotRow({
 }
 
 function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene: Scene }) {
+  const narrow = useNarrow();
   const dark = scene.theme === 'dark';
   const inkStrong = dark ? 'rgba(252,251,250,0.88)' : 'rgba(17,17,17,0.86)';
   const inkSoft = dark ? 'rgba(252,251,250,0.58)' : 'rgba(17,17,17,0.66)';
@@ -1282,13 +1449,17 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
   const rule = dark ? 'rgba(252,251,250,0.24)' : 'rgba(17,17,17,0.2)';
   const hopCount = scene.hops ?? 3;
   const vw = useViewportWidth();
-  const stairsLineX = scene.die === 'stairs' ? STAIRS.rowShiftX : 0;
-  const treadExtScaled = STAIRS.treadExt * stairsK(vw);
+  const stairsLineX = scene.die === 'stairs' && !narrow ? STAIRS.rowShiftX : 0;
+  // Mobile treads extend just far enough to run under the lane, so the
+  // tumbling giant lands ON each row's rule at the screen's right edge.
+  const treadExtScaled = narrow ? 56 : STAIRS.treadExt * stairsK(vw);
   const itemsRef = useRef<HTMLDivElement>(null);
   const [stairsOffset, setStairsOffset] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    if (scene.die !== 'stairs') {
+    // The desktop staircase anchors itself to the previous scene's rects;
+    // the mobile staircase is vertical and needs no offset at all.
+    if (scene.die !== 'stairs' || narrow) {
       setStairsOffset({ x: 0, y: 0 });
       return;
     }
@@ -1323,10 +1494,16 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
       window.removeEventListener('resize', measure);
       ro?.disconnect();
     };
-  }, [i, scene.die]);
+  }, [i, scene.die, narrow]);
 
   return (
-    <div ref={itemsRef} data-sc={i} data-role="items" className="absolute px-6 md:px-0" style={scene.itemsPos}>
+    <div
+      ref={itemsRef}
+      data-sc={i}
+      data-role="items"
+      className="absolute px-6 md:px-0"
+      style={narrow ? mobileItemsPos(scene) : scene.itemsPos}
+    >
       {scene.items &&
         (scene.die === 'shoot'
           ? scene.items.map((item, k) => (
@@ -1334,10 +1511,13 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
                 <p className="type-meta uppercase" style={{ color: inkStrong }}>
                   {item.title}
                 </p>
-                <p className="type-body mt-1" style={{ color: inkSoft, fontSize: 14, lineHeight: 1.5 }}>
+                <p className="type-body mt-1" style={{ color: inkSoft, fontSize: narrow ? 13 : 14, lineHeight: narrow ? 1.4 : 1.5 }}>
                   {item.detail}
                 </p>
-                {item.tags && (
+                {/* per-row tech tags are desktop-only — on a phone they add
+                    a metadata line to every bullet and push the set past
+                    one viewport */}
+                {item.tags && !narrow && (
                   <p className="type-micro uppercase mt-2" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
                     {item.tags.join(' · ')}
                   </p>
@@ -1362,14 +1542,16 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
                   <div aria-hidden="true" style={{ height: 1, background: rule, width: `calc(100% + ${treadExtScaled}px)` }} />
                 )}
                 <div
-                  className="grid gap-3 sm:grid-cols-[32px_1fr]"
+                  className="grid gap-2 grid-cols-[22px_1fr] sm:gap-3 sm:grid-cols-[32px_1fr]"
                   // stairs scenes stack 4 staggered rows below a tall head —
                   // tighter treads keep the whole staircase inside the viewport;
                   // leverage also runs tight so all 3 rows clear the head above
-                  // and the viewport bottom
+                  // and the viewport bottom. Mobile drops the separator rules
+                  // (the numbered indices carry the structure) and tightens
+                  // the padding so the whole set shares the head's viewport.
                   style={{
-                    borderTop: scene.die === 'stairs' ? 'none' : `1px solid ${rule}`,
-                    padding: scene.die === 'stairs' ? '5px 0' : scene.id === 'leverage' ? '7px 0' : '12px 0',
+                    borderTop: scene.die === 'stairs' || narrow ? 'none' : `1px solid ${rule}`,
+                    padding: narrow ? '6px 0' : scene.die === 'stairs' ? '5px 0' : scene.id === 'leverage' ? '7px 0' : '12px 0',
                   }}
                 >
                   <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
@@ -1379,10 +1561,10 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
                     <p className="type-meta uppercase" style={{ color: inkStrong }}>
                       {item.title}
                     </p>
-                    <p className="type-body mt-1" style={{ color: inkSoft, fontSize: 14, lineHeight: 1.5 }}>
+                    <p className="type-body mt-1" style={{ color: inkSoft, fontSize: narrow ? 13 : 14, lineHeight: narrow ? 1.4 : 1.5 }}>
                       {item.detail}
                     </p>
-                    {item.tags && (
+                    {item.tags && !narrow && (
                       <p className="type-micro uppercase mt-2" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
                         {item.tags.join(' · ')}
                       </p>
@@ -1392,7 +1574,7 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
               </StampedRow>
             )))}
       {scene.groups && (
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="grid gap-3 md:gap-8 md:grid-cols-3">
           {scene.groups.map((group, k) => (
             <StampedRow
               key={group.title}
@@ -1404,16 +1586,18 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
               stairsOffsetX={stairsOffset.x + stairsLineX}
               stairsOffsetY={stairsOffset.y}
             >
-              <p className="type-micro uppercase mb-3" style={{ ...TECH_LABEL_STYLE, color: inkStrong }}>
+              <p className="type-micro uppercase mb-2 md:mb-3" style={{ ...TECH_LABEL_STYLE, color: inkStrong }}>
                 {group.title}
               </p>
-              <div className="space-y-3">
+              {/* mobile: no per-tool separator rules — nine ruled lines eat
+                  a third of the viewport; the name/use rhythm is enough */}
+              <div className="space-y-1.5 md:space-y-3">
                 {group.items.map(([name, use]) => (
-                  <div key={name} style={{ borderTop: `1px solid ${rule}`, paddingTop: 10 }}>
-                    <p className="type-subhead" style={{ color: inkStrong, fontSize: 16 }}>
+                  <div key={name} style={narrow ? undefined : { borderTop: `1px solid ${rule}`, paddingTop: 10 }}>
+                    <p className="type-subhead" style={{ color: inkStrong, fontSize: narrow ? 15 : 16 }}>
                       {name}
                     </p>
-                    <p className="type-meta mt-1" style={{ color: inkSoft }}>
+                    <p className="type-meta mt-0.5 md:mt-1" style={{ color: inkSoft, ...(narrow ? { fontSize: 12 } : null) }}>
                       {use}
                     </p>
                   </div>
@@ -1435,8 +1619,8 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
               hopCount={hopCount}
               stairsOffsetX={stairsOffset.x + stairsLineX}
               stairsOffsetY={stairsOffset.y}
-              className="grid gap-3 sm:grid-cols-[32px_1fr]"
-              style={{ borderTop: `1px solid ${rule}`, paddingTop: 10 }}
+              className="grid gap-2 grid-cols-[22px_1fr] sm:gap-3 sm:grid-cols-[32px_1fr]"
+              style={{ borderTop: `1px solid ${rule}`, paddingTop: narrow ? 8 : 10 }}
             >
               <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: inkFaint }}>
                 {String(k + 1).padStart(2, '0')}
@@ -1445,7 +1629,7 @@ function ItemsBlock({ p, i, scene }: { p: MotionValue<number>; i: number; scene:
                 <p className="type-meta uppercase" style={{ color: inkStrong }}>
                   {title}
                 </p>
-                <p className="type-body mt-1" style={{ color: inkSoft, fontSize: 13.5, lineHeight: 1.5 }}>
+                <p className="type-body mt-1" style={{ color: inkSoft, fontSize: narrow ? 13 : 13.5, lineHeight: narrow ? 1.4 : 1.5 }}>
                   {body}
                 </p>
               </div>
@@ -1478,35 +1662,79 @@ const MANIFESTO_BEAT = {
 // below converts between scroll progress and the leading (left) edge's x,
 // so the tip retracts exactly when pushed and the die rides just ahead of
 // the edge on its way out — contact without ever being run over.
+//
+// The sweep's END is viewport-dependent: the nowrap headline is ~290vw
+// long on a phone (vs ~180vw on desktop), so mobile needs a much deeper
+// end for the line's TAIL to clear the screen before the next scene's
+// room shutters open over it — otherwise the giant text visibly cuts off
+// mid-crossing. Everything derived from the sweep (touch beat, leaps, the
+// die's formula path) is bundled per variant in a rig.
 const MANIFESTO_XA_START = 92; // vw — enters from the right with less travel per scroll
-const MANIFESTO_XA_END = -135; // vw — exits left with a much calmer horizontal sweep
+const MANIFESTO_XA_END = -135; // vw — desktop sweep end
+const MANIFESTO_XA_END_NARROW = -340; // vw — deep enough for the tail to clear a phone
 const HERO_DIE_REST_X = 66; // vw — where the hero die+line hold, waiting
-// p at which the leading edge reaches a given x (vw)
-const heroEdgeAt = (xVw: number) =>
-  W + W * MANIFESTO_BEAT.aExitE * ((xVw - MANIFESTO_XA_START) / (MANIFESTO_XA_END - MANIFESTO_XA_START));
-// x (vw) of the leading edge at a given p — inverse of heroEdgeAt
-const heroEdgeX = (pAbs: number) =>
-  MANIFESTO_XA_START + ((pAbs - W) / (W * MANIFESTO_BEAT.aExitE)) * (MANIFESTO_XA_END - MANIFESTO_XA_START);
-// First contact: the edge meets the die's RIGHT face — it reacts on touch,
-// not after the glyphs are already on top of it.
-const HERO_TOUCH_ABS = heroEdgeAt(HERO_DIE_REST_X + 1);
 // The shove is near-instant, and split into thirds so the die's eased path
 // stays glued AHEAD of the linear sweeping edge the whole way out.
 const HERO_LEAP_DUR = 0.006;
-const HERO_LEAP_1 = HERO_TOUCH_ABS + HERO_LEAP_DUR / 3;
-const HERO_LEAP_2 = HERO_TOUCH_ABS + (2 * HERO_LEAP_DUR) / 3;
-const HERO_LEAP_3 = HERO_TOUCH_ABS + HERO_LEAP_DUR;
+
+type ManifestoRig = {
+  endX: number;
+  touch: number;
+  leap1: number;
+  leap2: number;
+  leap3: number;
+  edgeAt: (xVw: number) => number;
+  edgeX: (pAbs: number) => number;
+  path: readonly (readonly [number, number, number])[];
+};
+
+function buildManifestoRig(endX: number): ManifestoRig {
+  // p at which the leading edge reaches a given x (vw)
+  const edgeAt = (xVw: number) =>
+    W + W * MANIFESTO_BEAT.aExitE * ((xVw - MANIFESTO_XA_START) / (endX - MANIFESTO_XA_START));
+  // x (vw) of the leading edge at a given p — inverse of edgeAt
+  const edgeX = (pAbs: number) =>
+    MANIFESTO_XA_START + ((pAbs - W) / (W * MANIFESTO_BEAT.aExitE)) * (endX - MANIFESTO_XA_START);
+  // First contact: the edge meets the die's RIGHT face — it reacts on
+  // touch, not after the glyphs are already on top of it.
+  const touch = edgeAt(HERO_DIE_REST_X + 1);
+  const leap1 = touch + HERO_LEAP_DUR / 3;
+  const leap2 = touch + (2 * HERO_LEAP_DUR) / 3;
+  const leap3 = touch + HERO_LEAP_DUR;
+  const path: readonly (readonly [number, number, number])[] = [
+    // hero: rolls left→right chasing the ground line, then HOLDS while the
+    // rest of the hero content fades around it
+    [0.0, 10, 38.55],
+    [0.07, HERO_DIE_REST_X, 38.55],
+    [touch, HERO_DIE_REST_X, 38.55],
+    // touched — shoved up and out of the text's band, fast and mostly
+    // vertical so the sweeping glyphs never run over it
+    [leap3, 58, 18],
+    // hidden through the manifesto: drifts to the next scene's door and
+    // settles there, face squared, ready to re-enter balanced
+    [leap3 + 0.045, 10, 16],
+    [2 * W, 10, 16],
+  ];
+  return { endX, touch, leap1, leap2, leap3, edgeAt, edgeX, path };
+}
+
+const MANIFESTO_RIG = buildManifestoRig(MANIFESTO_XA_END);
+const MANIFESTO_RIG_NARROW = buildManifestoRig(MANIFESTO_XA_END_NARROW);
+const manifestoRig = (narrow: boolean) => (narrow ? MANIFESTO_RIG_NARROW : MANIFESTO_RIG);
 
 function ManifestoLayer({ p, i }: { p: MotionValue<number>; i: number }) {
+  const rig = manifestoRig(useNarrow());
   const s = i * W;
   const at = (local: number) => s + W * local;
   const opacity = useTransform(p, [s, s + W * 0.08, at(MANIFESTO_BEAT.hideS), at(MANIFESTO_BEAT.hideE)], [0, 1, 1, 0]);
   // Top line: rides its full course clean off the left edge, but over a much
-  // wider progress window so scroll input feels calmer.
+  // wider progress window so scroll input feels calmer. The rig's deeper
+  // mobile end guarantees the TAIL has cleared the screen before the next
+  // scene's room shutters open — the line never cuts off mid-crossing.
   const xA = useTransform(
     p,
     [at(MANIFESTO_BEAT.aExitS), at(MANIFESTO_BEAT.aExitE)],
-    [`${MANIFESTO_XA_START}vw`, `${MANIFESTO_XA_END}vw`],
+    [`${MANIFESTO_XA_START}vw`, `${rig.endX}vw`],
     { clamp: true },
   );
   // Bottom line: enters in place and sits still, then falls out over a longer
@@ -1562,24 +1790,7 @@ function ManifestoLayer({ p, i }: { p: MotionValue<number>; i: number }) {
 // scenes 2+ anchor to the REAL rects of the text blocks: land on the head's
 // margin, ride down while it prints, then stamp each row of the items list.
 
-const FORMULA_PATH: readonly (readonly [number, number, number])[] = [
-  // hero: rolls left→right chasing the ground line (line y 40% — raised so
-  // the die sits inside the vertical band where act 2's giant text enters),
-  // then HOLDS while the rest of the hero content fades around it
-  [0.0, 10, 38.55],
-  [0.07, HERO_DIE_REST_X, 38.55],
-  [HERO_TOUCH_ABS, HERO_DIE_REST_X, 38.55],
-  // touched — shoved up and out of the text's band, fast and mostly
-  // vertical so the sweeping glyphs never run over it
-  [HERO_TOUCH_ABS + HERO_LEAP_DUR, 58, 18],
-  // hidden through the manifesto: drifts to the next scene's door and settles
-  // there, face squared, ready to re-enter balanced
-  [HERO_TOUCH_ABS + HERO_LEAP_DUR + 0.045, 10, 16],
-  [2 * W, 10, 16],
-] as const;
-
-function formulaTarget(v: number): [number, number] {
-  const path = FORMULA_PATH;
+function formulaTarget(v: number, path: ManifestoRig['path']): [number, number] {
   if (v <= path[0][0]) return [path[0][1], path[0][2]];
   for (let k = 1; k < path.length; k += 1) {
     if (v <= path[k][0]) {
@@ -1622,9 +1833,11 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
   // Offstage during the manifesto: vanishes mid reverse-leap at the end of
   // the hero, re-materializes at the next door right after the bottom line
   // has dropped through its trapdoor and the stage sits briefly empty.
+  const narrowRender = useNarrow();
+  const rig = manifestoRig(narrowRender);
   const dieOpacity = useTransform(
     p,
-    [0, HERO_TOUCH_ABS, HERO_TOUCH_ABS + HERO_LEAP_DUR, W * (1 + MANIFESTO_BEAT.dropE), 2 * W],
+    [0, rig.touch, rig.leap3, W * (1 + MANIFESTO_BEAT.dropE), 2 * W],
     [1, 1, 0, 0, 1],
   );
   // The tools act is the one act where the die is NOT a blend inversion.
@@ -1661,6 +1874,12 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
     const i = Math.min(N - 1, Math.floor(v / W));
     const lp = (v - i * W) / W;
     const scene = SCENES[i];
+    // Mobile restaging: every persona stays in character, but the die
+    // performs inside the right-edge LANE the text column reserves for it
+    // (see mobileHeadPos/mobileItemsPos) — beside the words, never on them.
+    const narrow = vw < 640;
+    const laneX = vw - LANE_CENTER;
+    const laneGiantX = vw - LANE_GIANT;
 
     // ── target from the choreography (per die persona) ──
     const mode = scene.die;
@@ -1670,7 +1889,7 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
     // section reads it — angle drives the tilt, phases drive scale and cord.
     let lev: { angle: number; preHit: boolean; throwT: number } | null = null;
     if (i < 2) {
-      const [wx, wy] = formulaTarget(v);
+      const [wx, wy] = formulaTarget(v, manifestoRig(narrow).path);
       txx = (wx / 100) * vw;
       tyy = (wy / 100) * vh;
     } else {
@@ -1678,9 +1897,12 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       const items = getRect(i, 'items');
       const exitDoor = i + 1 < N ? SCENES[i + 1].door : REST_POINT;
       const marginX = head ? head.left - 18 : (scene.door.cx / 100) * vw;
+      // where the die rides while the head prints: the head's left margin
+      // on desktop, the lane on mobile (there is no left margin to spare)
+      const rideX = narrow ? laneX : marginX;
       const rideTopY = head ? head.top + 10 : vh * 0.2;
       const rideH = head ? Math.min(head.height, vh * 0.5) - 20 : vh * 0.3;
-      if (scene.id === 'leverage' && lp < BEAT.stampEnd) {
+      if (!narrow && scene.id === 'leverage' && lp < BEAT.stampEnd) {
         const pivotX = vw * TARZAN.pivotX;
         // Still parked, still giant, on the pipeline's last tread — the cut
         // to this scene moves nothing. The scan line sweeping right→left is
@@ -1763,6 +1985,87 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
           tyy = Math.cos(th) * L;
           lev = { angle: th, preHit: false, throwT: 1 };
         }
+      } else if (narrow && scene.id === 'leverage' && lp < BEAT.stampEnd) {
+        // MOBILE Tarzan — the same story, restaged for the narrow theater.
+        // The die is still parked giant on the pipeline's last tread (in
+        // the right lane); the scan strikes it, it shrinks, is knocked
+        // across the stage toward the LEFT rail, hurls the cord up to the
+        // top-left corner and swings there — slamming the head in early
+        // (so it gets a real reading window) and then each row exactly
+        // when it prints. The content column has shifted right, so cord
+        // and die work the left rail without ever crossing the text.
+        const pivotX = vw * MOBILE_TARZAN.pivotX;
+        const prevItems = getRect(i - 1, 'items');
+        const prevHops = SCENES[i - 1].hops ?? 4;
+        const bigHalf = (DIE_SIZE * MOBILE_STAIRS.scale) / 2;
+        const parkX = laneGiantX;
+        const parkY = prevItems
+          ? prevItems.top + (prevHops - 1) * (prevItems.height / prevHops) - bigHalf - 4
+          : vh * 0.8;
+        const knockX = parkX - vw * 0.5;
+        const knockY = parkY + 16;
+        if (lp < MOBILE_TARZAN.hitLp) {
+          txx = parkX;
+          tyy = parkY;
+          lev = { angle: 0, preHit: true, throwT: 0 };
+        } else if (lp < MOBILE_TARZAN.hitLp + MOBILE_TARZAN.knockDur) {
+          const q = (lp - MOBILE_TARZAN.hitLp) / MOBILE_TARZAN.knockDur;
+          const e = 1 - (1 - q) * (1 - q);
+          txx = parkX + (knockX - parkX) * e;
+          tyy = parkY + (knockY - parkY) * e;
+          lev = { angle: 0, preHit: false, throwT: 0 };
+        } else if (lp < MOBILE_TARZAN.swingStart) {
+          const throwT = Math.min(
+            1,
+            (lp - MOBILE_TARZAN.hitLp - MOBILE_TARZAN.knockDur) /
+              Math.max(0.02, MOBILE_TARZAN.swingStart - MOBILE_TARZAN.hitLp - MOBILE_TARZAN.knockDur),
+          );
+          txx = knockX;
+          tyy = knockY;
+          lev = { angle: 0, preHit: false, throwT };
+        } else {
+          // contacts: the blocks' LEFT rect edge (the content column sits
+          // right of the rail, so the die strikes just inside the rail and
+          // the glyphs — 24px further in — are never touched)
+          const head5 = getRect(i, 'head');
+          const items5 = getRect(i, 'items');
+          const hits: [number, number][] = [
+            head5
+              ? [head5.left + MOBILE_TARZAN.contactInset, head5.top + head5.height * 0.35]
+              : [pivotX + 20, vh * 0.3],
+          ];
+          const rowsN = scene.hops ?? 3;
+          if (items5) {
+            const rH = items5.height / rowsN;
+            for (let r = 0; r < rowsN; r += 1) {
+              hits.push([items5.left + MOBILE_TARZAN.contactInset, items5.top + (r + 0.5) * rH]);
+            }
+          }
+          // impact times are hand-placed (head early, rows on their beats)
+          const times = MOBILE_TARZAN.hitTimes;
+          let k = 0;
+          while (k < times.length - 1 && lp >= times[k]) k += 1;
+          k = Math.min(k, hits.length - 1);
+          const segS = k === 0 ? MOBILE_TARZAN.swingStart : times[k - 1];
+          const tau = Math.min(1, Math.max(0, (lp - segS) / Math.max(0.02, times[k] - segS)));
+          const thAt = (pt: [number, number]) => Math.atan2(pt[0] - pivotX, pt[1]);
+          const lenAt = (pt: [number, number]) => Math.hypot(pt[0] - pivotX, pt[1]);
+          const from: [number, number] = k === 0 ? [knockX, knockY] : hits[k - 1];
+          const alpha = -(0.62 - k * 0.06); // wind-up extreme, decaying per pass
+          let th: number;
+          if (tau < 0.5) {
+            const q = tau / 0.5;
+            th = thAt(from) + (alpha - thAt(from)) * Math.sin((Math.PI / 2) * q);
+          } else {
+            const q = (tau - 0.5) / 0.5;
+            th = alpha + (thAt(hits[k]) - alpha) * (1 - Math.cos((Math.PI / 2) * q));
+          }
+          const sm = tau * tau * (3 - 2 * tau);
+          const L = lenAt(from) + (lenAt(hits[k]) - lenAt(from)) * sm;
+          txx = pivotX + Math.sin(th) * L;
+          tyy = Math.cos(th) * L;
+          lev = { angle: th, preHit: false, throwT: 1 };
+        }
       } else if (mode === 'stairs') {
         // The freed giant: perches ON TOP of the title, then tips down the
         // staircase of rows — one quarter-turn per step, landing k lighting
@@ -1770,11 +2073,24 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         // always descends along the stairs' outer edge, beside the text,
         // never over it (stepX > die width guarantees each tread's exposed
         // corner clears the row above).
-        const half = (DIE_SIZE * STAIRS.scale * stK) / 2;
+        // MOBILE: the staircase turns VERTICAL — the giant (2.4×) perches
+        // at the top of the lane and tumbles straight down it, one
+        // quarter-turn per row rule, pausing on every tread. The descent
+        // waits for the head to hand over the slot (two-beat).
+        const half = narrow ? (DIE_SIZE * MOBILE_STAIRS.scale) / 2 : (DIE_SIZE * STAIRS.scale * stK) / 2;
         const stepXs = STAIRS.stepX * stK;
         const hopCount = scene.hops ?? 4;
+        const dStart = narrow ? MOBILE_STAIRS.descentStart : STAIRS.descentStart;
+        const dStep = narrow ? MOBILE_STAIRS.stepDur : STAIRS.stepDur;
         const P: [number, number][] = [];
-        if (items) {
+        if (items && narrow) {
+          const rowH = items.height / hopCount;
+          // perch above the rows' slot, inside the lane, clear of the nav
+          P.push([laneGiantX, Math.max(items.top - half - 46, 64 + half)]);
+          for (let r = 0; r < hopCount; r += 1) {
+            P.push([laneGiantX, items.top + r * rowH - half - 4]);
+          }
+        } else if (items) {
           const prevHead = getRect(i - 1, 'head');
           const rowH = items.height / hopCount;
           // die center sits landGap to the RIGHT of a row's text, so its
@@ -1798,20 +2114,23 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         } else {
           P.push([(scene.door.cx / 100) * vw, (scene.door.cy / 100) * vh]);
         }
-        const descentEnd = STAIRS.descentStart + (P.length - 1) * STAIRS.stepDur;
-        if (lp < STAIRS.descentStart || P.length < 2) {
+        const descentEnd = dStart + (P.length - 1) * dStep;
+        if (lp < dStart || P.length < 2) {
           [txx, tyy] = P[0];
         } else if (lp < descentEnd) {
-          const t = (lp - STAIRS.descentStart) / STAIRS.stepDur;
+          const t = (lp - dStart) / dStep;
           const seg = Math.min(P.length - 2, Math.floor(t));
           const f = Math.min(1, t - seg);
           // the move fills only the first part of each step; the rest is a
           // dead stop on the tread — boxes pause between tips
           const m = Math.min(1, f / STAIRS.moveFrac);
-          if (seg === 0) {
-            // off the perch: pure accelerating free fall onto tread 0
-            txx = P[0][0] + (P[1][0] - P[0][0]) * m;
-            tyy = P[0][1] + (P[1][1] - P[0][1]) * (m * m);
+          if (seg === 0 || narrow) {
+            // off the perch (and every mobile tread): a straight gravity
+            // drop onto the next rule — the quarter-turn itself lives in
+            // the rotation block, so the tumble still reads as a box
+            // tipping, just down a vertical shaft instead of sideways
+            txx = P[seg][0] + (P[seg + 1][0] - P[seg][0]) * m;
+            tyy = P[seg][1] + (P[seg + 1][1] - P[seg][1]) * (m * m);
           } else {
             // ONE continuous tumble — NO mid-air phase change, so the center
             // never stalls (the old two-phase split slammed the horizontal
@@ -1874,12 +2193,13 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
           tyy = vh + 80;
         }
       } else if (lp < BEAT.land) {
-        txx = marginX;
+        txx = rideX;
         tyy = head ? head.top + 10 : (scene.door.cy / 100) * vh;
       } else if (lp < BEAT.rideEnd || (!items && mode !== 'rest')) {
-        // ride down the head's margin while the text prints
+        // ride down the head's margin while the text prints — the lane on
+        // mobile, where the head leaves room for exactly this
         const t = Math.min(1, (lp - BEAT.land) / (BEAT.rideEnd - BEAT.land));
-        txx = marginX;
+        txx = rideX;
         tyy = rideTopY + t * rideH;
       } else if (lp < BEAT.stampEnd) {
         const hopCount = scene.hops ?? 3;
@@ -1887,24 +2207,24 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         const k = Math.max(0, Math.min(hopCount - 1, Math.floor(t * hopCount)));
         switch (mode) {
           case 'shoot': {
-            // firing post — stays parked exactly where it finished riding
-            // the head's margin, on the SAME side as the head content (the
-            // first part of the scene). Never drifts toward the items
-            // block or the center; it just fires across from there.
-            txx = marginX;
-            tyy = rideTopY + rideH;
+            // firing post — desktop: parked where it finished riding the
+            // head's margin. Mobile: parked at the TOP of the lane, above
+            // the rows, firing its projectiles down-left into each bullet.
+            txx = narrow ? laneX : marginX;
+            tyy = narrow && items ? items.top - 24 : rideTopY + rideH;
             break;
           }
           case 'breathe': {
             // sits still at the foot of the text it just guided in
-            txx = marginX;
+            txx = rideX;
             tyy = rideTopY + rideH;
             break;
           }
           default: {
-            // roll / jump: land BESIDE each row's index, outside the block —
-            // never on top of the numbers
-            txx = items ? items.left - 22 : marginX;
+            // roll / jump: land BESIDE each row's index, outside the block
+            // on desktop; down the lane on mobile — level with each row,
+            // clear of every word (this is BEM's no-spin gravity drop)
+            txx = items ? (narrow ? laneX : items.left - 22) : rideX;
             tyy = items ? items.top + ((k + 0.5) / hopCount) * items.height : rideTopY + rideH;
           }
         }
@@ -1913,15 +2233,15 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         // place — barely trembling while its breathing turns violent. The
         // real fight is in the scale (see the strain block below), not in
         // sliding around.
-        txx = marginX;
-        tyy = rideTopY + rideH;
+        txx = narrow ? laneX : marginX;
+        tyy = narrow && items ? items.top - 24 : rideTopY + rideH;
       } else if (scene.flyExit) {
         // CANNON: the content rockets off on its own — the die STAYS PUT
         // at its last stamp, tilts up like a barrel (see the aim block in
         // the rotation section), holds… then BOOM: launched on a ballistic
         // arc across the void, landing exactly where the next act begins.
         const hopCount = scene.hops ?? 3;
-        const lastX = items ? items.left - 22 : marginX;
+        const lastX = items ? (narrow ? laneX : items.left - 22) : rideX;
         const lastY = items ? items.top + ((hopCount - 0.5) / hopCount) * items.height : rideTopY + rideH;
         if (lp < CANNON.fireAt) {
           txx = lastX;
@@ -1972,25 +2292,32 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       // the cord: nonexistent until thrown, then drawn from the die's own
       // position up to the top-middle anchor it was hurled at
       const te = 1 - (1 - lev.throwT) * (1 - lev.throwT);
-      vineX1.set(cx + (vw * TARZAN.pivotX - cx) * te);
+      const pivotFrac = narrow ? MOBILE_TARZAN.pivotX : TARZAN.pivotX;
+      vineX1.set(cx + (vw * pivotFrac - cx) * te);
       vineY1.set(cyv * (1 - te));
       vineOpacity.set(lev.throwT > 0.02 ? 1 : 0);
       // still giant on the pipeline's last tread until the scan line
       // physically strikes it — the impact is what shrinks it
-      dieScale.set(lev.preHit ? STAIRS.scale * stK : 1);
+      dieScale.set(lev.preHit ? (narrow ? MOBILE_STAIRS.scale : STAIRS.scale * stK) : 1);
       shakeX.set(0);
       shakeY.set(0);
     } else if (strainT > 0) {
       vineOpacity.set(0);
       const growT = Math.min(1, Math.max(0, (lp - AUDITOR_WAVE.start) / (AUDITOR_WAVE.end - AUDITOR_WAVE.start)));
       const growE = growT * growT * (3 - 2 * growT);
-      dieScale.set(1 + growE * (STAIRS.scale * stK - 1) + Math.abs(Math.sin(tms / 95)) * 0.24 * strainT);
+      // The strain has a real payoff on both stages: it breaks free and
+      // grows into the size its staircase needs (phone staircase = 2.4×).
+      // Softer tremble on mobile — at hand size a violent shake reads as
+      // jitter, not effort.
+      const growTarget = narrow ? MOBILE_STAIRS.scale : STAIRS.scale * stK;
+      const shakeAmp = narrow ? 0.55 : 1;
+      dieScale.set(1 + growE * (growTarget - 1) + Math.abs(Math.sin(tms / 95)) * 0.24 * strainT);
       const settle = 1 - growT * 0.65;
-      shakeX.set(Math.sin(tms / 30) * (2.5 + growT * 2) * strainT * settle);
-      shakeY.set(Math.cos(tms / 37) * (2 + growT * 1.5) * strainT * settle);
+      shakeX.set(Math.sin(tms / 30) * (2.5 + growT * 2) * strainT * settle * shakeAmp);
+      shakeY.set(Math.cos(tms / 37) * (2 + growT * 1.5) * strainT * settle * shakeAmp);
     } else if (mode === 'stairs') {
       vineOpacity.set(0);
-      dieScale.set(STAIRS.scale * stK);
+      dieScale.set(narrow ? MOBILE_STAIRS.scale : STAIRS.scale * stK);
       shakeX.set(0);
       shakeY.set(0);
     } else if (mode === 'multiply') {
@@ -2083,11 +2410,19 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         hop.set(0);
         // impact pump — a sharp pulse the instant each slam connects,
         // recovering while it rebounds away from the part it just hit
-        const hitSpan = (TARZAN.swingEnd - TARZAN.swingStart) / ((scene.hops ?? 3) + 1);
+        // (mobile impacts are hand-placed; desktop's are evenly spaced)
         let pulse = 0;
-        for (let h = 1; h <= (scene.hops ?? 3) + 1; h += 1) {
-          const d = (lp - (TARZAN.swingStart + h * hitSpan)) / 0.016;
-          if (d >= 0 && d < 1) pulse = Math.max(pulse, 1 - d);
+        if (narrow) {
+          for (const ht of MOBILE_TARZAN.hitTimes) {
+            const d = (lp - ht) / 0.016;
+            if (d >= 0 && d < 1) pulse = Math.max(pulse, 1 - d);
+          }
+        } else {
+          const hitSpan = (TARZAN.swingEnd - TARZAN.swingStart) / ((scene.hops ?? 3) + 1);
+          for (let h = 1; h <= (scene.hops ?? 3) + 1; h += 1) {
+            const d = (lp - (TARZAN.swingStart + h * hitSpan)) / 0.016;
+            if (d >= 0 && d < 1) pulse = Math.max(pulse, 1 - d);
+          }
         }
         nextStretch = Math.max(nextStretch, 1 + pulse * 0.3);
       }
@@ -2095,11 +2430,13 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       // tipping over its leading edge down real stairs. Face stays square
       // between steps; the strain phases never rotate it (a fighter braces).
       const hopCount = scene.hops ?? 4;
-      const descentEnd = STAIRS.descentStart + hopCount * STAIRS.stepDur;
+      const rotDStart = narrow ? MOBILE_STAIRS.descentStart : STAIRS.descentStart;
+      const rotDStep = narrow ? MOBILE_STAIRS.stepDur : STAIRS.stepDur;
+      const descentEnd = rotDStart + hopCount * rotDStep;
       if (lev) {
         stairRotBase.current = null;
-      } else if (mode === 'stairs' && lp >= STAIRS.descentStart && lp < descentEnd) {
-        const t = (lp - STAIRS.descentStart) / STAIRS.stepDur;
+      } else if (mode === 'stairs' && lp >= rotDStart && lp < descentEnd) {
+        const t = (lp - rotDStart) / rotDStep;
         const seg = Math.floor(t);
         const f = Math.min(1, t - seg);
         const m = Math.min(1, f / STAIRS.moveFrac);

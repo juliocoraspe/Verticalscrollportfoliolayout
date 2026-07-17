@@ -1,0 +1,59 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 3/PRD_Lite.docx
+
+[Normal] PRD-lite: Real-Life Challenges
+[Normal] Small real-life pacts that help close friends show up for themselves and each other.
+[Heading 1] 1. Problem Statement
+[Normal] BeReal is good at capturing one spontaneous daily moment, but it does not yet help users turn real-life actions into shared rituals with close friends. Users who want more connection, wellness, or accountability may not have a lightweight way to share small meaningful actions without leaving BeReal for fitness, habit, or messaging apps.
+[Heading 1] 2. Target User
+[Normal] The target user is a Gen Z or young millennial BeReal user who values authenticity, close-friend connection, and small daily routines. This user does not want a performance-based fitness app, but may enjoy doing simple real-life pacts with a best friend, partner, sibling, or small group.
+[Heading 1] 3. Success Metric
+[Normal] Primary Metric: Weekly active participation in Real-Life Challenges.
+[Normal] This connects to MAU because the feature gives users more meaningful reasons to return during the month, not only when the daily BeReal notification appears.
+[Heading 1] 4. Assumptions and Non-Goals
+[Heading 2] Assumptions
+[Normal] • Users want more reasons to open BeReal beyond the daily post.
+[Normal] • Close-friend accountability can make small actions feel more fun and meaningful.
+[Normal] • Gen Z and young millennials are interested in wellness, but they do not necessarily want another fitness or productivity app.
+[Normal] • Lightweight proof formats like photos, short videos, voice notes, mood words, and simple check-ins can make the feature feel native to BeReal.
+[Normal] • The feature must feel playful and human, not like a leaderboard or optimization tool.
+[Heading 2] Non-Goals
+[Normal] • Build a fitness app or compete directly with Strava, Apple Fitness, or Fitbit.
+[Normal] • Create public leaderboards by default.
+[Normal] • Share sensitive health, mood, sleep, medication, or location data by default.
+[Normal] • Add filters, beauty tools, or curated feeds.
+[Normal] • Become a mental health treatment tool.
+[Normal] • Build full real-time chat.
+[Heading 1] 5. Guardrails for BeReal’s Brand
+[Heading 1] Evidence Notes
+[Normal] • BeReal publicly describes itself as a simple app where friends post once a day to show what they are really doing, with no filters and no influencer-style pressure.
+[Normal] • BeReal reports over 40 million monthly active users and says 85% of its users are Gen Z, which makes Gen Z a core audience for the feature.
+[Normal] • McKinsey reports that younger consumers, especially Gen Z and millennials, are actively prioritizing wellness areas such as fitness, mindfulness, and mental health.
+[Normal] • Gallup reports that adults aged 18 to 34 in the U.S. are drinking less than young adults in prior decades, supporting a broader shift toward more intentional health behavior.
+[Normal] • Academic research on BeReal found that its design supports spontaneous sharing, reciprocal posting, curated audiences, and lower self-presentation pressure, but can also feel limited. This supports expanding expression carefully without making BeReal performative.
+[Heading 1] Source References
+[Normal] • BeReal. “BeReal Launches U.S. Advertising.” https://bereal.com/news/bereal-launches-u.s.-advertising
+[Normal] • Apple App Store. “BeReal: Photos & Friends Daily.” https://apps.apple.com/us/app/bereal-photos-friends-daily/id1459645446
+[Normal] • McKinsey & Company. “The Future of Wellness trends survey 2025.” https://www.mckinsey.com/industries/consumer-packaged-goods/our-insights/future-of-wellness-trends
+[Normal] • McKinsey & Company. “What is the future of wellness?” https://www.mckinsey.com/featured-insights/mckinsey-explainers/what-is-the-future-of-wellness
+[Normal] • Gallup. “Young Adults in U.S. Drinking Less Than in Prior Decades.” https://news.gallup.com/poll/509690/young-adults-drinking-less-prior-decades.aspx
+[Normal] • Kim et al. “Sharing, Not Showing Off: How BeReal Approaches Authentic Self-Presentation on Social Media Through Its Design.” arXiv, 2024. https://arxiv.org/abs/2408.02883
+
+TABLE 1
+Feature framing This is not a fitness app, a habit tracker, or a public leaderboard. The idea is to expand BeReal from one spontaneous daily post into small shared rituals that still feel authentic, simple, private, and human.
+
+TABLE 2
+Secondary Metric | Why it matters
+Challenge creation rate | Shows whether users understand and want the feature.
+Challenge completion rate | Shows whether the ritual is actually being used.
+Challenge posts per user per week | Measures new posting behavior beyond the daily BeReal.
+Friend response rate | Measures whether it creates connection, not only self-tracking.
+30-day retention comparison | Compares challenge users with non-challenge users.
+Repeat challenge rate | Shows whether users want to continue after the first challenge.
+
+TABLE 3
+Guardrail | How the feature should follow it
+Authenticity | Challenges should be based on real actions and real proof, not polished content.
+Privacy | Users should control who sees each challenge, and sensitive data should always be optional.
+Simplicity | A challenge should be easy to create and complete in a few steps.
+Positive Behavior | The feature should encourage connection and showing up, not shame or comparison.
+BeReal Fit | Real-Life Challenges should expand BeReal’s real-life sharing without turning it into Strava, a habit tracker, or a productivity app.

@@ -1,0 +1,41 @@
+SOURCE: /Users/juliocoraspe/Library/CloudStorage/GoogleDrive-juliocoraspe@gmail.com/My Drive/BeReal Externship/project 2/Feature_Consolidation.docx
+
+[Heading 1] Feature Consolidation: BeReal vs Locket
+[Heading 1] BeReal – Manual
+[Heading 1] BeReal – AI (Perplexity)
+[Heading 1] Locket – Manual
+[Heading 1] Locket – AI (Perplexity)
+[Heading 1] Final BeReal Feature Table
+This table combines the best features from both the manual analysis and the AI (Perplexity) analysis. It shows the 5 most important features that drive retention and engagement for BeReal.
+
+TABLE 1
+Product Features | Description | How It Drives Retention & Engagement
+Memories | You can see all your old photos in one place. There is a calendar that show when you post. You can look at what you did on any day, any month, or any year you want. | You feel more connected to the app because you see your life in photos. The calendar help you remember when things happen. You want to keep posting because you see your history grow bigger.
+Daily Notification | Every day the app send you a message that say 'post now.' But you never know when the message will come. Everyone get the message at the same time, so all users post together. | You come back every day because you want to catch the notification. The surprise make it exciting. You feel like you are part of a group when you post with everyone at the same time.
+Two Minute Posting Window | When you get the notification, you have only two minutes to take a photo and post it. You cannot plan what to post or edit it. You must be very fast. | Because you must be fast, your photos look real and not fake. You post without thinking too much. This keep the app feeling authentic and make you come back because it is so quick and easy.
+
+TABLE 2
+Product Features | Description | How It Drives Retention & Engagement
+Daily notification | A random daily notification prompts users to post at the same moment. | Creates a daily habit by giving users one clear reason to return at a specific moment.
+Front-and-back camera capture | The ability to capture photos from both front and back cameras simultaneously. | Makes posting feel fast and authentic, which lowers friction and encourages regular use.
+Post before you scroll | Users must post their own photo before they can see others' posts. | Pushes users to contribute first, increasing active participation and making engagement more reciprocal.
+
+TABLE 3
+Product Features | Description | How It Drives Retention & Engagement
+Home Screen Widget | Photos from your close friends show on your home screen. You do not need to open the app to see them. You just look at your phone and you see the photos there. | You see your friends' photos many times every day because it is on your home screen. You think about your friends more often. This make you want to send them photos too because you feel more close to them.
+Close Friend Photo Sharing | You send your photos only to a few close friends. Not to many people. Only to people you really trust. It is more private and more personal than other apps. | Because only your close friends see your photos, you feel more comfortable sharing. You want to keep sending photos because it feel safe. The friendship become stronger because the sharing is more private and real.
+Photo History | All the photos you send stay in the app. You can look at old photos any time you want. You can remember the moments you share with your friends. | The more photos you send, the more memories you have. The app become more valuable to you because it is like your memory book with your friends. You keep coming back to see the old moments and send new ones.
+
+TABLE 4
+Product Features | Description | How It Drives Retention & Engagement
+Home screen & photo widget | Photos from friends appear directly on the phone's home screen as a widget. | Puts friendly photos on the phone's home screen, creating repeated daily touchpoints and making the experience more personal, increasing the chance they'll keep posting.
+Close-friends sharing | Sharing is limited to a small circle of close friends rather than a public audience. | Limits sharing to a small circle of people the user cares about, which makes the experience more personal and increases the chance they'll keep posting.
+Reactions and notifications | Friends can react to photos with various reactions and receive notifications when friends post. | Lets friends react to photos and sends notifications, creating a pull that draws users back into the app.
+
+TABLE 5
+Product Features | Description | How It Drives Retention & Engagement
+Daily Notification | Every day you get a surprise message that tell you to post right now. Everyone get it at the same time. You never know when it will come. | You come back every single day because you want to catch the notification. You form a habit. You feel like you are posting with everyone else at the same moment, so you feel connected to the community.
+Memories | You can see all your old photos together in one place. There is a calendar view so you can see what you post on any day. You can look back at months and years of your life. | You feel more attachment to the app because you see your life become a story. The more you post, the bigger your memory collection become. You want to keep posting because you are building something you can look at forever.
+Fast Posting (Two Minute Window) | When you get the notification, you only have two minutes to post. You cannot edit or plan your photo. You must be quick and post what you see right now. | Your photos look real because you cannot fake them. You come back because the process is so simple and fast. The time limit make the app feel authentic and exciting because you cannot think too much.
+Front and Back Camera | You can take photos with both the front camera and the back camera at the same time. This make it easy to show yourself and what you see around you. | It is fast and natural to post because you can capture more information in one moment. This make people want to post more often because it is easy and feel less fake.
+Post Before You Scroll | Before you can see other people's photos, you must post your own photo first. Everyone must share before they can see the feed. | This push you to post and be part of the community. You want to share so you can see what your friends post. This make the app feel like everyone is participating together, not just watching.

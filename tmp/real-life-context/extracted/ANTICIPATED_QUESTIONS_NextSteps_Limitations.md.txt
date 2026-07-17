@@ -1,0 +1,187 @@
+# ANTICIPATED QUESTIONS: Next Steps & Limitations
+**For Ben's Q&A after presentation**
+
+---
+
+## 📋 QUICK REFERENCE
+
+**If Ben asks about...**
+- **Next Steps** → Testing, refinement, scaling
+- **Limitations** → Privacy, technical feasibility, tone balancing
+- **Feature expansion** → Voice notes, geolocation, deeper social loops
+
+---
+
+## 🎯 NEXT STEPS (If we move forward)
+
+### 1. User Testing with Gen Z (Primary) + Millennials (Secondary)
+**What:** Run small tests to see if the 3-day water challenge actually works. Does the invite "do this with me" resonate? Does the widget drive participation?
+
+**Why it matters:** The prototype is solid, but we need to validate that Gen Z actually responds to wellness rituals without fitness-app pressure. And we'll learn if the simplicity we designed actually reduces friction for millennials.
+
+**My thinking:** I'd want to test with maybe 20-30 users per cohort. Short sessions. See if they understand the flow, if they'd actually invite a friend, if the widget feels natural or intrusive.
+
+---
+
+### 2. Micro-copy Calibration
+**What:** Right now the copy is conversational ("You up?" / "psst — Maya posted Day 2"). But we need to make sure it lands right across all proof types — especially when mixing fitness language with mental health language.
+
+**Example tension:** 
+- "Day 1 of 3" feels clear and motivating for fitness-style challenges
+- But for "Mood check-in," the same language might feel pressure-y or clinical
+- Need to test: does the tone shift naturally? Or do we need category-specific copy?
+
+**My thinking:** This is something I'd want to iterate on after user testing. Different categories might need slightly different vibes, but still feel cohesive as one feature.
+
+---
+
+### 3. Proof Type Preferences
+**What:** Right now we offer Photo, Voice note, Check-in. But which ones actually get used? Does Gen Z prefer voice notes for mood stuff and photos for movement stuff? Or do they want flexibility?
+
+**Why it matters:** Might inform which proof types we promote or lead with per category.
+
+**My thinking:** We could A/B test this. Or just track usage and see what sticks. Some categories might naturally prefer certain proof types, and that's fine.
+
+---
+
+### 4. Widget Behavior & Real-time Updates
+**What:** The widget shows "your friend just posted." But how fresh does "just posted" need to be? Real-time? Every 5 minutes?
+
+**Technical question:** Is real-time feasible without crushing backend load? Or do we batch updates every 30 minutes?
+
+**My thinking:** I think we can start with 30-min batches. Gen Z isn't expecting Instagram-speed notifications for challenges. The point is "your friend is participating," not "your friend posted 3 seconds ago."
+
+---
+
+### 5. Voice Notes & Daily Journaling (Future consideration)
+**What:** Some users asked (in my head, while designing) — could we let people record quick voice notes to explain their check-in? Like, "Day 1: I drank water, and here's how I felt."
+
+**Why later, not now:** MVP doesn't need it. But it's a natural extension if people want deeper reflection.
+
+**My thinking:** Voice notes add a layer of intimacy that could be really powerful for mood/mental health challenges. But they also add complexity (storage, transcription?, accessibility). Let's validate the core feature first.
+
+---
+
+## 🚧 LIMITATIONS & Constraints
+
+### 1. Geolocation for Check-ins (Privacy-sensitive)
+**The idea:** Some challenges could be location-based — "touch grass at the park nearby" — and you check in from the location to prove it.
+
+**The constraint:** BeReal is pretty protective of privacy. No location data by default. Adding GPS check-ins would be a **company-wide conversation**, not just a feature decision.
+
+**My take:** I don't think we need this for MVP. The "touch grass" challenge is playful without requiring proof of location. If we ever go there, it'd be fully optional and transparent.
+
+**Status:** Flagged as potential future feature, but **not core to this launch**.
+
+---
+
+### 2. Micro-copy Tone Balance (Fitness vs Mental Health)
+**The challenge:** The feature blends fitness ("drink water," "walk") and mental health ("mood check-in," "name the feeling"). The tone needs to feel playful for both without trivializing mental health.
+
+**Example tension:**
+- Fitness challenges can be cheeky: "You up?"
+- Mental health stuff might need more care: "Check in on how you're feeling?"
+
+**My thinking:** I haven't fully solved this. I think the answer is: **different categories get slightly different tone**, but the overall vibe stays consistent. Need user testing to validate this doesn't feel disjointed.
+
+**Status:** Known issue. Needs testing & iteration.
+
+---
+
+### 3. Technical Feasibility: Voice Notes & Storage
+**The consideration:** If we add voice notes, we need:
+- Cloud storage (cost)
+- Accessibility (transcriptions? subtitles?)
+- Data retention (how long do we keep them?)
+
+**My thinking:** This is a backend conversation I haven't had yet. It's doable, but not trivial. Probably a Phase 2 feature.
+
+**Status:** Future consideration, not MVP blocker.
+
+---
+
+### 4. Widget Real-time Sync (Backend load)
+**The constraint:** The widget shows live progress — "Maya posted Day 2." How do we keep it fresh without polling the backend every 5 seconds for every user?
+
+**My thinking:** Batching updates (every 30 min) is probably the answer. Or push notifications trigger a widget refresh. Either way, the UX stays smooth.
+
+**Status:** Technical debt to work through with backend team, but solvable.
+
+---
+
+### 5. Cross-platform Consistency
+**The consideration:** Widget behavior on iOS vs Android. Notification timing. Proof type support. Voice notes on older devices?
+
+**My thinking:** Standard product work. We test on both platforms, we make decisions about what's MVP vs Phase 2 based on feasibility.
+
+**Status:** Normal process, not a blocker.
+
+---
+
+### 6. Category Expansion (Scope creep risk)
+**The constraint:** Right now we have 5 categories. What if users request 10? 20? The feature stays simple **only** if we're disciplined about categories.
+
+**My thinking:** I'd want a **clear decision rule**: new categories only if they fill a gap and have Gen Z demand. Not just "someone asked for it."
+
+**Status:** Design decision, not a technical limitation. Needs prioritization discipline.
+
+---
+
+## 💭 IF BEN ASKS...
+
+### "What about accessibility for voice notes?"
+> "Honestly, I haven't fully mapped that yet. If we do voice notes, we'd need transcriptions, probably captions. That's a Phase 2 conversation with a11y team. For MVP, photo and check-in don't have that complexity."
+
+### "Why no geolocation check-ins?"
+> "Privacy is core to BeReal's brand. Location data would need buy-in from the company, not just us. Plus, the challenge works without it — you're proving you did the thing, not proving where you did it. I'd flag it as 'explore later,' but it's not MVP."
+
+### "Can the widget update in real-time?"
+> "Probably not economically for real-time. Every user checking a widget every 5 seconds = backend load. I think we batch updates every 30 minutes, or we use push notifications to trigger refreshes. Either way feels good UX."
+
+### "How do you handle tone when mixing fitness + mental health?"
+> "That's the tension I'm sitting with. I think different categories need slightly different energy, but stay cohesive. Testing will tell us if it feels natural or jarring. Might need copy tweaks after user testing."
+
+### "What's the biggest risk?"
+> "Probably adoption. BeReal users have a specific vibe — authenticity, no performance pressure. If Real-Life Challenges feels like it's asking them to perform, it fails. The design (no leaderboards, no streaks) protects against that, but user testing will validate."
+
+---
+
+## 📝 HONEST UNKNOWNS
+
+These are things I **don't** have answers for yet:
+
+1. **Exact proof type preference per category** — Will testing show patterns?
+2. **Optimal notification cadence** — How often should we remind people? Daily? Every other day?
+3. **Retention curve** — Do people do one challenge and stop, or do they chain them?
+4. **Voice note complexity** — If we go there, what's the MVP? Full transcription? Just audio?
+5. **Monetization angle** — Is this a retention play or could there be a small premium feature? (Not pressing, but worth thinking about.)
+
+**My take:** These are things we learn through testing and iteration, not things we need to solve before launch.
+
+---
+
+## 🎯 PRIORITIES FOR BEN
+
+If Ben asks "what should we do first?":
+
+**MVP (Must have):**
+- Testing with Gen Z users (validation)
+- Micro-copy refinement (tone consistency)
+- Widget real-time sync strategy (technical)
+
+**Phase 2 (Should have):**
+- Voice notes feature
+- Deeper personalization per category
+- Social loop extensions (share recap with friend group?)
+
+**Phase 3+ (Nice to have):**
+- Geolocation check-ins
+- Creator/brand partnerships (challenges from brands?)
+- Leaderboard (optional, for power users)
+
+---
+
+## 💪 KEY MESSAGE
+
+**If Ben presses on limitations:** "These are real constraints, but they're not blockers. Some are design decisions (geolocation, category expansion), some are technical (widget sync), some are UX refinements (tone, proof types). All solvable. Testing will tell us what matters most."
+
