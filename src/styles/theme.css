@@ -540,6 +540,73 @@
     object-position: var(--about-portrait-position);
   }
 
+  .hero-native-reveal {
+    --hero-floor-horizon: calc(67.5svh - 48px);
+    --hero-floor-target-x: 82.5%;
+    --hero-floor-target-y: calc(78svh - 48px);
+    isolation: isolate;
+    background: var(--color-base);
+  }
+
+  .hero-native-floor {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .hero-native-floor__wave {
+    position: absolute;
+    left: var(--hero-floor-target-x);
+    top: var(--hero-floor-horizon);
+    width: 420vw;
+    height: 22svh;
+    border-radius: 50% !important;
+    background: #000;
+    clip-path: ellipse(50% 50% at 50% 50%);
+    transform: translateX(-50%);
+    will-change: left, top, width, height, opacity;
+    animation: hero-native-floor-collapse var(--hero-floor-duration, 1.8s)
+      cubic-bezier(0.18, 0.7, 0.2, 1) both;
+    animation-play-state: paused;
+  }
+
+  .hero-native-reveal--running .hero-native-floor__wave {
+    animation-play-state: running;
+  }
+
+  @keyframes hero-native-floor-collapse {
+    from {
+      left: var(--hero-floor-target-x);
+      top: var(--hero-floor-horizon);
+      width: 420vw;
+      height: 22svh;
+      opacity: 1;
+    }
+    to {
+      left: var(--hero-floor-target-x);
+      top: var(--hero-floor-target-y);
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .hero-native-reveal {
+      --hero-floor-horizon: calc(66svh - 48px);
+      --hero-floor-target-x: 34.5%;
+      --hero-floor-target-y: calc(86svh - 48px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-native-floor {
+      display: none;
+    }
+  }
+
   .hero-breakout {
     width: 100%;
     max-width: 92rem;
@@ -2448,6 +2515,21 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  /* The feature-definition board occupies the right-hand column. At larger
+     sizes, let this single behavioral chain borrow that column's visual
+     space so its five labels stay intact without resizing the board. */
+  @media (min-width: 640px) {
+    .rl-feature-definition-layout .rl-mau-hypothesis-chain {
+      position: relative;
+      z-index: 2;
+      width: calc(100% + clamp(254px, 24vw, 332px));
+      background: var(--bp-bg);
+    }
   }
 
   .rl-mau-hypothesis-chain small {

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
+import { useEffect, useLayoutEffect, useRef, type MutableRefObject } from 'react';
+import { useReducedMotion } from 'motion/react';
 import * as THREE from 'three';
 
 interface WireframeMeshProps {
@@ -12,6 +12,8 @@ interface WireframeMeshProps {
   // separation animation of the 3 levels.
   mobileStatic?: boolean;
   mobileAutoExpanded?: boolean;
+  constructionProgressRef?: MutableRefObject<number>;
+  onProjectedBaseChange?: (position: { x: number; y: number }) => void;
 }
 
 export const DESIGN_CYCLE_BUILDING_SLOT_ID = 'design-cycle-building-slot';
@@ -69,6 +71,8 @@ export function WireframeMesh({
   anchorId = DESIGN_CYCLE_BUILDING_SLOT_ID,
   mobileStatic = false,
   mobileAutoExpanded = false,
+  constructionProgressRef,
+  onProjectedBaseChange,
 }: WireframeMeshProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const outerRef = useRef<HTMLDivElement>(null);
@@ -87,13 +91,15 @@ export function WireframeMesh({
   const tapTriggerRef = useRef<() => void>(() => {});
 
   // ── Three.js setup ─────────────────────────────────────────────────────────
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
+    const initialWidth = Math.max(1, container.offsetWidth);
+    const initialHeight = Math.max(1, container.offsetHeight);
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(container.offsetWidth, container.offsetHeight);
+    renderer.setSize(initialWidth, initialHeight);
     renderer.setClearColor(0x000000, 0);
     renderer.localClippingEnabled = true;
     Object.assign(renderer.domElement.style, {
@@ -104,7 +110,7 @@ export function WireframeMesh({
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      28, container.offsetWidth / container.offsetHeight, 0.1, 500,
+      28, initialWidth / initialHeight, 0.1, 500,
     );
     camera.position.set(0, 12, 110);
     camera.lookAt(0, 12, 0);
@@ -412,6 +418,7 @@ export function WireframeMesh({
       material: THREE.Material & { opacity: number };
       baseOpacity: number;
       baseTransparent: boolean;
+      isLine: boolean;
     };
 
     function collectFadeMaterials(group: THREE.Group): FadeMaterialState[] {
@@ -429,6 +436,7 @@ export function WireframeMesh({
             material: material as THREE.Material & { opacity: number },
             baseOpacity: (material as THREE.Material & { opacity: number }).opacity,
             baseTransparent: material.transparent,
+            isLine: (material as THREE.Material & { isLineBasicMaterial?: boolean }).isLineBasicMaterial === true,
           });
         }
       });
@@ -530,6 +538,56 @@ export function WireframeMesh({
     pivot.position.y = isMobile ? 7 : 0;
     pivot.scale.setScalar(isMobile ? 0.95 : 1.2);
 
+    // Measure the actual projected base of the model. The hero uses this
+    // coordinate as the oval's destination instead of relying on a guessed
+    // percentage, so both elements meet at the same pixel.
+    const projectedBase = new THREE.Vector3();
+    let lastReportedBaseX = Number.NaN;
+    let lastReportedBaseY = Number.NaN;
+    const reportProjectedBase = () => {
+      if (!onProjectedBaseChange) return;
+      camera.updateMatrixWorld(true);
+      pivot.updateMatrixWorld(true);
+      projectedBase.set(0, 0, 0).applyMatrix4(pivot.matrixWorld).project(camera);
+      const rect = renderer.domElement.getBoundingClientRect();
+      if (rect.width <= 0 || rect.height <= 0) return;
+      const x = rect.left + (projectedBase.x * 0.5 + 0.5) * rect.width;
+      const y = rect.top + (-projectedBase.y * 0.5 + 0.5) * rect.height;
+      if (!Number.isFinite(x) || !Number.isFinite(y)) return;
+      if (Math.abs(x - lastReportedBaseX) < 0.25 && Math.abs(y - lastReportedBaseY) < 0.25) return;
+      lastReportedBaseX = x;
+      lastReportedBaseY = y;
+      onProjectedBaseChange({ x, y });
+    };
+
+    // A pair of horizontal clipping fronts makes the structure rise from its
+    // foundation. Wireframe materials lead the solid surfaces slightly so the
+    // reveal reads as construction rather than a generic opacity fade.
+    const constructionEnabled = Boolean(constructionProgressRef && !shouldReduceMotion);
+    const constructionLineClip = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
+    const constructionFillClip = new THREE.Plane(new THREE.Vector3(0, -1, 0), 0);
+    // Begin just below the foundation; the linear wireframe front reaches the
+    // base immediately and remains visibly ahead of the contracting oval.
+    const constructionBottomY = pivot.position.y - 0.25;
+    const constructionTopY = pivot.position.y + (roofY + ROOF_THICK + 0.8) * pivot.scale.y;
+    let constructionDone = !constructionEnabled;
+
+    if (constructionEnabled) {
+      const allMaterialStates = [
+        ...levelFadeMaterials.l1,
+        ...levelFadeMaterials.l2,
+        ...levelFadeMaterials.l3,
+      ];
+      for (const { material, isLine } of allMaterialStates) {
+        const existingPlanes = material.clippingPlanes ?? [];
+        material.clippingPlanes = [
+          ...existingPlanes,
+          isLine ? constructionLineClip : constructionFillClip,
+        ];
+        material.needsUpdate = true;
+      }
+    }
+
     // ── Animation state ──────────────────────────────────────────────────────
     let rotationY = Math.PI * 0.15;
     let targetRotY = rotationY;
@@ -583,7 +641,27 @@ export function WireframeMesh({
       const dt = Math.min(0.05, (now - prevTime) / 1000);
       prevTime = now;
 
-      if (isMobile && mobileAutoExpandedRef.current) {
+      if (constructionEnabled) {
+        const progress = THREE.MathUtils.clamp(constructionProgressRef?.current ?? 0, 0, 1);
+        const lineProgress = Math.min(1, progress / 0.78);
+        const fillProgress = THREE.MathUtils.smoothstep(progress, 0, 0.9);
+        constructionLineClip.constant = THREE.MathUtils.lerp(
+          constructionBottomY,
+          constructionTopY,
+          lineProgress,
+        );
+        constructionFillClip.constant = THREE.MathUtils.lerp(
+          constructionBottomY,
+          constructionTopY,
+          fillProgress,
+        );
+        constructionDone = progress >= 0.999;
+      }
+
+      if (!constructionDone) {
+        buildingHover = 0;
+        tapHoldEndAt = 0;
+      } else if (isMobile && mobileAutoExpandedRef.current) {
         buildingHover = 1;
         tapHoldEndAt = 0;
       } else if (isMobile && tapHoldEndAt && now >= tapHoldEndAt) {
@@ -632,10 +710,11 @@ export function WireframeMesh({
       pierClipTop.constant = (PIER_CUT_TOP_Y + pos2) * sy + py;
       pierClipBot.constant = -((PIER_CUT_BOT_Y + pos2) * sy + py);
 
-      if (!shouldReduceMotion) targetRotY += 0.0025;
+      if (!shouldReduceMotion && constructionDone) targetRotY += 0.0025;
       rotationY += (targetRotY - rotationY) * 0.08;
       pivot.rotation.y = rotationY;
 
+      if (!constructionDone) reportProjectedBase();
       renderer.render(scene, camera);
     };
     tick();
@@ -648,6 +727,7 @@ export function WireframeMesh({
       let wasHovering = false;
 
       const onPointerMove = (e: PointerEvent) => {
+        if (!constructionDone) return;
         const rect = renderer.domElement.getBoundingClientRect();
         pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
         pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
@@ -678,11 +758,15 @@ export function WireframeMesh({
     const ro = new ResizeObserver(() => {
       const w = container.offsetWidth;
       const h = container.offsetHeight;
+      if (w <= 0 || h <= 0) return;
       renderer.setSize(w, h);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      reportProjectedBase();
     });
     ro.observe(container);
+
+    reportProjectedBase();
 
     return () => {
       cancelAnimationFrame(animRef.current);
@@ -695,7 +779,7 @@ export function WireframeMesh({
         container.removeChild(renderer.domElement);
       }
     };
-  }, [isMobile, shouldReduceMotion]);
+  }, [isMobile, shouldReduceMotion, constructionProgressRef, onProjectedBaseChange]);
 
   useEffect(() => {
     mobileAutoExpandedRef.current = mobileAutoExpanded;
@@ -1021,6 +1105,7 @@ export function WireframeMesh({
             position: 'relative',
             width: '100%',
             height: 320,
+            zIndex: 1,
             pointerEvents: 'auto',
           }}
         >
@@ -1114,9 +1199,9 @@ export function WireframeMesh({
     <div
       ref={outerRef}
       className="absolute right-[7%] top-0 bottom-0 pointer-events-none overflow-hidden"
-      style={{ width: '90%' }}
+      style={{ width: '90%', zIndex: 1 }}
     >
-      <motion.div
+      <div
         style={{
           width: '100%',
           height: '100%',
@@ -1125,12 +1210,9 @@ export function WireframeMesh({
           WebkitMaskImage:
             'linear-gradient(to right, transparent 0%, black 15%, black 68%, transparent 100%)',
         }}
-        initial={shouldReduceMotion ? { opacity: 1 } : { x: '100%' }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
         <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
-      </motion.div>
+      </div>
     </div>
   );
 }
