@@ -1,4 +1,12 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import {
+  Fragment,
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+} from 'react';
 import { motion, useAnimation, useReducedMotion } from 'motion/react';
 import { WireframeMesh } from '../WireframeMesh';
 
@@ -6,8 +14,81 @@ type HeroSectionProps = {
   isMobile: boolean;
 };
 
+const OVAL_DURATION_SECONDS = 1.8;
+const CONSTRUCTION_LEAD_SECONDS = 1.25;
+const CONSTRUCTION_DURATION_SECONDS = 1.35;
+
 export function HeroSection({ isMobile }: HeroSectionProps) {
   const shouldReduceMotion = useReducedMotion();
+  const heroSectionRef = useRef<HTMLElement>(null);
+  const constructionProgressRef = useRef(shouldReduceMotion ? 1 : 0);
+  const sequenceStartRef = useRef(0);
+  const [contentReady, setContentReady] = useState(Boolean(shouldReduceMotion));
+  const heroSectionStyle = {
+    '--hero-floor-duration': `${OVAL_DURATION_SECONDS}s`,
+  } as CSSProperties;
+
+  const startSequence = useCallback(() => {
+    if (sequenceStartRef.current !== 0) return;
+    sequenceStartRef.current = performance.now();
+    heroSectionRef.current?.classList.add('hero-native-reveal--running');
+  }, []);
+
+  useLayoutEffect(() => {
+    if (shouldReduceMotion) {
+      constructionProgressRef.current = 1;
+      setContentReady(true);
+      return;
+    }
+
+    constructionProgressRef.current = 0;
+    setContentReady(false);
+    let animationFrame = 0;
+    // The projected base normally starts the sequence during the same layout
+    // pass. This short fallback guarantees that a delayed WebGL measurement can
+    // never leave the hero paused after refresh.
+    const fallbackStart = window.setTimeout(startSequence, 80);
+    const constructionStartSeconds = OVAL_DURATION_SECONDS - CONSTRUCTION_LEAD_SECONDS;
+
+    const advanceConstruction = (timestamp: number) => {
+      if (sequenceStartRef.current === 0) {
+        animationFrame = requestAnimationFrame(advanceConstruction);
+        return;
+      }
+      const elapsedSeconds = (timestamp - sequenceStartRef.current) / 1000;
+      constructionProgressRef.current = Math.min(
+        1,
+        Math.max(
+          0,
+          (elapsedSeconds - constructionStartSeconds) / CONSTRUCTION_DURATION_SECONDS,
+        ),
+      );
+      if (constructionProgressRef.current < 1) {
+        animationFrame = requestAnimationFrame(advanceConstruction);
+      } else {
+        setContentReady(true);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(advanceConstruction);
+    return () => {
+      window.clearTimeout(fallbackStart);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [shouldReduceMotion, startSequence]);
+
+  const handleProjectedBaseChange = useCallback(({ x, y }: { x: number; y: number }) => {
+    const hero = heroSectionRef.current;
+    if (!hero) return;
+    const rect = hero.getBoundingClientRect();
+    const rightOffset = isMobile
+      ? Math.min(30, Math.max(16, rect.width * 0.0425))
+      : Math.min(114, Math.max(68, rect.width * 0.0525));
+    hero.style.setProperty('--hero-floor-target-x', `${x - rect.left + rightOffset}px`);
+    hero.style.setProperty('--hero-floor-target-y', `${y - rect.top}px`);
+    startSequence();
+  }, [isMobile, startSequence]);
+
   const heroLines = [
     'I design with the precision of someone who builds.',
     'Form follows function.',
@@ -159,35 +240,51 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   const replacementControls = useAnimation();
 
   useEffect(() => {
-    if (shouldReduceMotion) return;
-    // Heading finishes at ~2.72s (17 words × 0.12s stagger + 0.6s duration).
-    // Wait until heading is done + comfortable pause before striking through.
+    if (shouldReduceMotion || !contentReady) return;
+    // Keep the revision close to the first reveal instead of waiting several
+    // seconds after the hero has already settled.
     const id = setTimeout(async () => {
       await strikethroughControls.start({
         scaleX: 1,
-        transition: { duration: 1.4, ease: [0.25, 0, 0.35, 1] },
+        transition: { duration: 0.35, ease: [0.25, 0, 0.35, 1] },
       });
-      await new Promise<void>((r) => setTimeout(r, 200));
+      await new Promise<void>((r) => setTimeout(r, 40));
       replacementControls.start({
         clipPath: 'inset(0 0% 0 0)',
         opacity: 1,
-        transition: { duration: 0.65, ease: [0.19, 1, 0.3, 1] },
+        transition: { duration: 0.3, ease: [0.19, 1, 0.3, 1] },
       });
-    }, 3600);
+    }, 900);
     return () => clearTimeout(id);
-  }, [shouldReduceMotion, strikethroughControls, replacementControls]);
+  }, [shouldReduceMotion, contentReady, strikethroughControls, replacementControls]);
 
   // All three lines are right-anchored so their label edges align vertically
   // along the same column near the viewport's right edge.
   const annotations = [
-    { label: 'The what', top: '32%', right: '2%', width: '9.1%',  delay: 2.2  },
-    { label: 'The how',  top: '50%', right: '2%', width: '10.5%', delay: 2.55 },
-    { label: 'The why',  top: '68%', right: '2%', width: '13.3%', delay: 2.9  },
+    { label: 'The what', top: '32%', right: '2%', width: '9.1%',  delay: 0.2  },
+    { label: 'The how',  top: '50%', right: '2%', width: '10.5%', delay: 0.35 },
+    { label: 'The why',  top: '68%', right: '2%', width: '13.3%', delay: 0.5  },
   ];
 
   return (
-    <section id="main-content" className="relative min-h-[100svh] flex flex-col items-stretch sm:flex-row sm:items-center px-4 pt-0 pb-0 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden">
-      {!isMobile && <WireframeMesh isMobile={false} opennessRef={opennessRef} />}
+    <section
+      ref={heroSectionRef}
+      id="main-content"
+      className="hero-native-reveal relative min-h-[100svh] flex flex-col items-stretch sm:flex-row sm:items-center px-4 pt-0 pb-0 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden"
+      style={heroSectionStyle}
+    >
+      <div className="hero-native-floor" aria-hidden="true">
+        <div className="hero-native-floor__wave" />
+      </div>
+
+      {!isMobile && (
+        <WireframeMesh
+          isMobile={false}
+          opennessRef={opennessRef}
+          constructionProgressRef={constructionProgressRef}
+          onProjectedBaseChange={handleProjectedBaseChange}
+        />
+      )}
 
       {!isMobile && (
         <div ref={annotationsRef} className="absolute inset-0 pointer-events-none" style={{ zIndex: 3 }}>
@@ -200,7 +297,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             >
               <motion.div
                 initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={contentReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
                 transition={{ duration: 0.5, delay: shouldReduceMotion ? 0 : delay, ease: [0.19, 1, 0.3, 1] }}
               >
                 <p style={{ fontWeight: 200, fontSize: '0.875rem', letterSpacing: '0.03em', marginBottom: '4px', textAlign: 'right' }} className="text-dark">
@@ -216,7 +313,16 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
         </div>
       )}
 
-      <div className="relative w-full hero-breakout mx-auto min-w-0 mt-12 sm:-mt-16" style={{ zIndex: 2, pointerEvents: isMobile ? undefined : 'none' }}>
+      <motion.div
+        className="relative w-full hero-breakout mx-auto min-w-0 mt-12 sm:-mt-16"
+        style={{ zIndex: 2, pointerEvents: isMobile ? undefined : 'none' }}
+        initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+        animate={{ opacity: contentReady ? 1 : 0 }}
+        transition={{
+          duration: shouldReduceMotion ? 0 : 0.18,
+          ease: [0.19, 1, 0.3, 1],
+        }}
+      >
         <div
           className="hero-meta-lockup"
           aria-label="Julio Coraspe: UX/UI Designer with Front-end Implementation Skills"
@@ -235,7 +341,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             style={{ pointerEvents: isMobile ? undefined : 'auto' }}
             variants={heroContainerVariants}
             initial="hidden"
-            animate="show"
+            animate={contentReady ? 'show' : 'hidden'}
             aria-label={heroText}
           >
             {isMobile
@@ -265,7 +371,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
             className="type-pull-quote text-dark hero-subtitle min-w-0"
             style={{ pointerEvents: isMobile ? undefined : 'auto' }}
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 6 }}
-            animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            animate={contentReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
             transition={{
               duration: shouldReduceMotion ? 0.1 : 0.36,
               delay: shouldReduceMotion ? 0 : 0.12,
@@ -309,7 +415,7 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
           </motion.p>
         </div>
 
-      </div>
+      </motion.div>
 
       {/* Mobile: static building (left half) + 3 right-side pointers between
           hero copy and the next section. No grow/fade — only the 3-level
@@ -328,6 +434,8 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
                 mobileStatic
                 opennessRef={opennessRef}
                 mobileAutoExpanded={mobileBuildingAutoExpanded}
+                constructionProgressRef={constructionProgressRef}
+                onProjectedBaseChange={handleProjectedBaseChange}
               />
             </div>
 
@@ -350,10 +458,10 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
                   style={{ top, right: '4%', width: '36%' }}
                   ref={(el) => { mobileAnnotationItemRefs.current[i] = el; }}
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
-                  animate={{ opacity: 1 }}
+                  animate={{ opacity: contentReady ? 1 : 0 }}
                   transition={{
                     duration: 0.5,
-                    delay: shouldReduceMotion ? 0 : 0.4 + i * 0.18,
+                    delay: shouldReduceMotion ? 0 : 0.1 + i * 0.1,
                     ease: [0.19, 1, 0.3, 1],
                   }}
                 >
