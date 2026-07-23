@@ -14,9 +14,9 @@ type HeroSectionProps = {
   isMobile: boolean;
 };
 
-const OVAL_DURATION_SECONDS = 2.7;
-const CONSTRUCTION_LEAD_SECONDS = 1.5;
-const CONSTRUCTION_DURATION_SECONDS = 1.35;
+const OVAL_DURATION_SECONDS = 2;
+const CONSTRUCTION_LEAD_SECONDS = 1;
+const CONSTRUCTION_DURATION_SECONDS = 1.05;
 
 export function HeroSection({ isMobile }: HeroSectionProps) {
   const shouldReduceMotion = useReducedMotion();
