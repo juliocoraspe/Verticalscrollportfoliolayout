@@ -541,9 +541,6 @@
   }
 
   .hero-native-reveal {
-    --hero-floor-horizon: calc(67.5svh - 48px);
-    --hero-floor-target-x: 82.5%;
-    --hero-floor-target-y: calc(78svh - 48px);
     isolation: isolate;
     background: var(--color-base);
   }
@@ -554,51 +551,6 @@
     z-index: 0;
     overflow: hidden;
     pointer-events: none;
-  }
-
-  .hero-native-floor__wave {
-    position: absolute;
-    left: var(--hero-floor-target-x);
-    top: var(--hero-floor-horizon);
-    width: 420vw;
-    height: 22svh;
-    border-radius: 50% !important;
-    background: #000;
-    clip-path: ellipse(50% 50% at 50% 50%);
-    transform: translateX(-50%);
-    will-change: left, top, width, height, opacity;
-    animation: hero-native-floor-collapse var(--hero-floor-duration, 1.8s)
-      cubic-bezier(0.18, 0.7, 0.2, 1) both;
-    animation-play-state: paused;
-  }
-
-  .hero-native-reveal--running .hero-native-floor__wave {
-    animation-play-state: running;
-  }
-
-  @keyframes hero-native-floor-collapse {
-    from {
-      left: var(--hero-floor-target-x);
-      top: var(--hero-floor-horizon);
-      width: 420vw;
-      height: 22svh;
-      opacity: 1;
-    }
-    to {
-      left: var(--hero-floor-target-x);
-      top: var(--hero-floor-target-y);
-      width: 0;
-      height: 0;
-      opacity: 0;
-    }
-  }
-
-  @media (max-width: 639px) {
-    .hero-native-reveal {
-      --hero-floor-horizon: calc(66svh - 48px);
-      --hero-floor-target-x: 34.5%;
-      --hero-floor-target-y: calc(86svh - 48px);
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {

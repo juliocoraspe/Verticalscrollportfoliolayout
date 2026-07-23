@@ -589,7 +589,10 @@ export function WireframeMesh({
     }
 
     // ── Animation state ──────────────────────────────────────────────────────
-    let rotationY = Math.PI * 0.15;
+    // Begin the counter-clockwise turn 60° before the original pose so the
+    // completed building rotates around its own axis from a frontal stance.
+    const initialRotationY = Math.PI * 0.15 - THREE.MathUtils.degToRad(60);
+    let rotationY = initialRotationY;
     let targetRotY = rotationY;
 
     const springK = 90;

@@ -5,17 +5,17 @@ import {
   useLayoutEffect,
   useRef,
   useState,
-  type CSSProperties,
 } from 'react';
 import { motion, useAnimation, useReducedMotion } from 'motion/react';
+import { HeroTileFloor } from '../HeroTileFloor';
 import { WireframeMesh } from '../WireframeMesh';
 
 type HeroSectionProps = {
   isMobile: boolean;
 };
 
-const OVAL_DURATION_SECONDS = 1.8;
-const CONSTRUCTION_LEAD_SECONDS = 1.25;
+const OVAL_DURATION_SECONDS = 2.7;
+const CONSTRUCTION_LEAD_SECONDS = 1.5;
 const CONSTRUCTION_DURATION_SECONDS = 1.35;
 
 export function HeroSection({ isMobile }: HeroSectionProps) {
@@ -23,10 +23,8 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
   const heroSectionRef = useRef<HTMLElement>(null);
   const constructionProgressRef = useRef(shouldReduceMotion ? 1 : 0);
   const sequenceStartRef = useRef(0);
+  const floorTargetRef = useRef({ x: 0, y: 0 });
   const [contentReady, setContentReady] = useState(Boolean(shouldReduceMotion));
-  const heroSectionStyle = {
-    '--hero-floor-duration': `${OVAL_DURATION_SECONDS}s`,
-  } as CSSProperties;
 
   const startSequence = useCallback(() => {
     if (sequenceStartRef.current !== 0) return;
@@ -84,8 +82,10 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
     const rightOffset = isMobile
       ? Math.min(30, Math.max(16, rect.width * 0.0425))
       : Math.min(114, Math.max(68, rect.width * 0.0525));
-    hero.style.setProperty('--hero-floor-target-x', `${x - rect.left + rightOffset}px`);
-    hero.style.setProperty('--hero-floor-target-y', `${y - rect.top}px`);
+    floorTargetRef.current = {
+      x: x - rect.left + rightOffset,
+      y: y - rect.top,
+    };
     startSequence();
   }, [isMobile, startSequence]);
 
@@ -271,11 +271,13 @@ export function HeroSection({ isMobile }: HeroSectionProps) {
       ref={heroSectionRef}
       id="main-content"
       className="hero-native-reveal relative min-h-[100svh] flex flex-col items-stretch sm:flex-row sm:items-center px-4 pt-0 pb-0 sm:px-6 sm:pt-24 sm:pb-6 overflow-hidden"
-      style={heroSectionStyle}
     >
-      <div className="hero-native-floor" aria-hidden="true">
-        <div className="hero-native-floor__wave" />
-      </div>
+      <HeroTileFloor
+        durationSeconds={OVAL_DURATION_SECONDS}
+        isMobile={isMobile}
+        sequenceStartRef={sequenceStartRef}
+        targetRef={floorTargetRef}
+      />
 
       {!isMobile && (
         <WireframeMesh
