@@ -408,6 +408,7 @@ const SCENES: readonly Scene[] = [
 const N = SCENES.length;
 const W = 1 / N;
 const REST_POINT = { cx: 78, cy: 20 }; // where the die settles at the end
+const FINAL_DROP_X = 94; // shared x-position for the tools collapse and finale drop
 
 // ─── Mobile (≤639px) restaging ────────────────────────────────────────────
 // The desktop scenes place head and items at hand-tuned viewport
@@ -625,7 +626,7 @@ const MULT = {
   reSpan: 0.09, // retraction sweep, farthest-from-corner tiles first
   retractDur: 0.07, // one tile's shrink + slide into the corner
   rebirth: 0.96, // the die pops back out of the last tile
-  corner: { cx: 90, cy: 84 }, // lower-right, viewport %
+  corner: { cx: FINAL_DROP_X, cy: 84 }, // lower-right, aligned with the finale drop lane
 } as const;
 
 // The finale (knowledge): the whole content rises as ONE mass from below
@@ -641,7 +642,7 @@ const FINALE = {
   dropE: 0.72, // …then drops, accelerating, out the bottom. Gone.
   // falls in the empty strip RIGHT of the grid (which ends at 92vw) so the
   // drop never crosses a single line of text
-  x: 0.94,
+  x: FINAL_DROP_X / 100,
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────
