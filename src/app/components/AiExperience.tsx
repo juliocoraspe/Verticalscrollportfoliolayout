@@ -409,6 +409,10 @@ const N = SCENES.length;
 const W = 1 / N;
 const REST_POINT = { cx: 78, cy: 20 }; // where the die settles at the end
 const FINAL_DROP_X = 94; // shared x-position for the tools collapse and finale drop
+const HERO_GROUND_Y = 40; // viewport %, shared by the opening line and die baseline
+const HERO_DIE_PATH_Y = 38.55; // reference path %, corrected to the exact pixel baseline at runtime
+const SCROLL_PROMPT_DELAY_MS = 1800;
+const SCROLL_PROMPT_DISMISS_AT = 0.00001;
 
 // ─── Mobile (≤639px) restaging ────────────────────────────────────────────
 // The desktop scenes place head and items at hand-tuned viewport
@@ -683,9 +687,56 @@ function JourneyStage() {
           ),
         )}
         <CannonFlash p={p} />
+        <ScrollPrompt p={p} />
         <RollingDie p={p} />
       </div>
     </section>
+  );
+}
+
+function ScrollPrompt({ p }: { p: MotionValue<number> }) {
+  const [visible, setVisible] = useState(false);
+  const dismissed = useRef(p.get() > SCROLL_PROMPT_DISMISS_AT);
+
+  useEffect(() => {
+    if (dismissed.current) return;
+
+    const timer = window.setTimeout(() => {
+      if (!dismissed.current && p.get() <= SCROLL_PROMPT_DISMISS_AT) setVisible(true);
+    }, SCROLL_PROMPT_DELAY_MS);
+
+    const unsubscribe = p.on('change', (value) => {
+      if (value <= SCROLL_PROMPT_DISMISS_AT || dismissed.current) return;
+      dismissed.current = true;
+      window.clearTimeout(timer);
+      setVisible(false);
+    });
+
+    return () => {
+      window.clearTimeout(timer);
+      unsubscribe();
+    };
+  }, [p]);
+
+  if (!visible) return null;
+
+  return (
+    <motion.p
+      aria-hidden="true"
+      className="pointer-events-none absolute left-1/2 top-1/2 type-micro uppercase"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0.28, 0.62, 0.28] }}
+      transition={{ duration: 1.8, ease: 'easeInOut', repeat: Infinity }}
+      style={{
+        ...TECH_LABEL_STYLE,
+        x: '-50%',
+        y: '-50%',
+        color: 'var(--color-pale)',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      Scroll down
+    </motion.p>
   );
 }
 
@@ -1030,9 +1081,9 @@ function HeroGround({ p }: { p: MotionValue<number> }) {
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
       <motion.line
         x1="10%"
-        y1="40%"
+        y1={`${HERO_GROUND_Y}%`}
         x2={x2}
-        y2="40%"
+        y2={`${HERO_GROUND_Y}%`}
         stroke="rgba(252,251,250,0.5)"
         strokeWidth="1"
         style={{ opacity, y: pushY }}
@@ -1705,9 +1756,9 @@ function buildManifestoRig(endX: number): ManifestoRig {
   const path: readonly (readonly [number, number, number])[] = [
     // hero: rolls left→right chasing the ground line, then HOLDS while the
     // rest of the hero content fades around it
-    [0.0, 10, 38.55],
-    [0.07, HERO_DIE_REST_X, 38.55],
-    [touch, HERO_DIE_REST_X, 38.55],
+    [0.0, 10, HERO_DIE_PATH_Y],
+    [0.07, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
+    [touch, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
     // touched — shoved up and out of the text's band, fast and mostly
     // vertical so the sweeping glyphs never run over it
     [leap3, 58, 18],
@@ -1892,7 +1943,11 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
     if (i < 2) {
       const [wx, wy] = formulaTarget(v, manifestoRig(narrow).path);
       txx = (wx / 100) * vw;
-      tyy = (wy / 100) * vh;
+      const pathY = (wy / 100) * vh;
+      const exactGroundY = (HERO_GROUND_Y / 100) * vh - DIE_SIZE / 2;
+      const baselineCorrection = exactGroundY - (HERO_DIE_PATH_Y / 100) * vh;
+      const release = Math.min(1, Math.max(0, (v - rig.touch) / (rig.leap3 - rig.touch)));
+      tyy = pathY + baselineCorrection * (1 - release);
     } else {
       const head = getRect(i, 'head');
       const items = getRect(i, 'items');
