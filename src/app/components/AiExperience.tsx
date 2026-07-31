@@ -408,6 +408,12 @@ const SCENES: readonly Scene[] = [
 const N = SCENES.length;
 const W = 1 / N;
 const REST_POINT = { cx: 78, cy: 20 }; // where the die settles at the end
+const FINAL_DROP_X = 94; // shared x-position for the tools collapse and finale drop
+const HERO_GROUND_Y = 40; // viewport %, shared by the opening line and die baseline
+const HERO_DIE_PATH_Y = 38.55; // reference path %, corrected to the exact pixel baseline at runtime
+const HERO_ROLL_START = 0.01; // let the ground line arrive before the die begins moving
+const SCROLL_PROMPT_DELAY_MS = 1800;
+const SCROLL_PROMPT_DISMISS_AT = 0.00001;
 
 // ─── Mobile (≤639px) restaging ────────────────────────────────────────────
 // The desktop scenes place head and items at hand-tuned viewport
@@ -625,7 +631,7 @@ const MULT = {
   reSpan: 0.09, // retraction sweep, farthest-from-corner tiles first
   retractDur: 0.07, // one tile's shrink + slide into the corner
   rebirth: 0.96, // the die pops back out of the last tile
-  corner: { cx: 90, cy: 84 }, // lower-right, viewport %
+  corner: { cx: FINAL_DROP_X, cy: 84 }, // lower-right, aligned with the finale drop lane
 } as const;
 
 // The finale (knowledge): the whole content rises as ONE mass from below
@@ -636,12 +642,14 @@ const MULT = {
 const FINALE = {
   riseS: 0.06, // the mass starts rising from below the viewport
   riseE: 0.46, // everything seated — and the die reaches the top
+  autoDropTrigger: 0.34, // release while the last few visual frames are still settling
   contact: 0.25, // fraction of the rise-ease at which the mass reaches it
-  holdEnd: 0.58, // it holds at the top while the stage settles…
-  dropE: 0.72, // …then drops, accelerating, out the bottom. Gone.
+  holdEnd: 0.58, // mobile-only: conveyor continuation starts after this scroll beat
+  autoDropDelayMs: 40, // a tiny contact beat, already before the mass is fully seated
+  autoDropDurationMs: 760, // time-driven drop; no additional scroll required
   // falls in the empty strip RIGHT of the grid (which ends at 92vw) so the
   // drop never crosses a single line of text
-  x: 0.94,
+  x: FINAL_DROP_X / 100,
 } as const;
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -682,9 +690,56 @@ function JourneyStage() {
           ),
         )}
         <CannonFlash p={p} />
+        <ScrollPrompt p={p} />
         <RollingDie p={p} />
       </div>
     </section>
+  );
+}
+
+function ScrollPrompt({ p }: { p: MotionValue<number> }) {
+  const [visible, setVisible] = useState(false);
+  const dismissed = useRef(p.get() > SCROLL_PROMPT_DISMISS_AT);
+
+  useEffect(() => {
+    if (dismissed.current) return;
+
+    const timer = window.setTimeout(() => {
+      if (!dismissed.current && p.get() <= SCROLL_PROMPT_DISMISS_AT) setVisible(true);
+    }, SCROLL_PROMPT_DELAY_MS);
+
+    const unsubscribe = p.on('change', (value) => {
+      if (value <= SCROLL_PROMPT_DISMISS_AT || dismissed.current) return;
+      dismissed.current = true;
+      window.clearTimeout(timer);
+      setVisible(false);
+    });
+
+    return () => {
+      window.clearTimeout(timer);
+      unsubscribe();
+    };
+  }, [p]);
+
+  if (!visible) return null;
+
+  return (
+    <motion.p
+      aria-hidden="true"
+      className="pointer-events-none absolute left-1/2 top-1/2 type-micro uppercase"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: [0.28, 0.62, 0.28] }}
+      transition={{ duration: 1.8, ease: 'easeInOut', repeat: Infinity }}
+      style={{
+        ...TECH_LABEL_STYLE,
+        x: '-50%',
+        y: '-50%',
+        color: 'var(--color-pale)',
+        whiteSpace: 'nowrap',
+      }}
+    >
+      Scroll down
+    </motion.p>
   );
 }
 
@@ -1029,9 +1084,9 @@ function HeroGround({ p }: { p: MotionValue<number> }) {
     <svg className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
       <motion.line
         x1="10%"
-        y1="40%"
+        y1={`${HERO_GROUND_Y}%`}
         x2={x2}
-        y2="40%"
+        y2={`${HERO_GROUND_Y}%`}
         stroke="rgba(252,251,250,0.5)"
         strokeWidth="1"
         style={{ opacity, y: pushY }}
@@ -1704,9 +1759,10 @@ function buildManifestoRig(endX: number): ManifestoRig {
   const path: readonly (readonly [number, number, number])[] = [
     // hero: rolls left→right chasing the ground line, then HOLDS while the
     // rest of the hero content fades around it
-    [0.0, 10, 38.55],
-    [0.07, HERO_DIE_REST_X, 38.55],
-    [touch, HERO_DIE_REST_X, 38.55],
+    [0.0, 10, HERO_DIE_PATH_Y],
+    [HERO_ROLL_START, 10, HERO_DIE_PATH_Y],
+    [0.07, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
+    [touch, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
     // touched — shoved up and out of the text's band, fast and mostly
     // vertical so the sweeping glyphs never run over it
     [leap3, 58, 18],
@@ -1828,6 +1884,7 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
   const prev = useRef<{ x: number; y: number } | null>(null);
   const dist = useRef(0);
   const stairRotBase = useRef<number | null>(null);
+  const finaleDropStartedAt = useRef<number | null>(null);
   const inited = useRef(false);
   const rectCache = useRef<Map<string, Element | null>>(new Map());
   // Offstage during the manifesto: vanishes mid reverse-leap at the end of
@@ -1891,7 +1948,11 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
     if (i < 2) {
       const [wx, wy] = formulaTarget(v, manifestoRig(narrow).path);
       txx = (wx / 100) * vw;
-      tyy = (wy / 100) * vh;
+      const pathY = (wy / 100) * vh;
+      const exactGroundY = (HERO_GROUND_Y / 100) * vh - DIE_SIZE / 2;
+      const baselineCorrection = exactGroundY - (HERO_DIE_PATH_Y / 100) * vh;
+      const release = Math.min(1, Math.max(0, (v - rig.touch) / (rig.leap3 - rig.touch)));
+      tyy = pathY + baselineCorrection * (1 - release);
     } else {
       const head = getRect(i, 'head');
       const items = getRect(i, 'items');
@@ -2175,22 +2236,31 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       } else if (mode === 'rest') {
         // FINALE: it is still sitting at the bottom from the last act. The
         // content rises as one mass from below the frame and SHOVES it up
-        // ahead of itself; it waits at the very top until everything has
-        // seated, then simply lets go — an accelerating drop past the
-        // bottom edge, in the empty strip beside the grid. Never seen again.
+        // ahead of itself. Gravity takes over while the final few frames of
+        // that rise are still settling, so the fall is already underway by
+        // the time the content reaches its seated position. After release,
+        // elapsed time drives the fall — never additional scroll progress.
         const topY = 64 + DIE_SIZE / 2; // just clear of the fixed nav
         const startY = (MULT.corner.cy / 100) * vh;
         const riseT = Math.min(1, Math.max(0, (lp - FINALE.riseS) / (FINALE.riseE - FINALE.riseS)));
         const e = 1 - (1 - riseT) ** 3; // same ease as the content mass
         txx = vw * FINALE.x;
-        if (lp < FINALE.holdEnd) {
+        if (lp < FINALE.autoDropTrigger) {
+          finaleDropStartedAt.current = null;
           const carry = Math.min(1, Math.max(0, (e - FINALE.contact) / (1 - FINALE.contact)));
           tyy = startY + (topY - startY) * carry;
-        } else if (lp < FINALE.dropE) {
-          const d = (lp - FINALE.holdEnd) / (FINALE.dropE - FINALE.holdEnd);
-          tyy = topY + (vh + 80 - topY) * d * d;
         } else {
-          tyy = vh + 80;
+          if (finaleDropStartedAt.current === null) finaleDropStartedAt.current = tms;
+          const triggerRiseT = Math.min(
+            1,
+            Math.max(0, (FINALE.autoDropTrigger - FINALE.riseS) / (FINALE.riseE - FINALE.riseS)),
+          );
+          const triggerEase = 1 - (1 - triggerRiseT) ** 3;
+          const triggerCarry = Math.min(1, Math.max(0, (triggerEase - FINALE.contact) / (1 - FINALE.contact)));
+          const dropStartY = startY + (topY - startY) * triggerCarry;
+          const elapsed = Math.max(0, tms - finaleDropStartedAt.current - FINALE.autoDropDelayMs);
+          const d = Math.min(1, elapsed / FINALE.autoDropDurationMs);
+          tyy = dropStartY + (vh + 80 - dropStartY) * d * d;
         }
       } else if (lp < BEAT.land) {
         txx = rideX;
@@ -2348,15 +2418,20 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         rot.set(next);
         dist.current = (next / 90) * DIE_SIZE;
         hop.set(0);
-        stretch.set(1 + Math.sin(tms / 480) * 0.05);
+        // The opening die must remain perfectly anchored before the line
+        // arrives; even the idle breath used to read as a small lift.
+        stretch.set(scene.id === 'hero' ? 1 : 1 + Math.sin(tms / 480) * 0.05);
       } else {
         const steps = dist.current / DIE_SIZE;
         const f = ((steps % 1) + 1) % 1;
         const eased = f * f * (3 - 2 * f);
         rot.set((Math.floor(steps) + eased) * 90);
         const energy = Math.min(1, speed / 3);
-        hop.set(-Math.sin(f * Math.PI) * DIE_SIZE * 0.32 * energy);
-        stretch.set(1 + Math.sin(f * Math.PI) * 0.1 * energy);
+        // In the first scene the center follows a level rail: rotation gives
+        // the rolling read, but no vertical hop or squash can make it appear
+        // to rise before the ground line enters.
+        hop.set(scene.id === 'hero' ? 0 : -Math.sin(f * Math.PI) * DIE_SIZE * 0.32 * energy);
+        stretch.set(scene.id === 'hero' ? 1 : 1 + Math.sin(f * Math.PI) * 0.1 * energy);
       }
     } else {
       // non-rolling personas: the face settles square; motion is in the body
@@ -2373,7 +2448,9 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         hop.set(-energy * DIE_SIZE * 1.15);
         nextStretch = 1 + energy * 0.4;
       } else {
-        hop.set(-energy * DIE_SIZE * 0.2);
+        // The finale already has its own gravity path. Adding the generic
+        // reaction hop here would briefly pull against that downward motion.
+        hop.set(mode === 'rest' ? 0 : -energy * DIE_SIZE * 0.2);
       }
       // cannon aim: after its act's content rockets off, the fly-exit die
       // tilts toward the next act's landing point like a barrel — and keeps
