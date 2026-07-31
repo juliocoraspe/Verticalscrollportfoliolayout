@@ -394,7 +394,7 @@ export default function App() {
 
   if (view === 'ai-experience') {
     return (
-      <div className="relative min-h-screen w-full bg-pure text-ink" style={{ paddingTop: 48 }}>
+      <div className="relative min-h-screen w-full bg-pure text-ink">
         <Navbar
           enterMotionGarden={enterMotionGarden}
           enterAccessibility={enterAccessibility}
