@@ -642,8 +642,9 @@ const FINALE = {
   riseS: 0.06, // the mass starts rising from below the viewport
   riseE: 0.46, // everything seated — and the die reaches the top
   contact: 0.25, // fraction of the rise-ease at which the mass reaches it
-  holdEnd: 0.58, // it holds at the top while the stage settles…
-  dropE: 0.72, // …then drops, accelerating, out the bottom. Gone.
+  holdEnd: 0.58, // mobile-only: conveyor continuation starts after this scroll beat
+  autoDropDelayMs: 120, // brief contact at the top before gravity takes over
+  autoDropDurationMs: 760, // time-driven drop; no additional scroll required
   // falls in the empty strip RIGHT of the grid (which ends at 92vw) so the
   // drop never crosses a single line of text
   x: FINAL_DROP_X / 100,
@@ -1880,6 +1881,7 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
   const prev = useRef<{ x: number; y: number } | null>(null);
   const dist = useRef(0);
   const stairRotBase = useRef<number | null>(null);
+  const finaleDropStartedAt = useRef<number | null>(null);
   const inited = useRef(false);
   const rectCache = useRef<Map<string, Element | null>>(new Map());
   // Offstage during the manifesto: vanishes mid reverse-leap at the end of
@@ -2231,22 +2233,23 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       } else if (mode === 'rest') {
         // FINALE: it is still sitting at the bottom from the last act. The
         // content rises as one mass from below the frame and SHOVES it up
-        // ahead of itself; it waits at the very top until everything has
-        // seated, then simply lets go — an accelerating drop past the
-        // bottom edge, in the empty strip beside the grid. Never seen again.
+        // ahead of itself. As soon as that mass reaches its seated position,
+        // gravity takes over on elapsed time — the user does not have to
+        // spend any more scroll progress to make the die fall.
         const topY = 64 + DIE_SIZE / 2; // just clear of the fixed nav
         const startY = (MULT.corner.cy / 100) * vh;
         const riseT = Math.min(1, Math.max(0, (lp - FINALE.riseS) / (FINALE.riseE - FINALE.riseS)));
         const e = 1 - (1 - riseT) ** 3; // same ease as the content mass
         txx = vw * FINALE.x;
-        if (lp < FINALE.holdEnd) {
+        if (lp < FINALE.riseE) {
+          finaleDropStartedAt.current = null;
           const carry = Math.min(1, Math.max(0, (e - FINALE.contact) / (1 - FINALE.contact)));
           tyy = startY + (topY - startY) * carry;
-        } else if (lp < FINALE.dropE) {
-          const d = (lp - FINALE.holdEnd) / (FINALE.dropE - FINALE.holdEnd);
-          tyy = topY + (vh + 80 - topY) * d * d;
         } else {
-          tyy = vh + 80;
+          if (finaleDropStartedAt.current === null) finaleDropStartedAt.current = tms;
+          const elapsed = Math.max(0, tms - finaleDropStartedAt.current - FINALE.autoDropDelayMs);
+          const d = Math.min(1, elapsed / FINALE.autoDropDurationMs);
+          tyy = topY + (vh + 80 - topY) * d * d;
         }
       } else if (lp < BEAT.land) {
         txx = rideX;
@@ -2404,15 +2407,20 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         rot.set(next);
         dist.current = (next / 90) * DIE_SIZE;
         hop.set(0);
-        stretch.set(1 + Math.sin(tms / 480) * 0.05);
+        // The opening die must remain perfectly anchored before the line
+        // arrives; even the idle breath used to read as a small lift.
+        stretch.set(scene.id === 'hero' ? 1 : 1 + Math.sin(tms / 480) * 0.05);
       } else {
         const steps = dist.current / DIE_SIZE;
         const f = ((steps % 1) + 1) % 1;
         const eased = f * f * (3 - 2 * f);
         rot.set((Math.floor(steps) + eased) * 90);
         const energy = Math.min(1, speed / 3);
-        hop.set(-Math.sin(f * Math.PI) * DIE_SIZE * 0.32 * energy);
-        stretch.set(1 + Math.sin(f * Math.PI) * 0.1 * energy);
+        // In the first scene the center follows a level rail: rotation gives
+        // the rolling read, but no vertical hop or squash can make it appear
+        // to rise before the ground line enters.
+        hop.set(scene.id === 'hero' ? 0 : -Math.sin(f * Math.PI) * DIE_SIZE * 0.32 * energy);
+        stretch.set(scene.id === 'hero' ? 1 : 1 + Math.sin(f * Math.PI) * 0.1 * energy);
       }
     } else {
       // non-rolling personas: the face settles square; motion is in the body
@@ -2429,7 +2437,9 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
         hop.set(-energy * DIE_SIZE * 1.15);
         nextStretch = 1 + energy * 0.4;
       } else {
-        hop.set(-energy * DIE_SIZE * 0.2);
+        // The finale already has its own gravity path. Adding the generic
+        // reaction hop here would briefly pull against that downward motion.
+        hop.set(mode === 'rest' ? 0 : -energy * DIE_SIZE * 0.2);
       }
       // cannon aim: after its act's content rockets off, the fly-exit die
       // tilts toward the next act's landing point like a barrel — and keeps
