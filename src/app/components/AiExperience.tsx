@@ -411,6 +411,7 @@ const REST_POINT = { cx: 78, cy: 20 }; // where the die settles at the end
 const FINAL_DROP_X = 94; // shared x-position for the tools collapse and finale drop
 const HERO_GROUND_Y = 40; // viewport %, shared by the opening line and die baseline
 const HERO_DIE_PATH_Y = 38.55; // reference path %, corrected to the exact pixel baseline at runtime
+const HERO_ROLL_START = 0.01; // let the ground line arrive before the die begins moving
 const SCROLL_PROMPT_DELAY_MS = 1800;
 const SCROLL_PROMPT_DISMISS_AT = 0.00001;
 
@@ -641,9 +642,10 @@ const MULT = {
 const FINALE = {
   riseS: 0.06, // the mass starts rising from below the viewport
   riseE: 0.46, // everything seated — and the die reaches the top
+  autoDropTrigger: 0.34, // release while the last few visual frames are still settling
   contact: 0.25, // fraction of the rise-ease at which the mass reaches it
   holdEnd: 0.58, // mobile-only: conveyor continuation starts after this scroll beat
-  autoDropDelayMs: 120, // brief contact at the top before gravity takes over
+  autoDropDelayMs: 40, // a tiny contact beat, already before the mass is fully seated
   autoDropDurationMs: 760, // time-driven drop; no additional scroll required
   // falls in the empty strip RIGHT of the grid (which ends at 92vw) so the
   // drop never crosses a single line of text
@@ -1758,6 +1760,7 @@ function buildManifestoRig(endX: number): ManifestoRig {
     // hero: rolls left→right chasing the ground line, then HOLDS while the
     // rest of the hero content fades around it
     [0.0, 10, HERO_DIE_PATH_Y],
+    [HERO_ROLL_START, 10, HERO_DIE_PATH_Y],
     [0.07, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
     [touch, HERO_DIE_REST_X, HERO_DIE_PATH_Y],
     // touched — shoved up and out of the text's band, fast and mostly
@@ -2233,23 +2236,31 @@ function RollingDie({ p }: { p: MotionValue<number> }) {
       } else if (mode === 'rest') {
         // FINALE: it is still sitting at the bottom from the last act. The
         // content rises as one mass from below the frame and SHOVES it up
-        // ahead of itself. As soon as that mass reaches its seated position,
-        // gravity takes over on elapsed time — the user does not have to
-        // spend any more scroll progress to make the die fall.
+        // ahead of itself. Gravity takes over while the final few frames of
+        // that rise are still settling, so the fall is already underway by
+        // the time the content reaches its seated position. After release,
+        // elapsed time drives the fall — never additional scroll progress.
         const topY = 64 + DIE_SIZE / 2; // just clear of the fixed nav
         const startY = (MULT.corner.cy / 100) * vh;
         const riseT = Math.min(1, Math.max(0, (lp - FINALE.riseS) / (FINALE.riseE - FINALE.riseS)));
         const e = 1 - (1 - riseT) ** 3; // same ease as the content mass
         txx = vw * FINALE.x;
-        if (lp < FINALE.riseE) {
+        if (lp < FINALE.autoDropTrigger) {
           finaleDropStartedAt.current = null;
           const carry = Math.min(1, Math.max(0, (e - FINALE.contact) / (1 - FINALE.contact)));
           tyy = startY + (topY - startY) * carry;
         } else {
           if (finaleDropStartedAt.current === null) finaleDropStartedAt.current = tms;
+          const triggerRiseT = Math.min(
+            1,
+            Math.max(0, (FINALE.autoDropTrigger - FINALE.riseS) / (FINALE.riseE - FINALE.riseS)),
+          );
+          const triggerEase = 1 - (1 - triggerRiseT) ** 3;
+          const triggerCarry = Math.min(1, Math.max(0, (triggerEase - FINALE.contact) / (1 - FINALE.contact)));
+          const dropStartY = startY + (topY - startY) * triggerCarry;
           const elapsed = Math.max(0, tms - finaleDropStartedAt.current - FINALE.autoDropDelayMs);
           const d = Math.min(1, elapsed / FINALE.autoDropDurationMs);
-          tyy = topY + (vh + 80 - topY) * d * d;
+          tyy = dropStartY + (vh + 80 - dropStartY) * d * d;
         }
       } else if (lp < BEAT.land) {
         txx = rideX;
