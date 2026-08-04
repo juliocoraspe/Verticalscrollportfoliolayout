@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
     experienceUrl: '/projects/todo-app/experience',
     experienceHelper: 'View the full report',
     experienceThumbnail: undefined,
-    outcomeEmbedUrl: 'https://juliocoraspe.github.io/todo-app-calendar-sync/',
+    outcomeEmbedUrl: 'https://juliocoraspe.github.io/Synco/',
     outcomeEmbedConfig: { width: 430, height: 764, scale: 0.6 },
     outcomeEmbedMode: 'responsive',
     outcomeEmbedCta: undefined,

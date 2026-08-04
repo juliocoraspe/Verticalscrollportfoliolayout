@@ -8,9 +8,10 @@ import {
   AI_COMPANION_SUMMARY,
   AI_COMPANION_TITLE,
   AiCompanionCaseStudyContent,
-  getMiloBlueprintSections,
 } from '../AiCompanionCaseStudy';
-import { getSyncoBlueprintSections, getLumnBlueprintSections } from '../ProjectDetailContent';
+import { getMiloBlueprintSections } from '../MiloCaseStudy';
+import { getSyncoBlueprintSections } from '../SyncoCaseStudy';
+import { getLumnBlueprintSections } from '../LumnCaseStudy';
 import {
   REAL_LIFE_BANNER,
   REAL_LIFE_SUMMARY,
@@ -33,7 +34,7 @@ type CaseStudy = {
   heroImage: string;
   problem: { title: string; description: string };
   process: { title: string; description: string; steps: string[] };
-  exploration: { title: string; description: string; images: string[] };
+  exploration: { title: string; description: string };
   solution: { title: string; description: string; outcomes: string[] };
   prototype: { title: string; embedUrl: string; externalUrl: string };
 };
