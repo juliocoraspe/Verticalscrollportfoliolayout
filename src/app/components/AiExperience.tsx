@@ -171,7 +171,7 @@ const SCENES: readonly Scene[] = [
     flyExit: true,
     hops: 3,
     kicker: 'Plugin I built · 01 of 02',
-    title: 'Figma BEM Layer Name',
+    title: 'Figma BEM Layer Namer',
     body:
       'It renames Figma layers with pure BEM so component structure stays legible and handoff predictable. A deterministic heuristics engine runs first at zero latency; a local LLM bridge refines ambiguous names with semantic context.',
     body2:
@@ -212,9 +212,9 @@ const SCENES: readonly Scene[] = [
     die: 'shoot',
     hops: 3,
     kicker: 'Plugin I built · 02 of 02',
-    title: 'Figma Accessibility Auditor',
+    title: 'Figma A11y Audit',
     body:
-      'It checks six WCAG 2.2 AA criteria right on the Figma canvas — contrast, tap targets, focus visibility — with overlay annotations. A local llama3.2-vision model via Ollama suggests alt text and reviews tab order. No API keys, no per-token costs.',
+      'A11y Audit — the same plugin the Accessibility page walks through — checks six WCAG 2.2 AA criteria right on the Figma canvas: contrast, tap targets, focus visibility, with overlay annotations. A local llama3.2-vision model via Ollama suggests alt text and reviews tab order. No API keys, no per-token costs.',
     tags: ['TypeScript 5.x', 'React 18', 'Ollama', 'llama3.2-vision', 'Figma Plugin API', 'Vitest (28 tests)'],
     items: [
       {
@@ -345,7 +345,7 @@ const SCENES: readonly Scene[] = [
         title: 'Design AI',
         items: [
           ['Figma Make', 'AI component & layout prototyping'],
-          ['Custom Figma Plugins', 'A11y audits + BEM naming, built in-house'],
+          ['Custom Figma Plugins', 'A11y Audit + BEM Layer Namer, built in-house'],
           ['Google Stitch · Recraft', 'UI exploration & vector generation'],
         ],
       },

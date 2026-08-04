@@ -26,10 +26,6 @@ export const CASE_STUDY = {
     title: 'Research Translation & Validation',
     description:
       'Usability testing confirmed that guided flows and clearer product detail layouts supported intuitive navigation and confident decision-making. Visualization features strongly influenced purchase confidence, while areas with higher visual density revealed opportunities to further improve hierarchy and scanability',
-    images: [
-      'https://images.unsplash.com/photo-1605108222700-0d605d9ebafe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBpbnRlcmZhY2V8ZW58MXx8fHwxNzY2NTE2OTU0fDA&ixlib=rb-4.1.0&q=80&w=1080',
-      'https://images.unsplash.com/photo-1694878981955-1d8348e0f1f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1c2VyJTIwaW50ZXJmYWNlJTIwc2NyZWVufGVufDF8fHx8MTc2NjU0Mjc3MHww&ixlib=rb-4.1.0&q=80&w=1080',
-    ],
   },
   solution: {
     title: 'Solution',
@@ -46,6 +42,6 @@ export const CASE_STUDY = {
     embedUrl:
       'https://embed.figma.com/design/j53F6cGj6FfpQISnyeSRMd/STILLEN-by-Julio-Coraspe?node-id=277-5077&embed-host=share',
     externalUrl:
-      'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/Julio-Coraspe-Project-10?node-id=269-4025',
+      'https://www.figma.com/design/j53F6cGj6FfpQISnyeSRMd/STILLEN-by-Julio-Coraspe?node-id=269-4025',
   },
 };

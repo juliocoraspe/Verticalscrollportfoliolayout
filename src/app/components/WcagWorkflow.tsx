@@ -353,8 +353,8 @@ function WorkflowIntro() {
               Accessibility Systems
             </p>
             <p className="type-subhead text-ink">
-              I approach accessibility auditing at two points in the product lifecycle. A15 runs
-              locally in Figma to review design files before development. My web audit workflow
+              I approach accessibility auditing at two points in the product lifecycle. A11y Audit
+              runs locally in Figma to review design files before development. My web audit workflow
               combines several tools to scan and remediate accessibility issues in live sites.
               Together, they form one continuous practice guided by the same WCAG standards.
             </p>
