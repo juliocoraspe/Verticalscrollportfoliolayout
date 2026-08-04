@@ -793,11 +793,16 @@
      Titles and summaries vary in length between studies, so distributing
      the slack — rather than letting it stack at the bottom — is what keeps
      every cover the same height as the panel that slides in behind it.
-     The `gap` acts as the floor if a study ever runs long. */
+
+     `gap: 0` matters: any floor here is added on top of the content, so a
+     study whose title wraps to two lines AND whose summary wraps to three
+     would overflow the shell and the container would grow on open again.
+     The worst case measured across 768–1600px is 584px of content, which
+     leaves room inside --cs-bp-height without needing a floor. */
   @media (min-width: 768px) {
     .case-study-cover {
       min-height: var(--cs-bp-height);
-      gap: 0.75rem;
+      gap: 0;
       justify-content: space-between;
     }
   }
