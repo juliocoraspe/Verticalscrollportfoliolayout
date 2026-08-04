@@ -1,53 +1,19 @@
 import todoBanner from '../../assets/images/Synco2.jpg';
 import asmrBanner from '../../assets/images/lumn_final.png';
 
-type EmbedConfig = {
-  width: number;
-  height: number;
-  scale: number;
-};
-
-type EmbedContentConfig = {
-  width: number;
-  height: number;
-  fit?: 'contain' | 'cover' | 'cover-width' | 'frame';
-  offsetX?: number;
-  offsetY?: number;
-};
-
 export type Project = {
   id: string;
   title: string;
   intent: string;
   role: string;
   imageUrl: string;
-  imageFit?: 'cover' | 'contain';
-  imagePosition?: 'center' | 'top' | 'bottom';
   tags: string[];
   context: string;
   problem: string;
   process: string[];
   solution: string;
   outcome: string[];
-  experienceUrl?: string;
-  experienceHelper?: string;
-  experienceThumbnail?: string;
-  introEmbedUrl?: string;
-  introEmbedLabel?: string;
-  introEmbedConfig?: EmbedConfig;
-  introEmbedMode?: 'scaled' | 'responsive';
-  outcomeEmbedUrl?: string;
-  outcomeEmbedConfig?: EmbedConfig;
-  outcomeEmbedMode?: 'scaled' | 'responsive';
-  outcomeEmbedContentConfig?: EmbedContentConfig;
-  outcomeEmbedCta?: string;
-  outcomeEmbedArrow?: 'up' | 'down';
-  outcomeEmbedArrowPlacement?: 'above' | 'below';
-  prototypeSummary?: string;
   prototypeUrl?: string;
-  prototypeLabel?: string;
-  demoLabel?: string;
-  demoUrl?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -75,20 +41,8 @@ export const PROJECTS: Project[] = [
       'Calendar sync was consistently valued as a trust and “backup” mechanism—supporting more detailed event controls (like notification personalization) inside the user’s native calendar.',
       'Code-based prototyping helped validate the end-to-end experience of creating a task and saving it to the device calendar, reinforcing a unified planning workflow across the app and the user’s existing system.',
     ],
-    experienceUrl: '/projects/todo-app/experience',
-    experienceHelper: 'View the full report',
-    experienceThumbnail: undefined,
-    outcomeEmbedUrl: 'https://juliocoraspe.github.io/Synco/',
-    outcomeEmbedConfig: { width: 430, height: 764, scale: 0.6 },
-    outcomeEmbedMode: 'responsive',
-    outcomeEmbedCta: undefined,
-    outcomeEmbedArrow: 'up' as const,
-    outcomeEmbedArrowPlacement: 'above' as const,
-    prototypeLabel: 'Prototype embed placeholder — add the live or Figma link.',
     prototypeUrl:
       'https://embed.figma.com/slides/LvTMFtH8K3zEHuvjDHNDUa/To-Do-App-%E2%80%94-Interaction---System-Validation?node-id=1-106&embed-host=share',
-    demoLabel: 'Research Findings & Design Implications (Full Report)',
-    demoUrl: undefined,
   },
   {
     id: 'asmr-app',
@@ -97,7 +51,6 @@ export const PROJECTS: Project[] = [
       'Interface exploration of a multisensory ASMR experience where AI-generated sound drives reactive visual systems and haptic feedback, prototyped through JavaScript animation experiments.',
     role: 'Visual Design, Interaction',
     imageUrl: asmrBanner,
-    imageFit: 'contain' as const,
     tags: ['UI Craft', 'Motion', 'Prototyping'],
     context:
       'This project originated from a brand-led exploration focused on calm, emotional neutrality, and sensory balance. Before defining screens or interactions, visual language, imagery, and tone were established to ensure the interface would support relaxation rather than influence mood through visual stimulation. The app was conceived as an adaptive environment—one that responds to sound and user input without imposing visual noise—transforming listening into a focused, multisensory ritual.',
@@ -117,15 +70,6 @@ export const PROJECTS: Project[] = [
       'Built sound-reactive, generative animation studies to visualize how playback-screen visuals respond dynamically to audio input',
       'Validated how motion, sound, and subtle interaction could coexist without overwhelming the listening experience, reinforcing the app as a calm, multisensory system rather than a purely audio tool',
     ],
-    experienceUrl: '/projects/asmr-app/experience',
-    experienceHelper: 'View the full report',
-    experienceThumbnail: undefined,
-    outcomeEmbedUrl: 'https://juliocoraspe.github.io/birdsong-viz/',
-    outcomeEmbedConfig: { width: 640, height: 1138, scale: 0.6 },
-    outcomeEmbedContentConfig: { width: 526, height: 1138, fit: 'frame' as const, offsetX: 8 },
-    outcomeEmbedMode: 'responsive',
-    outcomeEmbedCta: undefined,
-    prototypeLabel: 'Prototype embed placeholder — add the audio demo or motion study.',
     prototypeUrl:
       'https://embed.figma.com/design/fYwhBS4WdU21aEjBQKEGVl/Julio-Coraspe-Lumn?node-id=0-1&embed-host=share',
   },

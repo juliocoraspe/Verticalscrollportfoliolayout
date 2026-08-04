@@ -12,10 +12,13 @@ type CaseStudyBlueprintProps = {
   isMobile: boolean;
   isOpen: boolean;
   cover: ReactNode;
-  classicMobileContent: ReactNode;
   sections: BlueprintSection[];
   onClose: () => void;
   ariaTitle: string;
+  /** Id of the panel the cover's toggle button points at with
+   *  `aria-controls`. Rendered on the layer that slides in, so the
+   *  reference resolves to a real element. */
+  contentId: string;
 };
 
 const SLIDE_DURATION = 0.42;
@@ -25,14 +28,12 @@ export function CaseStudyBlueprint({
   isMobile,
   isOpen,
   cover,
-  classicMobileContent: _classicMobileContent,
   sections,
   onClose,
   ariaTitle,
+  contentId,
 }: CaseStudyBlueprintProps) {
-  // Mobile now uses the same slide-in blueprint pattern as desktop. The
-  // `classicMobileContent` prop is kept on the type for backwards
-  // compatibility with callers but is no longer rendered.
+  // Mobile uses the same slide-in blueprint pattern as desktop.
   return (
     <div className="cs-bp-stage" aria-live="polite">
       <motion.div
@@ -50,6 +51,7 @@ export function CaseStudyBlueprint({
       </motion.div>
 
       <motion.div
+        id={contentId}
         className="cs-bp-blueprint-layer"
         initial={false}
         animate={{ x: isOpen ? '0%' : '110%', opacity: isOpen ? 1 : 0 }}

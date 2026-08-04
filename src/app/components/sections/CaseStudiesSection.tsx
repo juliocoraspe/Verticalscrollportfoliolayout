@@ -1,13 +1,11 @@
 import { RefObject } from 'react';
 import { ScrollSection } from '../ScrollSection';
 import { CaseStudyBlueprint } from '../CaseStudyBlueprint';
-import { CaseStudyContent, getStillenBlueprintSections } from '../CaseStudy';
-import { ProjectDetailContent } from '../ProjectDetailContent';
+import { getStillenBlueprintSections } from '../CaseStudy';
 import {
   AI_COMPANION_BANNER,
   AI_COMPANION_SUMMARY,
   AI_COMPANION_TITLE,
-  AiCompanionCaseStudyContent,
 } from '../AiCompanionCaseStudy';
 import { getMiloBlueprintSections } from '../MiloCaseStudy';
 import { getSyncoBlueprintSections } from '../SyncoCaseStudy';
@@ -115,6 +113,7 @@ export function CaseStudiesSection({
               isOpen={isRealLifeOpen}
               onClose={handleRealLifeCollapse}
               ariaTitle={REAL_LIFE_TITLE}
+              contentId="case-study-reallife-content"
               sections={getRealLifeBlueprintSections()}
               cover={
                 <button
@@ -150,7 +149,6 @@ export function CaseStudiesSection({
                   </div>
                 </button>
               }
-              classicMobileContent={null}
             />
           </article>
 
@@ -165,6 +163,7 @@ export function CaseStudiesSection({
               isOpen={isDirectPassOpen}
               onClose={handleDirectPassCollapse}
               ariaTitle={DIRECTPASS_TITLE}
+              contentId="case-study-directpass-content"
               sections={getDirectPassBlueprintSections()}
               cover={
                 <button
@@ -200,7 +199,6 @@ export function CaseStudiesSection({
                   </div>
                 </button>
               }
-              classicMobileContent={null}
             />
           </article>
 
@@ -215,6 +213,7 @@ export function CaseStudiesSection({
               isOpen={isStillenOpen}
               onClose={handleStillenCollapse}
               ariaTitle={caseStudy.title}
+              contentId="case-study-stillen-content"
               sections={getStillenBlueprintSections({
                 title: caseStudy.title,
                 role: caseStudy.role,
@@ -258,44 +257,6 @@ export function CaseStudiesSection({
                   </div>
                 </button>
               }
-              classicMobileContent={
-                <div
-                  id="case-study-stillen-content"
-                  role="region"
-                  aria-labelledby="case-study-stillen-toggle"
-                  className="case-study-content mt-16"
-                >
-                  <CaseStudyContent
-                    title={caseStudy.title}
-                    role={caseStudy.role}
-                    timeline={caseStudy.timeline}
-                    problem={caseStudy.problem}
-                    process={caseStudy.process}
-                    exploration={caseStudy.exploration}
-                    solution={caseStudy.solution}
-                    prototype={caseStudy.prototype}
-                    disableAnimation={isMobile}
-                  />
-                  <div className="mt-6 flex justify-center">
-                    <button
-                      type="button"
-                      className="case-study-collapse-button"
-                      aria-label="Collapse case study"
-                      onClick={handleStillenCollapse}
-                    >
-                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path
-                          d="M3 10H16M11 5L16 10L11 15"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              }
             />
           </article>
 
@@ -310,6 +271,7 @@ export function CaseStudiesSection({
               isOpen={isMiloOpen}
               onClose={handleMiloCollapse}
               ariaTitle={AI_COMPANION_TITLE}
+              contentId="case-study-milo-content"
               sections={getMiloBlueprintSections()}
               cover={
                 <button
@@ -345,34 +307,6 @@ export function CaseStudiesSection({
                   </div>
                 </button>
               }
-              classicMobileContent={
-                <div
-                  id="case-study-milo-content"
-                  role="region"
-                  aria-labelledby="case-study-milo-toggle"
-                  className="case-study-content mt-16"
-                >
-                  <AiCompanionCaseStudyContent disableAnimation={isMobile} />
-                  <div className="mt-6 flex justify-center">
-                    <button
-                      type="button"
-                      className="case-study-collapse-button"
-                      aria-label="Collapse case study"
-                      onClick={handleMiloCollapse}
-                    >
-                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path
-                          d="M3 10H16M11 5L16 10L11 15"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              }
             />
           </article>
 
@@ -387,6 +321,7 @@ export function CaseStudiesSection({
               isOpen={isTodoOpen}
               onClose={handleTodoCollapse}
               ariaTitle={todoProject.title}
+              contentId="case-study-todo-content"
               sections={getSyncoBlueprintSections(todoProject)}
               cover={
                 <button
@@ -422,34 +357,6 @@ export function CaseStudiesSection({
                   </div>
                 </button>
               }
-              classicMobileContent={
-                <div
-                  id="case-study-todo-content"
-                  role="region"
-                  aria-labelledby="case-study-todo-toggle"
-                  className="case-study-content mt-16"
-                >
-                  <ProjectDetailContent project={todoProject} />
-                  <div className="mt-6 flex justify-center">
-                    <button
-                      type="button"
-                      className="case-study-collapse-button"
-                      aria-label="Collapse case study"
-                      onClick={handleTodoCollapse}
-                    >
-                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path
-                          d="M3 10H16M11 5L16 10L11 15"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              }
             />
           </article>
 
@@ -464,6 +371,7 @@ export function CaseStudiesSection({
               isOpen={isAsmrOpen}
               onClose={handleAsmrCollapse}
               ariaTitle={asmrProject.title}
+              contentId="case-study-asmr-content"
               sections={getLumnBlueprintSections(asmrProject)}
               cover={
                 <button
@@ -498,34 +406,6 @@ export function CaseStudiesSection({
                     <p className="type-subhead text-dark">{asmrProject.intent}</p>
                   </div>
                 </button>
-              }
-              classicMobileContent={
-                <div
-                  id="case-study-asmr-content"
-                  role="region"
-                  aria-labelledby="case-study-asmr-toggle"
-                  className="case-study-content mt-16"
-                >
-                  <ProjectDetailContent project={asmrProject} />
-                  <div className="mt-6 flex justify-center">
-                    <button
-                      type="button"
-                      className="case-study-collapse-button"
-                      aria-label="Collapse case study"
-                      onClick={handleAsmrCollapse}
-                    >
-                      <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                        <path
-                          d="M3 10H16M11 5L16 10L11 15"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
               }
             />
           </article>
