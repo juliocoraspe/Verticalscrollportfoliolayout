@@ -124,7 +124,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-reallife-content"
                   onClick={handleRealLifeToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{REAL_LIFE_TITLE}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -174,7 +174,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-directpass-content"
                   onClick={handleDirectPassToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{DIRECTPASS_TITLE}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -233,7 +233,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-stillen-content"
                   onClick={handleStillenToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{caseStudy.title}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -319,7 +319,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-milo-content"
                   onClick={handleMiloToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title">{AI_COMPANION_TITLE}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -396,7 +396,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-todo-content"
                   onClick={handleTodoToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{todoProject.title}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -473,7 +473,7 @@ export function CaseStudiesSection({
                   aria-controls="case-study-asmr-content"
                   onClick={handleAsmrToggle}
                 >
-                  <div className="space-y-6">
+                  <div className="case-study-cover">
                     <div className="case-study-title-row">
                       <h3 className="type-display-s text-ink case-study-title case-study-title-wrap">{asmrProject.title}</h3>
                       <svg className="case-study-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true">

@@ -779,6 +779,29 @@
     cursor: pointer;
   }
 
+  /* The cover stacks title → image → summary. It replaces a Tailwind
+     `space-y-6` so that on desktop the gaps can become elastic (see the
+     min-width: 768px rule further down). */
+  .case-study-cover {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Desktop: the cover is pinned to the blueprint shell's height, and the
+     slack left by the fixed-height banner is absorbed by the two gaps.
+     Titles and summaries vary in length between studies, so distributing
+     the slack — rather than letting it stack at the bottom — is what keeps
+     every cover the same height as the panel that slides in behind it.
+     The `gap` acts as the floor if a study ever runs long. */
+  @media (min-width: 768px) {
+    .case-study-cover {
+      min-height: var(--cs-bp-height);
+      gap: 0.75rem;
+      justify-content: space-between;
+    }
+  }
+
   .case-study-title {
     text-wrap: balance;
   }
@@ -993,6 +1016,11 @@
 
   /* ── Case Study Blueprint (desktop slide-in two-panel view) ─────── */
   .cs-bp-stage {
+    /* Single source of truth for the card's desktop height. The cover and
+       the blueprint shell both read it, so opening a card slides the panels
+       across without ever resizing the container. */
+    --cs-bp-height: 600px;
+
     position: relative;
     overflow: hidden;
     overflow-anchor: none;
@@ -1025,7 +1053,7 @@
 
     position: relative;
     width: 100%;
-    height: 600px;
+    height: var(--cs-bp-height);
     padding: 36px 32px;
     background: var(--bp-bg);
     color: var(--bp-text);
@@ -5659,7 +5687,7 @@
 
   /* ── Accessibility workflow scrollytelling — mobile (≤639px) ────── */
   /* At ≤639px each scene renders a dedicated single-column mobile
-     layout in React (see WcagWorkflow / A15FigmaPluginWorkflow), authored
+     layout in React (see WcagWorkflow / A11yFigmaPluginWorkflow), authored
      at full accessible font sizes. No global transform:scale here — that
      was the old approach and it shrank the type to ~4px. Instead each
      scene is constrained to the SAFE BAND between the top HUD and the
