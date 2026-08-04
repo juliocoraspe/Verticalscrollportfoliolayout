@@ -416,6 +416,21 @@
 }
 
 @layer utilities {
+  /* Artifact triggers used to be anchors and are now buttons (they open a
+     modal instead of a tab). Reset the UA button defaults here, at the top
+     of the layer, so the existing artifact styles further down still win. */
+  .doc-modal-trigger {
+    appearance: none;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    cursor: pointer;
+  }
+
   .type-display-xl {
     font-family: var(--font-serif);
     font-size: var(--type-display-xl-size);
@@ -2398,7 +2413,8 @@
     line-height: 1.55;
   }
 
-  .rl-research-analysis-card__copy > a {
+  .rl-research-analysis-card__copy > a,
+  .rl-research-analysis-card__copy > button {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -2413,7 +2429,9 @@
   }
 
   .rl-research-analysis-card__copy > a:hover,
-  .rl-research-analysis-card__copy > a:focus-visible {
+  .rl-research-analysis-card__copy > a:focus-visible,
+  .rl-research-analysis-card__copy > button:hover,
+  .rl-research-analysis-card__copy > button:focus-visible {
     color: var(--bp-accent);
   }
 
@@ -3192,7 +3210,8 @@
     text-transform: uppercase;
   }
 
-  .dp-research-artifact > a {
+  .dp-research-artifact > a,
+  .dp-research-artifact > button {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
@@ -3207,7 +3226,9 @@
   }
 
   .dp-research-artifact > a:hover,
-  .dp-research-artifact > a:focus-visible {
+  .dp-research-artifact > a:focus-visible,
+  .dp-research-artifact > button:hover,
+  .dp-research-artifact > button:focus-visible {
     color: var(--bp-accent);
   }
 
@@ -5733,6 +5754,223 @@
     }
     .wkf-side-annotation {
       display: none;
+    }
+  }
+
+  /* ── Document modal (static case study artifacts) ───────────────── */
+  /* Personas, journey maps, flows and product maps used to open in a new
+     tab, which threw the reader out of the case study they were reading.
+     They now open in place. Rendered through a portal because
+     `.cs-bp-stage` clips its overflow and would cut the dialog off. */
+  .doc-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    background: rgba(17, 17, 17, 0.72);
+    backdrop-filter: blur(2px);
+    animation: doc-modal-fade 180ms ease both;
+  }
+
+  .doc-modal {
+    position: fixed;
+    z-index: 3001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    width: min(1180px, 94vw);
+    height: min(920px, 92vh);
+    background: var(--color-base);
+    color: var(--color-ink);
+    border: 1px solid var(--color-pale);
+    border-radius: 2px;
+    box-shadow: 0 24px 64px rgba(17, 17, 17, 0.24);
+    animation: doc-modal-rise 200ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    font-feature-settings: 'tnum';
+  }
+
+  .doc-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--color-pale);
+    flex-shrink: 0;
+  }
+
+  .doc-modal-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .doc-modal-title {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .doc-modal-meta {
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-dark);
+    flex-shrink: 0;
+  }
+
+  .doc-modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .doc-modal-zoom {
+    background: none;
+    border: 1px solid var(--color-pale);
+    border-radius: 2px;
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-accent);
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+    white-space: nowrap;
+  }
+
+  .doc-modal-zoom:hover,
+  .doc-modal-zoom:focus-visible {
+    background: var(--color-mist);
+    color: var(--color-ink);
+  }
+
+  .doc-modal-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: 1px solid var(--color-pale);
+    border-radius: 2px;
+    color: var(--color-dark);
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+  }
+
+  .doc-modal-close:hover,
+  .doc-modal-close:focus-visible {
+    background: var(--color-mist);
+    color: var(--color-ink);
+  }
+
+  .doc-modal-close svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .doc-modal-body {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: var(--color-mist);
+  }
+
+  /* Fitted: the whole artifact is visible. */
+  .doc-modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  /* Actual size: render at natural pixels and let the body scroll, so the
+     dense diagrams stay readable rather than being downscaled. */
+  .doc-modal-body.is-actual-size {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .doc-modal-body.is-actual-size .doc-modal-image {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+  }
+
+  .doc-modal-pdf {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--color-pure);
+  }
+
+  @keyframes doc-modal-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes doc-modal-rise {
+    from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .doc-modal-overlay,
+    .doc-modal {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .doc-modal {
+      width: 100vw;
+      height: 100svh;
+      max-height: none;
+      top: 0;
+      left: 0;
+      transform: none;
+      border: 0;
+      border-radius: 0;
+      animation: doc-modal-fade 180ms ease both;
+    }
+
+    .doc-modal-header {
+      padding: 12px;
+      gap: 10px;
+    }
+
+    .doc-modal-title {
+      letter-spacing: 0.12em;
+    }
+
+    /* The title alone can hold the row; the page count is the first thing
+       to drop when space is tight. */
+    .doc-modal-meta {
+      display: none;
+    }
+
+    .doc-modal-body {
+      padding: 10px;
     }
   }
 }

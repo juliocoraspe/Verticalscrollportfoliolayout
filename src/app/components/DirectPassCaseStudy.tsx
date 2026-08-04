@@ -1,4 +1,5 @@
 import { FigmaEmbed } from './embeds/FigmaEmbed';
+import { DocumentModal } from './DocumentModal';
 import type { BlueprintSection } from './CaseStudyBlueprint';
 import directPassBanner from '../../assets/images/DirectPass_banner.jpg';
 import directPassJourneyMap from '../../assets/images/DirectPass_journeymap.jpg';
@@ -858,10 +859,15 @@ export function getDirectPassBlueprintSections(): BlueprintSection[] {
               Connect fragmented information, cost, sequencing, tracking, and timely guidance in one
               verified experience.
             </p>
-            <a href={directPassAffinityDiagram} target="_blank" rel="noopener noreferrer">
+            <DocumentModal
+              src={directPassAffinityDiagram}
+              kind="pdf"
+              title="Interview affinity diagram"
+              meta="9 pages"
+            >
               Open affinity diagram · 9 pages
               <span aria-hidden="true">↗</span>
-            </a>
+            </DocumentModal>
           </article>
 
           <section className="dp-evidence-framework" aria-labelledby="directpass-evidence-framework-title">
@@ -939,15 +945,15 @@ export function getDirectPassBlueprintSections(): BlueprintSection[] {
                   alt="User persona for Emmanuela A., a Ph.D. applicant age 25 in Lagos, showing her needs, frustrations, trusted sources, feelings, and current progress in the research stage"
                 />
               </div>
-              <a
+              <DocumentModal
                 className="cs-bp-media-link"
-                href={directPassUserPersona}
-                target="_blank"
-                rel="noopener noreferrer"
+                src={directPassUserPersona}
+                kind="image"
+                title="User persona — Emmanuela A."
               >
                 <span>View full user persona</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
 
@@ -976,15 +982,15 @@ export function getDirectPassBlueprintSections(): BlueprintSection[] {
                   alt="User journey map for Emmanuela across awareness, research, planning, applying, and visa next steps, with actions, thoughts, emotions, pain points, and product opportunities"
                 />
               </div>
-              <a
+              <DocumentModal
                 className="cs-bp-media-link"
-                href={directPassJourneyMap}
-                target="_blank"
-                rel="noopener noreferrer"
+                src={directPassJourneyMap}
+                kind="image"
+                title="User journey map"
               >
                 <span>View complete user journey</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
         </>
@@ -1028,16 +1034,15 @@ export function getDirectPassBlueprintSections(): BlueprintSection[] {
                   style={{ objectFit: 'contain' }}
                 />
               </div>
-              <a
+              <DocumentModal
                 className="cs-bp-media-link"
-                href={directPassNewUserFlow}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open the complete flow for new users in full size"
+                src={directPassNewUserFlow}
+                kind="image"
+                title="User flow — new user"
               >
                 <span>View complete flow for new users</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
 
@@ -1070,16 +1075,15 @@ export function getDirectPassBlueprintSections(): BlueprintSection[] {
                   style={{ objectFit: 'contain' }}
                 />
               </div>
-              <a
+              <DocumentModal
                 className="cs-bp-media-link"
-                href={directPassReturningUserFlow}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open the complete flow for returning users in full size"
+                src={directPassReturningUserFlow}
+                kind="image"
+                title="User flow — returning user"
               >
                 <span>View complete flow for returning users</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
         </>

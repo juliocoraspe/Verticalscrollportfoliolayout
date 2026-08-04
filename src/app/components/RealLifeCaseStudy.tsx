@@ -1,4 +1,5 @@
 import { FigmaEmbed } from './embeds/FigmaEmbed';
+import { DocumentModal } from './DocumentModal';
 import type { BlueprintSection } from './CaseStudyBlueprint';
 import realLifeBanner from '../../assets/images/RealLife_banner.jpg';
 import realLifeFeatureDefinition from '../../assets/images/RealLife_feature-definition-redacted.png';
@@ -632,12 +633,13 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
             <ParticipationEvidenceChart />
 
             <article className="rl-research-analysis-card">
-              <a
+              <DocumentModal
                 className="rl-research-analysis-card__preview"
-                href={realLifeResearchAnalysis}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Open the complete redacted research analysis"
+                src={realLifeResearchAnalysis}
+                kind="pdf"
+                title="Research analysis (redacted)"
+                meta="1 extended page"
+                triggerLabel="Open the complete redacted research analysis"
               >
                 <img
                   src={realLifeResearchAnalysisPreview}
@@ -645,7 +647,7 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
                   loading="lazy"
                   decoding="async"
                 />
-              </a>
+              </DocumentModal>
               <div className="rl-research-analysis-card__copy">
                 <div className="rl-research-analysis-card__meta">
                   <span>Market and audience research</span>
@@ -657,10 +659,15 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
                   audience composition, MAU estimates, and annual download trend. Company references are
                   blurred throughout the public version.
                 </p>
-                <a href={realLifeResearchAnalysis} target="_blank" rel="noopener noreferrer">
+                <DocumentModal
+                  src={realLifeResearchAnalysis}
+                  kind="pdf"
+                  title="Research analysis (redacted)"
+                  meta="1 extended page"
+                >
                   Open redacted analysis
                   <span aria-hidden="true">↗</span>
-                </a>
+                </DocumentModal>
               </div>
             </article>
           </section>
@@ -830,16 +837,15 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
                 decoding="async"
               />
             </div>
-            <a
+            <DocumentModal
               className="cs-bp-media-link"
-              href={realLifeFeatureDefinition}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open the complete Real-Life Challenges feature definition board"
+              src={realLifeFeatureDefinition}
+              kind="image"
+              title="Feature definition board"
             >
               <span>View complete feature definition board</span>
               <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-            </a>
+            </DocumentModal>
           </div>
         </div>
       ),
@@ -888,9 +894,15 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
           <div className="rl-validation-evidence" aria-label="Focus group planning and recruitment evidence">
             {VALIDATION_EVIDENCE.map((item) => (
               <figure className={item.wide ? 'is-wide' : undefined} key={item.title}>
-                <a href={item.image} target="_blank" rel="noopener noreferrer" aria-label={`Open ${item.title} screenshot`}>
+                <DocumentModal
+                  src={item.image}
+                  kind="image"
+                  title={item.title}
+                  alt={item.alt}
+                  triggerLabel={`Open ${item.title} screenshot`}
+                >
                   <img src={item.image} alt={item.alt} loading="lazy" decoding="async" />
-                </a>
+                </DocumentModal>
                 <figcaption>
                   <span>{item.number}</span>
                   <strong>{item.title}</strong>

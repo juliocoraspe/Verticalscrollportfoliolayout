@@ -1,5 +1,6 @@
 import type { BlueprintSection } from './CaseStudyBlueprint';
 import { FigmaEmbed } from './embeds/FigmaEmbed';
+import { DocumentModal } from './DocumentModal';
 import testingImage from '../../assets/images/Testing.png';
 import stillenMobile from '../../assets/images/Stillen_mobile.jpg';
 import stillenPersona from '../../assets/images/Stillen_persona.png';
@@ -275,10 +276,15 @@ export function getStillenBlueprintSections({
                   decoding="async"
                 />
               </div>
-              <a className="cs-bp-media-link" href={stillenPersona} target="_blank" rel="noopener noreferrer">
+              <DocumentModal
+                className="cs-bp-media-link"
+                src={stillenPersona}
+                kind="image"
+                title="User persona — Bryce Tucker"
+              >
                 <span>View full user persona</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
 
@@ -310,10 +316,15 @@ export function getStillenBlueprintSections({
                   decoding="async"
                 />
               </div>
-              <a className="cs-bp-media-link" href={stillenJourneyMap} target="_blank" rel="noopener noreferrer">
+              <DocumentModal
+                className="cs-bp-media-link"
+                src={stillenJourneyMap}
+                kind="image"
+                title="User journey map"
+              >
                 <span>View complete user journey</span>
                 <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-              </a>
+              </DocumentModal>
             </div>
           </section>
         </>
@@ -365,10 +376,15 @@ export function getStillenBlueprintSections({
                 decoding="async"
               />
             </div>
-            <a className="cs-bp-media-link" href={stillenUserFlow} target="_blank" rel="noopener noreferrer">
+            <DocumentModal
+              className="cs-bp-media-link"
+              src={stillenUserFlow}
+              kind="image"
+              title="User flow — purchase a furniture item"
+            >
               <span>View complete user flow</span>
               <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-            </a>
+            </DocumentModal>
           </div>
         </>
       ),
@@ -435,10 +451,15 @@ export function getStillenBlueprintSections({
                 decoding="async"
               />
             </div>
-            <a className="cs-bp-media-link" href={stillenProductMap} target="_blank" rel="noopener noreferrer">
+            <DocumentModal
+              className="cs-bp-media-link"
+              src={stillenProductMap}
+              kind="image"
+              title="Product map — information architecture"
+            >
               <span>View complete product map</span>
               <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
-            </a>
+            </DocumentModal>
           </div>
         </>
       ),
