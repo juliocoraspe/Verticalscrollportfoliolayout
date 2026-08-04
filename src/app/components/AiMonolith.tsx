@@ -56,7 +56,7 @@ const ACTS: Act[] = [
   },
   {
     n: '01',
-    title: 'BEM Layer Name.',
+    title: 'BEM Layer Namer.',
     sub: 'Deterministic heuristics, refined by local AI.',
     face: 'bem',
     titleSize: 'clamp(30px, 4.4vw, 60px)',
@@ -262,7 +262,7 @@ function ScreenshotSlot({ label, children }: { label: string; children?: ReactNo
 function BemFaceContent() {
   return (
     <>
-      <FaceHeader kicker="Plugin · 01" title="BEM Layer Name" />
+      <FaceHeader kicker="Plugin · 01" title="BEM Layer Namer" />
       <ScreenshotSlot label="Plugin UI · screenshot">
         <div className="absolute inset-x-3 bottom-3 space-y-2">
           {['card__media', 'card__title', 'card__cta'].map((name) => (

@@ -22,7 +22,7 @@ const TECH_LABEL_STYLE: CSSProperties = {
   fontFeatureSettings: '"tnum"',
 };
 
-const A15_ACT_TITLES = [
+const A11Y_ACT_TITLES = [
   '01 — Design File',
   '02 — Design Scan',
   '03 — Design Findings',
@@ -37,19 +37,19 @@ type SceneProps = {
   local: MotionValue<number>;
 };
 
-export function A15FigmaPluginWorkflow() {
+export function A11yFigmaPluginWorkflow() {
   const shouldReduceMotion = useReducedMotion();
   const viewportWidth = useViewportWidth();
   const isMobile = viewportWidth <= MOBILE_MAX_WIDTH;
 
   // prefers-reduced-motion: fully static stacked fallback (no scroll motion).
-  if (shouldReduceMotion) return <A15MobileWorkflow />;
+  if (shouldReduceMotion) return <A11yMobileWorkflow />;
   // Mobile: same scroll-driven scene system, but each scene is re-authored
   // for a single narrow column at full, accessible font sizes (no CSS scale).
-  return <A15ScrollWorkflow mobile={isMobile} />;
+  return <A11yScrollWorkflow mobile={isMobile} />;
 }
 
-function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
+function A11yScrollWorkflow({ mobile }: { mobile: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -87,13 +87,13 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
 
   return (
     <section
-      aria-label="A15 Figma accessibility plugin workflow"
+      aria-label="A11y Audit Figma accessibility plugin workflow"
       style={{
         backgroundColor: 'var(--color-base)',
         borderBottom: '1px solid var(--color-pale)',
       }}
     >
-      <A15Intro />
+      <A11yIntro />
 
       <div
         ref={containerRef}
@@ -101,30 +101,30 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
         style={{ height: mobile ? '480vh' : '560vh' }}
       >
         <div className="sticky top-0 h-screen overflow-hidden wkf-sticky" style={{ backgroundColor: 'var(--color-base)' }}>
-          {!mobile && <div className="wkf-chrome"><A15BlueprintGrid /></div>}
-          <A15Hud progress={p} progressWidth={progressWidth} mobile={mobile} />
-          {!mobile && <div className="wkf-chrome"><A15CornerMarks /></div>}
+          {!mobile && <div className="wkf-chrome"><A11yBlueprintGrid /></div>}
+          <A11yHud progress={p} progressWidth={progressWidth} mobile={mobile} />
+          {!mobile && <div className="wkf-chrome"><A11yCornerMarks /></div>}
 
           <div className="relative flex h-full w-full items-center justify-center wkf-stage">
             {mobile ? (
               <>
-                <A15Scene1Mobile opacity={scene1} local={s1Local} />
-                <A15Scene2Mobile opacity={scene2} local={s2Local} />
-                <A15Scene3Mobile opacity={scene3} local={s3Local} />
-                <A15Scene4Mobile opacity={scene4} local={s4Local} />
-                <A15Scene5Mobile opacity={scene5} local={s5Local} />
-                <A15Scene6Mobile opacity={scene6} local={s6Local} />
-                <A15Scene7Mobile opacity={scene7} local={s7Local} />
+                <A11yScene1Mobile opacity={scene1} local={s1Local} />
+                <A11yScene2Mobile opacity={scene2} local={s2Local} />
+                <A11yScene3Mobile opacity={scene3} local={s3Local} />
+                <A11yScene4Mobile opacity={scene4} local={s4Local} />
+                <A11yScene5Mobile opacity={scene5} local={s5Local} />
+                <A11yScene6Mobile opacity={scene6} local={s6Local} />
+                <A11yScene7Mobile opacity={scene7} local={s7Local} />
               </>
             ) : (
               <>
-                <A15Scene1 opacity={scene1} local={s1Local} />
-                <A15Scene2 opacity={scene2} local={s2Local} />
-                <A15Scene3 opacity={scene3} local={s3Local} />
-                <A15Scene4 opacity={scene4} local={s4Local} />
-                <A15Scene5 opacity={scene5} local={s5Local} />
-                <A15Scene6 opacity={scene6} local={s6Local} />
-                <A15Scene7 opacity={scene7} local={s7Local} />
+                <A11yScene1 opacity={scene1} local={s1Local} />
+                <A11yScene2 opacity={scene2} local={s2Local} />
+                <A11yScene3 opacity={scene3} local={s3Local} />
+                <A11yScene4 opacity={scene4} local={s4Local} />
+                <A11yScene5 opacity={scene5} local={s5Local} />
+                <A11yScene6 opacity={scene6} local={s6Local} />
+                <A11yScene7 opacity={scene7} local={s7Local} />
               </>
             )}
           </div>
@@ -137,7 +137,7 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
               {!mobile && (
                 <div className="wkf-bottom-meta">
                   <div style={{ opacity: 0.6 }}>DWG · 02</div>
-                  <div style={{ color: 'var(--color-dark)' }}>A15-FIGMA-AUDIT</div>
+                  <div style={{ color: 'var(--color-dark)' }}>A11Y-FIGMA-AUDIT</div>
                 </div>
               )}
               {!mobile && (
@@ -146,7 +146,7 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
                   <div style={{ color: 'var(--color-dark)' }}>PRE-LAUNCH</div>
                 </div>
               )}
-              <A15ProgressNumber progress={p} />
+              <A11yProgressNumber progress={p} />
             </div>
           </div>
         </div>
@@ -155,7 +155,7 @@ function A15ScrollWorkflow({ mobile }: { mobile: boolean }) {
   );
 }
 
-function A15Intro() {
+function A11yIntro() {
   return (
     <div className="px-6 py-20 sm:px-6 sm:py-24" style={{ borderTop: '1px solid var(--color-pale)' }}>
       <div className="hero-breakout mx-auto">
@@ -176,7 +176,7 @@ function A15Intro() {
             className="md:col-span-5 md:col-start-8"
           >
             <p className="type-body text-ink">
-              A15 is a local Figma plugin I built to check accessibility before handoff. It uses a
+              A11y Audit is a local Figma plugin I built to check accessibility before handoff. It uses a
               local AI vision model to read the selected frame, generate alt text, review visual
               structure, and surface risks like contrast, readability, and tab navigation. Private
               design work stays on my machine, avoiding unnecessary API cost or disclosure.
@@ -188,7 +188,7 @@ function A15Intro() {
   );
 }
 
-function A15Hud({
+function A11yHud({
   progress,
   progressWidth,
   mobile,
@@ -206,8 +206,8 @@ function A15Hud({
         className="flex items-center justify-between type-micro uppercase"
         style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}
       >
-        <span>A15 · Figma</span>
-        <A15SceneLabel progress={progress} />
+        <span>A11y · Figma</span>
+        <A11ySceneLabel progress={progress} />
         <span>07 / Acts</span>
       </div>
       <div className="relative mt-3" style={{ height: 1, backgroundColor: 'var(--color-pale)', opacity: 0.4 }}>
@@ -231,18 +231,18 @@ function A15Hud({
   );
 }
 
-function A15SceneLabel({ progress }: { progress: MotionValue<number> }) {
-  const [label, setLabel] = useState(A15_ACT_TITLES[0]);
+function A11ySceneLabel({ progress }: { progress: MotionValue<number> }) {
+  const [label, setLabel] = useState(A11Y_ACT_TITLES[0]);
 
   useMotionValueEvent(progress, 'change', (v) => {
     const idx = Math.min(6, Math.max(0, Math.floor(v * 7)));
-    setLabel(A15_ACT_TITLES[idx]);
+    setLabel(A11Y_ACT_TITLES[idx]);
   });
 
   return <span>{label}</span>;
 }
 
-function A15ProgressNumber({ progress }: { progress: MotionValue<number> }) {
+function A11yProgressNumber({ progress }: { progress: MotionValue<number> }) {
   const [pct, setPct] = useState(0);
 
   useMotionValueEvent(progress, 'change', (v) => {
@@ -257,7 +257,7 @@ function A15ProgressNumber({ progress }: { progress: MotionValue<number> }) {
   );
 }
 
-function A15CornerMarks() {
+function A11yCornerMarks() {
   const base: CSSProperties = {
     position: 'absolute',
     width: 46,
@@ -278,7 +278,7 @@ function A15CornerMarks() {
   );
 }
 
-function A15BlueprintGrid() {
+function A11yBlueprintGrid() {
   return (
     <div
       aria-hidden="true"
@@ -293,7 +293,7 @@ function A15BlueprintGrid() {
   );
 }
 
-function A15SceneFrame({
+function A11ySceneFrame({
   opacity,
   children,
   mobile,
@@ -326,7 +326,7 @@ function A15SceneFrame({
   );
 }
 
-function A15Scene1Mobile({ opacity, local }: SceneProps) {
+function A11yScene1Mobile({ opacity, local }: SceneProps) {
   const bridgeHeight = useTransform(local, [0.18, 0.42], ['0%', '100%']);
   const dotY = useTransform(local, [0.18, 0.42], ['0%', '100%']);
   const pluginY = useTransform(local, [0, 0.18], [24, 0]);
@@ -334,14 +334,14 @@ function A15Scene1Mobile({ opacity, local }: SceneProps) {
   const canvasY = useTransform(local, [0.25, 0.45], [20, 0]);
 
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col gap-5">
         <motion.div style={{ y: pluginY }}>
-          <PluginWindow title="A15 Plugin" eyebrow="Local audit for the design">
+          <PluginWindow title="A11y Audit" eyebrow="Local audit for the design">
             <div className="space-y-3">
-              <A15Metric label="Mode" value="Design-time" />
-              <A15Metric label="Scope" value="Selected frame" />
-              <A15Metric label="Standard" value="WCAG 2.2 AA" />
+              <A11yMetric label="Mode" value="Design-time" />
+              <A11yMetric label="Scope" value="Selected frame" />
+              <A11yMetric label="Standard" value="WCAG 2.2 AA" />
             </div>
             <div
               className="mt-6 border px-4 py-3 type-micro uppercase text-center"
@@ -382,12 +382,12 @@ function A15Scene1Mobile({ opacity, local }: SceneProps) {
         </motion.div>
       </div>
 
-      <A15Caption local={local} from={0.7} mobile text="The check starts with the design, before engineering inherits the product interface." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.7} mobile text="The check starts with the design, before engineering inherits the product interface." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene1({ opacity, local }: SceneProps) {
+function A11yScene1({ opacity, local }: SceneProps) {
   const bridgeWidth = useTransform(local, [0.18, 0.42], ['0%', '100%']);
   const dotX = useTransform(local, [0.18, 0.42], ['0%', '100%']);
   const pluginY = useTransform(local, [0, 0.18], [30, 0]);
@@ -395,14 +395,14 @@ function A15Scene1({ opacity, local }: SceneProps) {
   const canvasY = useTransform(local, [0.25, 0.45], [24, 0]);
 
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-10 md:grid-cols-[0.85fr_0.55fr_0.9fr]">
         <motion.div style={{ y: pluginY }}>
-          <PluginWindow title="A15 Plugin" eyebrow="Local audit for the design">
+          <PluginWindow title="A11y Audit" eyebrow="Local audit for the design">
             <div className="space-y-4">
-              <A15Metric label="Mode" value="Design-time" />
-              <A15Metric label="Scope" value="Selected design frame" />
-              <A15Metric label="Standard" value="WCAG 2.2 AA" />
+              <A11yMetric label="Mode" value="Design-time" />
+              <A11yMetric label="Scope" value="Selected design frame" />
+              <A11yMetric label="Standard" value="WCAG 2.2 AA" />
             </div>
             <div
               className="mt-8 border px-4 py-3 type-micro uppercase"
@@ -451,12 +451,12 @@ function A15Scene1({ opacity, local }: SceneProps) {
         </motion.div>
       </div>
 
-      <A15Caption local={local} from={0.7} text="The check starts with the design, before engineering inherits the product interface." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.7} text="The check starts with the design, before engineering inherits the product interface." />
+    </A11ySceneFrame>
   );
 }
 
-const A15_STRUCTURE_NODES = [
+const A11Y_STRUCTURE_NODES = [
   { label: 'main', indent: 0, delay: 0.1 },
   { label: 'heading · level 1', indent: 1, delay: 0.22 },
   { label: 'form', indent: 1, delay: 0.34 },
@@ -464,11 +464,11 @@ const A15_STRUCTURE_NODES = [
   { label: 'image · decorative', indent: 2, delay: 0.58 },
 ] as const;
 
-function A15Scene2MobileNode({
+function A11yScene2MobileNode({
   node,
   local,
 }: {
-  node: (typeof A15_STRUCTURE_NODES)[number];
+  node: (typeof A11Y_STRUCTURE_NODES)[number];
   local: MotionValue<number>;
 }) {
   const opacity = useTransform(local, [node.delay, node.delay + 0.08], [0, 1]);
@@ -483,9 +483,9 @@ function A15Scene2MobileNode({
   );
 }
 
-function A15Scene2Mobile({ opacity, local }: SceneProps) {
+function A11yScene2Mobile({ opacity, local }: SceneProps) {
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col gap-5">
         <PluginWindow title="Design Scan" eyebrow="Figma layer tree">
           <div className="space-y-2">
@@ -500,21 +500,21 @@ function A15Scene2Mobile({ opacity, local }: SceneProps) {
             Accessibility structure from the design
           </p>
           <div className="space-y-3">
-            {A15_STRUCTURE_NODES.map((n) => (
-              <A15Scene2MobileNode key={n.label} node={n} local={local} />
+            {A11Y_STRUCTURE_NODES.map((n) => (
+              <A11yScene2MobileNode key={n.label} node={n} local={local} />
             ))}
           </div>
         </div>
       </div>
 
-      <A15Caption local={local} from={0.72} mobile text="The design layers become the structure assistive technology will eventually need." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} mobile text="The design layers become the structure assistive technology will eventually need." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene2({ opacity, local }: SceneProps) {
+function A11yScene2({ opacity, local }: SceneProps) {
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-12 md:grid-cols-[0.8fr_1fr]">
         <PluginWindow title="Design Scan" eyebrow="Figma layer tree">
           <div className="space-y-2">
@@ -536,14 +536,14 @@ function A15Scene2({ opacity, local }: SceneProps) {
         </div>
       </div>
 
-      <A15Caption local={local} from={0.72} text="The design layers become the structure assistive technology will eventually need." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} text="The design layers become the structure assistive technology will eventually need." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene3Mobile({ opacity, local }: SceneProps) {
+function A11yScene3Mobile({ opacity, local }: SceneProps) {
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col gap-5">
         <FigmaCanvas title="Design canvas · scanned frame">
           <div
@@ -573,14 +573,14 @@ function A15Scene3Mobile({ opacity, local }: SceneProps) {
         </PluginWindow>
       </div>
 
-      <A15Caption local={local} from={0.72} mobile text="The plugin marks the design without leaving the canvas." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} mobile text="The plugin marks the design without leaving the canvas." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene3({ opacity, local }: SceneProps) {
+function A11yScene3({ opacity, local }: SceneProps) {
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-12 md:grid-cols-[1fr_0.85fr]">
         <FigmaCanvas title="Design canvas · scanned frame">
           <div className="relative mx-auto h-[500px] w-[285px] border bg-[var(--color-pure)] p-5" style={{ borderColor: 'var(--color-pale)' }}>
@@ -607,18 +607,18 @@ function A15Scene3({ opacity, local }: SceneProps) {
         </PluginWindow>
       </div>
 
-      <A15Caption local={local} from={0.72} text="The plugin marks the design without leaving the canvas." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} text="The plugin marks the design without leaving the canvas." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene4Mobile({ opacity, local }: SceneProps) {
+function A11yScene4Mobile({ opacity, local }: SceneProps) {
   const boxShadow = useTransform(local, [0.35, 0.62], ['0 0 0 0 rgba(26,26,26,0)', '0 0 0 1px rgba(26,26,26,0.28)']);
   const btnO = useTransform(local, [0.35, 0.6], [0.65, 1]);
   const ringO = useTransform(local, [0.12, 0.3], [0, 1]);
 
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col gap-5">
         <PluginWindow title="Design Repair" eyebrow="Human-readable repair">
           <div className="border-t pt-5" style={{ borderColor: 'var(--color-pale)' }}>
@@ -659,18 +659,18 @@ function A15Scene4Mobile({ opacity, local }: SceneProps) {
         </motion.div>
       </div>
 
-      <A15Caption local={local} from={0.72} mobile text="Each finding is attached to a standard and a practical next move." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} mobile text="Each finding is attached to a standard and a practical next move." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene4({ opacity, local }: SceneProps) {
+function A11yScene4({ opacity, local }: SceneProps) {
   const boxShadow = useTransform(local, [0.35, 0.62], ['0 0 0 0 rgba(26,26,26,0)', '0 0 0 1px rgba(26,26,26,0.28)']);
   const btnO = useTransform(local, [0.35, 0.6], [0.65, 1]);
   const ringO = useTransform(local, [0.12, 0.3], [0, 1]);
 
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-12 md:grid-cols-[0.95fr_1fr]">
         <PluginWindow title="Design Repair" eyebrow="Human-readable repair">
           <div className="border-t pt-5" style={{ borderColor: 'var(--color-pale)' }}>
@@ -710,15 +710,15 @@ function A15Scene4({ opacity, local }: SceneProps) {
         </motion.div>
       </div>
 
-      <A15Caption local={local} from={0.72} text="Each finding is attached to a standard and a practical next move." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} text="Each finding is attached to a standard and a practical next move." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene5Mobile({ opacity, local }: SceneProps) {
+function A11yScene5Mobile({ opacity, local }: SceneProps) {
   const rotate = useTransform(local, [0, 1], [0, 160]);
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col items-center gap-5">
         <FigmaCanvas title="Design canvas · image frame">
           <div
@@ -766,15 +766,15 @@ function A15Scene5Mobile({ opacity, local }: SceneProps) {
         </PluginWindow>
       </div>
 
-      <A15Caption local={local} from={0.72} mobile text="AI is used as a local assistant, with the designer still responsible for the decision." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} mobile text="AI is used as a local assistant, with the designer still responsible for the decision." />
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene5({ opacity, local }: SceneProps) {
+function A11yScene5({ opacity, local }: SceneProps) {
   const rotate = useTransform(local, [0, 1], [0, 160]);
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-10 md:grid-cols-[0.8fr_0.55fr_0.85fr]">
         <FigmaCanvas title="Design canvas · image frame">
           <div className="mx-auto h-[380px] w-[260px] border p-4" style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-pure)' }}>
@@ -819,8 +819,8 @@ function A15Scene5({ opacity, local }: SceneProps) {
         </PluginWindow>
       </div>
 
-      <A15Caption local={local} from={0.72} text="AI is used as a local assistant, with the designer still responsible for the decision." />
-    </A15SceneFrame>
+      <A11yCaption local={local} from={0.72} text="AI is used as a local assistant, with the designer still responsible for the decision." />
+    </A11ySceneFrame>
   );
 }
 
@@ -834,7 +834,7 @@ function A15Scene5({ opacity, local }: SceneProps) {
 
 // Each step's position is a % within the mockup box so it scales with
 // any canvas size (desktop or mobile). `seq` drives the appearance order.
-const A15_FOCUS_STEPS = [
+const A11Y_FOCUS_STEPS = [
   { n: 1, label: 'Email field', x: '50%', y: '40%', seq: 0.16 },
   { n: 2, label: 'Card field', x: '50%', y: '58%', seq: 0.3 },
   { n: 3, label: 'Secure note', x: '24%', y: '74%', seq: 0.44 },
@@ -842,9 +842,9 @@ const A15_FOCUS_STEPS = [
 ] as const;
 
 // Decorative icon the model deliberately leaves OUT of the focus path.
-const A15_FOCUS_SKIP = { x: '82%', y: '12%', seq: 0.66 } as const;
+const A11Y_FOCUS_SKIP = { x: '82%', y: '12%', seq: 0.66 } as const;
 
-function A15FocusPin({
+function A11yFocusPin({
   n,
   x,
   y,
@@ -880,7 +880,7 @@ function A15FocusPin({
 }
 
 // Decorative-icon marker: a dashed ring with a slash, labelled "skip".
-function A15FocusSkip({
+function A11yFocusSkip({
   x,
   y,
   seq,
@@ -921,8 +921,8 @@ function A15FocusSkip({
 }
 
 // Progressively-drawn polyline connecting the pins in focus order.
-function A15FocusPath({ local }: { local: MotionValue<number> }) {
-  // Points mirror A15_FOCUS_STEPS positions as fractions of the viewBox.
+function A11yFocusPath({ local }: { local: MotionValue<number> }) {
+  // Points mirror A11Y_FOCUS_STEPS positions as fractions of the viewBox.
   const pts = [
     [0.5, 0.4],
     [0.5, 0.58],
@@ -958,7 +958,7 @@ function A15FocusPath({ local }: { local: MotionValue<number> }) {
 }
 
 // One row of the streamed tab-order plan in the plugin panel.
-function A15FocusListRow({
+function A11yFocusListRow({
   n,
   label,
   seq,
@@ -994,7 +994,7 @@ function A15FocusListRow({
 
 // The mockup the focus overlay sits on — same visual language as the
 // Scene 2/3 checkout canvas (header bar, text lines, fields, CTA).
-function A15FocusMockup() {
+function A11yFocusMockup() {
   return (
     <>
       <div className="mb-4 h-6 w-28" style={{ backgroundColor: 'var(--color-ink)' }} />
@@ -1010,12 +1010,12 @@ function A15FocusMockup() {
   );
 }
 
-function A15FocusPlanPanel({ local }: { local: MotionValue<number> }) {
+function A11yFocusPlanPanel({ local }: { local: MotionValue<number> }) {
   return (
     <PluginWindow title="Tab Order Plan" eyebrow="Local model · keyboard path">
       <div className="space-y-2">
-        {A15_FOCUS_STEPS.map((s) => (
-          <A15FocusListRow key={s.n} n={s.n} label={s.label} seq={s.seq} local={local} />
+        {A11Y_FOCUS_STEPS.map((s) => (
+          <A11yFocusListRow key={s.n} n={s.n} label={s.label} seq={s.seq} local={local} />
         ))}
       </div>
       <motion.div
@@ -1036,22 +1036,22 @@ function A15FocusPlanPanel({ local }: { local: MotionValue<number> }) {
   );
 }
 
-function A15Scene6Mobile({ opacity, local }: SceneProps) {
+function A11yScene6Mobile({ opacity, local }: SceneProps) {
   const rotate = useTransform(local, [0, 1], [0, 160]);
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col items-center gap-5">
         <FigmaCanvas title="Design canvas · focus path">
           <div
             className="relative mx-auto w-[210px] max-w-full border bg-[var(--color-pure)] p-4"
             style={{ borderColor: 'var(--color-pale)', aspectRatio: '285 / 420' }}
           >
-            <A15FocusMockup />
-            <A15FocusPath local={local} />
-            {A15_FOCUS_STEPS.map((s) => (
-              <A15FocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
+            <A11yFocusMockup />
+            <A11yFocusPath local={local} />
+            {A11Y_FOCUS_STEPS.map((s) => (
+              <A11yFocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
             ))}
-            <A15FocusSkip x={A15_FOCUS_SKIP.x} y={A15_FOCUS_SKIP.y} seq={A15_FOCUS_SKIP.seq} local={local} />
+            <A11yFocusSkip x={A11Y_FOCUS_SKIP.x} y={A11Y_FOCUS_SKIP.y} seq={A11Y_FOCUS_SKIP.seq} local={local} />
           </div>
         </FigmaCanvas>
 
@@ -1070,35 +1070,35 @@ function A15Scene6Mobile({ opacity, local }: SceneProps) {
           </div>
         </div>
 
-        <A15FocusPlanPanel local={local} />
+        <A11yFocusPlanPanel local={local} />
       </div>
 
-      <A15Caption
+      <A11yCaption
         local={local}
         from={0.72}
         mobile
         text="The same local model proposes a keyboard path, the designer confirms the intent."
       />
-    </A15SceneFrame>
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene6({ opacity, local }: SceneProps) {
+function A11yScene6({ opacity, local }: SceneProps) {
   const rotate = useTransform(local, [0, 1], [0, 160]);
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-10 md:grid-cols-[0.8fr_0.55fr_0.85fr]">
         <FigmaCanvas title="Design canvas · focus path">
           <div
             className="relative mx-auto h-[380px] w-[260px] border bg-[var(--color-pure)] p-5"
             style={{ borderColor: 'var(--color-pale)' }}
           >
-            <A15FocusMockup />
-            <A15FocusPath local={local} />
-            {A15_FOCUS_STEPS.map((s) => (
-              <A15FocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
+            <A11yFocusMockup />
+            <A11yFocusPath local={local} />
+            {A11Y_FOCUS_STEPS.map((s) => (
+              <A11yFocusPin key={s.n} n={s.n} x={s.x} y={s.y} seq={s.seq} local={local} />
             ))}
-            <A15FocusSkip x={A15_FOCUS_SKIP.x} y={A15_FOCUS_SKIP.y} seq={A15_FOCUS_SKIP.seq} local={local} />
+            <A11yFocusSkip x={A11Y_FOCUS_SKIP.x} y={A11Y_FOCUS_SKIP.y} seq={A11Y_FOCUS_SKIP.seq} local={local} />
           </div>
         </FigmaCanvas>
 
@@ -1117,26 +1117,26 @@ function A15Scene6({ opacity, local }: SceneProps) {
           </div>
         </div>
 
-        <A15FocusPlanPanel local={local} />
+        <A11yFocusPlanPanel local={local} />
       </div>
 
-      <A15Caption
+      <A11yCaption
         local={local}
         from={0.72}
         text="The same local model proposes a keyboard path, the designer confirms the intent."
       />
-    </A15SceneFrame>
+    </A11ySceneFrame>
   );
 }
 
-const A15_RESOLVE_CARDS: [string, string][] = [
+const A11Y_RESOLVE_CARDS: [string, string][] = [
   ['1.4.3', 'Button contrast adjusted'],
   ['2.4.7', 'Focus state documented'],
   ['4.1.2', 'Control name clarified'],
   ['1.1.1', 'Alt text drafted locally'],
 ];
 
-function A15ResolveCard({
+function A11yResolveCard({
   code,
   title,
   index,
@@ -1159,14 +1159,14 @@ function A15ResolveCard({
   );
 }
 
-function A15Scene7Mobile({ opacity, local }: SceneProps) {
+function A11yScene7Mobile({ opacity, local }: SceneProps) {
   const total = useTransform(local, [0.15, 0.45], [0, 6]);
   const resolved = useTransform(local, [0.35, 0.72], [0, 5]);
   const dismissed = useTransform(local, [0.45, 0.78], [0, 1]);
   const progressWidth = useTransform(local, [0.25, 0.82], ['0%', '100%']);
 
   return (
-    <A15SceneFrame opacity={opacity} mobile>
+    <A11ySceneFrame opacity={opacity} mobile>
       <div className="flex flex-col gap-6">
         <div>
           <p className="type-micro uppercase mb-4" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
@@ -1184,7 +1184,7 @@ function A15Scene7Mobile({ opacity, local }: SceneProps) {
         <div className="border bg-[var(--color-pure)]" style={{ borderColor: 'var(--color-pale)' }}>
           <div className="border-b px-4 py-4" style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-ink)' }}>
             <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pure)', opacity: 0.7 }}>
-              A15 · Audit Session
+              A11y · Audit Session
             </p>
             <h4 className="type-display-s mt-2" style={{ color: 'var(--color-pure)' }}>
               Design frame / Checkout
@@ -1208,24 +1208,24 @@ function A15Scene7Mobile({ opacity, local }: SceneProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-2 p-3">
-            {A15_RESOLVE_CARDS.map(([code, title], i) => (
-              <A15ResolveCard key={code} code={code} title={title} index={i} local={local} />
+            {A11Y_RESOLVE_CARDS.map(([code, title], i) => (
+              <A11yResolveCard key={code} code={code} title={title} index={i} local={local} />
             ))}
           </div>
         </div>
       </div>
-    </A15SceneFrame>
+    </A11ySceneFrame>
   );
 }
 
-function A15Scene7({ opacity, local }: SceneProps) {
+function A11yScene7({ opacity, local }: SceneProps) {
   const total = useTransform(local, [0.15, 0.45], [0, 6]);
   const resolved = useTransform(local, [0.35, 0.72], [0, 5]);
   const dismissed = useTransform(local, [0.45, 0.78], [0, 1]);
   const progressWidth = useTransform(local, [0.25, 0.82], ['0%', '100%']);
 
   return (
-    <A15SceneFrame opacity={opacity}>
+    <A11ySceneFrame opacity={opacity}>
       <div className="grid items-center gap-12 md:grid-cols-[0.7fr_1fr]">
         <div>
           <p className="type-micro uppercase mb-6" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
@@ -1243,7 +1243,7 @@ function A15Scene7({ opacity, local }: SceneProps) {
         <div className="border bg-[var(--color-pure)]" style={{ borderColor: 'var(--color-pale)' }}>
           <div className="border-b px-5 py-4" style={{ borderColor: 'var(--color-pale)', backgroundColor: 'var(--color-ink)' }}>
             <p className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pure)', opacity: 0.7 }}>
-              A15 · Audit Session
+              A11y · Audit Session
             </p>
             <h4 className="type-display-s mt-2" style={{ color: 'var(--color-pure)' }}>
               Design frame / Checkout mobile
@@ -1267,13 +1267,13 @@ function A15Scene7({ opacity, local }: SceneProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-3 p-4">
-            {A15_RESOLVE_CARDS.map(([code, title], i) => (
-              <A15ResolveCard key={code} code={code} title={title} index={i} local={local} />
+            {A11Y_RESOLVE_CARDS.map(([code, title], i) => (
+              <A11yResolveCard key={code} code={code} title={title} index={i} local={local} />
             ))}
           </div>
         </div>
       </div>
-    </A15SceneFrame>
+    </A11ySceneFrame>
   );
 }
 
@@ -1288,7 +1288,7 @@ function PluginWindow({ title, eyebrow, children }: { title: string; eyebrow: st
           <h4 className="type-display-s text-ink">{title}</h4>
         </div>
         <span className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-pale)' }}>
-          A15
+          A11y
         </span>
       </div>
       {children}
@@ -1314,7 +1314,7 @@ function FigmaCanvas({ title, children }: { title: string; children: ReactNode }
   );
 }
 
-function A15Metric({ label, value }: { label: string; value: string }) {
+function A11yMetric({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between border-b pb-3" style={{ borderColor: 'var(--color-pale)' }}>
       <span className="type-micro uppercase" style={{ ...TECH_LABEL_STYLE, color: 'var(--color-dark)' }}>
@@ -1488,7 +1488,7 @@ function StatCard({ label, value }: { label: string; value: MotionValue<number> 
   );
 }
 
-function A15Caption({
+function A11yCaption({
   local,
   from,
   text,
@@ -1522,14 +1522,14 @@ function A15Caption({
   );
 }
 
-function A15MobileWorkflow() {
+function A11yMobileWorkflow() {
   return (
-    <section aria-label="A15 Figma accessibility plugin workflow" style={{ backgroundColor: 'var(--color-base)' }}>
-      <A15Intro />
+    <section aria-label="A11y Audit Figma accessibility plugin workflow" style={{ backgroundColor: 'var(--color-base)' }}>
+      <A11yIntro />
       <div className="px-6 py-12" style={{ borderTop: '1px solid var(--color-pale)', borderBottom: '1px solid var(--color-pale)' }}>
         <div className="hero-breakout mx-auto space-y-8">
           {[
-            ['Design file', 'A15 runs locally inside Figma before the design reaches engineering.'],
+            ['Design file', 'A11y Audit runs locally inside Figma before the design reaches engineering.'],
             ['Design scan', 'The plugin converts the selected design frame into a readable accessibility structure.'],
             ['Design findings', 'Risks are grouped by WCAG direction and kept attached to the design.'],
             ['Design repair', 'Each design issue includes a practical next move rather than a vague warning.'],

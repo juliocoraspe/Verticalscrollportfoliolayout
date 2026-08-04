@@ -1,4 +1,4 @@
-import { A15FigmaPluginWorkflow } from '../A15FigmaPluginWorkflow';
+import { A11yFigmaPluginWorkflow } from '../A11yFigmaPluginWorkflow';
 import { WcagWorkflow } from '../WcagWorkflow';
 import { ScrollSection } from '../ScrollSection';
 import type { CSSProperties } from 'react';
@@ -64,7 +64,7 @@ export function AccessibilitySection() {
   return (
     <main id="main-content">
       <WcagWorkflow
-        beforeWorkflow={<A15FigmaPluginWorkflow />}
+        beforeWorkflow={<A11yFigmaPluginWorkflow />}
         standardsConnector={<StandardsConnector />}
       />
     </main>
