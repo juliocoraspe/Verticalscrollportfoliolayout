@@ -3,6 +3,7 @@ import { DocumentModal } from './DocumentModal';
 import type { BlueprintSection } from './CaseStudyBlueprint';
 import realLifeBanner from '../../assets/images/RealLife_banner.jpg';
 import realLifeFeatureDefinition from '../../assets/images/RealLife_feature-definition-redacted.png';
+import realLifeMvpFlow from '../../assets/images/RealLife_mvpflow.jpg';
 import realLifePrototype from '../../assets/images/RealLife_prototype.png';
 import realLifeValidationRecruitment from '../../assets/images/RealLife_validation-recruitment-redacted.png';
 import realLifeValidationCommunications from '../../assets/images/RealLife_validation-communications-redacted.png';
@@ -827,6 +828,34 @@ export function getRealLifeBlueprintSections(): BlueprintSection[] {
               required UI states, and the variations for first use, repeat use, success, and error needed to
               make the loop complete.
             </p>
+
+            <p style={{ margin: '16px 0 12px' }}>
+              The opening of that loop, drawn out: an empty first-time state that explains the idea
+              without a challenge to show, the five challenge families as the only real choice, and a
+              setup screen that names the person before it names the task. Each screen is annotated
+              with the state it represents, so the flow shows the variations rather than only the
+              happy path.
+            </p>
+            <div className="cs-bp-media" style={{ width: '100%' }}>
+              <div className="cs-bp-media-frame">
+                <img
+                  src={realLifeMvpFlow}
+                  alt="First three of the six MVP screens: an empty first-time intro, the challenge family picker, and the challenge setup and invite screen, each labelled with its UI state"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <DocumentModal
+                className="cs-bp-media-link"
+                src={realLifeMvpFlow}
+                kind="image"
+                title="MVP screens — the participation loop"
+                meta="Screens 01–03 of 06"
+              >
+                <span>View the MVP screen flow</span>
+                <span className="cs-bp-cta-arrow" aria-hidden="true">↗</span>
+              </DocumentModal>
+            </div>
           </div>
           <div className="cs-bp-media rl-feature-definition-board">
             <div className="cs-bp-media-frame">
